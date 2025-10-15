@@ -1,14 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <meta name="theme-color" content="#006400" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>NuVana Menu</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<meta content="#006400" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<title>NuVana Menu</title>
+<style>
     /* Base */
     html, body {
       -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;
@@ -283,390 +283,487 @@
         padding: 0 16px;
       }
     }
-  </style>
-</head>
+  
+.fragron-footer {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-top: 40px;
+  padding: 15px 10px;
+  font-size: 0.9em;
+  border-top: 1px solid #ddd;
+  background: linear-gradient(to right, #f9f9f9, #ffffff);
+}
+
+.fragron-footer {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 40px;
+  padding: 12px 8px;
+  font-size: 0.75em;
+  border-top: 1px solid #ddd;
+  background: linear-gradient(to right, #f9f9f9, #ffffff);
+}
+</style>
+<style>
+/* ===== NuVana: final surgical fixes (tooltip modal + massage pricing multi-toggle) ===== */
+.nv-tooltip-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.25);
+  z-index: 10000;
+}
+.nv-tooltip-overlay.open { display: flex; }
+
+.nv-tooltip-card {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 14px 16px;
+  max-width: min(420px, calc(100vw - 32px));
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);
+  font-size: .9em;
+  line-height: 1.45;
+}
+.nv-tooltip-close {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+}
+
+#massages-view .accordion-content {
+  overflow: hidden;
+  transition: max-height .28s ease, padding .28s ease;
+}
+</style><style>
+/* Caption styling for massages section */
+.massage-caption {
+  text-align: center;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+</style><style>
+.tooltip-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 20px;
+  width: 80%;
+  max-width: 340px;
+  text-align: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+.tooltip-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #555;
+}
+.tooltip-box.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.massage-caption {
+  text-align: center;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+</style></head>
 <body>
-  <header>
-    <!-- Split heading onto two lines so “Menu” appears beneath “NuVana IV & Wellness” -->
-    <h1>NuVana IV & Wellness<br>Menu</h1>
-    <!-- Update tagline as requested -->
-    <p>Rewire your reality...</p>
-  </header>
-
-  <div class="container">
-    <div id="main-menu-view" data-view-id="main-menu-view">
-      <div class="grid">
-        <div class="card" data-action="navigate" data-target-view="categories-view">
-          <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
-          <div class="small">Personalised infusions to match your lifestyle, goals, and energy.</div>
-        </div>
-        <div class="card" data-action="navigate" data-target-view="massages-view">
-          <div class="icon">👐</div><div class="drip-name">Massages</div><div class="tile-divider"></div>
-          <div class="small">Relax, restore, and revive your body’s natural harmony.</div>
-        </div>
-        <div class="card" data-action="navigate" data-target-view="light-therapy-view">
-          <div class="icon">😊🌟</div><div class="drip-name">Skin Light Therapy</div><div class="tile-divider"></div>
-          <div class="small">Radiate confidence with gentle light that renews from within.</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="categories-view" data-view-id="categories-view" class="hidden">
-      <button class="back-button" data-action="back">← Back</button>
-      <h2>Select Your IV Drip</h2>
-      <div class="select-row">
-        <label for="selection-type">Find by: </label>
-        <select id="selection-type" data-action="filter-categories">
-          <option value="series">IV Drip Series</option><option value="lifestyle">Lifestyle</option>
-          <option value="feel-goal" selected>How You Feel / Goal</option><option value="ingredients">Ingredients</option>
-        </select>
-      </div>
-      <div id="categories-grid" class="grid"></div>
-    </div>
-
-    <div id="drips-view" data-view-id="drips-view" class="hidden">
-      <button class="back-button" data-action="back">← Back</button>
-      <h2 id="drips-heading"></h2>
-      <div id="drips-grid" class="grid"></div>
-    </div>
-
-    <div id="details-view" data-view-id="details-view" class="hidden">
-      <button class="back-button" data-action="back">← Back</button>
-      <div class="drip-details" id="drip-details-panel">
-        <h2 id="detail-name"></h2>
-        <p class="price">Price: R<span id="detail-price"></span></p>
-        <p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
-        <!-- Series blurb appears here when viewing a drip that belongs to a series -->
-        <div id="series-blurb" class="series-blurb"></div>
-        <!-- “Did you know?” providing assurance through Fagron partnership.  -->
-        <div class="did-you-know">
+<header>
+<!-- Split heading onto two lines so “Menu” appears beneath “NuVana IV & Wellness” -->
+<h1>NuVana IV &amp; Wellness<br/>Menu</h1>
+<!-- Update tagline as requested -->
+<p>Rewire your reality...</p>
+</header>
+<div class="container">
+<div data-view-id="main-menu-view" id="main-menu-view">
+<div class="grid">
+<div class="card" data-action="navigate" data-target-view="categories-view">
+<div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
+<div class="small">Personalised infusions to match your lifestyle, goals, and energy.</div>
+</div>
+<div class="card" data-action="navigate" data-target-view="massages-view">
+<div class="icon">👐</div><div class="drip-name">Massages</div><div class="tile-divider"></div>
+<div class="small">Relax, restore, and revive your body’s natural harmony.</div>
+</div>
+<div class="card" data-action="navigate" data-target-view="light-therapy-view">
+<div class="icon">😊🌟</div><div class="drip-name">Skin Light Therapy</div><div class="tile-divider"></div>
+<div class="small">Radiate confidence with gentle light that renews from within.</div>
+</div>
+</div>
+</div>
+<div class="hidden" data-view-id="categories-view" id="categories-view">
+<button class="back-button" data-action="back">← Back</button>
+<h2>Select Your IV Drip</h2>
+<div class="select-row">
+<label for="selection-type">Find by: </label>
+<select data-action="filter-categories" id="selection-type">
+<option value="series">IV Drip Series</option><option value="lifestyle">Lifestyle</option>
+<option selected="" value="feel-goal">How You Feel / Goal</option><option value="ingredients">Ingredients</option>
+</select>
+</div>
+<div class="grid" id="categories-grid"></div>
+</div>
+<div class="hidden" data-view-id="drips-view" id="drips-view">
+<button class="back-button" data-action="back">← Back</button>
+<h2 id="drips-heading"></h2>
+<div class="grid" id="drips-grid"></div>
+</div>
+<div class="hidden" data-view-id="details-view" id="details-view">
+<button class="back-button" data-action="back">← Back</button>
+<div class="drip-details" id="drip-details-panel">
+<h2 id="detail-name"></h2>
+<p class="price">Price: R<span id="detail-price"></span></p>
+<p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
+<!-- Series blurb appears here when viewing a drip that belongs to a series -->
+<div class="series-blurb" id="series-blurb"></div>
+<!-- “Did you know?” providing assurance through Fagron partnership.  -->
+<div class="did-you-know">
           ℹ️ Did you know?
-          <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" target="_blank" rel="noopener noreferrer">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine. This trusted partnership allows us to provide you with bespoke, high-quality care that meets the highest standards of safety and efficacy.</div>
-        </div>
-        <div class="group-rose">
-          <button class="accordion-header" data-action="toggle-accordion" data-target="perfect-section">Perfect For</button>
-          <div id="perfect-section" class="accordion-content"><p id="detail-perfect"></p></div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="not-suitable-section">Not Suitable For</button>
-          <div id="not-suitable-section" class="accordion-content"><p id="detail-not-suitable"></p></div>
-        </div>
-        <div class="group-aqua">
-          <button class="accordion-header" data-action="toggle-accordion" data-target="description-section">Description</button>
-          <div id="description-section" class="accordion-content"><p id="detail-description"></p></div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="frequency-section">Frequency</button>
-          <div id="frequency-section" class="accordion-content"><p id="detail-frequency"></p></div>
-        </div>
-        <div class="group-gold">
-          <button class="accordion-header" data-action="toggle-accordion" data-target="overall-benefits-section">Overall Benefits</button>
-          <div id="overall-benefits-section" class="accordion-content"><p id="detail-overall-benefits"></p></div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="ingredients-section">Ingredient Benefits</button>
-          <div id="ingredients-section" class="accordion-content"><ul id="detail-ingredients" class="ingredient-list"></ul></div>
-        </div>
-        <div class="group-lav">
-          <button class="accordion-header" data-action="toggle-accordion" data-target="feedback-section">User Insights</button>
-          <div id="feedback-section" class="accordion-content"><p id="detail-feedback"></p></div>
-        </div>
-      </div>
-    </div>
-
-    <div id="massages-view" data-view-id="massages-view" class="hidden">
-      <button class="back-button" data-action="back">← Back</button>
-      <!-- Relaxation & rejuvenation massages -->
-      <div class="category-wrapper section-relaxation">
-        <h2>Relaxation &amp; Rejuvenation</h2>
-        <div class="grid massage-section">
-        <div class="card">
-          <div class="icon">🔥</div><div class="drip-name">Hot Stone Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Warm stones melt away tension, soothe muscles and send you into restorative bliss.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+          <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine. This trusted partnership allows us to provide you with bespoke, high-quality care that meets the highest standards of safety and efficacy.</div>
+</div>
+<div class="group-rose">
+<button class="accordion-header" data-action="toggle-accordion" data-target="perfect-section">Perfect For</button>
+<div class="accordion-content" id="perfect-section"><p id="detail-perfect"></p></div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="not-suitable-section">Not Suitable For</button>
+<div class="accordion-content" id="not-suitable-section"><p id="detail-not-suitable"></p></div>
+</div>
+<div class="group-aqua">
+<button class="accordion-header" data-action="toggle-accordion" data-target="description-section">Description</button>
+<div class="accordion-content" id="description-section"><p id="detail-description"></p></div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="frequency-section">Frequency</button>
+<div class="accordion-content" id="frequency-section"><p id="detail-frequency"></p></div>
+</div>
+<div class="group-gold">
+<button class="accordion-header" data-action="toggle-accordion" data-target="overall-benefits-section">Overall Benefits</button>
+<div class="accordion-content" id="overall-benefits-section"><p id="detail-overall-benefits"></p></div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="ingredients-section">Ingredient Benefits</button>
+<div class="accordion-content" id="ingredients-section"><ul class="ingredient-list" id="detail-ingredients"></ul></div>
+</div>
+<div class="group-lav">
+<button class="accordion-header" data-action="toggle-accordion" data-target="feedback-section">User Insights</button>
+<div class="accordion-content" id="feedback-section"><p id="detail-feedback"></p></div>
+</div>
+</div>
+</div>
+<div class="hidden" data-view-id="massages-view" id="massages-view"><div class="massage-caption" style="text-align:center; margin-bottom: 14px; font-size: 0.95em; color: #555;">💆 Tip: Tap a price tag to view massage pricing, or tap the info ℹ️ icon to learn more about the massage.</div>
+<button class="back-button" data-action="back">← Back</button>
+<!-- Relaxation & rejuvenation massages -->
+<div class="category-wrapper section-relaxation">
+<h2>Relaxation &amp; Rejuvenation</h2>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">🔥</div><div class="drip-name">Hot Stone Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Warm stones melt away tension, soothe muscles and send you into restorative bliss.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-hot-stone">Pricing</button>
-          <div id="price-hot-stone" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R350</li>
-              <li>60&nbsp;min: R500</li>
-              <li>90&nbsp;min: R750</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🌸</div><div class="drip-name">Swedish Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Long, flowing strokes calm your nervous system and restore peace to body and mind.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-hot-stone">Pricing</button>
+<div class="accordion-content" id="price-hot-stone">
+<ul class="price-list">
+<li>30 min: R350</li>
+<li>60 min: R500</li>
+<li>90 min: R750</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🌸</div><div class="drip-name">Swedish Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Long, flowing strokes calm your nervous system and restore peace to body and mind.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-swedish">Pricing</button>
-          <div id="price-swedish" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R350</li>
-              <li>60&nbsp;min: R600</li>
-              <li>90&nbsp;min: R850</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🧘</div><div class="drip-name">Indian Head Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">A soothing head, neck &amp; shoulder ritual that clears your mind and grounds your spirit.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-swedish">Pricing</button>
+<div class="accordion-content" id="price-swedish">
+<ul class="price-list">
+<li>30 min: R350</li>
+<li>60 min: R600</li>
+<li>90 min: R850</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🧘</div><div class="drip-name">Indian Head Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A soothing head, neck &amp; shoulder ritual that clears your mind and grounds your spirit.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you feeling refreshed, grounded and mentally recharged.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-indian-head">Pricing</button>
-          <div id="price-indian-head" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R250</li>
-              <li>60&nbsp;min: R450</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">💆</div><div class="drip-name">Neck, Back &amp; Shoulder Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Release built‑up stress in your upper body, restoring comfort and instant relief.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-indian-head">Pricing</button>
+<div class="accordion-content" id="price-indian-head">
+<ul class="price-list">
+<li>30 min: R250</li>
+<li>60 min: R450</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💆</div><div class="drip-name">Neck, Back &amp; Shoulder Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Release built‑up stress in your upper body, restoring comfort and instant relief.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-neck-back">Pricing</button>
-          <div id="price-neck-back" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R300</li>
-              <li>60&nbsp;min: R450</li>
-              <li>90&nbsp;min: R700</li>
-            </ul>
-          </div>
-        </div>
-        </div>
-      </div>
-      <!-- Therapeutic & recovery massages -->
-      <div class="category-wrapper section-therapeutic">
-        <h2>Therapeutic &amp; Recovery</h2>
-        <div class="grid massage-section">
-        <div class="card">
-          <div class="icon">💪</div><div class="drip-name">Deep Tissue Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Firm, targeted pressure relieves chronic tension and restores balance.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-neck-back">Pricing</button>
+<div class="accordion-content" id="price-neck-back">
+<ul class="price-list">
+<li>30 min: R300</li>
+<li>60 min: R450</li>
+<li>90 min: R700</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Therapeutic & recovery massages -->
+<div class="category-wrapper section-therapeutic">
+<h2>Therapeutic &amp; Recovery</h2>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">💪</div><div class="drip-name">Deep Tissue Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Firm, targeted pressure relieves chronic tension and restores balance.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-deep-tissue">Pricing</button>
-          <div id="price-deep-tissue" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R450</li>
-              <li>60&nbsp;min: R850</li>
-              <li>90&nbsp;min: R1,050</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🏃</div><div class="drip-name">Sports Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Deep work and assisted stretches enhance performance, ease soreness and speed recovery.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-deep-tissue">Pricing</button>
+<div class="accordion-content" id="price-deep-tissue">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R850</li>
+<li>90 min: R1,050</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🏃</div><div class="drip-name">Sports Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Deep work and assisted stretches enhance performance, ease soreness and speed recovery.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you’re training, competing or simply staying active.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-sports">Pricing</button>
-          <div id="price-sports" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R500</li>
-              <li>60&nbsp;min: R800</li>
-              <li>90&nbsp;min: R1,100</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">💧</div><div class="drip-name">Lymphatic Drainage Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-sports">Pricing</button>
+<div class="accordion-content" id="price-sports">
+<ul class="price-list">
+<li>30 min: R500</li>
+<li>60 min: R800</li>
+<li>90 min: R1,100</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💧</div><div class="drip-name">Lymphatic Drainage Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A gentle, rhythmic technique that supports your body’s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-lymphatic">Pricing</button>
-          <div id="price-lymphatic" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R500</li>
-              <li>60&nbsp;min: R800</li>
-              <li>90&nbsp;min: R1,100</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">👣</div><div class="drip-name">Foot Massage / Reflexology</div>
-          <div class="tile-divider"></div>
-          <div class="small">Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-lymphatic">Pricing</button>
+<div class="accordion-content" id="price-lymphatic">
+<ul class="price-list">
+<li>30 min: R500</li>
+<li>60 min: R800</li>
+<li>90 min: R1,100</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👣</div><div class="drip-name">Foot Massage / Reflexology</div>
+<div class="tile-divider"></div>
+<div class="small">Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-foot">Pricing</button>
-          <div id="price-foot" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R250</li>
-              <li>60&nbsp;min: R400</li>
-              <li>90&nbsp;min: R600</li>
-            </ul>
-          </div>
-        </div>
-        </div>
-      </div>
-      <!-- Massage Combo packages -->
-      <div class="category-wrapper section-combos">
-        <h2>Massage Combos</h2>
-        <div class="grid massage-section">
-        <div class="card">
-          <div class="icon">💑</div><div class="drip-name">The Serenity Duo – Swedish Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">A synchronised Swedish massage melts tension and deepens your connection.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-foot">Pricing</button>
+<div class="accordion-content" id="price-foot">
+<ul class="price-list">
+<li>30 min: R250</li>
+<li>60 min: R400</li>
+<li>90 min: R600</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Massage Combo packages -->
+<div class="category-wrapper section-combos">
+<h2>Massage Combos</h2>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">💑</div><div class="drip-name">The Serenity Duo – Swedish Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A synchronised Swedish massage melts tension and deepens your connection.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-serenity-duo">Pricing</button>
-          <div id="price-serenity-duo" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R630</li>
-              <li>60&nbsp;min: R1,080</li>
-              <li>90&nbsp;min: R1,530</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🌋</div><div class="drip-name">The Lava Escape – Hot Stone Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Heated stones and gentle strokes create a shared retreat into soothing warmth.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-serenity-duo">Pricing</button>
+<div class="accordion-content" id="price-serenity-duo">
+<ul class="price-list">
+<li>30 min: R630</li>
+<li>60 min: R1,080</li>
+<li>90 min: R1,530</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🌋</div><div class="drip-name">The Lava Escape – Hot Stone Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Heated stones and gentle strokes create a shared retreat into soothing warmth.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-lava-escape">Pricing</button>
-          <div id="price-lava-escape" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R630</li>
-              <li>60&nbsp;min: R900</li>
-              <li>90&nbsp;min: R1,350</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">💪</div><div class="drip-name">The Power Pair – Deep Tissue Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Firm pressure releases stubborn knots, ideal for active pairs seeking relief.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-lava-escape">Pricing</button>
+<div class="accordion-content" id="price-lava-escape">
+<ul class="price-list">
+<li>30 min: R630</li>
+<li>60 min: R900</li>
+<li>90 min: R1,350</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💪</div><div class="drip-name">The Power Pair – Deep Tissue Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Firm pressure releases stubborn knots, ideal for active pairs seeking relief.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-power-pair">Pricing</button>
-          <div id="price-power-pair" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R810</li>
-              <li>60&nbsp;min: R1,530</li>
-              <li>90&nbsp;min: R1,890</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🏃</div><div class="drip-name">The Athletes Alignment – Sports Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Performance‑driven couples get deep work and stretches to recover and stay agile.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-power-pair">Pricing</button>
+<div class="accordion-content" id="price-power-pair">
+<ul class="price-list">
+<li>30 min: R810</li>
+<li>60 min: R1,530</li>
+<li>90 min: R1,890</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🏃</div><div class="drip-name">The Athletes Alignment – Sports Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Performance‑driven couples get deep work and stretches to recover and stay agile.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-athletes-alignment">Pricing</button>
-          <div id="price-athletes-alignment" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R900</li>
-              <li>60&nbsp;min: R1,620</li>
-              <li>90&nbsp;min: R2,160</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">💧</div><div class="drip-name">The Detox Duo – Lymphatic Drainage</div>
-          <div class="tile-divider"></div>
-          <div class="small">A light touch encourages detox and circulation for refreshing renewal.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-athletes-alignment">Pricing</button>
+<div class="accordion-content" id="price-athletes-alignment">
+<ul class="price-list">
+<li>30 min: R900</li>
+<li>60 min: R1,620</li>
+<li>90 min: R2,160</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💧</div><div class="drip-name">The Detox Duo – Lymphatic Drainage</div>
+<div class="tile-divider"></div>
+<div class="small">A light touch encourages detox and circulation for refreshing renewal.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-detox-duo">Pricing</button>
-          <div id="price-detox-duo" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R900</li>
-              <li>60&nbsp;min: R1,440</li>
-              <li>90&nbsp;min: R1,980</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">🤲</div><div class="drip-name">The Tranquil Touch – Neck, Back &amp; Shoulder Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">Focused tension relief for neck, back &amp; shoulders, bringing calm to couples.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-detox-duo">Pricing</button>
+<div class="accordion-content" id="price-detox-duo">
+<ul class="price-list">
+<li>30 min: R900</li>
+<li>60 min: R1,440</li>
+<li>90 min: R1,980</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🤲</div><div class="drip-name">The Tranquil Touch – Neck, Back &amp; Shoulder Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Focused tension relief for neck, back &amp; shoulders, bringing calm to couples.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-tranquil-touch">Pricing</button>
-          <div id="price-tranquil-touch" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R540</li>
-              <li>60&nbsp;min: R810</li>
-              <li>90&nbsp;min: R1,260</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">👣</div><div class="drip-name">The Sole Connection – Foot Massage / Reflexology</div>
-          <div class="tile-divider"></div>
-          <div class="small">Grounding footwork stimulates energy flow and relieves tension for two.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-tranquil-touch">Pricing</button>
+<div class="accordion-content" id="price-tranquil-touch">
+<ul class="price-list">
+<li>30 min: R540</li>
+<li>60 min: R810</li>
+<li>90 min: R1,260</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👣</div><div class="drip-name">The Sole Connection – Foot Massage / Reflexology</div>
+<div class="tile-divider"></div>
+<div class="small">Grounding footwork stimulates energy flow and relieves tension for two.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-sole-connection">Pricing</button>
-          <div id="price-sole-connection" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R450</li>
-              <li>60&nbsp;min: R720</li>
-              <li>90&nbsp;min: R1,080</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card">
-          <div class="icon">👑</div><div class="drip-name">The Crown &amp; Calm Ritual – Indian Head Massage</div>
-          <div class="tile-divider"></div>
-          <div class="small">A meditative scalp, neck &amp; shoulder ritual calms minds and balances energy.</div>
-          <div class="info" onclick="this.classList.toggle('open');">ℹ️
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-sole-connection">Pricing</button>
+<div class="accordion-content" id="price-sole-connection">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R720</li>
+<li>90 min: R1,080</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👑</div><div class="drip-name">The Crown &amp; Calm Ritual – Indian Head Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A meditative scalp, neck &amp; shoulder ritual calms minds and balances energy.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
             <div class="info-tooltip">A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.</div>
-          </div>
-          <button class="accordion-header" data-action="toggle-accordion" data-target="price-crown-calm">Pricing</button>
-          <div id="price-crown-calm" class="accordion-content">
-            <ul class="price-list">
-              <li>30&nbsp;min: R450</li>
-              <li>60&nbsp;min: R720</li>
-            </ul>
-          </div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="light-therapy-view" data-view-id="light-therapy-view" class="hidden">
-      <button class="back-button" data-action="back">← Back</button>
-      <h2>Skin Light Therapy</h2><p>Experience light therapy to boost mood and vitality.</p>
-    </div>
-  </div>
-
-  <template id="category-card-template">
-    <div class="card" data-action="select-category">
-      <div class="icon"></div><div class="drip-name"></div>
-      <div class="tile-divider"></div><div class="small">Explore</div>
-    </div>
-  </template>
-
-  <template id="drip-card-template">
-    <div class="card" data-action="select-drip">
-      <div class="icon"></div><div class="drip-name"></div>
-      <div class="tile-divider"></div><div class="drip-tagline"></div>
-      <div class="price-container">R<span class="price"></span></div>
-      <div class="single-add-on-label hidden">➕❓ Add-On or Stand-Alone Drip</div>
-    </div>
-  </template>
-
-  <script>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-crown-calm">Pricing</button>
+<div class="accordion-content" id="price-crown-calm">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R720</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
+<button class="back-button" data-action="back">← Back</button>
+<h2>Skin Light Therapy</h2><p>Experience light therapy to boost mood and vitality.</p>
+</div>
+</div>
+<template id="category-card-template">
+<div class="card" data-action="select-category">
+<div class="icon"></div><div class="drip-name"></div>
+<div class="tile-divider"></div><div class="small">Explore</div>
+</div>
+</template>
+<template id="drip-card-template">
+<div class="card" data-action="select-drip">
+<div class="icon"></div><div class="drip-name"></div>
+<div class="tile-divider"></div><div class="drip-tagline"></div>
+<div class="price-container">R<span class="price"></span></div>
+<div class="single-add-on-label hidden">➕❓ Add-On or Stand-Alone Drip</div>
+</div>
+</template>
+<script>
     'use strict';
     /*** APP MODULE ***/
     document.addEventListener("DOMContentLoaded", () => app.init());
@@ -1167,5 +1264,91 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
       }
     };
   </script>
-</body>
+<div aria-hidden="true" class="nv-tooltip-overlay" id="nvTooltipOverlay"><div aria-modal="true" class="nv-tooltip-card" role="dialog"><span aria-label="Close" class="nv-tooltip-close">×</span><div id="nvTooltipContent"></div></div></div><script>
+// ===== NuVana: final surgical fixes =====
+(function() {
+  // --- Tooltip portal (centered on screen) ---
+  const overlay = document.getElementById('nvTooltipOverlay');
+  const contentBox = document.getElementById('nvTooltipContent');
+  const closeBtn = overlay.querySelector('.nv-tooltip-close');
+
+  function openTooltipFrom(trigger) {
+    // Find original tooltip html
+    const tip = trigger.querySelector('.did-you-know-tooltip');
+    if (!tip) return;
+    contentBox.innerHTML = tip.innerHTML; // clone content only
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+  }
+  function closeTooltip() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    contentBox.innerHTML = '';
+  }
+
+  // Open on click of any .did-you-know
+  document.addEventListener('click', function(e) {
+    const corner = e.target.closest('.did-you-know');
+    if (corner) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Close others and open modal
+      openTooltipFrom(corner);
+      return;
+    }
+  }, true); // capture to pre-empt other handlers
+
+  // Close overlay on outside click or X
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay || e.target.closest('.nv-tooltip-close')) closeTooltip();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTooltip();
+  });
+
+  // --- Massage pricing: allow multiple open/close independently ---
+  document.addEventListener('click', function(e) {
+    const header = e.target.closest('.accordion-header[data-action="toggle-accordion"]');
+    if (!header) return;
+
+    const targetId = header.getAttribute('data-target');
+    if (!targetId || !/^price-/.test(targetId)) return; // only intercept massage pricing
+
+    // Prevent the app's global accordion handler from overriding
+    e.preventDefault();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    e.stopPropagation();
+
+    const content = document.getElementById(targetId);
+    if (!content) return;
+
+    const isOpen = content.classList.contains('open');
+
+    if (isOpen) {
+      // Close just this one
+      content.style.maxHeight = '0px';
+      content.classList.remove('open');
+      header.classList.remove('active');
+      // Keep padding consistent with your theme
+      content.style.padding = '0 14px';
+    } else {
+      // Open this one (others remain as-is)
+      content.classList.add('open');
+      header.classList.add('active');
+      content.style.padding = '14px';
+      // set to content height for a smooth expand transition
+      const fullHeight = content.scrollHeight;
+      content.style.maxHeight = fullHeight + 'px';
+    }
+  }, true); // capture to beat the default global handler
+})();
+</script><script>
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("tooltip-close")) {
+    const tooltip = e.target.closest(".tooltip-box");
+    tooltip.classList.add("fade-out");
+    setTimeout(() => tooltip.remove(), 300);
+  }
+});
+</script><footer class="fragron-footer">Powered by Fragron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</footer></body>
 </html>
