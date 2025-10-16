@@ -388,9 +388,32 @@
       margin-right: 8px;
       color: #28a745;
     }
+    /* Light selector */
+    .light-selector {
+      margin-top: 16px;
+    }
+    .light-selector label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+    }
+    .light-selector button {
+      background: #006400;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    #suggestion {
+      margin-top: 16px;
+      font-style: italic;
+      color: #333;
+    }
     /* Responsive */
     @media (max-width: 768px) {
-      header { padding: 40px 12px; }
+      header { padding: 30px 12px; }
       header h1 { font-size: 1.8em; }
       .container { margin: 20px auto; padding: 0 12px; }
       .grid { grid-template-columns: 1fr; gap: 20px; }
@@ -717,6 +740,25 @@
 </div>
 </div>
 </div>
+<div class="group-lav">
+<button class="accordion-header" onclick="toggleLightAccordion('lt-selector', this)">Find Your Perfect Light</button>
+<div class="accordion-content" id="lt-selector">
+<p style="font-style: italic; color: #666; margin-bottom: 16px;">Select your skin concerns to get personalized light recommendations.</p>
+<div class="light-selector">
+  <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
+  <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
+  <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
+  <label><input type="checkbox" value="elasticity"> Skin Elasticity / Firmness</label>
+  <label><input type="checkbox" value="inflammation"> Inflammation / Redness</label>
+  <label><input type="checkbox" value="oil"> Oil Balance</label>
+  <label><input type="checkbox" value="scarring"> Scarring</label>
+  <label><input type="checkbox" value="tightening"> Skin Tightening</label>
+  <label><input type="checkbox" value="energy"> Cell Energy / Vitality</label>
+  <button onclick="suggestLights()">Suggest Lights</button>
+</div>
+<div id="suggestion"></div>
+</div>
+</div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
 <p class="copyright">All rights reserved.</p>
@@ -1012,6 +1054,7 @@ function showDripDetails(dripName, isBackToParent = false) {
     if (perfectSection && perfectButton) {
       perfectSection.classList.add('open');
       perfectButton.classList.add('active');
+      perfectSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, 0);
 }
@@ -1123,6 +1166,31 @@ function closeTooltip() {
 // Initialize
 renderCategories();
 renderMassages();
+
+// Light selector logic
+function suggestLights() {
+  const checkboxes = document.querySelectorAll('.light-selector input:checked');
+  const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
+  const concernToLights = {
+    'anti-aging': ['Red', 'Yellow', 'White'],
+    'acne': ['Blue', 'Purple'],
+    'pigmentation': ['Yellow'],
+    'elasticity': ['Red'],
+    'inflammation': ['Blue', 'Yellow', 'Purple'],
+    'oil': ['Green'],
+    'scarring': ['Blue', 'Purple'],
+    'tightening': ['White'],
+    'energy': ['Cyan', 'White']
+  };
+  let recommended = new Set();
+  selectedConcerns.forEach(concern => {
+    if (concernToLights[concern]) {
+      concernToLights[concern].forEach(light => recommended.add(light));
+    }
+  });
+  const suggestion = document.getElementById('suggestion');
+  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
+}
 </script>
 </body>
 </html>
