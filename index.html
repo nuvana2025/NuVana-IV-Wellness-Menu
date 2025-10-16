@@ -846,6 +846,15 @@ function navigateTo(viewId) {
     parentDrip = null;
     document.getElementById('parent-back-btn').classList.add('hidden');
   }
+  if (viewId === 'light-therapy-view') {
+    setTimeout(() => {
+      const discoverSection = document.getElementById('lt-discover');
+      const discoverButton = document.querySelector('[onclick*="lt-discover"]');
+      if (discoverSection && discoverButton && !discoverSection.classList.contains('open')) {
+        toggleLightAccordion('lt-discover', discoverButton);
+      }
+    }, 0);
+  }
 }
 function goBack() {
   if (viewHistory.length > 0) {
@@ -969,13 +978,10 @@ function showDripDetails(dripName, isBackToParent = false) {
         <div class="drip-name">${addon.name}</div>
         <div class="tile-divider"></div>
         <p style="font-size: 0.9em; font-style: italic; color: #666; margin: 8px 0;">${addon.tagline}</p>
-        <p class="price">Add-on: R${addon.addonPrice} / Standalone: R${addon.price}</p>
+        <p class="price">Add-on: R${addon.addonPrice}</p>
+        <p class="price">Standalone: R${addon.price}</p>
         <button class="accordion-header group-aqua" style="margin-top: 12px; font-size: 0.9em;" onclick="toggleAddonDetails('${id}', this)">Learn More About This Add-On</button>
         <div class="accordion-content addon-details" id="addon-${id}">
-          <div class="did-you-know" onclick="this.classList.toggle('open');">
-            ℹ️ Did you know?
-            <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine.</div>
-          </div>
           <div class="group-rose">
             <button class="accordion-header" onclick="toggleInnerAccordion('addon-perfect-${id}', this)">Perfect For</button>
             <div class="accordion-content" id="addon-perfect-${id}"><p>${addon.perfectFor}</p></div>
@@ -1032,6 +1038,14 @@ function toggleAddonDetails(addonId, headerBtn) {
   if (!isOpen) {
     content.classList.add('open');
     headerBtn.classList.add('active');
+    // Open Perfect For by default
+    const perfectInner = document.getElementById(`addon-perfect-${addonId}`);
+    const perfectInnerBtn = content.querySelector('[onclick*="addon-perfect"]');
+    if (perfectInner && perfectInnerBtn) {
+      perfectInner.classList.add('open');
+      perfectInnerBtn.classList.add('active');
+      perfectInner.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }
 function toggleAccordion(contentId, headerBtn) {
@@ -1043,22 +1057,6 @@ function toggleAccordion(contentId, headerBtn) {
   const allMainHeaders = document.querySelectorAll('#drip-details-panel > [class^="group-"] .accordion-header');
   allMainContents.forEach(c => c.classList.remove('open'));
   allMainHeaders.forEach(h => h.classList.remove('active'));
- 
-  // If the clicked accordion wasn't open, open it
-  if (!isOpen) {
-    content.classList.add('open');
-    headerBtn.classList.add('active');
-  }
-}
-function toggleLightAccordion(contentId, headerBtn) {
-  const content = document.getElementById(contentId);
-  const isOpen = content.classList.contains('open');
- 
-  // Close all light accordions
-  const allLightContents = document.querySelectorAll('#light-therapy-view .accordion-content');
-  const allLightHeaders = document.querySelectorAll('#light-therapy-view .accordion-header');
-  allLightContents.forEach(c => c.classList.remove('open'));
-  allLightHeaders.forEach(h => h.classList.remove('active'));
  
   // If the clicked accordion wasn't open, open it
   if (!isOpen) {
@@ -1118,16 +1116,6 @@ function closeTooltip() {
 // Initialize
 renderCategories();
 renderMassages();
-
-// Default open for light therapy
-setTimeout(() => {
-  const discoverSection = document.getElementById('lt-discover');
-  const discoverButton = document.querySelector('[onclick*="lt-discover"]');
-  if (discoverSection && discoverButton) {
-    discoverSection.classList.add('open');
-    discoverButton.classList.add('active');
-  }
-}, 0);
 </script>
 </body>
 </html>
