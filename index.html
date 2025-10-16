@@ -2,15 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-<meta name="theme-color" content="#006400"/>
-<meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-<meta name="description" content="NuVana IV & Wellness - Personalised IV infusions, therapeutic massages, and skin rejuvenation light therapy. Rewire your reality."/>
-<meta property="og:title" content="NuVana IV & Wellness Menu"/>
-<meta property="og:description" content="Discover personalised IV drips, massages, and light therapy. Transform your wellness journey."/>
-<meta property="og:type" content="website"/>
-<title>NuVana IV & Wellness Menu</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+<meta content="#006400" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<title>NuVana Menu</title>
 <style>
     /* Base */
     html, body {
@@ -20,14 +16,20 @@
       background: #FDFCFA; color: #333;
     }
     /* Header */
+    /* Modernised header: softer gradient and more breathing room */
     header {
+      /* Dark, elegant gradient with touches of gold and cream */
       background: linear-gradient(135deg, #00310c 0%, #004d26 45%, #bfa76a 75%, #f8f3e0 100%);
+      /* Golden hue for the main heading */
       color: #FFD700;
       text-align: center;
+      /* Padding reduced slightly to balance narrower width */
       padding: 48px 20px;
       border-radius: 16px;
+      /* Constrain width and centre the header on the page */
       max-width: 850px;
       margin: 20px auto;
+      /* White glow combined with subtle drop shadow for elegance */
       box-shadow: 0 0 20px rgba(255,255,255,0.4), 0 8px 16px rgba(0,50,0,.3);
     }
     header h1 {
@@ -39,12 +41,15 @@
       text-shadow: -1px -1px 0 rgba(0,0,0,.35), 1px 1px 0 rgba(255,255,255,.2), 0 0 6px rgba(255,215,0,.5);
     }
     /* Layout */
+    /* Layout tweaks: increased margins and spacing for a lighter layout */
     .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
-    /* Cards */
+    /* Cards (Home tiles) */
     .card {
       background: #fff;
+      /* Larger radius for a softer, modern silhouette */
       border-radius: 14px;
+      /* Softer, taller shadows for a floating effect */
       box-shadow: 0 6px 14px rgba(0,100,0,.12), 0 3px 6px rgba(0,100,0,.16);
       padding: 32px;
       text-align: center;
@@ -52,16 +57,22 @@
       transition: transform .22s ease, box-shadow .22s ease;
       -webkit-user-select: none;
       user-select: none;
+      /* Allow tooltips within cards to overflow beyond card boundaries */
       overflow: visible;
     }
     .card:hover {
       transform: scale(1.03);
+      /* Elevated shadow on hover, still soft */
       box-shadow: 0 10px 24px rgba(0,100,0,.18), 0 6px 12px rgba(0,100,0,.22);
     }
-    .card:active { transform: scale(.98); }
+    .card:active {
+      transform: scale(.98);
+    }
     .card .icon { font-size: 2.2em; margin-bottom: 8px; }
     .drip-name { font: 700 1.1em/1.2 system-ui; margin: 6px 0 8px; }
+    /* Soft gold divider under card title */
     .tile-divider { width: 36px; height: 2px; background: #EEDC82; margin: 6px auto 10px; border-radius: 2px; }
+    /* Captions (italic + fade-in) */
     @keyframes captionFade { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
     .small { font-size: .9em; color: #444; font-style: italic; opacity: 0; animation: captionFade .8s ease .1s both; margin-bottom: 12px; }
     /* View helpers */
@@ -73,6 +84,7 @@
       background: linear-gradient(135deg, #FBF5E8, #006B34);
       color: #fff;
       border: none;
+      /* Slightly larger radius to mirror the cards */
       border-radius: 8px;
       padding: 12px 20px;
       margin: 0 0 18px;
@@ -89,7 +101,6 @@
       cursor: pointer; margin: 8px 0; width: 100%; font-weight: 700;
       display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 2px 4px rgba(0,100,0,.15);
-      text-align: left;
     }
     .accordion-header::after { content: "▼"; font-size: 12px; }
     .accordion-header.active::after { content: "▲"; }
@@ -110,7 +121,8 @@
     .group-rose .accordion-content { background: #FFF0F0; border-color: #F5C5C5; }
     .group-lav .accordion-header { background: #F3E8FD; }
     .group-lav .accordion-content { background: #F8F1FE; border-color: #E3D3FB; }
-    /* Did you know corner */
+    .single-add-on-label { font-size: .78em; color: #A8E4A0; margin-top: 6px; font-weight: 700; }
+    /* “Did you know?” corner styling */
     .did-you-know {
       position: relative;
       display: inline-block;
@@ -135,15 +147,18 @@
       bottom: 130%;
       font-size: .8em;
     }
-    .did-you-know.open .did-you-know-tooltip { display: block; }
-    /* Series blurb */
+    /* When the corner has .open, show the tooltip */
+    .did-you-know.open .did-you-know-tooltip {
+      display: block;
+    }
+    /* Series blurb styling */
     .series-blurb {
       font-size: .9em;
       font-style: italic;
       color: #555;
       margin: 8px 0 12px;
     }
-    /* Ingredient pills */
+    /* Ingredient “tinted pills” with mint–teal dots + 18px radius */
     .ingredient-list { list-style: none; margin: 0; padding: 0; line-height: 1.5; }
     .ingredient-list li {
       position: relative; background: #FAFFFA; border: 1px solid #E6F5E6;
@@ -153,11 +168,12 @@
       content: "•"; position: absolute; left: 12px; top: 8px;
       color: #8FE1C1; font-weight: 800; line-height: 1; font-size: 18px;
     }
-    /* Animation */
+    /* 🌸 Fade + slide-up animation for Details view (0.8s soft) */
     @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     .drip-details { opacity: 1; }
     .drip-details.animate-in { animation: fadeSlideUp .8s ease both; }
-    /* Price list */
+
+    /* Price list for massage cards */
     .price-list {
       list-style: none;
       padding: 0;
@@ -165,164 +181,293 @@
       font-size: .85em;
       color: #333;
     }
-    .price-list li { margin: 2px 0; }
-    /* Massage sections */
-    .massage-section { padding: 0; border-radius: 0; margin: 0; }
+    .price-list li {
+      margin: 2px 0;
+    }
+
+    /* Distinct section styling for massage categories */
+    .massage-section {
+      /* Reset grid container padding since the wrapper handles spacing */
+      padding: 0;
+      border-radius: 0;
+      margin: 0;
+    }
+    /* Wrapper groups a heading and its grid, providing background and rounded corners */
     .category-wrapper {
       padding: 16px;
       border-radius: 12px;
       margin-bottom: 24px;
+      /* Light shadow to lift each section off the page and differentiate it visually */
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      /* Prevent margin collapse so the heading background includes the heading itself */
       overflow: hidden;
     }
-    .category-wrapper h2 { margin-top: 0; }
-    .section-relaxation { background: #FFF8F8; }
-    .section-therapeutic { background: #F8FFF8; }
-    .section-combos { background: #FFFDF5; }
-    /* Info tooltip */
+    .category-wrapper h2 {
+      margin-top: 0;
+    }
+    /* Relaxation section uses a soft blush background */
+    .section-relaxation {
+      background: #FFF8F8;
+    }
+    /* Therapeutic section uses a soft mint background */
+    .section-therapeutic {
+      background: #F8FFF8;
+    }
+    /* Combos section uses a warm cream background */
+    .section-combos {
+      background: #FFFDF5;
+    }
+    /* Info tooltip styling for full massage descriptions */
     .info {
       position: relative;
       display: inline-block;
       margin-top: 8px;
       font-size: 0.9em;
-      color: #4A90E2;
+      color: #006400;
       cursor: pointer;
     }
-    /* Tooltip modal */
-    .nv-tooltip-overlay {
-      position: fixed;
-      inset: 0;
+    .info .info-tooltip {
       display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,.25);
-      z-index: 10000;
-    }
-    .nv-tooltip-overlay.open { display: flex; }
-    .nv-tooltip-card {
+      width: 260px;
       background: #fff;
       color: #333;
-      border-radius: 8px;
-      padding: 14px 16px;
-      max-width: min(420px, calc(100vw - 32px));
-      box-shadow: 0 6px 18px rgba(0,0,0,.2);
-      font-size: .9em;
-      line-height: 1.45;
-      position: relative;
-    }
-    .nv-tooltip-close {
-      display: inline-block;
+      text-align: left;
+      border-radius: 6px;
+      padding: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.2);
       position: absolute;
-      top: 10px;
-      right: 12px;
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 1;
-      user-select: none;
+      z-index: 10;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 130%;
+      font-size: 0.8em;
     }
-    .massage-caption {
-      text-align: left;
-      font-size: 0.95em;
-      color: #555;
-      margin-bottom: 14px;
-      font-style: italic;
+    .info.open .info-tooltip {
+      display: block;
     }
-    /* Light therapy tables */
-    .table-container {
-      overflow-x: auto;
-      margin-top: 16px;
-    }
-    .led-specs-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.9em;
-      text-align: left;
-    }
-    .led-specs-table th,
-    .led-specs-table td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #eee;
-    }
-    .led-specs-table thead th {
-      background-color: #f8f8f8;
-      font-weight: 700;
-      color: #333;
-    }
-    .led-specs-table tbody tr:hover {
-      background-color: #fcfcfc;
-    }
-    .led-color-dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      margin-right: 8px;
-      vertical-align: middle;
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-    .dot-red { background-color: #ff4d4d; }
-    .dot-blue { background-color: #4da6ff; }
-    .dot-green { background-color: #52d452; }
-    .dot-yellow { background-color: #ffdb4d; }
-    .dot-purple { background: linear-gradient(45deg, #ff4d4d, #4da6ff); }
-    .dot-cyan { background-color: #4dffff; }
-    .dot-white { background-color: #f2f2f2; }
-    /* Footer */
-    .nv-footer-v2 {
-      color: #FFD700 !important;
-      font-style: italic !important;
-      text-align: center;
-      margin-top: 40px;
-      padding: 20px 10px;
-      font-size: 0.9em;
-      border-top: 1px solid #ddd;
-      background: #00310c;
-    }
-    /* Responsive */
+
+    /* Responsive adjustments for mobile and tablet */
+    /* On small screens (phones), stack cards vertically and reduce padding for a comfortable fit */
     @media (max-width: 768px) {
-      header { padding: 40px 12px; }
-      header h1 { font-size: 1.8em; }
-      .container { margin: 20px auto; padding: 0 12px; }
-      .grid { grid-template-columns: 1fr; gap: 20px; }
-      .card { padding: 24px; font-size: 0.95em; }
-      .accordion-header { font-size: 0.95em; }
-      .nv-footer-v2 { text-align: left; padding-left: 20px; }
-      .led-specs-table thead { display: none; }
-      .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td {
-        display: block;
-        width: 100%;
+      header {
+        padding: 40px 12px;
       }
-      .led-specs-table tr {
-        margin-bottom: 15px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        overflow: hidden;
+      header h1 {
+        font-size: 1.8em;
       }
-      .led-specs-table td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-        border-bottom: 1px solid #f5f5f5;
+      .container {
+        margin: 20px auto;
+        padding: 0 12px;
       }
-      .led-specs-table td:last-child { border-bottom: none; }
-      .led-specs-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: calc(50% - 20px);
-        padding-right: 10px;
-        font-weight: 700;
-        text-align: left;
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .card {
+        padding: 24px;
+        font-size: 0.95em;
+      }
+      .accordion-header {
+        font-size: 0.95em;
       }
     }
+    /* On medium-sized screens (tablets), allow two columns with moderate spacing */
     @media (min-width: 769px) and (max-width: 1024px) {
       .grid {
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 24px;
       }
-      .container { margin: 24px auto; padding: 0 16px; }
-      .nv-footer-v2 { text-align: left; padding-left: 20px; }
+      .container {
+        margin: 24px auto;
+        padding: 0 16px;
+      }
     }
+
+    /* ===== NEW RESPONSIVE FOOTER ===== */
+    .nv-footer-v2 {
+      /* Protected Styles: Gold Italic */
+      color: #FFD700 !important; /* Rich gold color, protected with !important */
+      font-style: italic !important; /* Protected with !important */
+      /* Desktop Layout: Centered */
+      text-align: center;
+      /* General Style/Spacing */
+      margin-top: 40px;
+      padding: 20px 10px;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+      /* Elegant dark background for contrast with gold text */
+      background: #00310c;
+    }
+
+    /* Mobile/Tablet Layout: Left-aligned (up to 1024px) */
+    @media (max-width: 1024px) {
+      .nv-footer-v2 {
+        text-align: left;
+        padding-left: 20px;
+      }
+    }
+</style>
+<style>
+/* ===== NuVana: final surgical fixes (tooltip modal + massage pricing multi-toggle) ===== */
+.nv-tooltip-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.25);
+  z-index: 10000;
+}
+.nv-tooltip-overlay.open { display: flex; }
+
+.nv-tooltip-card {
+  background: #fff;
+  color: #333;
+  border-radius: 8px;
+  padding: 14px 16px;
+  max-width: min(420px, calc(100vw - 32px));
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);
+  font-size: .9em;
+  line-height: 1.45;
+}
+.nv-tooltip-close {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  user-select: none;
+}
+
+#massages-view .accordion-content {
+  overflow: hidden;
+  transition: max-height .28s ease, padding .28s ease;
+}
+</style><style>
+/* Caption styling for massages section */
+.massage-caption {
+  text-align: center;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+</style><style>
+.tooltip-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding: 20px;
+  width: 80%;
+  max-width: 340px;
+  text-align: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+.tooltip-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #555;
+}
+.tooltip-box.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+.massage-caption {
+  text-align: center;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 14px;
+  font-style: italic;
+}
+</style>
+<style>
+/* ===== NEW STYLES FOR LIGHT THERAPY PAGE ===== */
+.table-container {
+  overflow-x: auto; /* Allows horizontal scrolling on small screens if needed */
+  margin-top: 16px;
+}
+.led-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  text-align: left;
+}
+.led-specs-table th,
+.led-specs-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+}
+.led-specs-table thead th {
+  background-color: #f8f8f8;
+  font-weight: 700;
+  color: #333;
+}
+.led-specs-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+/* Visual dots for the LED colors */
+.led-color-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.dot-red    { background-color: #ff4d4d; }
+.dot-blue   { background-color: #4da6ff; }
+.dot-green  { background-color: #52d452; }
+.dot-yellow { background-color: #ffdb4d; }
+.dot-purple { background: linear-gradient(45deg, #ff4d4d, #4da6ff); }
+.dot-cyan   { background-color: #4dffff; }
+.dot-white  { background-color: #f2f2f2; }
+/* Responsive styles for the table on mobile */
+@media (max-width: 768px) {
+  .led-specs-table thead {
+    display: none; /* Hide table headers */
+  }
+  .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td {
+    display: block;
+    width: 100%;
+  }
+  .led-specs-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .led-specs-table td {
+    text-align: right;
+    padding-left: 50%; /* Make space for the label */
+    position: relative;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .led-specs-table td:last-child {
+    border-bottom: none;
+  }
+  .led-specs-table td::before {
+    content: attr(data-label); /* Use data-label for the header text */
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    padding-right: 10px;
+    font-weight: 700;
+    text-align: left;
+  }
+}
 </style>
 </head>
 <body>
@@ -331,18 +476,17 @@
 <p>Rewire your reality...</p>
 </header>
 <div class="container">
-<!-- Main Menu View -->
 <div data-view-id="main-menu-view" id="main-menu-view">
 <div class="grid">
-<div class="card" onclick="navigateTo('categories-view')">
+<div class="card" data-action="navigate" data-target-view="categories-view">
 <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
 <div class="small">Personalised infusions to match your lifestyle, goals, and energy.</div>
 </div>
-<div class="card" onclick="navigateTo('massages-view')">
+<div class="card" data-action="navigate" data-target-view="massages-view">
 <div class="icon">👐</div><div class="drip-name">Massages</div><div class="tile-divider"></div>
-<div class="small">Relax, restore, and revive your body's natural harmony.</div>
+<div class="small">Relax, restore, and revive your body’s natural harmony.</div>
 </div>
-<div class="card" onclick="navigateTo('light-therapy-view')">
+<div class="card" data-action="navigate" data-target-view="light-therapy-view">
 <div class="icon">😊🌟</div>
 <div class="drip-name">Skin Rejuvenation<br/>Light Therapy</div>
 <div class="tile-divider"></div>
@@ -350,560 +494,1018 @@
 </div>
 </div>
 </div>
-
-<!-- Categories View -->
 <div class="hidden" data-view-id="categories-view" id="categories-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<button class="back-button" data-action="back">← Back</button>
 <h2>Select Your IV Drip</h2>
 <div class="select-row">
 <label for="selection-type">Find by: </label>
-<select id="selection-type" onchange="filterCategories(this.value)">
-<option value="series">IV Drip Series</option>
-<option value="lifestyle">Lifestyle</option>
-<option selected value="feel-goal">How You Feel / Goal</option>
-<option value="ingredients">Ingredients</option>
+<select data-action="filter-categories" id="selection-type">
+<option value="series">IV Drip Series</option><option value="lifestyle">Lifestyle</option>
+<option selected="" value="feel-goal">How You Feel / Goal</option><option value="ingredients">Ingredients</option>
 </select>
 </div>
 <div class="grid" id="categories-grid"></div>
 </div>
-
-<!-- Drips View -->
 <div class="hidden" data-view-id="drips-view" id="drips-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<button class="back-button" data-action="back">← Back</button>
 <h2 id="drips-heading"></h2>
 <div class="grid" id="drips-grid"></div>
 </div>
-
-<!-- Details View -->
 <div class="hidden" data-view-id="details-view" id="details-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<button class="back-button" data-action="back">← Back</button>
 <div class="drip-details" id="drip-details-panel">
 <h2 id="detail-name"></h2>
 <p class="price">Price: R<span id="detail-price"></span></p>
 <p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
 <div class="series-blurb" id="series-blurb"></div>
-<div class="did-you-know" onclick="this.classList.toggle('open');">
+<div class="did-you-know">
           ℹ️ Did you know?
-          <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine.</div>
+          <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine. This trusted partnership allows us to provide you with bespoke, high-quality care that meets the highest standards of safety and efficacy.</div>
 </div>
 <div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('perfect-section', this)">Perfect For</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="perfect-section">Perfect For</button>
 <div class="accordion-content" id="perfect-section"><p id="detail-perfect"></p></div>
-<button class="accordion-header" onclick="toggleAccordion('not-suitable-section', this)">Not Suitable For</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="not-suitable-section">Not Suitable For</button>
 <div class="accordion-content" id="not-suitable-section"><p id="detail-not-suitable"></p></div>
 </div>
 <div class="group-aqua">
-<button class="accordion-header" onclick="toggleAccordion('description-section', this)">Description</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="description-section">Description</button>
 <div class="accordion-content" id="description-section"><p id="detail-description"></p></div>
-<button class="accordion-header" onclick="toggleAccordion('frequency-section', this)">Frequency</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="frequency-section">Frequency</button>
 <div class="accordion-content" id="frequency-section"><p id="detail-frequency"></p></div>
 </div>
 <div class="group-gold">
-<button class="accordion-header" onclick="toggleAccordion('overall-benefits-section', this)">Overall Benefits</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="overall-benefits-section">Overall Benefits</button>
 <div class="accordion-content" id="overall-benefits-section"><p id="detail-overall-benefits"></p></div>
-<button class="accordion-header" onclick="toggleAccordion('ingredients-section', this)">Ingredient Benefits</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="ingredients-section">Ingredient Benefits</button>
 <div class="accordion-content" id="ingredients-section"><ul class="ingredient-list" id="detail-ingredients"></ul></div>
 </div>
 <div class="group-lav">
-<button class="accordion-header" onclick="toggleAccordion('feedback-section', this)">User Insights</button>
+<button class="accordion-header" data-action="toggle-accordion" data-target="feedback-section">User Insights</button>
 <div class="accordion-content" id="feedback-section"><p id="detail-feedback"></p></div>
 </div>
 </div>
 </div>
-
-<!-- Massages View -->
 <div class="hidden" data-view-id="massages-view" id="massages-view">
-<div class="massage-caption">💆 Tip: Tap pricing or the info ℹ️ icon to learn more about the massage.</div>
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="massage-caption" style="text-align:left; margin-bottom: 14px; font-size: 0.9em; color: #555;">💆 Tip: Tap pricing or the info ℹ️ icon to learn more about the massage.</div>
+<button class="back-button" data-action="back">← Back</button>
 <div class="category-wrapper section-relaxation">
 <h2>Relaxation &amp; Rejuvenation</h2>
-<div class="grid massage-section" id="relaxation-massages"></div>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">🔥</div><div class="drip-name">Hot Stone Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Warm stones melt away tension, soothe muscles and send you into restorative bliss.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-hot-stone">Pricing</button>
+<div class="accordion-content" id="price-hot-stone">
+<ul class="price-list">
+<li>30 min: R350</li>
+<li>60 min: R500</li>
+<li>90 min: R750</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🌸</div><div class="drip-name">Swedish Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Long, flowing strokes calm your nervous system and restore peace to body and mind.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-swedish">Pricing</button>
+<div class="accordion-content" id="price-swedish">
+<ul class="price-list">
+<li>30 min: R350</li>
+<li>60 min: R600</li>
+<li>90 min: R850</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🧘</div><div class="drip-name">Indian Head Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A soothing head, neck &amp; shoulder ritual that clears your mind and grounds your spirit.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you feeling refreshed, grounded and mentally recharged.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-indian-head">Pricing</button>
+<div class="accordion-content" id="price-indian-head">
+<ul class="price-list">
+<li>30 min: R250</li>
+<li>60 min: R450</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💆</div><div class="drip-name">Neck, Back &amp; Shoulder Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Release built‑up stress in your upper body, restoring comfort and instant relief.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-neck-back">Pricing</button>
+<div class="accordion-content" id="price-neck-back">
+<ul class="price-list">
+<li>30 min: R300</li>
+<li>60 min: R450</li>
+<li>90 min: R700</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="category-wrapper section-therapeutic">
 <h2>Therapeutic &amp; Recovery</h2>
-<div class="grid massage-section" id="therapeutic-massages"></div>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">💪</div><div class="drip-name">Deep Tissue Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Firm, targeted pressure relieves chronic tension and restores balance.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-deep-tissue">Pricing</button>
+<div class="accordion-content" id="price-deep-tissue">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R850</li>
+<li>90 min: R1,050</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🏃</div><div class="drip-name">Sports Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Deep work and assisted stretches enhance performance, ease soreness and speed recovery.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you’re training, competing or simply staying active.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-sports">Pricing</button>
+<div class="accordion-content" id="price-sports">
+<ul class="price-list">
+<li>30 min: R500</li>
+<li>60 min: R800</li>
+<li>90 min: R1,100</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💧</div><div class="drip-name">Lymphatic Drainage Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A gentle, rhythmic technique that supports your body’s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-lymphatic">Pricing</button>
+<div class="accordion-content" id="price-lymphatic">
+<ul class="price-list">
+<li>30 min: R500</li>
+<li>60 min: R800</li>
+<li>90 min: R1,100</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👣</div><div class="drip-name">Foot Massage / Reflexology</div>
+<div class="tile-divider"></div>
+<div class="small">Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-foot">Pricing</button>
+<div class="accordion-content" id="price-foot">
+<ul class="price-list">
+<li>30 min: R250</li>
+<li>60 min: R400</li>
+<li>90 min: R600</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div class="category-wrapper section-combos">
 <h2>Massage Combos</h2>
-<div class="grid massage-section" id="combo-massages"></div>
+<div class="grid massage-section">
+<div class="card">
+<div class="icon">💑</div><div class="drip-name">The Serenity Duo – Swedish Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A synchronised Swedish massage melts tension and deepens your connection.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.</div>
 </div>
-<footer class="nv-footer-v2">
-<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-</footer>
-</div>
-
-<!-- Light Therapy View -->
-<div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
-<button class="back-button" onclick="goBack()">← Back</button>
-<div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('lt-discover', this)">Discover Radiant Skin</button>
-<div class="accordion-content" id="lt-discover">
-<p style="font-style: italic; color: #666;">Transform your skincare routine with the Colorful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
-</div>
-</div>
-<div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('lt-benefits', this)">Benefits You'll Love</button>
-<div class="accordion-content" id="lt-benefits">
-<ul class="ingredient-list">
-<li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
-<li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
-<li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
-<li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
-</ul>
-</div>
-</div>
-<div class="group-aqua">
-<button class="accordion-header" onclick="toggleAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-<div class="accordion-content" id="lt-pricing">
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-serenity-duo">Pricing</button>
+<div class="accordion-content" id="price-serenity-duo">
 <ul class="price-list">
-<li><strong>Light Add-On (with IV/massage):</strong> 20 min - R225</li>
-<li><strong>Standalone Light Facial:</strong> 40 min - R500</li>
-<li><strong>Package (6 sessions):</strong> R2,400 (Save R600)</li>
+<li>30 min: R630</li>
+<li>60 min: R1,080</li>
+<li>90 min: R1,530</li>
 </ul>
 </div>
 </div>
-<div class="group-gold">
-<button class="accordion-header" onclick="toggleAccordion('lt-spectrums', this)">Customizable Light Spectrums</button>
-<div class="accordion-content" id="lt-spectrums">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Choose from seven colors—each tailored to specific needs. Our advanced light technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
-<div class="table-container">
-<table class="led-specs-table">
-<thead>
-<tr>
-<th>Light Color</th>
-<th>Wavelength</th>
-<th>Primary Effects</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-red"></span>Red</td>
-<td data-label="Wavelength">630nm</td>
-<td data-label="Primary Effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-blue"></span>Blue</td>
-<td data-label="Wavelength">470nm</td>
-<td data-label="Primary Effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-green"></span>Green</td>
-<td data-label="Wavelength">520nm</td>
-<td data-label="Primary Effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-yellow"></span>Yellow</td>
-<td data-label="Wavelength">590nm</td>
-<td data-label="Primary Effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-purple"></span>Purple</td>
-<td data-label="Wavelength">Red + Blue</td>
-<td data-label="Primary Effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-cyan"></span>Cyan</td>
-<td data-label="Wavelength">Varies</td>
-<td data-label="Primary Effects">Enhances cell energy and metabolism for overall skin vitality and healing.</td>
-</tr>
-<tr>
-<td data-label="Light Color"><span class="led-color-dot dot-white"></span>White</td>
-<td data-label="Wavelength">Varies</td>
-<td data-label="Primary Effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</td>
-</tr>
-</tbody>
-</table>
+<div class="card">
+<div class="icon">🌋</div><div class="drip-name">The Lava Escape – Hot Stone Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Heated stones and gentle strokes create a shared retreat into soothing warmth.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-lava-escape">Pricing</button>
+<div class="accordion-content" id="price-lava-escape">
+<ul class="price-list">
+<li>30 min: R630</li>
+<li>60 min: R900</li>
+<li>90 min: R1,350</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💪</div><div class="drip-name">The Power Pair – Deep Tissue Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Firm pressure releases stubborn knots, ideal for active pairs seeking relief.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-power-pair">Pricing</button>
+<div class="accordion-content" id="price-power-pair">
+<ul class="price-list">
+<li>30 min: R810</li>
+<li>60 min: R1,530</li>
+<li>90 min: R1,890</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🏃</div><div class="drip-name">The Athletes Alignment – Sports Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Performance‑driven couples get deep work and stretches to recover and stay agile.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-athletes-alignment">Pricing</button>
+<div class="accordion-content" id="price-athletes-alignment">
+<ul class="price-list">
+<li>30 min: R900</li>
+<li>60 min: R1,620</li>
+<li>90 min: R2,160</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">💧</div><div class="drip-name">The Detox Duo – Lymphatic Drainage</div>
+<div class="tile-divider"></div>
+<div class="small">A light touch encourages detox and circulation for refreshing renewal.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-detox-duo">Pricing</button>
+<div class="accordion-content" id="price-detox-duo">
+<ul class="price-list">
+<li>30 min: R900</li>
+<li>60 min: R1,440</li>
+<li>90 min: R1,980</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">🤲</div><div class="drip-name">The Tranquil Touch – Neck, Back &amp; Shoulder Massage</div>
+<div class="tile-divider"></div>
+<div class="small">Focused tension relief for neck, back &amp; shoulders, bringing calm to couples.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-tranquil-touch">Pricing</button>
+<div class="accordion-content" id="price-tranquil-touch">
+<ul class="price-list">
+<li>30 min: R540</li>
+<li>60 min: R810</li>
+<li>90 min: R1,260</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👣</div><div class="drip-name">The Sole Connection – Foot Massage / Reflexology</div>
+<div class="tile-divider"></div>
+<div class="small">Grounding footwork stimulates energy flow and relieves tension for two.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-sole-connection">Pricing</button>
+<div class="accordion-content" id="price-sole-connection">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R720</li>
+<li>90 min: R1,080</li>
+</ul>
+</div>
+</div>
+<div class="card">
+<div class="icon">👑</div><div class="drip-name">The Crown &amp; Calm Ritual – Indian Head Massage</div>
+<div class="tile-divider"></div>
+<div class="small">A meditative scalp, neck &amp; shoulder ritual calms minds and balances energy.</div>
+<div class="info" onclick="this.classList.toggle('open');">ℹ️
+            <div class="info-tooltip">A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.</div>
+</div>
+<button class="accordion-header" data-action="toggle-accordion" data-target="price-crown-calm">Pricing</button>
+<div class="accordion-content" id="price-crown-calm">
+<ul class="price-list">
+<li>30 min: R450</li>
+<li>60 min: R720</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="group-lav">
-<button class="accordion-header" onclick="toggleAccordion('lt-matrix', this)">Light Benefits Matrix</button>
-<div class="accordion-content" id="lt-matrix">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each checkmark indicates that the light color effectively addresses that particular concern.</p>
-<div class="table-container">
-<table class="led-specs-table">
-<thead>
-<tr>
-<th>Skin Concern</th>
-<th style="text-align: center;"><span class="led-color-dot dot-red"></span>Red</th>
-<th style="text-align: center;"><span class="led-color-dot dot-blue"></span>Blue</th>
-<th style="text-align: center;"><span class="led-color-dot dot-green"></span>Green</th>
-<th style="text-align: center;"><span class="led-color-dot dot-yellow"></span>Yellow</th>
-<th style="text-align: center;"><span class="led-color-dot dot-purple"></span>Purple</th>
-<th style="text-align: center;"><span class="led-color-dot dot-cyan"></span>Cyan</th>
-<th style="text-align: center;"><span class="led-color-dot dot-white"></span>White</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="Skin Concern">Anti-Aging / Wrinkles</td>
-<td data-label="Red" style="text-align: center;">✓</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center;">✓</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center;">✓</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Acne / Breakouts</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center;">✓</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center;">✓</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Pigmentation / Dark Spots</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center;">✓</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Skin Elasticity / Firmness</td>
-<td data-label="Red" style="text-align: center;">✓</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Inflammation / Redness</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center;">✓</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center;">✓</td>
-<td data-label="Purple" style="text-align: center;">✓</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Oil Balance</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center;">✓</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Scarring</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center;">✓</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center;">✓</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center; color: #ddd;">—</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Skin Tightening</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center; color: #ddd;">—</td>
-<td data-label="White" style="text-align: center;">✓</td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Cell Energy / Vitality</td>
-<td data-label="Red" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Blue" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Green" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Yellow" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Purple" style="text-align: center; color: #ddd;">—</td>
-<td data-label="Cyan" style="text-align: center;">✓</td>
-<td data-label="White" style="text-align: center;">✓</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
-</div>
-<footer class="nv-footer-v2">
-<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-</footer>
-</div>
+<div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
+    <button class="back-button" data-action="back">← Back</button>
+    
+    <div class="category-wrapper section-relaxation" style="background: #FFF8FD;">
+        <h2>Discover Radiant Skin</h2>
+        <p class="series-blurb" style="margin-bottom: 16px;">Transform your skincare routine with the Colorful LED Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven LED wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
+    </div>
 
-<!-- Tooltip Modal -->
-<div class="nv-tooltip-overlay" id="tooltip-overlay" onclick="closeTooltip()">
-<div class="nv-tooltip-card" onclick="event.stopPropagation()">
-<span class="nv-tooltip-close" onclick="closeTooltip()">×</span>
-<div id="tooltip-content"></div>
-</div>
-</div>
+    <div class="category-wrapper section-therapeutic">
+        <h2>Pricing &amp; Packages</h2>
+        <button class="accordion-header active" data-action="toggle-accordion" data-target="price-light-therapy">View Pricing Options</button>
+        <div class="accordion-content open" id="price-light-therapy" style="max-height: 500px; padding: 14px;">
+            <ul class="price-list" style="font-size: 1em;">
+                <li><strong>LED Add-On (with IV/massage):</strong> 20 min - R300</li>
+                <li><strong>Standalone LED Facial:</strong> 40 min - R500</li>
+                <li><strong>Package (6 sessions):</strong> R2,400 (Save R600)</li>
+            </ul>
+        </div>
+    </div>
 
-</div>
+    <div class="category-wrapper section-combos">
+        <h2>Customizable Light Spectrums</h2>
+        <p class="series-blurb">Choose from seven colors—each tailored to specific needs. Our advanced LED technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
+        <div class="table-container">
+            <table class="led-specs-table">
+                <thead>
+                    <tr>
+                        <th>LED Color</th>
+                        <th>Wavelength</th>
+                        <th>Primary Effects</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-red"></span>Red</td>
+                        <td data-label="Wavelength">630nm</td>
+                        <td data-label="Effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-blue"></span>Blue</td>
+                        <td data-label="Wavelength">470nm</td>
+                        <td data-label="Effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-green"></span>Green</td>
+                        <td data-label="Wavelength">520nm</td>
+                        <td data-label="Effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-yellow"></span>Yellow</td>
+                        <td data-label="Wavelength">590nm</td>
+                        <td data-label="Effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-purple"></span>Purple</td>
+                        <td data-label="Wavelength">Red + Blue</td>
+                        <td data-label="Effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-cyan"></span>Cyan</td>
+                        <td data-label="Wavelength">Varies</td>
+                        <td data-label="Effects">Enhances cell energy and metabolism for overall skin vitality and healing.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-white"></span>White</td>
+                        <td data-label="Wavelength">Varies</td>
+                        <td data-label="Effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <div class="category-wrapper section-relaxation" style="background: #F4FBFA;">
+        <h2>Benefits You’ll Love</h2>
+        <ul class="ingredient-list">
+            <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
+            <li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
+            <li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
+            <li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
+        </ul>
+    </div>
+</div>
+</div>
+<template id="category-card-template">
+<div class="card" data-action="select-category">
+<div class="icon"></div><div class="drip-name"></div>
+<div class="tile-divider"></div><div class="small">Explore</div>
+</div>
+</template>
+<template id="drip-card-template">
+<div class="card" data-action="select-drip">
+<div class="icon"></div><div class="drip-name"></div>
+<div class="tile-divider"></div><div class="drip-tagline"></div>
+<div class="price-container">R<span class="price"></span></div>
+<div class="single-add-on-label hidden">➕❓ Add-On or Stand-Alone Drip</div>
+</div>
+</template>
 <script>
-// Data
-const allDrips = {
-  'Jet Fuel Premium': {name: 'Jet Fuel Premium', price: 1250, tagline: 'Spark Vitality, Ignite Power', description: 'Awaken your inner wildfire with this potent IV drip, blending B vitamins, magnesium, and antioxidants to unleash a torrent of blazing stamina and razor-sharp focus. Glutathione purifies your soul, unveiling a radiant glow that mirrors your unstoppable spirit. This premium formula, with fiercer potency than Jet Fuel, ignites your boundless vitality, empowering you to conquer boardroom battles or gym triumphs with electrifying confidence and joy.', overallBenefits: 'Boosts energy, focus, nerve health. Eases muscles, supports immunity, brightens skin.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Every 2-3 weeks; weekly for high stress or intense workouts.', perfectFor: 'Athletes, busy professionals experiencing fatigue, individuals under stress seeking energy boost and recovery.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant.', feedback: 'Felt unstoppable after one session! Sharper focus, brighter skin. - Sarah M., 35', icon: '⚡⚡⚡'},
-  'Jet Fuel': {name: 'Jet Fuel', price: 600, tagline: 'Blaze Through Your Day', description: 'Kindle a blazing spark within with this dynamic IV drip, infusing B vitamins, magnesium, and antioxidants to unleash a surge of electrifying vitality and crystal-clear focus. Glutathione cleanses your body, revealing a luminous glow that fuels your spirit to soar. Perfect for powering through intense workouts or conquering demanding days with radiant, unstoppable energy.', overallBenefits: 'Boosts energy, focus, nerve health. Eases muscles, supports immunity, brightens skin.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Every 2-3 weeks; weekly for high stress or intense workouts.', perfectFor: 'Athletes, busy professionals experiencing fatigue, individuals under stress seeking energy boost and recovery.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant.', feedback: 'Gave me marathon stamina and fast recovery! - Mike T., 42', icon: '⚡'},
-  'Radiance': {name: 'Radiance', price: 950, tagline: 'Glow Like a Star', description: 'Illuminate your soul with this antioxidant-rich IV drip, bursting with Vitamin C and Glutathione to banish dullness and awaken a dazzling, starlit complexion. Feel your spirit soar as you embrace vibrant confidence, ready to shine with youthful radiance at every moment.', overallBenefits: 'Brightens skin, boosts collagen, detoxes, lifts energy, immunity.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.', contraindications: 'Avoid if you have kidney stones, asthma, or are pregnant.', feedback: 'Two sessions and my skin glowed like I\'d been on vacation! - Lisa K., 29', icon: '✨'},
-  'Radiance Plus': {name: 'Radiance Plus', price: 1400, tagline: 'Radiate Timeless Beauty', description: 'Unveil a breathtaking, ageless you with this powerful IV drip, blending high-potency Vitamin C and Glutathione to harmonize skin tone and ignite timeless radiance. This enhanced formula, with fiercer potency than Radiance, banishes oxidative stress, empowering you to glow with captivating beauty and unshakable confidence that turns heads.', overallBenefits: 'Brightens skin, boosts collagen, detoxes, lifts energy, immunity, fights free radicals.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.', contraindications: 'Avoid if you have kidney stones, asthma, or are pregnant.', feedback: 'Evened my skin tone in weeks; confident without makeup! - Emma R., 38', icon: '✨✨'},
-  'Radiance Premium': {name: 'Radiance Premium', price: 1800, tagline: 'Shine with Eternal Youth', description: 'Ascend to your most radiant, youthful self with this luxurious IV drip, weaving antioxidants, B vitamins, and NAD⁺ to rejuvenate your skin and spark boundless vitality. Glutathione and Biotin amplify your glow, hair, and nails, while this premium formula, with fiercer potency than Radiance Plus, unveils an eternal radiance that captivates every moment, from grand celebrations to daily elegance.', overallBenefits: 'Brightens skin, hydrates, boosts energy, collagen, supports hair, nails.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant.', feedback: 'Gave me glowing skin and endless energy! - David L., 45', icon: '✨✨✨'},
-  'Sport Restore': {name: 'Sport Restore', price: 1050, tagline: 'Recharge, Conquer, Thrive', description: 'Reignite your athletic soul with this hydrating IV drip, infused with B12, magnesium, and Glutathione to erase muscle fatigue and spark lightning-fast recovery. Replenish electrolytes and unleash a fearless spirit, ready to conquer any challenge with vibrant, unstoppable vigor.', overallBenefits: 'Speeds muscle recovery, replaces electrolytes, boosts energy, detoxes.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Every 2-3 weeks; weekly for intense training.', perfectFor: 'Athletes, fitness enthusiasts, individuals engaged in intense physical activity needing muscle recovery and reduced soreness.', contraindications: 'Avoid if you have asthma, kidney/liver disease, or are pregnant.', feedback: 'Cut my gym soreness in half! Felt unstoppable. - Alex P., 32', icon: '🏅'},
-  'Sports Edge': {name: 'Sports Edge', price: 1250, tagline: 'Fuel Victory, Soar Higher', description: 'Shatter your limits with this electrifying IV drip, infusing B12, L-Glutamine, and L-Carnitine to unleash relentless endurance and swift recovery. Magnesium and Vitamin C amplify your stamina and immunity, while this enhanced formula, with fiercer potency than Sport Restore, fuels your body to dominate every challenge with victorious energy and unshakable resilience.', overallBenefits: 'Boosts energy, stamina, muscle repair, hydration, fat burning.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.', frequency: '1-2 times weekly during training; as needed post-workout.', perfectFor: 'Athletes, fitness enthusiasts, individuals engaged in intense physical activity needing muscle recovery and reduced soreness.', contraindications: 'Avoid if you have kidney stones, kidney/liver disease, or are pregnant.', feedback: 'Boosted my cycling endurance; recovery was pro-level! - Jenna S., 28', icon: '🏅🏅'},
-  'Anti Inflammatory & Auto Immune': {name: 'Anti Inflammatory & Auto Immune', price: 1490, tagline: 'Soothe Body, Restore Harmony', description: 'Embrace a soothing embrace of calm with this transformative IV drip, blending B12, Vitamin C, and Glutathione to quell inflammation and spark radiant energy. Magnesium dissolves tension, restoring your body\'s harmony and igniting a serene clarity that empowers you to live freely and joyfully.', overallBenefits: 'Reduces inflammation, boosts energy, supports immunity, tissue repair, mental clarity.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant.', feedback: 'Calmed my flares, restored energy! - Rachel H., 40', icon: '🧘'},
-  'Anti Inflammatory Premium': {name: 'Anti Inflammatory Premium', price: 1550, tagline: 'Quell Flames, Embrace Ease', description: 'Extinguish inflammation\'s fire with this powerful IV drip, blending Vitamin C, ALA, and Glutathione to soothe aching joints and muscles, while Magnesium restores a tranquil balance. This premium formula, with fiercer potency than Anti Inflammatory & Auto Immune, delivers profound relief, empowering you to move with grace and embrace life\'s joys with radiant ease.', overallBenefits: 'Reduces inflammation, supports recovery, detoxes, boosts immunity.', ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly or bi-weekly for inflammation or activity.', perfectFor: 'Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant.', feedback: 'Eased joint pain; I move freely again! - Tom G., 55', icon: '🧘🧘'},
-  'Recharge Premium': {name: 'Recharge Premium', price: 950, tagline: 'Surge with Boundless Energy', description: 'Shatter exhaustion with this electrifying IV drip, infused with B12, B-Complex, and magnesium to ignite your metabolism and unleash a torrent of radiant vitality. This premium formula, with fiercer potency than Recharge, fuels your focus and passion, empowering you to conquer burnout and dance through life with unstoppable joy.', overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', frequency: 'Every 2-4 weeks; as needed for energy.', perfectFor: 'Individuals with chronic fatigue or low energy, vegans or vegetarians, stressed professionals needing focus and mood support.', contraindications: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Snapped me out of burnout! - Nina W., 31', icon: '🔋🔋🔋'},
-  'Recharge': {name: 'Recharge', price: 500, tagline: 'Spark Clarity, Ignite Vigor', description: 'Awaken your soul\'s spark with this swift IV drip, infusing B12, B-Complex, and magnesium to banish mental fog and ignite a radiant clarity. Feel your energy soar, ready to embrace busy days or recover from travel with vibrant, unstoppable zest.', overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', frequency: 'Every 2-4 weeks; as needed for energy.', perfectFor: 'Individuals with chronic fatigue or low energy, vegans or vegetarians, stressed professionals needing focus and mood support.', contraindications: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Re-energized in hours! - Chris B., 37', icon: '🔋'},
-  'Hangover and Jet Lag': {name: 'Hangover and Jet Lag', price: 1100, tagline: 'Refresh, Reset, Soar Again', description: 'Reclaim your vibrant spirit with this hydrating IV drip, blending B12, Vitamin C, and Taurine to melt away brain fog and ignite a surge of radiant energy. Glutathione purifies your core, leaving you refreshed and ready to soar through travel or post-party recovery with boundless, joyful vitality.', overallBenefits: 'Hydrates, eases headaches, boosts energy, detoxes, clears mind.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'As needed after travel or parties; every 2-4 weeks for detox.', perfectFor: 'Travelers experiencing jet lag, individuals recovering from hangovers, those needing quick rehydration and detox.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, hypotension, or are pregnant.', feedback: 'Back to productive by lunch! - Jordan F., 30', icon: '💧'},
-  'Anxiety Relief': {name: 'Anxiety Relief', price: 790, tagline: 'Embrace Serene Tranquility', description: 'Dissolve stress and embrace a tranquil haven with this soothing IV drip, infusing Taurine, Magnesium, and Vitamin C to uplift your spirit and restore inner peace. Feel tension melt away as radiant clarity emerges, guiding you to a serene, joyful state of confidence.', overallBenefits: 'Reduces stress, relaxes muscles, boosts immunity, sharpens clarity.', ingredients: '<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Weekly for 2-3 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with anxiety or stress, those needing relaxation and better sleep, people under high mental pressure.', contraindications: 'Avoid if you have kidney stones, kidney/liver disease, hypotension, or are pregnant.', feedback: 'Melted stress; felt calm again. - Maria V., 36', icon: '😌'},
-  'Anxiety Relief Premium': {name: 'Anxiety Relief Premium', price: 1100, tagline: 'Drift into Deep Calm', description: 'Surrender to a profound oasis of calm with this advanced IV drip, blending Taurine, Magnesium, and Vitamin C to silence anxiety and ignite radiant focus. This premium formula, with fiercer potency than Anxiety Relief, envelops you in serene confidence, empowering restful sleep and a joyful embrace of life\'s moments.', overallBenefits: 'Reduces anxiety, muscle tension, boosts focus, mood, stress resistance.', ingredients: '<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Every 1-2 weeks; maintenance every 3-4 weeks.', perfectFor: 'Individuals with anxiety or stress, those needing relaxation and better sleep, people under high mental pressure.', contraindications: 'Avoid if you have kidney stones, kidney/liver disease, hypotension, or are pregnant.', feedback: 'Quieted my mind; slept like a baby! - Kevin D., 41', icon: '😌😌'},
-  'Menopause Relief': {name: 'Menopause Relief', price: 1100, tagline: 'Embrace Balance, Bloom Anew', description: 'Bloom into your radiant, empowered self with this balancing IV drip, infused with Magnesium, B-Complex, and Glutathione to soothe hot flashes and ignite vibrant energy. Biotin and Vitamin C unveil a luminous glow, empowering you to navigate menopause with grace, confidence, and a joyful spark.', overallBenefits: 'Eases moods, hot flashes, boosts energy, skin glow, detoxes.', ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Every 2-3 weeks; weekly for tough symptoms.', perfectFor: 'Women experiencing menopause symptoms like hot flashes, mood swings, and fatigue, those seeking hormone balance support.', contraindications: 'Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant.', feedback: 'Smoothed hot flashes; felt myself again! - Patricia E., 52', icon: '🌡️'},
-  'Weight Loss': {name: 'Weight Loss', price: 800, tagline: 'Torch Fat, Ignite Confidence', description: 'Ignite your transformation with this metabolism-boosting IV drip, powered by MIC to torch stubborn fat and unleash a surge of radiant energy. Feel your spirit lighten as your body reshapes, empowering you to chase your fitness dreams with fearless confidence and joy.', overallBenefits: 'Speeds fat burning, detoxes liver, boosts energy, mood.', ingredients: '<strong>MIC (Methionine, Inositol, Choline)</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals aiming for weight loss, those with stubborn fat, fitness enthusiasts supporting metabolism and muscle preservation.', contraindications: 'Avoid if you have liver disease or are pregnant.', feedback: 'Kickstarted metabolism; dropped inches! - Greg N., 39', icon: '🔥'},
-  'Weight Loss Premium': {name: 'Weight Loss Premium', price: 950, tagline: 'Sculpt Lean, Energized You', description: 'Sculpt a leaner, bolder you with this advanced IV drip, blending MIC, L-Glutamine, and L-Carnitine to incinerate fat and ignite relentless stamina. This premium formula, with fiercer potency than Weight Loss, supercharges your workouts and preserves muscle, empowering you to conquer your weight goals with radiant energy and unshakable confidence.', overallBenefits: 'Boosts metabolism, fat breakdown, energy, stamina, recovery.', ingredients: '<strong>MIC</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals aiming for weight loss, those with stubborn fat, fitness enthusiasts supporting metabolism and muscle preservation.', contraindications: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Burned fat, preserved muscle! - Sofia L., 34', icon: '🔥🔥'},
-  'Fertility': {name: 'Fertility', price: 800, tagline: 'Nurture Hope, Spark Life', description: 'Nurture your dreams of parenthood with this cleansing IV drip, infused with Glutathione to purify your body and harmonize hormones. Ignite a radiant energy and protect your reproductive vitality, fueling a hopeful, vibrant journey with unwavering confidence and joy.', overallBenefits: 'Boosts hormone balance, protects eggs/sperm, lifts energy, immunity.', ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Couples trying to conceive, women undergoing IVF or fertility treatments, individuals with oxidative stress affecting fertility.', contraindications: 'Avoid if you have asthma or are currently pregnant/breastfeeding.', feedback: 'Helped balance my hormones; feeling hopeful! - Claire W., 33', icon: '👶'},
-  'Detox Premium': {name: 'Detox Premium', price: 950, tagline: 'Purify, Illuminate, Soar', description: 'Embark on a profound cleansing journey with this advanced IV drip, infused with elevated Glutathione to flush toxins and illuminate a flawless complexion. This premium formula, with fiercer potency than Detox, unveils cellular clarity and radiant vitality, empowering you to soar through life with a revitalized, purified essence.', overallBenefits: 'Deep detox, liver support, brightens skin, boosts energy, immunity.', ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals needing deep detoxification, those with liver issues or toxin exposure, people seeking skin brightening.', contraindications: 'Avoid if you have asthma or are pregnant.', feedback: 'Felt cleaner and lighter after just one! - Mark S., 48', icon: '🧹🧹'},
-  'Detox': {name: 'Detox', price: 700, tagline: 'Cleanse, Renew, Awaken', description: 'Purify your core with this cleansing IV drip, powered by Glutathione to sweep away toxins and unveil a radiant, luminous complexion. Feel your body lighten and your spirit soar as cellular clarity ignites, leaving you refreshed and ready to embrace a vibrant, joyful existence.', overallBenefits: 'Detoxifies liver, brightens skin, boosts immunity, energy.', ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals needing liver detoxification, those with fatty liver, people exposed to toxins seeking antioxidant support.', contraindications: 'Avoid if you have asthma or are pregnant.', feedback: 'Felt renewed, skin glowing! - Diana P., 41', icon: '🧹'},
-  'Immune Booster Premium': {name: 'Immune Booster Premium', price: 850, tagline: 'Fortify, Radiate, Conquer', description: 'Unleash your body\'s invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.', overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Weekly for illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immunity, frequent travelers, those under stress or needing immune support.', contraindications: 'Avoid if you have kidney stones or are pregnant.', feedback: 'Felt like a fortress; no cold this season! - Ben T., 50', icon: '🛡️🛡️'},
-  'Immune Booster': {name: 'Immune Booster', price: 700, tagline: 'Shield, Energize, Thrive', description: 'Awaken your body\'s natural armor with this Vitamin C-rich IV drip, designed to fortify immunity and banish fatigue. Ignite radiant energy and collagen production, empowering you to embrace travel or illness recovery with unwavering vitality and confidence.', overallBenefits: 'Boosts immunity, fights fatigue, supports collagen, lifts energy.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Weekly during illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immune systems, cancer patients, frequent travelers needing immunity support.', contraindications: 'Avoid if you have kidney stones or are pregnant.', feedback: 'Recovered faster and felt vibrant again! - Anna L., 37', icon: '🛡️'},
-  'ALA': {name: 'ALA', price: 620, tagline: 'Protect, Renew, Restore', description: 'Shield your cells with this potent IV drip, infused with alpha-lipoic acid to unleash antioxidant power and support detoxification. Ignite nerve health and cellular resilience, empowering you to recover from illness or surgery with radiant vitality and unwavering confidence.', overallBenefits: 'Supports antioxidants, detox, nerve health, immunity, recovery.', ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with diabetic neuropathy, autoimmune conditions, those seeking antioxidant and nerve support.', contraindications: 'Avoid if you have diabetes or are pregnant.', feedback: 'Helped my nerve pain immensely! - Robert M., 60', icon: '🌟'},
-  'B12': {name: 'B12', price: 300, tagline: 'Energize, Focus, Revive', description: 'Spark a vibrant awakening with this pure B12 infusion, designed to banish fatigue and ignite razor-sharp mental clarity. Empower your nerves and uplift your mood, fueling your body and spirit with radiant energy to embrace every moment with unstoppable vitality.', overallBenefits: 'Boosts energy, mood, mental clarity, nerve health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals with B12 deficiency, vegans or vegetarians, those experiencing fatigue or nerve issues.', contraindications: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Energy boost was instant and lasting! - Olivia H., 44', icon: '🔥'},
-  'Biotin': {name: 'Biotin', price: 300, tagline: 'Strengthen, Glow, Shine', description: 'Unveil your radiant beauty with this nourishing IV drip, infused with Biotin to fortify hair, skin, and nails. Ignite cellular energy and embrace a luminous glow that mirrors your inner vitality, empowering you to shine with confidence and grace at every moment.', overallBenefits: 'Strengthens hair, skin, nails, boosts energy.', ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with brittle nails or thinning hair, anyone seeking stronger hair, skin, and nails.', contraindications: 'Avoid if you have hypersensitivity or are pregnant.', feedback: 'Nails and hair transformed in weeks! - Sophia G., 27', icon: '🧴✨'},
-  'Aqua Hydrate': {name: 'Aqua Hydrate', price: 300, tagline: 'Hydrate, Refresh, Revive', description: 'Quench your body\'s deepest thirst with this pure saline infusion, delivering rapid hydration and electrolyte balance. Feel your spirit soar as vitality surges, empowering you to embrace recovery from exercise, travel, or illness with radiant, unstoppable energy.', overallBenefits: 'Rapid hydration, electrolyte balance, boosts recovery, energy.', ingredients: '<strong>Pure Saline</strong>: Delivers rapid hydration and electrolyte replenishment for swift recovery.', frequency: 'As needed for hydration or recovery.', perfectFor: 'Dehydrated individuals, athletes after exercise, travelers with jet lag, anyone recovering from illness.', contraindications: 'Avoid if you have heart failure or are pregnant.', feedback: 'Instantly felt hydrated and refreshed! - Lucas J., 26', icon: '💦'},
-  'Trace Elements': {name: 'Trace Elements', price: 350, tagline: 'Balance, Vitalize, Thrive', description: 'Ignite cellular harmony with this essential mineral infusion, blending Zinc and Selenium to fortify immunity and metabolism. Feel your body\'s vitality surge as balance is restored, empowering you to embrace life with radiant energy and unwavering confidence.', overallBenefits: 'Supports immunity, metabolism, vitality, cellular health.', ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.', frequency: 'Weekly for deficiency; every 2-4 weeks for maintenance.', perfectFor: 'Individuals with trace element deficiencies, those needing immune or metabolic support, patients on parenteral nutrition.', contraindications: 'Avoid if you have metal allergies, kidney disease, or are pregnant.', feedback: 'Filled nutritional gaps; felt balanced! - Henry K., 53', icon: '🌿'},
-  'Glutamine': {name: 'Glutamine', price: 400, tagline: 'Fuel Recovery, Build Strength', description: 'Empower your body with this essential amino acid infusion, designed to accelerate muscle recovery and fortify gut health. Feel your endurance surge as cellular repair ignites, fueling your athletic performance and empowering you to train harder and recover faster with unwavering strength.', overallBenefits: 'Supports muscle recovery, gut health, immune function, endurance.', ingredients: '<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.', frequency: 'Weekly during intense training; as needed for recovery.', perfectFor: 'Athletes, fitness enthusiasts, individuals recovering from intense workouts or seeking gut health support.', contraindications: 'Avoid if you have liver disease, seizure disorders, or are pregnant.', feedback: 'Recovery time cut in half, muscles feel stronger! - Chris B., 34', icon: '🏋️'},
-  'Anti Ageing': {name: 'Anti Ageing', price: 1200, tagline: 'Renew, Revive, Radiate', description: 'Turn back time with this rejuvenating NAD⁺ infusion, designed to spark DNA repair and cellular energy. Feel your vitality surge as youthful radiance returns, sharpening your focus and empowering you to embrace life with timeless confidence and boundless joy.', overallBenefits: 'Supports DNA repair, cellular energy, youthful vitality, focus.', ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals concerned with ageing, energy decline, or cognitive function seeking cellular repair and rejuvenation.', contraindications: 'Avoid if you are pregnant or breastfeeding.', feedback: 'Felt 10 years younger; energy restored! - Margaret D., 58', icon: '⏳'}
-};
+    'use strict';
+    /*** APP MODULE ***/
+    document.addEventListener("DOMContentLoaded", () => app.init());
 
-const feelGoalCategories = [
-  {name: 'Burnout', icon: '😓', drips: ['Recharge', 'Recharge Premium']},
-  {name: 'Anxious', icon: '😣', drips: ['Anxiety Relief', 'Anxiety Relief Premium']},
-  {name: 'Skin Glow Up', icon: '🧴✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin']},
-  {name: 'Low Energy', icon: '😴', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Glutamine']},
-  {name: 'Joint/Muscle Pain', icon: '💪', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
-  {name: 'Immune Support', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'ALA']},
-  {name: 'Anti-Aging', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium']},
-  {name: 'Menopause Symptoms', icon: '🌡️', drips: ['Menopause Relief']},
-  {name: 'Weight Loss', icon: '🔥⚖️', drips: ['Weight Loss', 'Weight Loss Premium']},
-  {name: 'Fertility Support', icon: '👶', drips: ['Fertility']},
-  {name: 'Detox Needed', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA']}
-];
+    const app = {
+      init() {
+        data.process();
+        events.listen();
+        render.view('main-menu-view');
+        this.registerServiceWorker();
+      },
+      registerServiceWorker() {
+        if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+          const swCode = `
+self.addEventListener('install', e => { e.waitUntil(caches.open('nuvana-html-cache-v4').then(c => c.addAll([location.href]))); });
+self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== 'nuvana-html-cache-v4').map(k => caches.delete(k))))); });
+self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))); });`;
+          const blob = new Blob([swCode], { type: "application/javascript" });
+          navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(console.error);
+        }
+      }
+    };
 
-const lifestyleCategories = [
-  {name: 'Running', icon: '🏃', drips: ['Sports Edge', 'Sport Restore', 'Glutamine']},
-  {name: 'Weight Lifting', icon: '🏋️', drips: ['Sports Edge', 'Sport Restore', 'Glutamine']},
-  {name: 'Traveling', icon: '✈️', drips: ['Hangover and Jet Lag', 'Immune Booster', 'Immune Booster Premium', 'ALA', 'Aqua Hydrate']},
-  {name: 'Busy Professional', icon: '💼', drips: ['Recharge', 'Recharge Premium', 'Anxiety Relief', 'Anxiety Relief Premium']},
-  {name: 'Party-Goer', icon: '🎉', drips: ['Hangover and Jet Lag', 'Detox', 'Detox Premium']},
-  {name: 'Beauty Enthusiast', icon: '💅', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin']},
-  {name: 'Health Conscious', icon: '🥗', drips: ['Trace Elements', 'ALA', 'Detox', 'Detox Premium', 'Immune Booster', 'Immune Booster Premium']}
-];
+    /*** CONFIGURATION & STATE ***/
+    const config = {
+      selectors: {
+        container: '.container',
+        views: '[data-view-id]',
+        categoryCardTemplate: '#category-card-template',
+        dripCardTemplate: '#drip-card-template',
+      },
+      actions: {
+        navigate: '[data-action="navigate"]',
+        back: '[data-action="back"]',
+        filterCategories: '[data-action="filter-categories"]',
+        selectCategory: '[data-action="select-category"]',
+        selectDrip: '[data-action="select-drip"]',
+        toggleAccordion: '[data-action="toggle-accordion"]',
+      }
+    };
 
-const ingredientCategories = [
-  {name: 'Vitamin C', icon: '🍊', drips: ['Jet Fuel Premium', 'Jet Fuel', 'Radiance', 'Radiance Plus', 'Radiance Premium', 'Sports Edge', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Hangover and Jet Lag', 'Menopause Relief', 'Immune Booster', 'Immune Booster Premium', 'Anxiety Relief', 'Anxiety Relief Premium']},
-  {name: 'B-Complex', icon: '💊', drips: ['Jet Fuel Premium', 'Jet Fuel', 'Radiance Premium', 'Sport Restore', 'Anti Inflammatory & Auto Immune', 'Recharge Premium', 'Recharge', 'Hangover and Jet Lag', 'Menopause Relief']},
-  {name: 'B12', icon: '🔥', drips: ['Jet Fuel Premium', 'Jet Fuel', 'Sport Restore', 'Anti Inflammatory & Auto Immune', 'Recharge Premium', 'Recharge', 'Hangover and Jet Lag', 'Menopause Relief', 'B12']},
-  {name: 'Magnesium', icon: '🧬', drips: ['Jet Fuel Premium', 'Jet Fuel', 'Sport Restore', 'Sports Edge', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Recharge Premium', 'Recharge', 'Hangover and Jet Lag', 'Menopause Relief', 'Anxiety Relief', 'Anxiety Relief Premium']},
-  {name: 'Glutathione', icon: '🧹', drips: ['Jet Fuel Premium', 'Jet Fuel', 'Radiance', 'Radiance Plus', 'Radiance Premium', 'Sport Restore', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Hangover and Jet Lag', 'Menopause Relief', 'Detox', 'Detox Premium', 'Fertility']},
-  {name: 'NAD⁺', icon: '⏳', drips: ['Radiance Premium', 'Anti Ageing']},
-  {name: 'ALA', icon: '🌟', drips: ['Radiance Premium', 'Anti Inflammatory Premium', 'ALA']},
-  {name: 'Biotin', icon: '🧴✨', drips: ['Radiance Premium', 'Menopause Relief', 'Biotin']},
-  {name: 'Taurine', icon: '💪', drips: ['Hangover and Jet Lag', 'Anxiety Relief', 'Anxiety Relief Premium']},
-  {name: 'MIC', icon: '🔥⚖️', drips: ['Weight Loss', 'Weight Loss Premium']},
-  {name: 'L-Glutamine', icon: '🏋️', drips: ['Sports Edge', 'Weight Loss Premium', 'Glutamine']},
-  {name: 'L-Arginine', icon: '🏃', drips: ['Sports Edge', 'Weight Loss Premium']},
-  {name: 'L-Carnitine', icon: '🔥', drips: ['Sports Edge', 'Weight Loss Premium']},
-  {name: 'Trace Elements', icon: '🌿', drips: ['Trace Elements']},
-  {name: 'Pure Saline', icon: '💦', drips: ['Aqua Hydrate']}
-];
+  /*** CUSTOM TEXT & MAPPINGS ***/
+  // Short blurbs describing the purpose of each IV series. Displayed on the drip details page for series categories only.
+  const seriesBlurbs = {
+    'Jet Fuel Series': 'Energy optimisation for high performers.',
+    'Skin Series': 'Skin rejuvenation, cellular repair and antioxidant defence.',
+    'Sports Series': 'Performance, hydration and muscle recovery.',
+    'Recharge Series': 'Mental clarity and fatigue recovery.',
+    'Detox': 'Deep detoxification and metabolic balance.',
+    'Immune Booster': 'Strengthen immunity and build resilience.',
+    'Add-On or Stand-Alone Drip': '',
+    'Anti Ageing': 'Longevity and cellular rejuvenation.'
+  };
 
-const seriesCategories = [
-  {name: 'Jet Fuel Series', icon: '⚡', drips: ['Jet Fuel Premium', 'Jet Fuel']},
-  {name: 'Skin Series', icon: '✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium']},
-  {name: 'Sports Series', icon: '🏃', drips: ['Sports Edge', 'Sport Restore']},
-  {name: 'Anti Inflammatory Series', icon: '🔥', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
-  {name: 'Recharge Series', icon: '🔋', drips: ['Recharge Premium', 'Recharge', 'Anxiety Relief', 'Anxiety Relief Premium', 'Hangover and Jet Lag', 'Menopause Relief', 'Weight Loss', 'Weight Loss Premium', 'Fertility', 'Detox', 'Detox Premium', 'Immune Booster', 'Immune Booster Premium', 'Anti Ageing']},
-  {name: 'Add-Ons for a super boost', icon: '➕', drips: ['ALA', 'B12', 'Glutamine', 'Biotin', 'Aqua Hydrate', 'Trace Elements']}
-];
+  // Override default taglines for specific drips to soften tone and improve clarity. Defaults fall back to existing taglines.
+  const modifiedTaglines = {
+    'Jet Fuel Premium': 'Spark Vitality, Ignite Your Power',
+    'Jet Fuel': 'Power Through Your Day',
+    'Radiance': 'Glow with Confidence',
+    'Radiance Plus': 'Radiate Timeless Beauty',
+    'Radiance Premium': 'Shine with Youthful Radiance',
+    'Sport Restore': 'Recharge & Recover',
+    'Sports Edge': 'Fuel Performance & Recovery',
+    'Detox': 'Refresh & Renew',
+    'Detox Premium': 'Deep Cleanse & Revitalize',
+    'Immune Booster': 'Shield Up & Stay Vibrant',
+    'Immune Booster Premium': 'Fortify & Thrive',
+    'ALA': 'Protect & Recover',
+    'B12': 'Ignite Energy & Focus',
+    'Biotin': 'Nourish Hair, Skin & Nails',
+    'Aqua Hydrate': 'Hydrate & Revive',
+    'Trace Elements': 'Balance & Vitality',
+    'Anti Ageing': 'Energise & Renew'
+  };
 
-const relaxationMassages = [
-  {id: 'hot-stone', icon: '🔥', name: 'Hot Stone Massage', description: 'Warm stones melt away tension, soothe muscles and send you into restorative bliss.', tooltip: 'Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R500'}, {duration: '90 min', price: 'R750'}]},
-  {id: 'swedish', icon: '🌸', name: 'Swedish Massage', description: 'Long, flowing strokes calm your nervous system and restore peace to body and mind.', tooltip: 'The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R600'}, {duration: '90 min', price: 'R850'}]},
-  {id: 'indian-head', icon: '🧘', name: 'Indian Head Massage', description: 'A soothing head, neck & shoulder ritual that clears your mind and grounds your spirit.', tooltip: 'A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you feeling refreshed, grounded and mentally recharged.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R450'}]},
-  {id: 'neck-back-shoulder', icon: '💆', name: 'Neck, Back & Shoulder Massage', description: 'Release built‑up stress in your upper body, restoring comfort and instant relief.', tooltip: 'Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.', pricing: [{duration: '30 min', price: 'R300'}, {duration: '60 min', price: 'R450'}, {duration: '90 min', price: 'R700'}]}
-];
+  // Provide refined descriptions for specific drips to convey clinical credibility and clarity. If absent, falls back to raw description.
+  const modifiedDescriptions = {
+    'Jet Fuel Premium': 'This potent IV drip blends B vitamins, magnesium and antioxidants to boost stamina and clarity. Glutathione supports detoxification and promotes a healthy glow. Its enhanced formulation includes elevated concentrations of key nutrients compared to Jet Fuel to help you perform at your best.',
+    'Jet Fuel': 'This dynamic IV drip combines B vitamins, magnesium and antioxidants to help boost energy and mental clarity. Glutathione aids detoxification and supports a radiant complexion. Designed to support intense workouts or demanding days with a balanced energy boost.',
+    'Radiance': 'An antioxidant‑rich IV drip delivering Vitamin C and Glutathione to brighten skin and even tone. Supports collagen production and detoxification for a healthy, glowing complexion.',
+    'Radiance Plus': 'An advanced formulation with higher concentrations of Vitamin C and Glutathione to brighten and harmonise skin tone. It fights oxidative stress and supports collagen production. Enhanced with elevated nutrient concentrations compared to Radiance.',
+    'Radiance Premium': 'This luxurious drip blends high‑dose Vitamin C, Glutathione, B vitamins, ALA, NAD⁺ and Biotin to nourish skin, hair and nails while supporting cellular repair and energy. It promotes collagen synthesis and combats oxidative stress with an enhanced formulation compared to Radiance Plus.',
+    'Sport Restore': 'Designed for athletes, this hydrating drip delivers B12, B‑Complex, magnesium and Glutathione to replenish electrolytes, ease muscle tension and support detoxification. It promotes faster recovery and sustained energy.',
+    'Sports Edge': 'Combines B12, magnesium, Vitamin C and amino acids including L‑Glutamine, L‑Arginine and L‑Carnitine to support energy, endurance and fat metabolism. Features an enhanced formulation compared to Sport Restore to help you perform and recover better.',
+    'Detox': 'Powered by Glutathione to help flush toxins and support healthy skin. Designed for those seeking liver detoxification and post‑stress recovery.',
+    'Detox Premium': 'A premium detoxifying drip featuring elevated doses of Glutathione to promote deep cellular cleansing and support a healthy complexion. Provides enhanced potency compared to Detox.',
+    'Immune Booster': 'This Vitamin C‑rich drip supports robust immunity and collagen production while helping reduce fatigue. Ideal for travellers or individuals under stress who need an immune boost.',
+    'Immune Booster Premium': 'A high‑dose Vitamin C formulation designed to strengthen immunity and support energy. Provides elevated nutrient concentrations compared to Immune Booster.',
+    'ALA': 'Delivers alpha‑lipoic acid to support antioxidant defence, detoxification and nerve health. Ideal for those seeking recovery support after illness or surgery.',
+    'B12': 'A pure B12 infusion designed to support energy, mood and mental clarity. Perfect for vegans and those experiencing fatigue or nerve issues.',
+    'Biotin': 'Supports hair, skin and nail health while aiding cellular energy. Recommended for individuals with brittle nails or thinning hair.',
+    'Aqua Hydrate': 'A 1000 ml saline infusion delivering rapid hydration and electrolyte replenishment to support recovery after exercise or travel.',
+    'Trace Elements': 'Provides essential minerals like Zinc and Selenium to support immunity, metabolism and overall vitality.',
+    'Anti Ageing': 'A NAD⁺ infusion designed to support DNA repair, cellular energy production and youthful vitality. Helps reduce signs of ageing and enhance focus.'
+  };
 
-const therapeuticMassages = [
-  {id: 'deep-tissue', icon: '💪', name: 'Deep Tissue Massage', description: 'Firm, targeted pressure relieves chronic tension and restores balance.', tooltip: 'A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R850'}, {duration: '90 min', price: 'R1,050'}]},
-  {id: 'sports', icon: '🏃', name: 'Sports Massage', description: 'Deep work and assisted stretches enhance performance, ease soreness and speed recovery.', tooltip: 'Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you\'re training, competing or simply staying active.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]},
-  {id: 'lymphatic-drainage', icon: '💧', name: 'Lymphatic Drainage Massage', description: 'Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.', tooltip: 'A gentle, rhythmic technique that supports your body\'s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]},
-  {id: 'foot-reflexology', icon: '👣', name: 'Foot Massage / Reflexology', description: 'Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.', tooltip: 'Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R400'}, {duration: '90 min', price: 'R600'}]}
-];
+  // Suggest complementary drips to pair with each treatment for optimal results.
+  const crossPromotions = {
+    'Jet Fuel Premium': ['Detox Premium', 'Recharge Premium'],
+    'Jet Fuel': ['Detox', 'Recharge'],
+    'Radiance': ['Detox', 'Biotin'],
+    'Radiance Plus': ['Detox Premium', 'Biotin'],
+    'Radiance Premium': ['Anti Ageing', 'Longevity IV'],
+    'Sport Restore': ['Sports Edge', 'Recharge Premium'],
+    'Sports Edge': ['Sport Restore', 'Trace Elements'],
+    'Detox': ['Aqua Hydrate', 'ALA'],
+    'Detox Premium': ['Aqua Hydrate', 'ALA'],
+    'Immune Booster': ['Detox', 'Jet Fuel'],
+    'Immune Booster Premium': ['Detox Premium', 'Jet Fuel Premium'],
+    'ALA': ['Immune Booster', 'Detox'],
+    'B12': ['Jet Fuel', 'Detox'],
+    'Biotin': ['Radiance', 'Menopause Relief'],
+    'Aqua Hydrate': ['Sports Edge', 'Detox'],
+    'Trace Elements': ['Detox', 'Immune Booster'],
+    'Anti Ageing': ['Radiance Premium', 'Longevity IV']
+  };
 
-const comboMassages = [
-  {id: 'serenity-duo', icon: '💑', name: 'The Serenity Duo – Swedish Massage', description: 'A synchronised Swedish massage melts tension and deepens your connection.', tooltip: 'A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R1,080'}, {duration: '90 min', price: 'R1,530'}]},
-  {id: 'lava-escape', icon: '🌋', name: 'The Lava Escape – Hot Stone Massage', description: 'Heated stones and gentle strokes create a shared retreat into soothing warmth.', tooltip: 'Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R900'}, {duration: '90 min', price: 'R1,350'}]},
-  {id: 'power-pair', icon: '💪', name: 'The Power Pair – Deep Tissue Massage', description: 'Firm pressure releases stubborn knots, ideal for active pairs seeking relief.', tooltip: 'A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.', pricing: [{duration: '30 min', price: 'R810'}, {duration: '60 min', price: 'R1,530'}, {duration: '90 min', price: 'R1,890'}]},
-  {id: 'athletes-alignment', icon: '🏃', name: 'The Athletes Alignment – Sports Massage', description: 'Performance‑driven couples get deep work and stretches to recover and stay agile.', tooltip: 'Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,620'}, {duration: '90 min', price: 'R2,160'}]},
-  {id: 'detox-duo', icon: '💧', name: 'The Detox Duo – Lymphatic Drainage', description: 'A light touch encourages detox and circulation for refreshing renewal.', tooltip: 'A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,440'}, {duration: '90 min', price: 'R1,980'}]},
-  {id: 'tranquil-touch', icon: '🤲', name: 'The Tranquil Touch – Neck, Back & Shoulder Massage', description: 'Focused tension relief for neck, back & shoulders, bringing calm to couples.', tooltip: 'A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.', pricing: [{duration: '30 min', price: 'R540'}, {duration: '60 min', price: 'R810'}, {duration: '90 min', price: 'R1,260'}]},
-  {id: 'sole-connection', icon: '👣', name: 'The Sole Connection – Foot Massage / Reflexology', description: 'Grounding footwork stimulates energy flow and relieves tension for two.', tooltip: 'Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}, {duration: '90 min', price: 'R1,080'}]},
-  {id: 'crown-calm', icon: '👑', name: 'The Crown & Calm Ritual – Indian Head Massage', description: 'A meditative scalp, neck & shoulder ritual calms minds and balances energy.', tooltip: 'A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}]}
-];
+  // Tailored audience descriptions for each drip.  These summarise who will benefit most.
+  const perfectMessages = {
+    'Jet Fuel Premium': 'Designed for athletes, high‑performing professionals and anyone experiencing fatigue or stress who needs a powerful energy surge and swift recovery.',
+    'Jet Fuel': 'Ideal for athletes and active individuals who must power through intense workouts or demanding days with sustained energy and clear focus.',
+    'Radiance': 'For those seeking brighter, more youthful skin — from uneven tone to anyone desiring collagen support.',
+    'Radiance Plus': 'Perfect for anyone wanting enhanced skin‑brightening and anti‑ageing benefits, especially if you have dull skin or need extra collagen support.',
+    'Radiance Premium': 'Tailored for those who desire comprehensive skin rejuvenation and anti‑ageing with premium antioxidant support.',
+    'Sport Restore': 'Designed for athletes and fitness enthusiasts engaged in strenuous physical activity who need muscle recovery and reduced soreness.',
+    'Sports Edge': 'For athletes and fitness enthusiasts who want peak performance, faster recovery and improved fat burning.',
+    'Anti Inflammatory & Auto Immune': 'Suitable for individuals with chronic inflammation, autoimmune conditions or joint pain seeking detoxification and metabolic support.',
+    'Anti Inflammatory Premium': 'Great for those with chronic inflammation or autoimmune issues who need enhanced detoxification and metabolic support.',
+    'Recharge': 'Ideal for anyone suffering from mental fatigue, burnout or brain fog who needs a mood lift and energy boost.',
+    'Recharge Premium': 'Designed for those facing chronic burnout or high stress who need a stronger mood uplift and mental refresh.',
+    'Hangover and Jet Lag': 'For travellers and party‑goers recovering from late nights or long flights — helps rehydrate and regain equilibrium.',
+    'Anxiety Relief': 'Suitable for individuals facing anxiety or stress who need natural mood support and calm.',
+    'Anxiety Relief Premium': 'Designed for those seeking comprehensive relief from anxiety and stress, with enhanced mood‑balancing support.',
+    'Menopause Relief': 'For women experiencing menopause symptoms like hot flashes, mood swings and fatigue who want hormone balance and renewed energy.',
+    'Weight Loss': 'Ideal for individuals pursuing weight management and metabolic support, particularly those seeking fat burning and energy enhancement.',
+    'Weight Loss Premium': 'Designed for individuals on an intensive weight loss journey requiring elevated metabolic support and fat‑burning assistance.',
+    'Fertility': 'For couples trying to conceive or individuals undergoing fertility treatments who need antioxidant and cellular support.',
+    'Detox': 'For individuals seeking liver detoxification, people with fatty liver or those exposed to toxins needing antioxidant support.',
+    'Detox Premium': 'For those requiring deeper liver detoxification and antioxidant support after exposure to toxins.',
+    'Immune Booster': 'Ideal for individuals with weakened immune systems, cancer patients and frequent travellers who need immunity support.',
+    'Immune Booster Premium': 'Designed for those requiring enhanced immune support due to stress, travel or immune challenges.',
+    'ALA': 'Suitable for individuals with diabetic neuropathy, autoimmune conditions or those seeking antioxidant and nerve support.',
+    'B12': 'Ideal for individuals with B12 deficiency, vegans or vegetarians or anyone experiencing fatigue or nerve issues.',
+    'Biotin': 'Designed for individuals with brittle nails or thinning hair and anyone seeking stronger hair, skin and nails.',
+    'Aqua Hydrate': 'Perfect for dehydrated individuals, athletes after exercise, travellers with jet lag or anyone recovering from illness.',
+    'Trace Elements': 'Suitable for individuals with trace element deficiencies, those needing immune or metabolic support or patients on parenteral nutrition.',
+    'Anti Ageing': 'Ideal for individuals concerned with ageing, energy decline or cognitive function who seek cellular repair and rejuvenation.'
+  };
 
-// Navigation state
-let currentView = 'main-menu-view';
-let viewHistory = [];
-let currentFilterType = 'feel-goal';
-let selectedCategory = null;
+  // Tailored contraindication advice for each drip.  These highlight who should avoid the infusion.
+  const notSuitableMessages = {
+    'Jet Fuel Premium': 'People with kidney stones, asthma, kidney or liver disease, or those who are pregnant should avoid this infusion.',
+    'Jet Fuel': 'Anyone with kidney stones, asthma, kidney or liver disease, or who is pregnant should avoid this infusion.',
+    'Radiance': 'Those with kidney stones, asthma or who are pregnant should avoid this infusion.',
+    'Radiance Plus': 'Individuals with kidney stones, asthma or who are pregnant should avoid this infusion.',
+    'Radiance Premium': 'People with kidney stones, asthma, kidney or liver disease, diabetes or who are pregnant should avoid this infusion.',
+    'Sport Restore': 'Those with asthma, kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Sports Edge': 'People with kidney stones, kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Anti Inflammatory & Auto Immune': 'Individuals with kidney stones, asthma, kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Anti Inflammatory Premium': 'Those with kidney stones, asthma, kidney or liver disease, diabetes or who are pregnant should avoid this infusion.',
+    'Recharge': 'Individuals with kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Recharge Premium': 'People with kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Hangover and Jet Lag': 'Those with kidney stones, asthma, kidney or liver disease, hypotension or who are pregnant should avoid this infusion.',
+    'Anxiety Relief': 'Individuals with kidney stones, kidney or liver disease, hypotension or who are pregnant should avoid this infusion.',
+    'Anxiety Relief Premium': 'Those with kidney stones, kidney or liver disease, hypotension or who are pregnant should avoid this infusion.',
+    'Menopause Relief': 'People with kidney stones, asthma, kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Weight Loss': 'Individuals with liver disease or who are pregnant should avoid this infusion.',
+    'Weight Loss Premium': 'Those with kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Fertility': 'Individuals with asthma or who are currently pregnant or breastfeeding should avoid this infusion.',
+    'Detox': 'Those with asthma or who are pregnant should avoid this infusion.',
+    'Detox Premium': 'Individuals with asthma or who are pregnant should avoid this infusion.',
+    'Immune Booster': 'People with kidney stones or who are pregnant should avoid this infusion.',
+    'Immune Booster Premium': 'Individuals with kidney stones or who are pregnant should avoid this infusion.',
+    'ALA': 'Those with diabetes or who are pregnant should avoid this infusion.',
+    'B12': 'Individuals with kidney or liver disease or who are pregnant should avoid this infusion.',
+    'Biotin': 'People with hypersensitivity or who are pregnant should avoid this infusion.',
+    'Aqua Hydrate': 'Those with heart failure or who are pregnant should avoid this infusion.',
+    'Trace Elements': 'Individuals with metal allergies, kidney disease or who are pregnant should avoid this infusion.',
+    'Anti Ageing': 'Those who are pregnant or breastfeeding should avoid this infusion.'
+  };
 
-// Navigation functions
-function navigateTo(viewId) {
-  const currentEl = document.getElementById(currentView);
-  const nextEl = document.getElementById(viewId);
-  if (currentEl) currentEl.classList.add('hidden');
-  if (nextEl) nextEl.classList.remove('hidden');
-  viewHistory.push(currentView);
-  currentView = viewId;
-}
+    const state = {
+      currentView: 'main-menu-view',
+      previousViews: [],
+      categoryType: 'feel-goal',
+      selectedCategory: null,
+    };
 
-function goBack() {
-  if (viewHistory.length > 0) {
-    const currentEl = document.getElementById(currentView);
-    const previousView = viewHistory.pop();
-    const previousEl = document.getElementById(previousView);
-    if (currentEl) currentEl.classList.add('hidden');
-    if (previousEl) previousEl.classList.remove('hidden');
-    currentView = previousView;
+    /*** CACHED DOM ELEMENTS ***/
+    const dom = {
+      container: document.querySelector(config.selectors.container),
+      views: document.querySelectorAll(config.selectors.views),
+      categoryGrid: document.getElementById('categories-grid'),
+      dripsGrid: document.getElementById('drips-grid'),
+      dripsHeading: document.getElementById('drips-heading'),
+      categorySelect: document.getElementById('selection-type'),
+      categoryCardTemplate: document.getElementById('category-card-template'),
+      dripCardTemplate: document.getElementById('drip-card-template'),
+      details: {
+        panel: document.getElementById('drip-details-panel'),
+        name: document.getElementById('detail-name'),
+        price: document.getElementById('detail-price'),
+        tagline: document.getElementById('detail-tagline'),
+        description: document.getElementById('detail-description'),
+        frequency: document.getElementById('detail-frequency'),
+        overallBenefits: document.getElementById('detail-overall-benefits'),
+        perfect: document.getElementById('detail-perfect'),
+        notSuitable: document.getElementById('detail-not-suitable'),
+        ingredients: document.getElementById('detail-ingredients'),
+        feedback: document.getElementById('detail-feedback'),
+      },
+    };
+
+    /*** DATA HANDLING ***/
+    const data = {
+      dripMap: new Map(),
+      process() {
+        // Normalize drips into a Map for O(1) lookup
+        this.rawData.dripCategories.forEach(cat => cat.drips.forEach(drip => this.dripMap.set(drip.name, drip)));
+      },
+      getCategories(type) {
+        switch (type) {
+          case 'series': return this.rawData.dripCategories;
+          case 'lifestyle': return this.rawData.lifestyleCategories;
+          case 'ingredients': return this.rawData.ingredientCategories;
+          case 'feel-goal':
+          default:
+            return this.rawData.feelGoalCategories;
+        }
+      },
+      getDripsForCategory(category, type) {
+        if (type === 'series') return category.drips;
+        return category.drips.map(name => this.dripMap.get(name)).filter(Boolean);
+      },
+      rawData: { /* All the JSON data from the original file is placed here */
+        dripCategories: [{"name":"Jet Fuel Series","icon":"⚡","drips":[{"name":"Jet Fuel Premium","price":1250,"tagline":"Spark Vitality, Ignite Power","description":"Awaken your inner wildfire with this potent IV drip, blending B vitamins, magnesium, and antioxidants to unleash a torrent of blazing stamina and razor-sharp focus. Glutathione purifies your soul, unveiling a radiant glow that mirrors your unstoppable spirit. This premium formula, with fiercer potency than Jet Fuel, ignites your boundless vitality, empowering you to conquer boardroom battles or gym triumphs with electrifying confidence and joy.","overallBenefits":"Boosts energy, focus, nerve health. Eases muscles, supports immunity, brightens skin.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.","frequency":"Every 2-3 weeks; weekly for high stress or intense workouts.","perfectFor":"Athletes, busy professionals experiencing fatigue, individuals under stress seeking energy boost and recovery.","feedback":"Felt unstoppable after one session! Sharper focus, brighter skin. - Sarah M., 35","icon":"⚡⚡⚡","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant."},{"name":"Jet Fuel","price":600,"tagline":"Blaze Through Your Day","description":"Kindle a blazing spark within with this dynamic IV drip, infusing B vitamins, magnesium, and antioxidants to unleash a surge of electrifying vitality and crystal-clear focus. Glutathione cleanses your body, revealing a luminous glow that fuels your spirit to soar. Perfect for powering through intense workouts or conquering demanding days with radiant, unstoppable energy.","overallBenefits":"Boosts energy, focus, nerve health. Eases muscles, supports immunity, brightens skin.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.","frequency":"Every 2-3 weeks; weekly for high stress or intense workouts.","perfectFor":"Athletes, busy professionals experiencing fatigue, individuals under stress seeking energy boost and recovery.","feedback":"Gave me marathon stamina and fast recovery! - Mike T., 42","icon":"⚡","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant."}]},{"name":"Skin Series","icon":"🧴✨","drips":[{"name":"Radiance","price":950,"tagline":"Glow Like a Star","description":"Illuminate your soul with this antioxidant-rich IV drip, bursting with Vitamin C and Glutathione to banish dullness and awaken a dazzling, starlit complexion. Feel your spirit soar as you embrace vibrant confidence, ready to shine with youthful radiance at every moment.","overallBenefits":"Brightens skin, boosts collagen, detoxes, lifts energy, immunity.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.","feedback":"Two sessions and my skin glowed like I’d been on vacation! - Lisa K., 29","icon":"✨","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, or are pregnant."},{"name":"Radiance Plus","price":1400,"tagline":"Radiate Timeless Beauty","description":"Unveil a breathtaking, ageless you with this powerful IV drip, blending high-potency Vitamin C and Glutathione to harmonize skin tone and ignite timeless radiance. This enhanced formula, with fiercer potency than Radiance, banishes oxidative stress, empowering you to glow with captivating beauty and unshakable confidence that turns heads.","overallBenefits":"Brightens skin, boosts collagen, detoxes, lifts energy, immunity, fights free radicals.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.","feedback":"Evened my skin tone in weeks; confident without makeup! - Emma R., 38","icon":"✨✨","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, or are pregnant."},{"name":"Radiance Premium","price":1800,"tagline":"Shine with Eternal Youth","description":"Ascend to your most radiant, youthful self with this luxurious IV drip, weaving antioxidants, B vitamins, and NAD⁺ to rejuvenate your skin and spark boundless vitality. Glutathione and Biotin amplify your glow, hair, and nails, while this premium formula, with fiercer potency than Radiance Plus, unveils an eternal radiance that captivates every moment, from grand celebrations to daily elegance.","overallBenefits":"Brightens skin, hydrates, boosts energy, collagen, supports hair, nails.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.","frequency":"Weekly for 4-6 weeks, then monthly.","perfectFor":"Individuals seeking skin brightening and anti-aging, people with dull or uneven skin tone, those interested in collagen support.","feedback":"Gave me glowing skin and endless energy! - David L., 45","icon":"✨✨✨","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant."}]},{"name":"Sports Series","icon":"🏅","drips":[{"name":"Sport Restore","price":1050,"tagline":"Recharge, Conquer, Thrive","description":"Reignite your athletic soul with this hydrating IV drip, infused with B12, magnesium, and Glutathione to erase muscle fatigue and spark lightning-fast recovery. Replenish electrolytes and unleash a fearless spirit, ready to conquer any challenge with vibrant, unstoppable vigor.","overallBenefits":"Speeds muscle recovery, replaces electrolytes, boosts energy, detoxes.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Every 2-3 weeks; weekly for intense training.","perfectFor":"Athletes, fitness enthusiasts, individuals engaged in intense physical activity needing muscle recovery and reduced soreness.","feedback":"Cut my gym soreness in half! Felt unstoppable. - Alex P., 32","icon":"🏅","isSingleAddOn":false,"contraindications":"Avoid if you have asthma, kidney/liver disease, or are pregnant."},{"name":"Sports Edge","price":1250,"tagline":"Fuel Victory, Soar Higher","description":"Shatter your limits with this electrifying IV drip, infusing B12, L-Glutamine, and L-Carnitine to unleash relentless endurance and swift recovery. Magnesium and Vitamin C amplify your stamina and immunity, while this enhanced formula, with fiercer potency than Sport Restore, fuels your body to dominate every challenge with victorious energy and unshakable resilience.","overallBenefits":"Boosts energy, stamina, muscle repair, hydration, fat burning.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.","frequency":"1-2 times weekly during training; as needed post-workout.","perfectFor":"Athletes, fitness enthusiasts, individuals engaged in intense physical activity needing muscle recovery and reduced soreness.","feedback":"Boosted my cycling endurance; recovery was pro-level! - Jenna S., 28","icon":"🏅🏅","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, kidney/liver disease, or are pregnant."}]},{"name":"Anti Inflammatory Series","icon":"🧘","drips":[{"name":"Anti Inflammatory & Auto Immune","price":1490,"tagline":"Soothe Body, Restore Harmony","description":"Embrace a soothing embrace of calm with this transformative IV drip, blending B12, Vitamin C, and Glutathione to quell inflammation and spark radiant energy. Magnesium dissolves tension, restoring your body’s harmony and igniting a serene clarity that empowers you to live freely and joyfully.","overallBenefits":"Reduces inflammation, boosts energy, supports immunity, tissue repair, mental clarity.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.","feedback":"Calmed my flares, restored energy! - Rachel H., 40","icon":"🧘","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant."},{"name":"Anti Inflammatory Premium","price":1550,"tagline":"Quell Flames, Embrace Ease","description":"Extinguish inflammation’s fire with this powerful IV drip, blending Vitamin C, ALA, and Glutathione to soothe aching joints and muscles, while Magnesium restores a tranquil balance. This premium formula, with fiercer potency than Anti Inflammatory & Auto Immune, delivers profound relief, empowering you to move with grace and embrace life’s joys with radiant ease.","overallBenefits":"Reduces inflammation, supports recovery, detoxes, boosts immunity.","ingredients":"<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly or bi-weekly for inflammation or activity.","perfectFor":"Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.","feedback":"Eased joint pain; I move freely again! - Tom G., 55","icon":"🧘🧘","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant."}]},{"name":"Recharge Series","icon":"🔋","drips":[{"name":"Recharge Premium","price":950,"tagline":"Surge with Boundless Energy","description":"Shatter exhaustion with this electrifying IV drip, infused with B12, B-Complex, and magnesium to ignite your metabolism and unleash a torrent of radiant vitality. This premium formula, with fiercer potency than Recharge, fuels your focus and passion, empowering you to conquer burnout and dance through life with unstoppable joy.","overallBenefits":"Boosts energy, focus, eases muscle tension, supports health.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.","frequency":"Every 2-4 weeks; as needed for energy.","perfectFor":"Individuals with chronic fatigue or low energy, vegans or vegetarians, stressed professionals needing focus and mood support.","feedback":"Snapped me out of burnout! - Nina W., 31","icon":"🔋🔋🔋","isSingleAddOn":false,"contraindications":"Avoid if you have kidney/liver disease or are pregnant."},{"name":"Recharge","price":500,"tagline":"Spark Clarity, Ignite Vigor","description":"Awaken your soul’s spark with this swift IV drip, infusing B12, B-Complex, and magnesium to banish mental fog and ignite a radiant clarity. Feel your energy soar, ready to embrace busy days or recover from travel with vibrant, unstoppable zest.","overallBenefits":"Boosts energy, focus, eases muscle tension, supports health.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.","frequency":"Every 2-4 weeks; as needed for energy.","perfectFor":"Individuals with chronic fatigue or low energy, vegans or vegetarians, stressed professionals needing focus and mood support.","feedback":"Re-energized in hours! - Chris B., 37","icon":"🔋","isSingleAddOn":false,"contraindications":"Avoid if you have kidney/liver disease or are pregnant."}]},{"name":"Hangover and Jet Lag","icon":"🛫","drips":[{"name":"Hangover and Jet Lag","price":1100,"tagline":"Refresh, Reset, Soar Again","description":"Reclaim your vibrant spirit with this hydrating IV drip, blending B12, Vitamin C, and Taurine to melt away brain fog and ignite a surge of radiant energy. Glutathione purifies your core, leaving you refreshed and ready to soar through travel or post-party recovery with boundless, joyful vitality.","overallBenefits":"Hydrates, eases headaches, boosts energy, detoxes, clears mind.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"As needed after travel or parties; every 2-4 weeks for detox.","perfectFor":"Travelers experiencing jet lag, individuals recovering from hangovers, those needing quick rehydration and detox.","feedback":"Back to productive by lunch! - Jordan F., 30","icon":"💧","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, hypotension, or are pregnant."}]},{"name":"Anxiety Relief","icon":"😌","drips":[{"name":"Anxiety Relief","price":790,"tagline":"Embrace Serene Tranquility","description":"Dissolve stress and embrace a tranquil haven with this soothing IV drip, infusing Taurine, Magnesium, and Vitamin C to uplift your spirit and restore inner peace. Feel tension melt away as radiant clarity emerges, guiding you to a serene, joyful state of confidence.","overallBenefits":"Reduces stress, relaxes muscles, boosts immunity, sharpens clarity.","ingredients":"<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.","frequency":"Weekly for 2-3 weeks, then every 2-4 weeks.","perfectFor":"Individuals with anxiety or stress, those needing relaxation and better sleep, people under high mental pressure.","feedback":"Melted stress; felt calm again. - Maria V., 36","icon":"😌","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, kidney/liver disease, hypotension, or are pregnant."},{"name":"Anxiety Relief Premium","price":1100,"tagline":"Drift into Deep Calm","description":"Surrender to a profound oasis of calm with this advanced IV drip, blending Taurine, Magnesium, and Vitamin C to silence anxiety and ignite radiant focus. This premium formula, with fiercer potency than Anxiety Relief, envelops you in serene confidence, empowering restful sleep and a joyful embrace of life’s moments.","overallBenefits":"Reduces anxiety, muscle tension, boosts focus, mood, stress resistance.","ingredients":"<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.","frequency":"Every 1-2 weeks; maintenance every 3-4 weeks.","perfectFor":"Individuals with anxiety or stress, those needing relaxation and better sleep, people under high mental pressure.","feedback":"Quieted my mind; slept like a baby! - Kevin D., 41","icon":"😌😌","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, kidney/liver disease, hypotension, or are pregnant."}]},{"name":"Menopause Relief","icon":"🌡️","drips":[{"name":"Menopause Relief","price":1100,"tagline":"Embrace Balance, Bloom Anew","description":"Bloom into your radiant, empowered self with this balancing IV drip, infused with Magnesium, B-Complex, and Glutathione to soothe hot flashes and ignite vibrant energy. Biotin and Vitamin C unveil a luminous glow, empowering you to navigate menopause with grace, confidence, and a joyful spark.","overallBenefits":"Eases moods, hot flashes, boosts energy, skin glow, detoxes.","ingredients":"<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Every 2-3 weeks; weekly for tough symptoms.","perfectFor":"Women experiencing menopause symptoms like hot flashes, mood swings, and fatigue, those seeking hormone balance support.","feedback":"Smoothed hot flashes; felt myself again! - Patricia E., 52","icon":"🌡️","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant."}]},{"name":"Weight Loss Fat Burning","icon":"🔥⚖️","drips":[{"name":"Weight Loss","price":800,"tagline":"Torch Fat, Ignite Confidence","description":"Ignite your transformation with this metabolism-boosting IV drip, powered by MIC to torch stubborn fat and unleash a surge of radiant energy. Feel your spirit lighten as your body reshapes, empowering you to chase your fitness dreams with fearless confidence and joy.","overallBenefits":"Speeds fat burning, detoxes liver, boosts energy, mood.","ingredients":"<strong>MIC (Methionine, Inositol, Choline)</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals aiming for weight loss, those with stubborn fat, fitness enthusiasts supporting metabolism and muscle preservation.","feedback":"Kickstarted metabolism; dropped inches! - Greg N., 39","icon":"🔥","isSingleAddOn":false,"contraindications":"Avoid if you have liver disease or are pregnant."},{"name":"Weight Loss Premium","price":950,"tagline":"Sculpt Lean, Energized You","description":"Sculpt a leaner, bolder you with this advanced IV drip, blending MIC, L-Glutamine, and L-Carnitine to incinerate fat and ignite relentless stamina. This premium formula, with fiercer potency than Weight Loss, supercharges your workouts and preserves muscle, empowering you to conquer your weight goals with radiant energy and unshakable confidence.","overallBenefits":"Boosts metabolism, fat breakdown, energy, stamina, recovery.","ingredients":"<strong>MIC</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals aiming for weight loss, those with stubborn fat, fitness enthusiasts supporting metabolism and muscle preservation.","feedback":"Burned fat, preserved muscle! - Sofia L., 34","icon":"🔥🔥","isSingleAddOn":false,"contraindications":"Avoid if you have kidney/liver disease or are pregnant."}]},{"name":"Fertility","icon":"👶","drips":[{"name":"Fertility","price":800,"tagline":"Nurture Hope, Spark Life","description":"Nurture your dreams of parenthood with this cleansing IV drip, infused with Glutathione to purify your body and harmonize hormones. Ignite a radiant energy and protect your reproductive vitality, fueling a hopeful, vibrant journey with unwavering confidence and joy.","overallBenefits":"Boosts hormone balance, protects eggs/sperm, lifts energy, immunity.","ingredients":"<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow, supporting hormonal balance for fertility.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Couples trying to conceive, women undergoing IVF or fertility treatments, individuals with oxidative stress affecting fertility.","feedback":"Reduced toxins; felt healthier! - Amy C., 33","icon":"👶","isSingleAddOn":false,"contraindications":"Avoid if you have asthma or are currently pregnant/breastfeeding."}]},{"name":"Detox","icon":"🧹","drips":[{"name":"Detox Premium","price":800,"tagline":"Cleanse Deep, Glow Bright","description":"Purify your body and soul with this rejuvenating IV drip, harnessing Glutathione’s cleansing power to sweep away toxins and ignite a radiant glow. This premium formula, with fiercer potency than Detox, delivers a transformative reset, leaving you refreshed, vibrant, and glowing with boundless energy.","overallBenefits":"Detoxes cells, brightens skin, boosts immunity, energy.","ingredients":"<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals seeking liver detoxification, people with fatty liver disease, those exposed to toxins or needing antioxidant support.","feedback":"Cleared system; skin glowed! - Raj P., 29","icon":"🧹🧹🧹","isSingleAddOn":false,"contraindications":"Avoid if you have asthma or are pregnant."},{"name":"Detox","price":400,"tagline":"Purge Toxins, Shine Anew","description":"Reawaken your spirit with this streamlined IV drip, powered by Glutathione to flush toxins and unveil a radiant, glowing complexion. Feel light, reborn, and brimming with vibrant clarity, ready to shine through post-stress or party recovery with joyful energy.","overallBenefits":"Detoxes cells, brightens skin, boosts immunity, energy.","ingredients":"<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.","frequency":"Weekly for 4-6 weeks, then every 2-4 weeks.","perfectFor":"Individuals seeking liver detoxification, people with fatty liver disease, those exposed to toxins or needing antioxidant support.","feedback":"Reset brain fog; felt renewed! - Olivia J., 27","icon":"🧹","isSingleAddOn":false,"contraindications":"Avoid if you have asthma or are pregnant."}]},{"name":"Immune Booster","icon":"🛡️","drips":[{"name":"Immune Booster Premium","price":800,"tagline":"Fortify, Thrive, Stay Strong","description":"Forge an unbreakable shield with this high-dose Vitamin C IV drip, igniting robust immunity and radiant vitality. This premium formula, with fiercer potency than Immune Booster, fortifies your defenses against stress and illness, empowering you to thrive with unwavering resilience and joyful strength.","overallBenefits":"Boosts immunity, reduces fatigue, supports collagen, cell repair.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.","frequency":"Every 2-4 weeks; weekly for stress or travel.","perfectFor":"Individuals with compromised immunity, cancer patients, people under stress or frequent travelers needing immune support.","feedback":"No sick days this year! - Ben A., 45","icon":"🛡️🛡️🛡️","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones or are pregnant."},{"name":"Immune Booster","price":420,"tagline":"Shield Up, Stay Vibrant","description":"Build a radiant shield of strength with this potent Vitamin C IV drip, sparking vibrant energy and resilience to ward off colds and fatigue. Feel unstoppable and alive, ready to conquer travel or stress with a joyful, powerful immune boost.","overallBenefits":"Boosts immunity, reduces fatigue, supports collagen, cell repair.","ingredients":"<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.","frequency":"Every 2-4 weeks; weekly for stress or travel.","perfectFor":"Individuals with compromised immunity, cancer patients, people under stress or frequent travelers needing immune support.","feedback":"Shielded me from travel bugs! - Tara M., 31","icon":"🛡️","isSingleAddOn":false,"contraindications":"Avoid if you have kidney stones or are pregnant."}]},{"name":"Add-On or Stand-Alone Drip","icon":"➕❓","drips":[{"name":"ALA","price":620,"tagline":"Shield Cells, Shine Within","description":"Embrace a vibrant shield of renewal with this ALA-infused IV drip, sparking immunity and accelerating recovery. Detoxify your body and ignite nerve health, empowering you to shine with radiant resilience and joyful vitality after illness or surgery.","overallBenefits":"Strengthens immunity, reduces fatigue, detoxes, supports nerves.","ingredients":"<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.","frequency":"Every 2-4 weeks; weekly during illness.","perfectFor":"Individuals with diabetic neuropathy, those seeking antioxidant support, people with autoimmune conditions.","feedback":"Sped up recovery; felt shielded! - Harold S., 60","icon":"🌟","isSingleAddOn":true,"contraindications":"Avoid if you have diabetes or are pregnant."},{"name":"B12","price":250,"tagline":"Spark Energy, Sharpen Mind","description":"Unleash a radiant burst of vitality with this pure B12 IV drip, igniting instant energy and crystal-clear mental focus. Banish fatigue and empower your nerves, perfect for vegans or anyone craving a joyful, vibrant boost to conquer their day.","overallBenefits":"Lifts energy, mood, focus, supports nerves, metabolism.","ingredients":"<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.","frequency":"Every 2-4 weeks; weekly to replenish low levels.","perfectFor":"Individuals with B12 deficiency, vegans or vegetarians, people with fatigue or nerve issues.","feedback":"Cleared fog; vitality back! - Zoe K., 26","icon":"🔥","isSingleAddOn":true,"contraindications":"Avoid if you have kidney/liver disease or are pregnant."},{"name":"Biotin","price":420,"tagline":"Bloom with Radiant Beauty","description":"Blossom into your most radiant self with this Biotin IV drip, transforming hair, nails, and skin into a luminous masterpiece. Ignite your energy and cellular vitality, empowering you to shine with breathtaking beauty and unshakable confidence.","overallBenefits":"Boosts hair, skin, nails, energy, cell health.","ingredients":"<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow while supporting cellular energy.","frequency":"Every 2-4 weeks; weekly for build-up.","perfectFor":"Individuals with biotin deficiency, those with brittle nails or thinning hair, people seeking support for hair, skin, and nails.","feedback":"Strengthened hair, glowing skin! - Laura F., 32","icon":"🧴✨","isSingleAddOn":true,"contraindications":"Avoid if you have hypersensitivity or are pregnant."},{"name":"Aqua Hydrate","price":300,"tagline":"Quench, Revive, Glow Fresh","description":"Quench your body’s deepest thirst with this 1000 ml saline IV drip, restoring electrolytes and sparking a radiant surge of vitality. Feel refreshed, alive, and glowing, ready to conquer dehydration from workouts or travel with joyful energy.","overallBenefits":"Hydrates, balances electrolytes, boosts energy, skin shine.","ingredients":"<strong>Pure Saline</strong>: Delivers rapid hydration, restoring electrolytes to refresh your body and enhance skin radiance.","frequency":"Every 2-4 weeks; as needed post-activity.","perfectFor":"Dehydrated individuals, athletes post-exercise, travelers with jet lag, those recovering from illness.","feedback":"Revived in 30 minutes! - Sam R., 40","icon":"💦","isSingleAddOn":true,"contraindications":"Avoid if you have heart failure or are pregnant."},{"name":"Trace Elements","price":350,"tagline":"Balance Body, Spark Vitality","description":"Harmonize your essence with this IV drip, delivering essential minerals like Zinc and Selenium to ignite immunity and metabolism. Unveil radiant skin, hair, and boundless energy, empowering you to thrive with vibrant, balanced vitality that radiates from within.","overallBenefits":"Boosts energy, immunity, skin, hair, nails, hormone balance.","ingredients":"<strong>Trace Elements (Zinc, Selenium, Copper, Manganese, Chromium)</strong>: Fortifies immunity, enhances metabolism, and promotes radiant skin and hair for total body balance.","frequency":"Every 2-4 weeks; mix with vitamin drips.","perfectFor":"Individuals with trace element deficiencies, those needing immune or metabolic support, patients on parenteral nutrition.","feedback":"Sharpened focus, cleared skin! - Ethan W., 35","icon":"🌿","isSingleAddOn":true,"contraindications":"Avoid if you have metal allergies, kidney disease, or are pregnant."}]},{"name":"Anti Ageing","icon":"⏳","drips":[{"name":"Anti Ageing","price":1200,"tagline":"Rewind Time, Radiate Youth","description":"Defy time’s embrace with this transformative NAD+ IV drip, fueling energy, DNA repair, and radiant youthfulness. Rejuvenate your skin and sharpen your focus, empowering you to live with the vibrant, ageless passion of your prime, glowing with confidence and joy.","overallBenefits":"Fights aging, boosts energy, focus, skin, muscle repair.","ingredients":"<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.","frequency":"Weekly for 4-6 sessions, then every 4-6 weeks.","perfectFor":"Individuals concerned with aging, those with age-related decline in energy or cognitive function, people interested in cellular repair.","feedback":"Turned back the clock! - Victor O., 50","icon":"⏳","isSingleAddOn":false,"contraindications":"Avoid if you are pregnant or breastfeeding."}]}],
+        lifestyleCategories: [{"name":"Running","icon":"🏃","drips":["Sports Edge","Sport Restore"]},{"name":"Weight Lifting","icon":"🏋️","drips":["Sports Edge","Sport Restore"]},{"name":"Traveling","icon":"✈️","drips":["Hangover and Jet Lag","Immune Booster","Immune Booster Premium","ALA","Aqua Hydrate"]},{"name":"Busy Professional","icon":"💼","drips":["Recharge","Recharge Premium","Anxiety Relief","Anxiety Relief Premium"]},{"name":"Party-Goer","icon":"🎉","drips":["Hangover and Jet Lag","Detox","Detox Premium"]},{"name":"Beauty Enthusiast","icon":"💅","drips":["Radiance","Radiance Plus","Radiance Premium","Biotin"]},{"name":"Health Conscious","icon":"🥗","drips":["Trace Elements","ALA","Detox","Detox Premium","Immune Booster","Immune Booster Premium"]},{"name":"Skin Light Therapy","icon":"😊🌟","drips":[]}],
+        feelGoalCategories: [{"name":"Burnout","icon":"😓","drips":["Recharge","Recharge Premium"]},{"name":"Anxious","icon":"😣","drips":["Anxiety Relief","Anxiety Relief Premium"]},{"name":"Skin Glow Up","icon":"🧴✨","drips":["Radiance","Radiance Plus","Radiance Premium","Biotin"]},{"name":"Low Energy","icon":"😴","drips":["Jet Fuel","Jet Fuel Premium","Recharge","Recharge Premium","B12"]},{"name":"Joint/Muscle Pain","icon":"💪","drips":["Anti Inflammatory & Auto Immune","Anti Inflammatory Premium"]},{"name":"Immune Support","icon":"🛡️","drips":["Immune Booster","Immune Booster Premium","ALA"]},{"name":"Anti-Aging","icon":"⏳","drips":["Anti Ageing","Radiance Premium"]},{"name":"Menopause Symptoms","icon":"🌡️","drips":["Menopause Relief"]},{"name":"Weight Loss","icon":"🔥⚖️","drips":["Weight Loss","Weight Loss Premium"]},{"name":"Fertility Support","icon":"👶","drips":["Fertility"]},{"name":"Detox Needed","icon":"🧹","drips":["Detox","Detox Premium","ALA"]}],
+        ingredientCategories: [{"name":"Vitamin C","icon":"🍊","drips":["Jet Fuel Premium","Jet Fuel","Radiance","Radiance Plus","Radiance Premium","Sports Edge","Anti Inflammatory & Auto Immune","Anti Inflammatory Premium","Hangover and Jet Lag","Menopause Relief","Immune Booster","Immune Booster Premium","Anxiety Relief","Anxiety Relief Premium"]},{"name":"B-Complex","icon":"💊","drips":["Jet Fuel Premium","Jet Fuel","Radiance Premium","Sport Restore","Anti Inflammatory & Auto Immune","Recharge Premium","Recharge","Hangover and Jet Lag","Menopause Relief"]},{"name":"B12","icon":"🔥","drips":["Jet Fuel Premium","Jet Fuel","Sport Restore","Anti Inflammatory & Auto Immune","Recharge Premium","Recharge","Hangover and Jet Lag","Menopause Relief","B12"]},{"name":"Magnesium","icon":"🧬","drips":["Jet Fuel Premium","Jet Fuel","Sport Restore","Sports Edge","Anti Inflammatory & Auto Immune","Anti Inflammatory Premium","Recharge Premium","Recharge","Hangover and Jet Lag","Menopause Relief","Anxiety Relief","Anxiety Relief Premium"]},{"name":"Glutathione","icon":"🧹","drips":["Jet Fuel Premium","Jet Fuel","Radiance","Radiance Plus","Radiance Premium","Sport Restore","Anti Inflammatory & Auto Immune","Anti Inflammatory Premium","Hangover and Jet Lag","Menopause Relief","Detox","Detox Premium","Fertility"]},{"name":"NAD⁺","icon":"⏳","drips":["Radiance Premium","Anti Ageing"]},{"name":"ALA","icon":"🌟","drips":["Radiance Premium","Anti Inflammatory Premium","ALA"]},{"name":"Biotin","icon":"🧴✨","drips":["Radiance Premium","Menopause Relief","Biotin"]},{"name":"Taurine","icon":"💪","drips":["Hangover and Jet Lag","Anxiety Relief","Anxiety Relief Premium"]},{"name":"MIC","icon":"🔥⚖️","drips":["Weight Loss","Weight Loss Premium"]},{"name":"L-Glutamine","icon":"🏋️","drips":["Sports Edge","Weight Loss Premium"]},{"name":"L-Arginine","icon":"🏃","drips":["Sports Edge","Weight Loss Premium"]},{"name":"L-Carnitine","icon":"🔥","drips":["Sports Edge","Weight Loss Premium"]},{"name":"Trace Elements","icon":"🌿","drips":["Trace Elements"]},{"name":"Pure Saline","icon":"💦","drips":["Aqua Hydrate"]}]
+      },
+    };
+
+    /*** UI RENDERING ***/
+    const render = {
+      view(viewId) {
+        state.previousViews.push(state.currentView);
+        state.currentView = viewId;
+        dom.views.forEach(v => v.classList.toggle('hidden', v.dataset.viewId !== viewId));
+
+        if (viewId === 'categories-view') {
+          this.categories(state.categoryType);
+        }
+      },
+      back() {
+        const lastView = state.previousViews.pop() || 'main-menu-view';
+        state.currentView = lastView;
+        dom.views.forEach(v => v.classList.toggle('hidden', v.dataset.viewId !== lastView));
+      },
+      cards(targetGrid, items, template, populatorFn) {
+        const fragment = document.createDocumentFragment();
+        items.forEach(item => {
+          const cardClone = template.content.cloneNode(true);
+          populatorFn(cardClone, item);
+          fragment.appendChild(cardClone);
+        });
+        targetGrid.innerHTML = '';
+        targetGrid.appendChild(fragment);
+      },
+      categories(type) {
+        state.categoryType = type;
+        const categories = data.getCategories(type);
+        this.cards(dom.categoryGrid, categories, dom.categoryCardTemplate, (card, category) => {
+          card.querySelector('.card').dataset.categoryName = category.name;
+          card.querySelector('.icon').textContent = category.icon || '';
+          card.querySelector('.drip-name').textContent = category.name;
+        });
+      },
+      drips(categoryName) {
+        const categories = data.getCategories(state.categoryType);
+        const category = categories.find(c => c.name === categoryName);
+        if (!category) return;
+
+        state.selectedCategory = category;
+        dom.dripsHeading.textContent = category.name;
+        const drips = data.getDripsForCategory(category, state.categoryType);
+
+        this.cards(dom.dripsGrid, drips, dom.dripCardTemplate, (card, drip) => {
+          card.querySelector('.card').dataset.dripName = drip.name;
+          card.querySelector('.icon').textContent = drip.icon || '';
+          card.querySelector('.drip-name').textContent = drip.name;
+          card.querySelector('.drip-tagline').textContent = drip.tagline || '';
+          card.querySelector('.price').textContent = drip.price;
+          card.querySelector('.single-add-on-label').classList.toggle('hidden', !drip.isSingleAddOn);
+        });
+      },
+      details(dripName) {
+        const drip = data.dripMap.get(dripName);
+        if (!drip) return;
+        // Compose refined tagline and description using custom mappings
+        dom.details.name.textContent = drip.name;
+        dom.details.price.textContent = drip.price;
+        // Use a custom tagline if provided, otherwise fall back to the raw tagline
+        dom.details.tagline.textContent = modifiedTaglines[drip.name] || drip.tagline || '';
+        // Build description: start with refined description if provided, otherwise use the raw description
+        let desc = modifiedDescriptions[drip.name] || drip.description || '';
+        // Append cross‑promotion suggestions if available
+        const promos = crossPromotions[drip.name];
+        if (promos && promos.length) {
+          const promoText = promos.length === 1 ? promos[0] : promos.slice(0, -1).join(', ') + ' and ' + promos[promos.length - 1];
+          desc += desc ? ' ' : '';
+          desc += `Pairs well with ${promoText} for complementary benefits.`;
+        }
+        dom.details.description.textContent = desc;
+        dom.details.frequency.textContent = this.utils.conciseFrequency(drip.frequency, drip.name);
+        dom.details.overallBenefits.textContent = drip.overallBenefits || '';
+        // Use tailored audience and caution messages for Perfect For and Not Suitable For.
+        dom.details.perfect.textContent = this.utils.concisePerfectFor(drip.perfectFor || '', drip.name);
+        // Convert raw contraindications into a clear caution statement.
+        dom.details.notSuitable.textContent = this.utils.conciseNotSuitable(drip.contraindications || '', drip.name);
+        dom.details.feedback.textContent = drip.feedback || '';
+        this.utils.renderIngredientList(dom.details.ingredients, drip.ingredients);
+        // Show series blurb only for series categories
+        const seriesBlurbEl = document.getElementById('series-blurb');
+        if (state.categoryType === 'series' && state.selectedCategory && seriesBlurbs[state.selectedCategory.name]) {
+          seriesBlurbEl.textContent = seriesBlurbs[state.selectedCategory.name];
+        } else {
+          seriesBlurbEl.textContent = '';
+        }
+        // Animate panel
+        dom.details.panel.classList.remove('animate-in');
+        void dom.details.panel.offsetWidth;
+        dom.details.panel.classList.add('animate-in');
+      },
+      toggleAccordion(header) {
+        const content = document.getElementById(header.dataset.target);
+        const isOpen = content.classList.contains('open');
+
+        // Close all accordions first
+        dom.details.panel.querySelectorAll('.accordion-content').forEach(c => {
+          c.classList.remove('open');
+          c.style.maxHeight = null;
+        });
+        dom.details.panel.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
+
+        // Open the target one if it wasn't already open
+        if (!isOpen) {
+          header.classList.add('active');
+          content.classList.add('open');
+          requestAnimationFrame(() => content.style.maxHeight = `${content.scrollHeight}px`);
+        }
+      },
+      utils: {
+        conciseFrequency(raw, name) {
+          let cadence = (raw || "").split(/[.;]/)[0].trim();
+          if (!cadence) cadence = "every 2-4 weeks";
+          // Normalize en dashes to hyphens for consistency
+          cadence = cadence.replace(/–/g, '-');
+          if (!/^typically/i.test(cadence)) cadence = cadence.replace(/^Every/i, 'every');
+          const rhythmMessages = {
+            "Jet Fuel Premium": "Harness peak stamina by syncing your infusion rhythm with your most demanding workouts and recovery.",
+            "Jet Fuel": "Find your energy sweet spot by aligning sessions with your daily performance and stress levels.",
+            "Radiance": "Build your glow gradually—schedule drips to complement your skin’s natural renewal cycle.",
+            "Radiance Plus": "Elevate your complexion by timing sessions to nurture youthful radiance as your skin responds.",
+            "Radiance Premium": "For an enduring glow, set a rhythm that matches your skin’s need for deep nourishment.",
+            "Sport Restore": "Tailor your hydration and recovery pattern to the intensity and frequency of your training.",
+            "Sports Edge": "Stay ahead of the competition by tuning your infusion schedule to your performance peaks.",
+            "Anti Inflammatory & Auto Immune": "Support your body’s balance by adjusting sessions to your inflammation and autoimmune response.",
+            "Anti Inflammatory Premium": "Give your system targeted care by aligning frequency with your flare-up patterns.",
+            "Recharge Premium": "Maintain mental clarity by choosing a cadence that refreshes your mind and combats burnout.",
+            "Recharge": "Revive your focus by syncing your sessions with periods of fatigue and stress.",
+            "Hangover and Jet Lag": "Ease back into equilibrium by timing your drips to follow late nights or long flights.",
+            "Anxiety Relief": "Find calm at your own pace—set sessions according to your stress and anxiety triggers.",
+            "Anxiety Relief Premium": "Enhance resilience by personalising your infusion rhythm to meet your mental wellness needs.",
+            "Menopause Relief": "Navigate hormonal shifts with a schedule that adapts to your body’s changing rhythms.",
+            "Weight Loss": "Optimise your metabolism by planning sessions that support your weight management journey.",
+            "Weight Loss Premium": "Amplify your results by fine-tuning frequency to enhance metabolic support.",
+            "Fertility": "Align your sessions with your reproductive timeline for gentle, sustained support.",
+            "Detox Premium": "Plan your cleansing cycle by tailoring drips to your body’s detox responses.",
+            "Detox": "Listen to your body and adjust the cleansing cadence to maintain a balanced detox routine.",
+            "Immune Booster Premium": "Reinforce your defenses by adapting your frequency to stress and travel demands.",
+            "Immune Booster": "Keep your immunity strong by choosing a rhythm that bolsters your resilience.",
+            "ALA": "Protect and repair by setting sessions to match your nerve health and recovery needs.",
+            "B12": "Sustain your energy flow by aligning infusions with your lifestyle and wellness goals.",
+            "Biotin": "Grow your strength from within by timing drips to support your hair, skin, and nails.",
+            "Aqua Hydrate": "Stay refreshed by scheduling hydration therapy in line with your activity and recovery.",
+            "Trace Elements": "Achieve inner balance by adjusting your mineral support to your body’s nutrient demands.",
+            "Anti Ageing": "Stay youthful by syncing your sessions with your body’s regenerative processes."
+          };
+          const message = rhythmMessages[name] || "Each body is unique — tune into your own rhythm and adjust as you learn what feels best.";
+          return `Typically ${cadence}. ${message}`;
+        },
+
+        // Convert a comma‑separated list of people into a tailored description.  If a custom message
+        // exists for the drip name, it will be used.  Otherwise, the raw list is turned into a
+        // flowing sentence describing who the drip is ideal for.
+        concisePerfectFor(raw, name) {
+          // Use a predefined message when available
+          if (perfectMessages && perfectMessages[name]) {
+            return perfectMessages[name];
+          }
+          if (!raw) return '';
+          // Remove trailing periods and split by commas
+          const items = raw.replace(/\.$/, '').split(/\s*,\s*/).map(s => s.trim()).filter(Boolean);
+          if (!items.length) return '';
+          // Create a sentence like "Ideal for X, Y and Z."
+          let sentence = 'Ideal for ';
+          if (items.length === 1) {
+            sentence += items[0];
+          } else if (items.length === 2) {
+            sentence += `${items[0]} and ${items[1]}`;
+          } else {
+            sentence += `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+          }
+          sentence += '.';
+          return sentence;
+        },
+
+        // Convert a raw contraindications string into a tailored caution.  If a custom message
+        // exists for the drip name, it will be used.  Otherwise, the raw string is cleaned
+        // and rephrased as a cautionary statement.
+        conciseNotSuitable(raw, name) {
+          // Use a predefined message when available
+          if (notSuitableMessages && notSuitableMessages[name]) {
+            return notSuitableMessages[name];
+          }
+          if (!raw) return '';
+          // Remove the leading "Avoid if you have" or "Avoid if you are" and any trailing period
+          let cleaned = raw.replace(/^[Aa]void\s+if\s+you\s+have\s+/i, '')
+                          .replace(/^[Aa]void\s+if\s+you\s+are\s+/i, '')
+                          .replace(/\.$/, '').trim();
+          // Replace ", or are" with commas for consistency
+          cleaned = cleaned.replace(/,\s*or\s+are\s+/gi, ', ').replace(/ or are /gi, ', ');
+          // Split by commas or "or"
+          const items = cleaned.split(/\s*,\s*|\s+or\s+/).map(s => s.trim()).filter(Boolean);
+          if (!items.length) return '';
+          // Build a sentence like "Individuals with X, Y or Z should avoid this infusion."
+          let sentence = 'Individuals with ';
+          if (items.length === 1) {
+            sentence += items[0];
+          } else if (items.length === 2) {
+            sentence += `${items[0]} or ${items[1]}`;
+          } else {
+            sentence += `${items.slice(0, -1).join(', ')} or ${items[items.length - 1]}`;
+          }
+          sentence += ' should avoid this infusion.';
+          return sentence;
+        },
+        renderIngredientList(container, htmlString) {
+          const lines = (htmlString || "").split(/\n+/).map(s => s.trim()).filter(Boolean);
+          container.innerHTML = "";
+          lines.forEach(line => {
+            const li = document.createElement("li");
+            li.innerHTML = line.replace(/:\s*(?!<\/)/, ": ");
+            container.appendChild(li);
+          });
+        }
+      }
+    };
+
+    /*** EVENT HANDLING ***/
+    const events = {
+      listen() {
+        // Use event delegation for all clicks within the container
+        dom.container.addEventListener('click', this.handleClick.bind(this));
+        dom.categorySelect.addEventListener('change', this.handleFilterChange.bind(this));
+      },
+      handleClick(e) {
+        // Toggle “Did you know?” tooltip on click
+        const didEl = e.target.closest('.did-you-know');
+        if (didEl) {
+          didEl.classList.toggle('open');
+          return;
+        }
+
+        const navigateEl = e.target.closest(config.actions.navigate);
+        if (navigateEl) return render.view(navigateEl.dataset.targetView);
+
+        const backEl = e.target.closest(config.actions.back);
+        if (backEl) return render.back();
+
+        const categoryEl = e.target.closest(config.actions.selectCategory);
+        if (categoryEl) {
+          render.drips(categoryEl.dataset.categoryName);
+          return render.view('drips-view');
+        }
+
+        const dripEl = e.target.closest(config.actions.selectDrip);
+        if (dripEl) {
+          render.details(dripEl.dataset.dripName);
+          return render.view('details-view');
+        }
+
+        const accordionEl = e.target.closest(config.actions.toggleAccordion);
+        if (accordionEl) return render.toggleAccordion(accordionEl);
+      },
+      handleFilterChange(e) {
+        render.categories(e.target.value);
+      }
+    };
+  </script>
+<div aria-hidden="true" class="nv-tooltip-overlay" id="nvTooltipOverlay"><div aria-modal="true" class="nv-tooltip-card" role="dialog"><span aria-label="Close" class="nv-tooltip-close">×</span><div id="nvTooltipContent"></div></div></div><script>
+// ===== NuVana: final surgical fixes =====
+(function() {
+  // --- Tooltip portal (centered on screen) ---
+  const overlay = document.getElementById('nvTooltipOverlay');
+  const contentBox = document.getElementById('nvTooltipContent');
+  const closeBtn = overlay.querySelector('.nv-tooltip-close');
+
+  function openTooltipFrom(trigger) {
+    // Find original tooltip html
+    const tip = trigger.querySelector('.did-you-know-tooltip');
+    if (!tip) return;
+    contentBox.innerHTML = tip.innerHTML; // clone content only
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
   }
-}
-
-// IV Drips functions
-function filterCategories(type) {
-  currentFilterType = type;
-  renderCategories();
-}
-
-function getCurrentCategories() {
-  switch (currentFilterType) {
-    case 'series': return seriesCategories;
-    case 'lifestyle': return lifestyleCategories;
-    case 'ingredients': return ingredientCategories;
-    case 'feel-goal':
-    default: return feelGoalCategories;
+  function closeTooltip() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    contentBox.innerHTML = '';
   }
-}
 
-function renderCategories() {
-  const grid = document.getElementById('categories-grid');
-  const categories = getCurrentCategories();
-  grid.innerHTML = categories.map(cat => 
-    '<div class="card" onclick="selectCategory(\'' + cat.name.replace(/'/g, "\\'") + '\')">' +
-    '<div class="icon">' + cat.icon + '</div>' +
-    '<div class="drip-name">' + cat.name + '</div>' +
-    '<div class="tile-divider"></div>' +
-    '</div>'
-  ).join('');
-}
+  // Open on click of any .did-you-know
+  document.addEventListener('click', function(e) {
+    const corner = e.target.closest('.did-you-know');
+    if (corner) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Close others and open modal
+      openTooltipFrom(corner);
+      return;
+    }
+  }, true); // capture to pre-empt other handlers
 
-function selectCategory(categoryName) {
-  const categories = getCurrentCategories();
-  selectedCategory = categories.find(c => c.name === categoryName);
-  renderDrips();
-  navigateTo('drips-view');
-}
+  // Close overlay on outside click or X
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay || e.target.closest('.nv-tooltip-close')) closeTooltip();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeTooltip();
+  });
 
-function renderDrips() {
-  if (!selectedCategory) return;
-  document.getElementById('drips-heading').textContent = selectedCategory.name;
-  const grid = document.getElementById('drips-grid');
-  grid.innerHTML = selectedCategory.drips.map(dripName => {
-    const drip = allDrips[dripName];
-    if (!drip) return '';
-    return '<div class="card" onclick="showDripDetails(\'' + dripName.replace(/'/g, "\\'") + '\')">' +
-           '<div class="icon">' + drip.icon + '</div>' +
-           '<div class="drip-name">' + drip.name + '</div>' +
-           '<div class="tile-divider"></div>' +
-           '<p class="drip-tagline">' + drip.tagline + '</p>' +
-           '<p class="price">R' + drip.price + '</p>' +
-           '</div>';
-  }).join('');
-}
+  // --- Massage pricing: allow multiple open/close independently ---
+  document.addEventListener('click', function(e) {
+    const header = e.target.closest('.accordion-header[data-action="toggle-accordion"]');
+    if (!header) return;
 
-function showDripDetails(dripName) {
-  const drip = allDrips[dripName];
-  if (!drip) return;
-  
-  document.getElementById('detail-name').textContent = drip.name;
-  document.getElementById('detail-price').textContent = drip.price;
-  document.getElementById('detail-tagline').textContent = drip.tagline;
-  document.getElementById('detail-description').textContent = drip.description;
-  document.getElementById('detail-perfect').textContent = drip.perfectFor;
-  document.getElementById('detail-not-suitable').textContent = drip.contraindications;
-  document.getElementById('detail-frequency').textContent = drip.frequency;
-  document.getElementById('detail-overall-benefits').textContent = drip.overallBenefits;
-  document.getElementById('detail-feedback').textContent = drip.feedback;
-  
-  const ingredientsEl = document.getElementById('detail-ingredients');
-  ingredientsEl.innerHTML = drip.ingredients.split('\n').map(ing => '<li>' + ing + '</li>').join('');
-  
-  navigateTo('details-view');
-}
+    const targetId = header.getAttribute('data-target');
+    // MODIFICATION: Intercept for both massage AND light therapy pricing accordions
+    if (!targetId || !/^price-/.test(targetId)) return;
 
-function toggleAccordion(contentId, headerBtn) {
-  const content = document.getElementById(contentId);
-  const isOpen = content.classList.contains('open');
-  
-  if (isOpen) {
-    content.classList.remove('open');
-    headerBtn.classList.remove('active');
-  } else {
-    content.classList.add('open');
-    headerBtn.classList.add('active');
+    // Prevent the app's global accordion handler from overriding
+    e.preventDefault();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+    e.stopPropagation();
+
+    const content = document.getElementById(targetId);
+    if (!content) return;
+
+    const isOpen = content.classList.contains('open');
+
+    if (isOpen) {
+      // Close just this one
+      content.style.maxHeight = '0px';
+      content.classList.remove('open');
+      header.classList.remove('active');
+      // Keep padding consistent with your theme
+      content.style.padding = '0 14px';
+    } else {
+      // Open this one (others remain as-is)
+      content.classList.add('open');
+      header.classList.add('active');
+      content.style.padding = '14px';
+      // set to content height for a smooth expand transition
+      const fullHeight = content.scrollHeight;
+      content.style.maxHeight = fullHeight + 'px';
+    }
+  }, true); // capture to beat the default global handler
+})();
+</script><script>
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("tooltip-close")) {
+    const tooltip = e.target.closest(".tooltip-box");
+    tooltip.classList.add("fade-out");
+    setTimeout(() => tooltip.remove(), 300);
   }
-}
-
-// Massage functions
-function renderMassages() {
-  document.getElementById('relaxation-massages').innerHTML = relaxationMassages.map(createMassageCard).join('');
-  document.getElementById('therapeutic-massages').innerHTML = therapeuticMassages.map(createMassageCard).join('');
-  document.getElementById('combo-massages').innerHTML = comboMassages.map(createMassageCard).join('');
-}
-
-function createMassageCard(massage) {
-  return '<div class="card">' +
-    '<div class="icon">' + massage.icon + '</div>' +
-    '<div class="drip-name">' + massage.name + '</div>' +
-    '<div class="tile-divider"></div>' +
-    '<div class="small">' + massage.description + '</div>' +
-    '<div class="info" onclick="showTooltip(\'' + massage.id + '\')">ℹ️</div>' +
-    '<button class="accordion-header" onclick="toggleAccordion(\'price-' + massage.id + '\', this)">Pricing</button>' +
-    '<div class="accordion-content" id="price-' + massage.id + '">' +
-    '<ul class="price-list">' + 
-    massage.pricing.map(p => '<li>' + p.duration + ': ' + p.price + '</li>').join('') +
-    '</ul></div></div>';
-}
-
-function showTooltip(massageId) {
-  const allMassages = [...relaxationMassages, ...therapeuticMassages, ...comboMassages];
-  const massage = allMassages.find(m => m.id === massageId);
-  if (!massage) return;
-  
-  document.getElementById('tooltip-content').textContent = massage.tooltip;
-  document.getElementById('tooltip-overlay').classList.add('open');
-}
-
-function closeTooltip() {
-  document.getElementById('tooltip-overlay').classList.remove('open');
-}
-
-// Initialize
-renderCategories();
-renderMassages();
+});
 </script>
+<footer class="nv-footer-v2">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</footer>
 </body>
 </html>
