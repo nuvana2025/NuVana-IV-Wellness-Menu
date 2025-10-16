@@ -1201,8 +1201,17 @@ function suggestLights() {
       concernToLights[concern].forEach(light => recommended.add(light));
     }
   });
+  const colors = {
+    'Red': 'red',
+    'Blue': 'blue',
+    'Green': 'green',
+    'Yellow': 'gold',
+    'Purple': 'purple',
+    'Cyan': 'cyan',
+    'White': 'gray'
+  };
   const suggestion = document.getElementById('suggestion');
-  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
+  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]};">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
 }
 </script>
 </body>
