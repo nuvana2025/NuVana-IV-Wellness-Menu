@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -60,6 +59,9 @@
       user-select: none;
       /* Allow tooltips within cards to overflow beyond card boundaries */
       overflow: visible;
+      /* UX FIX: Convert card to a flex container to manage content distribution */
+      display: flex;
+      flex-direction: column;
     }
     .card:hover {
       transform: scale(1.03);
@@ -75,7 +77,7 @@
     .tile-divider { width: 36px; height: 2px; background: #EEDC82; margin: 6px auto 10px; border-radius: 2px; }
     /* Captions (italic + fade-in) */
     @keyframes captionFade { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
-    .small { font-size: .9em; color: #444; font-style: italic; opacity: 0; animation: captionFade .8s ease .1s both; }
+    .small { font-size: .9em; color: #444; font-style: italic; opacity: 0; animation: captionFade .8s ease .1s both; margin-bottom: 12px; }
     /* View helpers */
     .hidden { display: none !important; }
     h2 { margin: 10px 0 14px; }
@@ -222,10 +224,12 @@
     .info {
       position: relative;
       display: inline-block;
-      margin-top: 8px;
       font-size: 0.9em;
       color: #006400;
       cursor: pointer;
+      /* UX FIX: Use margin-top: auto to push this to the bottom of the flex container */
+      margin-top: auto;
+      margin-bottom: 8px; /* Space between icon and button */
     }
     .info .info-tooltip {
       display: none;
@@ -283,38 +287,30 @@
         padding: 0 16px;
       }
     }
-  
-.fragron-footer {
-  text-align: center;
-  font-style: italic;
-  color: #555;
-  margin-top: 40px;
-  padding: 15px 10px;
-  font-size: 0.9em;
-  border-top: 1px solid #ddd;
-  background: linear-gradient(to right, #f9f9f9, #ffffff);
-}
 
-.fragron-footer {
-  text-align: center;
-  font-style: italic;
-  color: #888;
-  margin-top: 40px;
-  padding: 12px 8px;
-  font-size: 0.75em;
-  border-top: 1px solid #ddd;
-  background: linear-gradient(to right, #f9f9f9, #ffffff);
-}
+    /* ===== NEW RESPONSIVE FOOTER ===== */
+    .nv-footer-v2 {
+      /* Protected Styles: Gold Italic */
+      color: #FFD700 !important; /* Rich gold color, protected with !important */
+      font-style: italic !important; /* Protected with !important */
+      /* Desktop Layout: Centered */
+      text-align: center;
+      /* General Style/Spacing */
+      margin-top: 40px;
+      padding: 20px 10px;
+      font-size: 0.9em;
+      border-top: 1px solid #ddd;
+      /* Elegant dark background for contrast with gold text */
+      background: #00310c;
+    }
 
-.fragron-footer {
-  letter-spacing: 0.5px;
-  word-spacing: 1px;
-}
-
-.fragron-footer {
-  letter-spacing: 0.6px;
-  word-spacing: 1.2px;
-}
+    /* Mobile/Tablet Layout: Left-aligned (up to 1024px) */
+    @media (max-width: 1024px) {
+      .nv-footer-v2 {
+        text-align: left;
+        padding-left: 20px;
+      }
+    }
 </style>
 <style>
 /* ===== NuVana: final surgical fixes (tooltip modal + massage pricing multi-toggle) ===== */
@@ -403,9 +399,7 @@
 </style></head>
 <body>
 <header>
-<!-- Split heading onto two lines so “Menu” appears beneath “NuVana IV & Wellness” -->
 <h1>NuVana IV &amp; Wellness<br/>Menu</h1>
-<!-- Update tagline as requested -->
 <p>Rewire your reality...</p>
 </header>
 <div class="container">
@@ -448,9 +442,7 @@
 <h2 id="detail-name"></h2>
 <p class="price">Price: R<span id="detail-price"></span></p>
 <p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
-<!-- Series blurb appears here when viewing a drip that belongs to a series -->
 <div class="series-blurb" id="series-blurb"></div>
-<!-- “Did you know?” providing assurance through Fagron partnership.  -->
 <div class="did-you-know">
           ℹ️ Did you know?
           <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine. This trusted partnership allows us to provide you with bespoke, high-quality care that meets the highest standards of safety and efficacy.</div>
@@ -479,9 +471,9 @@
 </div>
 </div>
 </div>
-<div class="hidden" data-view-id="massages-view" id="massages-view"><div class="massage-caption" style="text-align:center; margin-bottom: 14px; font-size: 0.95em; color: #555;">💆 Tip: Tap a price tag to view massage pricing, or tap the info ℹ️ icon to learn more about the massage.</div>
+<div class="hidden" data-view-id="massages-view" id="massages-view">
+<div class="massage-caption" style="text-align:left; margin-bottom: 14px; font-size: 0.9em; color: #555;">💆 Tip: Tap pricing or the info ℹ️ icon to learn more about the massage.</div>
 <button class="back-button" data-action="back">← Back</button>
-<!-- Relaxation & rejuvenation massages -->
 <div class="category-wrapper section-relaxation">
 <h2>Relaxation &amp; Rejuvenation</h2>
 <div class="grid massage-section">
@@ -550,7 +542,6 @@
 </div>
 </div>
 </div>
-<!-- Therapeutic & recovery massages -->
 <div class="category-wrapper section-therapeutic">
 <h2>Therapeutic &amp; Recovery</h2>
 <div class="grid massage-section">
@@ -620,7 +611,6 @@
 </div>
 </div>
 </div>
-<!-- Massage Combo packages -->
 <div class="category-wrapper section-combos">
 <h2>Massage Combos</h2>
 <div class="grid massage-section">
@@ -1360,5 +1350,7 @@ document.addEventListener("click", function(e) {
     setTimeout(() => tooltip.remove(), 300);
   }
 });
-</script><footer class="fragron-footer" style="text-align: left; padding-left: 20px;">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</footer></body>
+</script>
+<footer class="nv-footer-v2">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</footer>
+</body>
 </html>
