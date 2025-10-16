@@ -24,7 +24,7 @@
       background: linear-gradient(135deg, #00310c 0%, #004d26 45%, #bfa76a 75%, #f8f3e0 100%);
       color: #FFD700;
       text-align: center;
-      padding: 48px 20px;
+      padding: 30px 20px;
       border-radius: 16px;
       max-width: 850px;
       margin: 20px auto;
@@ -285,8 +285,8 @@
       color: #FFD700 !important;
       font-style: italic !important;
       text-align: center;
-      margin-top: 40px;
-      padding: 20px 10px;
+      margin-top: 20px;
+      padding: 10px 10px;
       font-size: 0.9em;
       border-top: 1px solid #ddd;
       background: #00310c;
@@ -476,7 +476,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Categories View -->
@@ -494,7 +494,7 @@
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Drips View -->
@@ -504,7 +504,7 @@
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Details View -->
@@ -551,7 +551,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Massages View -->
@@ -572,7 +572,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Light Therapy View -->
@@ -719,7 +719,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
+<p class="copyright">All rights reserved.</p>
 </footer>
 </div>
 <!-- Tooltip Modal -->
@@ -845,15 +845,6 @@ function navigateTo(viewId) {
   if (viewId === 'details-view') {
     parentDrip = null;
     document.getElementById('parent-back-btn').classList.add('hidden');
-  }
-  if (viewId === 'light-therapy-view') {
-    setTimeout(() => {
-      const discoverSection = document.getElementById('lt-discover');
-      const discoverButton = document.querySelector('[onclick*="lt-discover"]');
-      if (discoverSection && discoverButton && !discoverSection.classList.contains('open')) {
-        toggleLightAccordion('lt-discover', discoverButton);
-      }
-    }, 0);
   }
 }
 function goBack() {
@@ -1038,13 +1029,13 @@ function toggleAddonDetails(addonId, headerBtn) {
   if (!isOpen) {
     content.classList.add('open');
     headerBtn.classList.add('active');
-    // Open Perfect For by default
+    // Open Perfect For by default and scroll to it
     const perfectInner = document.getElementById(`addon-perfect-${addonId}`);
     const perfectInnerBtn = content.querySelector('[onclick*="addon-perfect"]');
     if (perfectInner && perfectInnerBtn) {
       perfectInner.classList.add('open');
       perfectInnerBtn.classList.add('active');
-      perfectInner.scrollIntoView({ behavior: 'smooth' });
+      perfectInner.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 }
@@ -1057,6 +1048,22 @@ function toggleAccordion(contentId, headerBtn) {
   const allMainHeaders = document.querySelectorAll('#drip-details-panel > [class^="group-"] .accordion-header');
   allMainContents.forEach(c => c.classList.remove('open'));
   allMainHeaders.forEach(h => h.classList.remove('active'));
+ 
+  // If the clicked accordion wasn't open, open it
+  if (!isOpen) {
+    content.classList.add('open');
+    headerBtn.classList.add('active');
+  }
+}
+function toggleLightAccordion(contentId, headerBtn) {
+  const content = document.getElementById(contentId);
+  const isOpen = content.classList.contains('open');
+ 
+  // Close all light accordions
+  const allLightContents = document.querySelectorAll('#light-therapy-view .accordion-content');
+  const allLightHeaders = document.querySelectorAll('#light-therapy-view .accordion-header');
+  allLightContents.forEach(c => c.classList.remove('open'));
+  allLightHeaders.forEach(h => h.classList.remove('active'));
  
   // If the clicked accordion wasn't open, open it
   if (!isOpen) {
