@@ -350,13 +350,44 @@
       font-size: 0.95em;
       line-height: 1.4;
     }
+    /* Light matrix cards */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .matrix-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,100,0,.1);
+      padding: 20px;
+      text-align: left;
+    }
+    .matrix-card .concern-name {
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .matrix-card .light-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .matrix-card .light-list li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.95em;
+    }
+    .matrix-card .light-list li .checkmark {
+      margin-right: 8px;
+      color: #28a745;
+    }
     /* Responsive */
     @media (max-width: 768px) {
       header { padding: 40px 12px; }
       header h1 { font-size: 1.8em; }
       .container { margin: 20px auto; padding: 0 12px; }
       .grid { grid-template-columns: 1fr; gap: 20px; }
-      .light-grid { grid-template-columns: 1fr; }
       .card { padding: 24px; font-size: 0.95em; }
       .accordion-header { font-size: 0.95em; }
       .nv-footer-v2 { text-align: left; padding-left: 20px; }
@@ -401,6 +432,7 @@
         transform: translateX(-50%);
         margin-right: 0;
       }
+      .light-grid, .matrix-grid { grid-template-columns: 1fr; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .grid {
@@ -436,6 +468,9 @@
 <div class="small">Radiate confidence with gentle light that renews from within.</div>
 </div>
 </div>
+<footer class="nv-footer-v2">
+<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+</footer>
 </div>
 <!-- Categories View -->
 <div class="hidden" data-view-id="categories-view" id="categories-view">
@@ -450,12 +485,18 @@
 </select>
 </div>
 <div class="grid" id="categories-grid"></div>
+<footer class="nv-footer-v2">
+<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+</footer>
 </div>
 <!-- Drips View -->
 <div class="hidden" data-view-id="drips-view" id="drips-view">
 <button class="back-button" onclick="goBack()">← Back</button>
 <h2 id="drips-heading"></h2>
 <div class="grid" id="drips-grid"></div>
+<footer class="nv-footer-v2">
+<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+</footer>
 </div>
 <!-- Details View -->
 <div class="hidden" data-view-id="details-view" id="details-view">
@@ -499,6 +540,9 @@
 <div class="grid" id="addon-ivs-grid" style="gap: 16px;"></div>
 </div>
 </div>
+<footer class="nv-footer-v2">
+<p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+</footer>
 </div>
 <!-- Massages View -->
 <div class="hidden" data-view-id="massages-view" id="massages-view">
@@ -596,114 +640,69 @@
 <div class="group-lav">
 <button class="accordion-header" onclick="toggleAccordion('lt-matrix', this)">Light Benefits Matrix</button>
 <div class="accordion-content" id="lt-matrix">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each checkmark indicates that the light color effectively addresses that particular concern.</p>
-<div class="table-container">
-<table class="led-specs-table">
-<thead>
-<tr>
-<th>Skin Concern</th>
-<th style="text-align: center;"><span class="led-color-dot dot-red"></span>Red</th>
-<th style="text-align: center;"><span class="led-color-dot dot-blue"></span>Blue</th>
-<th style="text-align: center;"><span class="led-color-dot dot-green"></span>Green</th>
-<th style="text-align: center;"><span class="led-color-dot dot-yellow"></span>Yellow</th>
-<th style="text-align: center;"><span class="led-color-dot dot-purple"></span>Purple</th>
-<th style="text-align: center;"><span class="led-color-dot dot-cyan"></span>Cyan</th>
-<th style="text-align: center;"><span class="led-color-dot dot-white"></span>White</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td data-label="Skin Concern">Anti-Aging / Wrinkles</td>
-<td data-label="Red" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="checkmark">✓</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Acne / Breakouts</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Pigmentation / Dark Spots</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Skin Elasticity / Firmness</td>
-<td data-label="Red" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Inflammation / Redness</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Oil Balance</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Scarring</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="dash">—</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Skin Tightening</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="White" style="text-align: center;"><span class="checkmark">✓</span></td>
-</tr>
-<tr>
-<td data-label="Skin Concern">Cell Energy / Vitality</td>
-<td data-label="Red" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Blue" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Green" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Yellow" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Purple" style="text-align: center;"><span class="dash">—</span></td>
-<td data-label="Cyan" style="text-align: center;"><span class="checkmark">✓</span></td>
-<td data-label="White" style="text-align: center;"><span class="checkmark">✓</span></td>
-</tr>
-</tbody>
-</table>
+<p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each card lists the lights that effectively address that concern.</p>
+<div class="matrix-grid">
+  <div class="matrix-card">
+    <div class="concern-name">Anti-Aging / Wrinkles</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Acne / Breakouts</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Pigmentation / Dark Spots</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Skin Elasticity / Firmness</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Inflammation / Redness</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Oil Balance</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-green"></span>Green <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Scarring</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Skin Tightening</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
+  <div class="matrix-card">
+    <div class="concern-name">Cell Energy / Vitality</div>
+    <ul class="light-list">
+      <li><span class="led-color-dot dot-cyan"></span>Cyan <span class="checkmark">✓</span></li>
+      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+    </ul>
+  </div>
 </div>
 </div>
 </div>
