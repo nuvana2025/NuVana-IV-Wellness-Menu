@@ -390,7 +390,15 @@
     }
     /* Light selector */
     .light-selector {
-      margin-top: 16px;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      max-width: 300px;
+      z-index: 5;
     }
     .light-selector label {
       display: block;
@@ -410,6 +418,14 @@
       margin-top: 16px;
       font-style: italic;
       color: #333;
+    }
+    #suggestion strong {
+      font-size: 1.1em;
+      color: #006400;
+      background: #E0F7F5;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
     }
     /* Responsive */
     @media (max-width: 768px) {
@@ -462,6 +478,7 @@
         margin-right: 0;
       }
       .light-grid, .matrix-grid { grid-template-columns: 1fr; }
+      .light-selector { position: static; max-width: none; margin-bottom: 24px; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .grid {
@@ -499,7 +516,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Categories View -->
@@ -517,7 +534,7 @@
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Drips View -->
@@ -527,7 +544,7 @@
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Details View -->
@@ -574,7 +591,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Massages View -->
@@ -595,14 +612,29 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Light Therapy View -->
 <div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
 <button class="back-button" onclick="goBack()">← Back</button>
+<div class="light-selector">
+  <h3>Find Your Perfect Light</h3>
+  <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select your skin concerns below:</p>
+  <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
+  <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
+  <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
+  <label><input type="checkbox" value="elasticity"> Skin Elasticity / Firmness</label>
+  <label><input type="checkbox" value="inflammation"> Inflammation / Redness</label>
+  <label><input type="checkbox" value="oil"> Oil Balance</label>
+  <label><input type="checkbox" value="scarring"> Scarring</label>
+  <label><input type="checkbox" value="tightening"> Skin Tightening</label>
+  <label><input type="checkbox" value="energy"> Cell Energy / Vitality</label>
+  <button onclick="suggestLights()">Suggest Lights</button>
+  <div id="suggestion"></div>
+</div>
 <div class="group-rose">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">Discover Radiant Skin</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
 <div class="accordion-content" id="lt-discover">
 <p style="font-style: italic; color: #666;">Transform your skincare routine with the Colorful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
 </div>
@@ -740,28 +772,9 @@
 </div>
 </div>
 </div>
-<div class="group-lav">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-selector', this)">Find Your Perfect Light</button>
-<div class="accordion-content" id="lt-selector">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Select your skin concerns to get personalized light recommendations.</p>
-<div class="light-selector">
-  <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
-  <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
-  <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
-  <label><input type="checkbox" value="elasticity"> Skin Elasticity / Firmness</label>
-  <label><input type="checkbox" value="inflammation"> Inflammation / Redness</label>
-  <label><input type="checkbox" value="oil"> Oil Balance</label>
-  <label><input type="checkbox" value="scarring"> Scarring</label>
-  <label><input type="checkbox" value="tightening"> Skin Tightening</label>
-  <label><input type="checkbox" value="energy"> Cell Energy / Vitality</label>
-  <button onclick="suggestLights()">Suggest Lights</button>
-</div>
-<div id="suggestion"></div>
-</div>
-</div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-<p class="copyright">All rights reserved.</p>
+<p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 <!-- Tooltip Modal -->
