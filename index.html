@@ -59,9 +59,6 @@
       user-select: none;
       /* Allow tooltips within cards to overflow beyond card boundaries */
       overflow: visible;
-      /* UX FIX: Convert card to a flex container to manage content distribution */
-      display: flex;
-      flex-direction: column;
     }
     .card:hover {
       transform: scale(1.03);
@@ -224,12 +221,10 @@
     .info {
       position: relative;
       display: inline-block;
+      margin-top: 8px;
       font-size: 0.9em;
       color: #006400;
       cursor: pointer;
-      /* UX FIX: Use margin-top: auto to push this to the bottom of the flex container */
-      margin-top: auto;
-      margin-bottom: 8px; /* Space between icon and button */
     }
     .info .info-tooltip {
       display: none;
@@ -396,7 +391,85 @@
   margin-bottom: 14px;
   font-style: italic;
 }
-</style></head>
+</style>
+<style>
+/* ===== NEW STYLES FOR LIGHT THERAPY PAGE ===== */
+.table-container {
+  overflow-x: auto; /* Allows horizontal scrolling on small screens if needed */
+  margin-top: 16px;
+}
+.led-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  text-align: left;
+}
+.led-specs-table th,
+.led-specs-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+}
+.led-specs-table thead th {
+  background-color: #f8f8f8;
+  font-weight: 700;
+  color: #333;
+}
+.led-specs-table tbody tr:hover {
+  background-color: #fcfcfc;
+}
+/* Visual dots for the LED colors */
+.led-color-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.dot-red    { background-color: #ff4d4d; }
+.dot-blue   { background-color: #4da6ff; }
+.dot-green  { background-color: #52d452; }
+.dot-yellow { background-color: #ffdb4d; }
+.dot-purple { background: linear-gradient(45deg, #ff4d4d, #4da6ff); }
+.dot-cyan   { background-color: #4dffff; }
+.dot-white  { background-color: #f2f2f2; }
+/* Responsive styles for the table on mobile */
+@media (max-width: 768px) {
+  .led-specs-table thead {
+    display: none; /* Hide table headers */
+  }
+  .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td {
+    display: block;
+    width: 100%;
+  }
+  .led-specs-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .led-specs-table td {
+    text-align: right;
+    padding-left: 50%; /* Make space for the label */
+    position: relative;
+    border-bottom: 1px solid #f5f5f5;
+  }
+  .led-specs-table td:last-child {
+    border-bottom: none;
+  }
+  .led-specs-table td::before {
+    content: attr(data-label); /* Use data-label for the header text */
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    padding-right: 10px;
+    font-weight: 700;
+    text-align: left;
+  }
+}
+</style>
+</head>
 <body>
 <header>
 <h1>NuVana IV &amp; Wellness<br/>Menu</h1>
@@ -414,7 +487,9 @@
 <div class="small">Relax, restore, and revive your body’s natural harmony.</div>
 </div>
 <div class="card" data-action="navigate" data-target-view="light-therapy-view">
-<div class="icon">😊🌟</div><div class="drip-name">Skin Light Therapy</div><div class="tile-divider"></div>
+<div class="icon">😊🌟</div>
+<div class="drip-name">Skin Rejuvenation<br/>Light Therapy</div>
+<div class="tile-divider"></div>
 <div class="small">Radiate confidence with gentle light that renews from within.</div>
 </div>
 </div>
@@ -745,8 +820,87 @@
 </div>
 </div>
 <div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
-<button class="back-button" data-action="back">← Back</button>
-<h2>Skin Light Therapy</h2><p>Experience light therapy to boost mood and vitality.</p>
+    <button class="back-button" data-action="back">← Back</button>
+    
+    <div class="category-wrapper section-relaxation" style="background: #FFF8FD;">
+        <h2>Discover Radiant Skin</h2>
+        <p class="series-blurb" style="margin-bottom: 16px;">Transform your skincare routine with the Colorful LED Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven LED wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
+    </div>
+
+    <div class="category-wrapper section-therapeutic">
+        <h2>Pricing &amp; Packages</h2>
+        <button class="accordion-header active" data-action="toggle-accordion" data-target="price-light-therapy">View Pricing Options</button>
+        <div class="accordion-content open" id="price-light-therapy" style="max-height: 500px; padding: 14px;">
+            <ul class="price-list" style="font-size: 1em;">
+                <li><strong>LED Add-On (with IV/massage):</strong> 20 min - R300</li>
+                <li><strong>Standalone LED Facial:</strong> 40 min - R500</li>
+                <li><strong>Package (6 sessions):</strong> R2,400 (Save R600)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="category-wrapper section-combos">
+        <h2>Customizable Light Spectrums</h2>
+        <p class="series-blurb">Choose from seven colors—each tailored to specific needs. Our advanced LED technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
+        <div class="table-container">
+            <table class="led-specs-table">
+                <thead>
+                    <tr>
+                        <th>LED Color</th>
+                        <th>Wavelength</th>
+                        <th>Primary Effects</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-red"></span>Red</td>
+                        <td data-label="Wavelength">630nm</td>
+                        <td data-label="Effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-blue"></span>Blue</td>
+                        <td data-label="Wavelength">470nm</td>
+                        <td data-label="Effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-green"></span>Green</td>
+                        <td data-label="Wavelength">520nm</td>
+                        <td data-label="Effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-yellow"></span>Yellow</td>
+                        <td data-label="Wavelength">590nm</td>
+                        <td data-label="Effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-purple"></span>Purple</td>
+                        <td data-label="Wavelength">Red + Blue</td>
+                        <td data-label="Effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-cyan"></span>Cyan</td>
+                        <td data-label="Wavelength">Varies</td>
+                        <td data-label="Effects">Enhances cell energy and metabolism for overall skin vitality and healing.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Color"><span class="led-color-dot dot-white"></span>White</td>
+                        <td data-label="Wavelength">Varies</td>
+                        <td data-label="Effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="category-wrapper section-relaxation" style="background: #F4FBFA;">
+        <h2>Benefits You’ll Love</h2>
+        <ul class="ingredient-list">
+            <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
+            <li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
+            <li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
+            <li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
+        </ul>
+    </div>
 </div>
 </div>
 <template id="category-card-template">
@@ -1312,7 +1466,8 @@ self.addEventListener('fetch', e => { e.respondWith(caches.match(e.request).then
     if (!header) return;
 
     const targetId = header.getAttribute('data-target');
-    if (!targetId || !/^price-/.test(targetId)) return; // only intercept massage pricing
+    // MODIFICATION: Intercept for both massage AND light therapy pricing accordions
+    if (!targetId || !/^price-/.test(targetId)) return;
 
     // Prevent the app's global accordion handler from overriding
     e.preventDefault();
