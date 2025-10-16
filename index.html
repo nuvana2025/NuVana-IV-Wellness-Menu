@@ -291,6 +291,12 @@
       border-top: 1px solid #ddd;
       background: #00310c;
     }
+    .copyright {
+      font-size: 0.8em;
+      color: #FFD700;
+      text-align: center;
+      margin-top: 8px;
+    }
     /* Add-on specific styles */
     .addon-card {
       border-left: 4px solid #A8E4A0;
@@ -470,6 +476,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Categories View -->
@@ -487,6 +494,7 @@
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Drips View -->
@@ -496,6 +504,7 @@
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Details View -->
@@ -542,6 +551,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Massages View -->
@@ -562,19 +572,20 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Light Therapy View -->
 <div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
 <button class="back-button" onclick="goBack()">← Back</button>
 <div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('lt-discover', this)">Discover Radiant Skin</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">Discover Radiant Skin</button>
 <div class="accordion-content" id="lt-discover">
 <p style="font-style: italic; color: #666;">Transform your skincare routine with the Colorful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
 </div>
 </div>
 <div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('lt-benefits', this)">Benefits You'll Love</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
 <div class="accordion-content" id="lt-benefits">
 <ul class="ingredient-list">
 <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
@@ -585,7 +596,7 @@
 </div>
 </div>
 <div class="group-aqua">
-<button class="accordion-header" onclick="toggleAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
 <div class="accordion-content" id="lt-pricing">
 <ul class="price-list">
 <li><strong>Light Add-On (with IV/massage):</strong> 20 min - R225</li>
@@ -595,7 +606,7 @@
 </div>
 </div>
 <div class="group-gold">
-<button class="accordion-header" onclick="toggleAccordion('lt-spectrums', this)">Customizable Light Spectrums</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-spectrums', this)">Customizable Light Spectrums</button>
 <div class="accordion-content" id="lt-spectrums">
 <p style="font-style: italic; color: #666; margin-bottom: 16px;">Choose from seven colors—each tailored to specific needs. Our advanced light technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
 <div class="light-grid">
@@ -638,7 +649,7 @@
 </div>
 </div>
 <div class="group-lav">
-<button class="accordion-header" onclick="toggleAccordion('lt-matrix', this)">Light Benefits Matrix</button>
+<button class="accordion-header" onclick="toggleLightAccordion('lt-matrix', this)">Light Benefits Matrix</button>
 <div class="accordion-content" id="lt-matrix">
 <p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each card lists the lights that effectively address that concern.</p>
 <div class="matrix-grid">
@@ -708,6 +719,7 @@
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
+<p class="copyright">(c) Nuvana Wellness - all rights reserved.</p>
 </footer>
 </div>
 <!-- Tooltip Modal -->
@@ -744,12 +756,12 @@ const allDrips = {
   'Immune Booster Premium': {name: 'Immune Booster Premium', price: 850, tagline: 'Fortify, Radiate, Conquer', description: 'Unleash your body\'s invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.', overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Weekly for illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immunity, frequent travelers, those under stress or needing immune support.', notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', feedback: 'Felt like a fortress; no cold this season! - Ben T., 50', icon: '🛡️🛡️'},
   'Immune Booster': {name: 'Immune Booster', price: 700, tagline: 'Shield, Energize, Thrive', description: 'Awaken your body\'s natural armor with this Vitamin C-rich IV drip, designed to fortify immunity and banish fatigue. Ignite radiant energy and collagen production, empowering you to embrace travel or illness recovery with unwavering vitality and confidence.', overallBenefits: 'Boosts immunity, fights fatigue, supports collagen, lifts energy.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralizing stress-induced free radicals.', frequency: 'Weekly during illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immune systems, cancer patients, frequent travelers needing immunity support.', notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', feedback: 'Recovered faster and felt vibrant again! - Anna L., 37', icon: '🛡️'},
   'ALA': {name: 'ALA', price: 620, tagline: 'Protect, Renew, Restore', description: 'Shield your cells with this potent IV drip, infused with alpha-lipoic acid to unleash antioxidant power and support detoxification. Ignite nerve health and cellular resilience, empowering you to recover from illness or surgery with radiant vitality and unwavering confidence.', overallBenefits: 'Supports antioxidants, detox, nerve health, immunity, recovery.', ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with diabetic neuropathy, autoimmune conditions, those seeking antioxidant and nerve support.', notSuitableFor: 'Avoid if you have diabetes or are pregnant.', feedback: 'Helped my nerve pain immensely! - Robert M., 60', icon: '🌟'},
-  'B12': {name: 'B12', price: 300, tagline: 'Energize, Focus, Revive', description: 'Spark a vibrant awakening with this pure B12 infusion, designed to banish fatigue and ignite razor-sharp mental clarity. Empower your nerves and uplift your mood, fueling your body and spirit with radiant energy to embrace every moment with unstoppable vitality.', overallBenefits: 'Boosts energy, mood, mental clarity, nerve health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals with B12 deficiency, vegans or vegetarians, those experiencing fatigue or nerve issues.', notSuitableFor: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Energy boost was instant and lasting! - Olivia H., 44', icon: '🔥'},
-  'Biotin': {name: 'Biotin', price: 420, tagline: 'Strengthen, Glow, Shine', description: 'Unveil your radiant beauty with this nourishing IV drip, infused with Biotin to fortify hair, skin, and nails. Ignite cellular energy and embrace a luminous glow that mirrors your inner vitality, empowering you to shine with confidence and grace at every moment.', overallBenefits: 'Strengthens hair, skin, nails, boosts energy.', ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with brittle nails or thinning hair, anyone seeking stronger hair, skin, and nails.', notSuitableFor: 'Avoid if you have hypersensitivity or are pregnant.', feedback: 'Nails and hair transformed in weeks! - Sophia G., 27', icon: '🧴✨'},
+  'B12': {name: 'B12', price: 300, tagline: 'Energize, Focus, Revive', description: 'Spark a vibrant awakening with this pure B12 infusion, designed to banish fatigue and ignite razor-sharp mental clarity. Empower your nerves and uplift your mood, fueling your body and spirit with radiant energy to embrace every moment with unstoppable vitality.', overallBenefits: 'Boosts energy, mood, mental clarity, nerve health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals with B12 deficiency, vegans or vegetarians, those experiencing fatigue or nerve issues.', notSuitableFor: 'Avoid if you have kidney/liver disease or are pregnant.', feedback: 'Energy boost was instant and lasting! - Olivia H., 44', icon: '🔥', addonPrice: 250},
+  'Biotin': {name: 'Biotin', price: 420, tagline: 'Strengthen, Glow, Shine', description: 'Unveil your radiant beauty with this nourishing IV drip, infused with Biotin to fortify hair, skin, and nails. Ignite cellular energy and embrace a luminous glow that mirrors your inner vitality, empowering you to shine with confidence and grace at every moment.', overallBenefits: 'Strengthens hair, skin, nails, boosts energy.', ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with brittle nails or thinning hair, anyone seeking stronger hair, skin, and nails.', notSuitableFor: 'Avoid if you have hypersensitivity or are pregnant.', feedback: 'Nails and hair transformed in weeks! - Sophia G., 27', icon: '🧴✨', addonPrice: 300},
   'Aqua Hydrate': {name: 'Aqua Hydrate', price: 300, tagline: 'Hydrate, Refresh, Revive', description: 'Quench your body\'s deepest thirst with this pure saline infusion, delivering rapid hydration and electrolyte balance. Feel your spirit soar as vitality surges, empowering you to embrace recovery from exercise, travel, or illness with radiant, unstoppable energy.', overallBenefits: 'Rapid hydration, electrolyte balance, boosts recovery, energy.', ingredients: '<strong>Pure Saline</strong>: Delivers rapid hydration and electrolyte replenishment for swift recovery.', frequency: 'As needed for hydration or recovery.', perfectFor: 'Dehydrated individuals, athletes after exercise, travelers with jet lag, anyone recovering from illness.', notSuitableFor: 'Avoid if you have heart failure or are pregnant.', feedback: 'Instantly felt hydrated and refreshed! - Lucas J., 26', icon: '💦'},
   'Trace Elements': {name: 'Trace Elements', price: 350, tagline: 'Balance, Vitalize, Thrive', description: 'Ignite cellular harmony with this essential mineral infusion, blending Zinc and Selenium to fortify immunity and metabolism. Feel your body\'s vitality surge as balance is restored, empowering you to embrace life with radiant energy and unwavering confidence.', overallBenefits: 'Supports immunity, metabolism, vitality, cellular health.', ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.', frequency: 'Weekly for deficiency; every 2-4 weeks for maintenance.', perfectFor: 'Individuals with trace element deficiencies, those needing immune or metabolic support, patients on parenteral nutrition.', notSuitableFor: 'Avoid if you have metal allergies, kidney disease, or are pregnant.', feedback: 'Filled nutritional gaps; felt balanced! - Henry K., 53', icon: '🌿'},
-  'Glutamine': {name: 'Glutamine', price: 400, tagline: 'Fuel Recovery, Build Strength', description: 'For those who push their limits, the Glutamine Drip delivers deep internal renewal. It restores muscle vitality, soothes the gut, and strengthens immune balance — a quiet reset for the body that does it all.', overallBenefits: 'Promotes muscle repair and reduces post-exercise fatigue. Supports a healthy gut lining and improves digestion. Strengthens immune resilience during stress or recovery. Enhances cellular hydration and nutrient absorption. Aids in faster recovery from illness or physical strain. Boosts overall vitality and energy balance.', ingredients: '<strong>L-Glutamine</strong>: Supports muscle recovery, gut health, and immune balance — helping your body repair, refuel, and restore energy from within.', frequency: 'Wellness Maintenance: Every 2–3 weeks. Active Training or Recovery Phase: Weekly or as part of a post-exertion IV blend.', perfectFor: 'Athletes, fitness enthusiasts, or anyone recovering from physical stress, digestive issues, or low energy.', notSuitableFor: 'Clients with severe liver or kidney disease. Individuals with metabolic disorders affecting amino acid processing. Those with known hypersensitivity or allergy to L-Glutamine. Pregnant or breastfeeding clients (unless approved by a medical practitioner). Clients currently undergoing active chemotherapy or radiation therapy. Anyone with uncontrolled hypertension or severe dehydration.', feedback: 'mmmm...Relief - Jessica 48', icon: '🏋️'},
-  'Vitamin C': {name: 'Vitamin C', price: 225, tagline: 'Glow stronger, heal deeper — powered by Vitamin C', description: 'A revitalising antioxidant boost that strengthens immunity, enhances collagen, and restores natural glow. This drip supports energy, recovery, and cellular repair for overall wellness.', overallBenefits: 'Our Vitamin C Drip delivers a powerful antioxidant boost directly into your bloodstream, enhancing your immune system, supporting collagen production for radiant skin, and improving cellular repair and energy levels. It helps combat fatigue, oxidative stress, and environmental damage—keeping you feeling refreshed, resilient, and glowing from within.', ingredients: '<strong>Vitamin C</strong>: Strengthens immune defense. Supports collagen synthesis for skin, joints, and connective tissue. Neutralizes free radicals and reduces inflammation. Aids in iron absorption and wound healing. Promotes overall vitality and detox support.', frequency: 'For general wellness and immune support: once every 2–4 weeks. During high stress, recovery, or illness: weekly (as advised by the practitioner).', perfectFor: 'Immune support and seasonal defense. Skin brightening and collagen boost. Fatigue, post-travel, or post-illness recovery. Antioxidant detox and cellular rejuvenation.', notSuitableFor: 'Clients with a known allergy to ascorbic acid. Those with kidney stones or renal impairment. Individuals with glucose-6-phosphate dehydrogenase (G6PD) deficiency. Pregnant or breastfeeding clients without prior medical clearance.', feedback: 'Clients love this drip for its instant refresh and lasting glow - Geraldine', icon: '🍊'},
+  'Glutamine': {name: 'Glutamine', price: 400, tagline: 'Fuel Recovery, Build Strength', description: 'For those who push their limits, the Glutamine Drip delivers deep internal renewal. It restores muscle vitality, soothes the gut, and strengthens immune balance — a quiet reset for the body that does it all.', overallBenefits: 'Promotes muscle repair and reduces post-exercise fatigue. Supports a healthy gut lining and improves digestion. Strengthens immune resilience during stress or recovery. Enhances cellular hydration and nutrient absorption. Aids in faster recovery from illness or physical strain. Boosts overall vitality and energy balance.', ingredients: '<strong>L-Glutamine</strong>: Supports muscle recovery, gut health, and immune balance — helping your body repair, refuel, and restore energy from within.', frequency: 'Wellness Maintenance: Every 2–3 weeks. Active Training or Recovery Phase: Weekly or as part of a post-exertion IV blend.', perfectFor: 'Athletes, fitness enthusiasts, or anyone recovering from physical stress, digestive issues, or low energy.', notSuitableFor: 'Clients with severe liver or kidney disease. Individuals with metabolic disorders affecting amino acid processing. Those with known hypersensitivity or allergy to L-Glutamine. Pregnant or breastfeeding clients (unless approved by a medical practitioner). Clients currently undergoing active chemotherapy or radiation therapy. Anyone with uncontrolled hypertension or severe dehydration.', feedback: 'mmmm...Relief - Jessica 48', icon: '🏋️', addonPrice: 300},
+  'Vitamin C': {name: 'Vitamin C', price: 300, tagline: 'Glow stronger, heal deeper — powered by Vitamin C', description: 'A revitalising antioxidant boost that strengthens immunity, enhances collagen, and restores natural glow. This drip supports energy, recovery, and cellular repair for overall wellness.', overallBenefits: 'Our Vitamin C Drip delivers a powerful antioxidant boost directly into your bloodstream, enhancing your immune system, supporting collagen production for radiant skin, and improving cellular repair and energy levels. It helps combat fatigue, oxidative stress, and environmental damage—keeping you feeling refreshed, resilient, and glowing from within.', ingredients: '<strong>Vitamin C</strong>: Strengthens immune defense. Supports collagen synthesis for skin, joints, and connective tissue. Neutralizes free radicals and reduces inflammation. Aids in iron absorption and wound healing. Promotes overall vitality and detox support.', frequency: 'For general wellness and immune support: once every 2–4 weeks. During high stress, recovery, or illness: weekly (as advised by the practitioner).', perfectFor: 'Immune support and seasonal defense. Skin brightening and collagen boost. Fatigue, post-travel, or post-illness recovery. Antioxidant detox and cellular rejuvenation.', notSuitableFor: 'Clients with a known allergy to ascorbic acid. Those with kidney stones or renal impairment. Individuals with glucose-6-phosphate dehydrogenase (G6PD) deficiency. Pregnant or breastfeeding clients without prior medical clearance.', feedback: 'Clients love this drip for its instant refresh and lasting glow - Geraldine', icon: '🍊', addonPrice: 225},
   'Libido': {name: 'Libido', price: 900, tagline: 'Revive your drive', description: 'The Libido Drip is a targeted infusion that boosts circulation, vitality, energy, and desire. Combining amino acids and vital nutrients, it enhances blood flow, stamina, and mood — helping you reconnect with your natural vitality and confidence.', overallBenefits: 'Enhances sexual performance and libido. Improves blood flow and circulation. Boosts energy and physical endurance. Supports hormone and neurotransmitter balance. Reduces fatigue and enhances mood. Promotes muscle recovery and vitality.', ingredients: '<strong>Vitamin B Complex</strong> – Supports metabolism, nerve function, and hormone regulation, helping you combat fatigue and stress.\n<strong>Vitamin B12 (Methylcobalamin)</strong> – Elevates energy and mood while supporting red blood cell formation for improved oxygen delivery.\n<strong>Vitamin C (Ascorbic Acid)</strong> – Potent antioxidant that enhances nitric oxide availability and protects cells from oxidative stress.\n<strong>L-Arginine</strong> – A key precursor to nitric oxide, improving blood vessel dilation and promoting enhanced circulation and performance.\n<strong>L-Carnitine</strong> – Boosts mitochondrial energy production, enhances endurance, and supports sperm and egg cell health.\n<strong>Taurine</strong> – Aids in muscle function, balances mood, and enhances cellular hydration.\n<strong>Magnesium Sulphate</strong> – Relaxes muscles, supports nerve function, and helps regulate testosterone and cortisol balance.\n<strong>Zinc Sulphate</strong> – Essential for testosterone production, fertility, and immune function.', frequency: 'Recommended: Every 2 to 4 weeks for maintenance, or as advised by your practitioner. Some clients choose a weekly course for 3–4 sessions to jumpstart their energy and circulation before switching to monthly top-ups.', perfectFor: 'Those looking to reignite their vitality, boost stamina, and support overall sexual wellness. Ideal for men and women experiencing fatigue, low libido, or decreased endurance—whether due to stress, hormonal fluctuations, or lifestyle demands.', notSuitableFor: 'Individuals with severe renal impairment or heart failure. Those on nitrates or PDE5 inhibitors (e.g., Viagra) within 24 hours of infusion. People with uncontrolled hypertension, electrolyte imbalances, or severe anaemia. Not for breastfeeding mothers (unless cleared by a medical professional).', feedback: 'Game-changer for energy and confidence! - Marcus T., 42', icon: '💋'},
   'Anti Ageing': {name: 'Anti Ageing', price: 1200, tagline: 'Renew, Revive, Radiate', description: 'Turn back time with this rejuvenating NAD⁺ infusion, designed to spark DNA repair and cellular energy. Feel your vitality surge as youthful radiance returns, sharpening your focus and empowering you to embrace life with timeless confidence and boundless joy.', overallBenefits: 'Supports DNA repair, cellular energy, youthful vitality, focus.', ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals concerned with ageing, energy decline, or cognitive function seeking cellular repair and rejuvenation.', notSuitableFor: 'Avoid if you are pregnant or breastfeeding.', feedback: 'Felt 10 years younger; energy restored! - Margaret D., 58', icon: '⏳'}
 };
@@ -957,12 +969,9 @@ function showDripDetails(dripName, isBackToParent = false) {
         <div class="drip-name">${addon.name}</div>
         <div class="tile-divider"></div>
         <p style="font-size: 0.9em; font-style: italic; color: #666; margin: 8px 0;">${addon.tagline}</p>
-        <p class="price">R${addon.price}</p>
+        <p class="price">Add-on: R${addon.addonPrice} / Standalone: R${addon.price}</p>
         <button class="accordion-header group-aqua" style="margin-top: 12px; font-size: 0.9em;" onclick="toggleAddonDetails('${id}', this)">Learn More About This Add-On</button>
         <div class="accordion-content addon-details" id="addon-${id}">
-          <h3>${addon.name}</h3>
-          <p class="price">Price: R${addon.price}</p>
-          <p><strong>Tagline:</strong> ${addon.tagline}</p>
           <div class="did-you-know" onclick="this.classList.toggle('open');">
             ℹ️ Did you know?
             <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine.</div>
@@ -1041,6 +1050,22 @@ function toggleAccordion(contentId, headerBtn) {
     headerBtn.classList.add('active');
   }
 }
+function toggleLightAccordion(contentId, headerBtn) {
+  const content = document.getElementById(contentId);
+  const isOpen = content.classList.contains('open');
+ 
+  // Close all light accordions
+  const allLightContents = document.querySelectorAll('#light-therapy-view .accordion-content');
+  const allLightHeaders = document.querySelectorAll('#light-therapy-view .accordion-header');
+  allLightContents.forEach(c => c.classList.remove('open'));
+  allLightHeaders.forEach(h => h.classList.remove('active'));
+ 
+  // If the clicked accordion wasn't open, open it
+  if (!isOpen) {
+    content.classList.add('open');
+    headerBtn.classList.add('active');
+  }
+}
 function toggleInnerAccordion(contentId, headerBtn) {
   const content = document.getElementById(contentId);
   const isOpen = content.classList.contains('open');
@@ -1093,6 +1118,16 @@ function closeTooltip() {
 // Initialize
 renderCategories();
 renderMassages();
+
+// Default open for light therapy
+setTimeout(() => {
+  const discoverSection = document.getElementById('lt-discover');
+  const discoverButton = document.querySelector('[onclick*="lt-discover"]');
+  if (discoverSection && discoverButton) {
+    discoverSection.classList.add('open');
+    discoverButton.classList.add('active');
+  }
+}, 0);
 </script>
 </body>
 </html>
