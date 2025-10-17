@@ -20,6 +20,11 @@
       background: #FDFCFA; color: #333;
     }
     /* Header */
+    .header-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
     header {
       background: linear-gradient(135deg, #00310c 0%, #004d26 45%, #bfa76a 75%, #f8f3e0 100%);
       color: #FFD700;
@@ -29,6 +34,7 @@
       max-width: 850px;
       margin: 20px auto;
       box-shadow: 0 0 20px rgba(255,255,255,0.4), 0 8px 16px rgba(0,50,0,.3);
+      cursor: pointer;
     }
     header h1 {
       margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
@@ -228,7 +234,7 @@
       margin-bottom: 14px;
       font-style: italic;
     }
-    /* Light therapy tables - Simplified and improved readability */
+    /* Light therapy tables */
     .table-container {
       overflow-x: auto;
       margin-top: 16px;
@@ -304,13 +310,8 @@
       font-size: 0.95em;
       position: relative;
     }
-    .addon-card .drip-name {
-      font-size: 1em;
-    }
-    .addon-card .price {
-      color: #006400;
-      font-size: 1em;
-    }
+    .addon-card .drip-name { font-size: 1em; }
+    .addon-card .price { color: #006400; font-size: 1em; }
     .addon-details {
       margin-top: 16px;
       padding: 16px;
@@ -329,104 +330,95 @@
       cursor: pointer;
     }
     /* Light spectrum cards */
-    .light-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .light-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,100,0,.1);
-      padding: 20px;
-      text-align: left;
-    }
-    .light-card .light-name {
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: center;
-    }
-    .light-card .wavelength {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 8px;
-    }
-    .light-card .effects {
-      font-size: 0.95em;
-      line-height: 1.4;
-    }
+    .light-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .light-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,100,0,.1); padding: 20px; text-align: left; }
+    .light-card .light-name { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; }
+    .light-card .wavelength { font-size: 0.9em; color: #666; margin-bottom: 8px; }
+    .light-card .effects { font-size: 0.95em; line-height: 1.4; }
     /* Light matrix cards */
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .matrix-card {
+    .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .matrix-card { background: #fff; border-radius: 14px; box-shadow: 0 4px 12px rgba(0,100,0,.1); padding: 20px; text-align: left; }
+    .matrix-card .concern-name { font-weight: 700; margin-bottom: 12px; }
+    .matrix-card .light-list { list-style: none; padding: 0; margin: 0; }
+    .matrix-card .light-list li { display: flex; align-items: center; margin-bottom: 8px; font-size: 0.95em; }
+    .matrix-card .light-list li .checkmark { margin-right: 8px; color: #28a745; }
+    /* Selectors */
+    .selector-container {
       background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,100,0,.1);
-      padding: 20px;
-      text-align: left;
-    }
-    .matrix-card .concern-name {
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .matrix-card .light-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .matrix-card .light-list li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 0.95em;
-    }
-    .matrix-card .light-list li .checkmark {
-      margin-right: 8px;
-      color: #28a745;
-    }
-    /* Light selector */
-    .light-selector {
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background: #fff;
-      padding: 16px;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      max-width: 300px;
-      z-index: 5;
+      border: 1px solid #f0f0f0;
+      margin-bottom: 24px;
+      overflow: hidden;
     }
-    .light-selector label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 0.95em;
-    }
-    .light-selector button {
-      background: #006400;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 10px 16px;
+    .selector-header {
+      padding: 14px 16px;
+      font-weight: 700;
       cursor: pointer;
-      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f9f9f9;
     }
-    #suggestion {
-      margin-top: 16px;
-      font-style: italic;
-      color: #333;
+    .selector-header::after { content: "▼"; font-size: 12px; }
+    .selector-header.active::after { content: "▲"; }
+    .selector-content {
+      padding: 0 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease, padding .28s ease;
+    }
+    .selector-content.open {
+      max-height: 1000px; /* Large enough for content */
+      padding: 16px;
+    }
+    .selector-content label { display: block; margin-bottom: 8px; font-size: 0.95em; }
+    .selector-content button {
+      background: #006400; color: #fff; border: none;
+      border-radius: 8px; padding: 10px 16px; cursor: pointer; margin-top: 12px;
+    }
+    #suggestion, #massage-suggestion { margin-top: 16px; font-style: italic; color: #333; }
+    .suggestion-pill {
+      display: inline-block; background: #E0F7F5; color: #006400;
+      padding: 6px 12px; border-radius: 16px; margin: 4px;
+      font-weight: 700; font-style: normal; cursor: pointer; text-decoration: none;
     }
     #suggestion strong {
-      font-size: 1.1em;
-      color: #006400;
-      background: #E0F7F5;
-      padding: 4px 8px;
-      border-radius: 4px;
-      display: inline-block;
+      font-size: 1.1em; color: #006400; background: #E0F7F5;
+      padding: 4px 8px; border-radius: 4px; display: inline-block;
     }
+    /* Sidebar Layout */
+    .page-with-sidebar { /* Default mobile styles */ }
+    .sidebar { /* Default mobile styles */ }
+    .main-content { /* Default mobile styles */ }
+    /* NEW: Scroll Navigation Buttons */
+    .scroll-nav-btn {
+      position: fixed;
+      bottom: 20px;
+      z-index: 1000;
+      background: #004d26;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 22px;
+      line-height: 45px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .scroll-nav-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #back-to-top-btn { right: 20px; }
+    #dynamic-back-btn { left: 20px; }
     /* Responsive */
     @media (max-width: 768px) {
       header { padding: 20px 12px; }
@@ -438,65 +430,69 @@
       .nv-footer-v2 { text-align: left; padding-left: 20px; }
       .led-specs-table thead { display: none; }
       .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td {
-        display: block;
-        width: 100%;
+        display: block; width: 100%;
       }
-      .led-specs-table tr {
-        margin-bottom: 15px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        overflow: hidden;
-        background: #fff;
-      }
-      .led-specs-table td {
-        text-align: right;
-        padding: 12px 16px;
-        position: relative;
-        border-bottom: 1px solid #f5f5f5;
-        font-size: 0.95em;
-      }
+      .led-specs-table tr { margin-bottom: 15px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; background: #fff; }
+      .led-specs-table td { text-align: right; padding: 12px 16px; position: relative; border-bottom: 1px solid #f5f5f5; font-size: 0.95em; }
       .led-specs-table td:last-child { border-bottom: none; }
       .led-specs-table td::before {
-        content: attr(data-label) ": ";
-        position: absolute;
-        left: 16px;
-        width: 50%;
-        padding-right: 10px;
-        font-weight: 700;
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        content: attr(data-label) ": "; position: absolute; left: 16px;
+        width: 50%; padding-right: 10px; font-weight: 700; text-align: left;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
-      .led-specs-table td[data-label="Light Color"]::before {
-        content: attr(data-label) ": ";
-      }
-      .led-specs-table .led-color-dot {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-right: 0;
-      }
+      .led-specs-table td[data-label="Light Color"]::before { content: attr(data-label) ": "; }
+      .led-specs-table .led-color-dot { position: absolute; left: 50%; transform: translateX(-50%); margin-right: 0; }
       .light-grid, .matrix-grid { grid-template-columns: 1fr; }
-      .light-selector { position: static; max-width: none; margin-bottom: 24px; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 24px;
-      }
+      .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
       .container { margin: 24px auto; padding: 0 16px; }
       .nv-footer-v2 { text-align: left; padding-left: 20px; }
+    }
+    /* Tablet Landscape & Desktop Sidebar Styles */
+    @media (min-width: 992px) {
+      .page-with-sidebar {
+        display: flex;
+        flex-direction: row-reverse; /* Puts sidebar on the right */
+        align-items: flex-start;
+        gap: 24px;
+      }
+      .main-content {
+        flex: 1;
+        min-width: 0;
+      }
+      .sidebar {
+        width: 320px;
+        flex-shrink: 0;
+      }
+      .sidebar .selector-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 20px;
+        margin-bottom: 0;
+      }
+      /* Override accordion behavior for sidebar */
+      .sidebar .selector-header {
+        cursor: default;
+      }
+      .sidebar .selector-header::after {
+        display: none; /* Hide arrow */
+      }
+      .sidebar .selector-content {
+        max-height: none; /* Always show content */
+        padding: 16px;
+      }
     }
 </style>
 </head>
 <body>
-<header>
-<h1>NuVana IV &amp; Wellness<br/>Menu</h1>
-<p>Rewire your reality...</p>
-</header>
+<a href="#" class="header-link" onclick="event.preventDefault(); goHome();">
+  <header>
+    <h1>NuVana IV &amp; Wellness<br/>Menu</h1>
+    <p>Rewire your reality...</p>
+  </header>
+</a>
 <div class="container">
-<!-- Main Menu View -->
 <div data-view-id="main-menu-view" id="main-menu-view">
 <div class="grid">
 <div class="card" onclick="navigateTo('categories-view')">
@@ -519,7 +515,6 @@
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Categories View -->
 <div class="hidden" data-view-id="categories-view" id="categories-view">
 <button class="back-button" onclick="goBack()">← Back</button>
 <h2>Select Your IV Drip</h2>
@@ -537,7 +532,6 @@
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Drips View -->
 <div class="hidden" data-view-id="drips-view" id="drips-view">
 <button class="back-button" onclick="goBack()">← Back</button>
 <h2 id="drips-heading"></h2>
@@ -547,7 +541,6 @@
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Details View -->
 <div class="hidden" data-view-id="details-view" id="details-view">
 <button class="back-button" onclick="goBack()">← Back</button>
 <div id="parent-back-btn" class="hidden"></div>
@@ -582,7 +575,6 @@
 <button class="accordion-header" onclick="toggleAccordion('feedback-section', this)">User Insights</button>
 <div class="accordion-content" id="feedback-section"><p id="detail-feedback"></p></div>
 </div>
-<!-- Recommended Add-On IVs Section -->
 <div style="background: #F8F1FE; border-radius: 12px; padding: 24px; margin-top: 16px;">
 <h3 style="font-weight: 700; font-size: 1.1em; margin-bottom: 12px;">➕ Add-On IV for a boost</h3>
 <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 16px;">Enhance your wellness journey with these discounted add-on drips</p>
@@ -594,190 +586,218 @@
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Massages View -->
 <div class="hidden" data-view-id="massages-view" id="massages-view">
-<div class="massage-caption">💆 Tip: Tap pricing or the info ℹ️ icon to learn more about the massage.</div>
 <button class="back-button" onclick="goBack()">← Back</button>
-<div class="category-wrapper section-relaxation">
-<h2>Relaxation &amp; Rejuvenation</h2>
-<div class="grid massage-section" id="relaxation-massages"></div>
-</div>
-<div class="category-wrapper section-therapeutic">
-<h2>Therapeutic &amp; Recovery</h2>
-<div class="grid massage-section" id="therapeutic-massages"></div>
-</div>
-<div class="category-wrapper section-combos">
-<h2>Massage Combos</h2>
-<div class="grid massage-section" id="combo-massages"></div>
+<div class="page-with-sidebar">
+  <aside class="sidebar">
+      <div id="massage-selector-wrapper" class="selector-container">
+        <div class="selector-header" onclick="toggleSelector('massage-selector-content', this)">
+          <h3>Find Your Perfect Massage</h3>
+        </div>
+        <div id="massage-selector-content" class="selector-content">
+          <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select what you need below:</p>
+          <label><input type="checkbox" value="stress"> Stress & Tension Relief</label>
+          <label><input type="checkbox" value="soreness"> Muscle Soreness / Recovery</label>
+          <label><input type="checkbox" value="detox"> Detox / Reduce Swelling</label>
+          <label><input type="checkbox" value="mental-clarity"> Mental Clarity / Grounding</label>
+          <label><input type="checkbox" value="couples"> A Couples Experience</label>
+          <button onclick="suggestMassages()">Suggest Massage</button>
+          <div id="massage-suggestion"></div>
+        </div>
+      </div>
+  </aside>
+  <main class="main-content">
+    <div class="massage-caption">💆 Tip: Tap pricing or the info ℹ️ icon to learn more about the massage.</div>
+    <div class="category-wrapper section-relaxation">
+      <h2>Relaxation &amp; Rejuvenation</h2>
+      <div class="grid massage-section" id="relaxation-massages"></div>
+    </div>
+    <div class="category-wrapper section-therapeutic">
+      <h2>Therapeutic &amp; Recovery</h2>
+      <div class="grid massage-section" id="therapeutic-massages"></div>
+    </div>
+    <div class="category-wrapper section-combos">
+      <h2>Massage Combos</h2>
+      <div class="grid massage-section" id="combo-massages"></div>
+    </div>
+  </main>
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Light Therapy View -->
 <div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
 <button class="back-button" onclick="goBack()">← Back</button>
-<div class="light-selector">
-  <h3>Find Your Perfect Light</h3>
-  <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select your skin concerns below:</p>
-  <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
-  <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
-  <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
-  <label><input type="checkbox" value="elasticity"> Skin Elasticity / Firmness</label>
-  <label><input type="checkbox" value="inflammation"> Inflammation / Redness</label>
-  <label><input type="checkbox" value="oil"> Oil Balance</label>
-  <label><input type="checkbox" value="scarring"> Scarring</label>
-  <label><input type="checkbox" value="tightening"> Skin Tightening</label>
-  <label><input type="checkbox" value="energy"> Cell Energy / Vitality</label>
-  <button onclick="suggestLights()">Suggest Lights</button>
-  <div id="suggestion"></div>
-</div>
-<div class="group-rose">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
-<div class="accordion-content" id="lt-discover">
-<p style="font-style: italic; color: #666;">Transform your skincare routine with the Colorful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
-</div>
-</div>
-<div class="group-rose">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
-<div class="accordion-content" id="lt-benefits">
-<ul class="ingredient-list">
-<li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
-<li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
-<li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
-<li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
-</ul>
-</div>
-</div>
-<div class="group-aqua">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-<div class="accordion-content" id="lt-pricing">
-<ul class="price-list">
-<li><strong>Light Add-On (with IV/massage):</strong> 20 min - R225</li>
-<li><strong>Standalone Light Facial:</strong> 40 min - R500</li>
-<li><strong>Package (6 sessions):</strong> R2,400 (Save R600)</li>
-</ul>
-</div>
-</div>
-<div class="group-gold">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-spectrums', this)">Customizable Light Spectrums</button>
-<div class="accordion-content" id="lt-spectrums">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Choose from seven colors—each tailored to specific needs. Our advanced light technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
-<div class="light-grid">
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-red"></span>Red</div>
-    <div class="wavelength">Wavelength: 630nm</div>
-    <div class="effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-blue"></span>Blue</div>
-    <div class="wavelength">Wavelength: 470nm</div>
-    <div class="effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-green"></span>Green</div>
-    <div class="wavelength">Wavelength: 520nm</div>
-    <div class="effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-yellow"></span>Yellow</div>
-    <div class="wavelength">Wavelength: 590nm</div>
-    <div class="effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-purple"></span>Purple</div>
-    <div class="wavelength">Wavelength: Red + Blue</div>
-    <div class="effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-cyan"></span>Cyan</div>
-    <div class="wavelength">Wavelength: Varies</div>
-    <div class="effects">Enhances cell energy and metabolism for overall skin vitality and healing.</div>
-  </div>
-  <div class="light-card">
-    <div class="light-name"><span class="led-color-dot dot-white"></span>White</div>
-    <div class="wavelength">Wavelength: Varies</div>
-    <div class="effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</div>
-  </div>
-</div>
-</div>
-</div>
-<div class="group-lav">
-<button class="accordion-header" onclick="toggleLightAccordion('lt-matrix', this)">Light Benefits Matrix</button>
-<div class="accordion-content" id="lt-matrix">
-<p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each card lists the lights that effectively address that concern.</p>
-<div class="matrix-grid">
-  <div class="matrix-card">
-    <div class="concern-name">Anti-Aging / Wrinkles</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Acne / Breakouts</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Pigmentation / Dark Spots</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Skin Elasticity / Firmness</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Inflammation / Redness</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Oil Balance</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-green"></span>Green <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Scarring</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Skin Tightening</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-  <div class="matrix-card">
-    <div class="concern-name">Cell Energy / Vitality</div>
-    <ul class="light-list">
-      <li><span class="led-color-dot dot-cyan"></span>Cyan <span class="checkmark">✓</span></li>
-      <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
-    </ul>
-  </div>
-</div>
-</div>
+<div class="page-with-sidebar">
+  <aside class="sidebar">
+      <div id="light-selector-wrapper" class="selector-container">
+        <div class="selector-header" onclick="toggleSelector('light-selector-content', this)">
+            <h3>Find Your Perfect Light</h3>
+        </div>
+        <div id="light-selector-content" class="selector-content">
+            <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select your skin concerns below:</p>
+            <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
+            <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
+            <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
+            <label><input type="checkbox" value="elasticity"> Skin Elasticity / Firmness</label>
+            <label><input type="checkbox" value="inflammation"> Inflammation / Redness</label>
+            <label><input type="checkbox" value="oil"> Oil Balance</label>
+            <label><input type="checkbox" value="scarring"> Scarring</label>
+            <label><input type="checkbox" value="tightening"> Skin Tightening</label>
+            <label><input type="checkbox" value="energy"> Cell Energy / Vitality</label>
+            <button onclick="suggestLights()">Suggest Lights</button>
+            <div id="suggestion"></div>
+        </div>
+      </div>
+  </aside>
+  <main class="main-content">
+    <div class="group-rose">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
+      <div class="accordion-content" id="lt-discover">
+        <p style="font-style: italic; color: #666;">Transform your skincare routine with the Colorful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p>
+      </div>
+    </div>
+    <div class="group-rose">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
+      <div class="accordion-content" id="lt-benefits">
+        <ul class="ingredient-list">
+          <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
+          <li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
+          <li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
+          <li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="group-aqua">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+      <div class="accordion-content" id="lt-pricing">
+        <ul class="price-list">
+          <li><strong>Light Add-On (with IV/massage):</strong> 20 min - R225</li>
+          <li><strong>Standalone Light Facial:</strong> 40 min - R500</li>
+          <li><strong>Package (6 sessions):</strong> R2,400 (Save R600)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="group-gold">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-spectrums', this)">Customizable Light Spectrums</button>
+      <div class="accordion-content" id="lt-spectrums">
+        <p style="font-style: italic; color: #666; margin-bottom: 16px;">Choose from seven colors—each tailored to specific needs. Our advanced light technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p>
+        <div class="light-grid">
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-red"></span>Red</div>
+            <div class="wavelength">Wavelength: 630nm</div>
+            <div class="effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-blue"></span>Blue</div>
+            <div class="wavelength">Wavelength: 470nm</div>
+            <div class="effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-green"></span>Green</div>
+            <div class="wavelength">Wavelength: 520nm</div>
+            <div class="effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-yellow"></span>Yellow</div>
+            <div class="wavelength">Wavelength: 590nm</div>
+            <div class="effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-purple"></span>Purple</div>
+            <div class="wavelength">Wavelength: Red + Blue</div>
+            <div class="effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-cyan"></span>Cyan</div>
+            <div class="wavelength">Wavelength: Varies</div>
+            <div class="effects">Enhances cell energy and metabolism for overall skin vitality and healing.</div>
+          </div>
+          <div class="light-card">
+            <div class="light-name"><span class="led-color-dot dot-white"></span>White</div>
+            <div class="wavelength">Wavelength: Varies</div>
+            <div class="effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="group-lav">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-matrix', this)">Light Benefits Matrix</button>
+      <div class="accordion-content" id="lt-matrix">
+        <p style="font-style: italic; color: #666; margin-bottom: 16px;">Find the perfect light therapy for your specific skin concerns. Each card lists the lights that effectively address that concern.</p>
+        <div class="matrix-grid">
+          <div class="matrix-card">
+            <div class="concern-name">Anti-Aging / Wrinkles</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Acne / Breakouts</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Pigmentation / Dark Spots</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Skin Elasticity / Firmness</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-red"></span>Red <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Inflammation / Redness</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-yellow"></span>Yellow <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Oil Balance</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-green"></span>Green <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Scarring</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-blue"></span>Blue <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-purple"></span>Purple <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Skin Tightening</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+          <div class="matrix-card">
+            <div class="concern-name">Cell Energy / Vitality</div>
+            <ul class="light-list">
+              <li><span class="led-color-dot dot-cyan"></span>Cyan <span class="checkmark">✓</span></li>
+              <li><span class="led-color-dot dot-white"></span>White <span class="checkmark">✓</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
 <footer class="nv-footer-v2">
 <p>Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
 <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<!-- Tooltip Modal -->
 <div class="nv-tooltip-overlay" id="tooltip-overlay" onclick="closeTooltip()">
 <div class="nv-tooltip-card" onclick="event.stopPropagation()">
 <span class="nv-tooltip-close" onclick="closeTooltip()">×</span>
@@ -785,6 +805,8 @@
 </div>
 </div>
 </div>
+<button id="back-to-top-btn" class="scroll-nav-btn" onclick="scrollToTop()">↑</button>
+<button id="dynamic-back-btn" class="scroll-nav-btn" onclick="goBack()">←</button>
 <script>
 // Data
 const allDrips = {
@@ -901,6 +923,26 @@ function navigateTo(viewId) {
     parentDrip = null;
     document.getElementById('parent-back-btn').classList.add('hidden');
   }
+
+  // NEW: Default open selectors on mobile/tablet
+  if (window.innerWidth < 992) {
+    if (viewId === 'massages-view') {
+        const header = document.querySelector('#massage-selector-wrapper .selector-header');
+        const content = document.getElementById('massage-selector-content');
+        if (header && content) {
+            header.classList.add('active');
+            content.classList.add('open');
+        }
+    }
+    if (viewId === 'light-therapy-view') {
+        const header = document.querySelector('#light-selector-wrapper .selector-header');
+        const content = document.getElementById('light-selector-content');
+        if (header && content) {
+            header.classList.add('active');
+            content.classList.add('open');
+        }
+    }
+  }
 }
 function goBack() {
   if (viewHistory.length > 0) {
@@ -911,6 +953,16 @@ function goBack() {
     if (previousEl) previousEl.classList.remove('hidden');
     currentView = previousView;
   }
+}
+function goHome() {
+    const currentEl = document.getElementById(currentView);
+    const homeEl = document.getElementById('main-menu-view');
+    if (currentEl !== homeEl) {
+        if (currentEl) currentEl.classList.add('hidden');
+        if (homeEl) homeEl.classList.remove('hidden');
+        currentView = 'main-menu-view';
+        viewHistory = []; // Clear history when going home
+    }
 }
 function goBackToParent() {
   if (parentDrip) {
@@ -1116,8 +1168,8 @@ function toggleLightAccordion(contentId, headerBtn) {
   const isOpen = content.classList.contains('open');
  
   // Close all light accordions
-  const allLightContents = document.querySelectorAll('#light-therapy-view .accordion-content');
-  const allLightHeaders = document.querySelectorAll('#light-therapy-view .accordion-header');
+  const allLightContents = document.querySelectorAll('#light-therapy-view .main-content .accordion-content');
+  const allLightHeaders = document.querySelectorAll('#light-therapy-view .main-content .accordion-header');
   allLightContents.forEach(c => c.classList.remove('open'));
   allLightHeaders.forEach(h => h.classList.remove('active'));
  
@@ -1146,6 +1198,13 @@ function toggleInnerAccordion(contentId, headerBtn) {
     headerBtn.classList.add('active');
   }
 }
+function toggleSelector(contentId, headerBtn) {
+    if (window.innerWidth < 992) { // Only toggle on smaller screens
+        const content = document.getElementById(contentId);
+        headerBtn.classList.toggle('active');
+        content.classList.toggle('open');
+    }
+}
 // Massage functions
 function renderMassages() {
   document.getElementById('relaxation-massages').innerHTML = relaxationMassages.map(createMassageCard).join('');
@@ -1153,7 +1212,7 @@ function renderMassages() {
   document.getElementById('combo-massages').innerHTML = comboMassages.map(createMassageCard).join('');
 }
 function createMassageCard(massage) {
-  return '<div class="card">' +
+  return '<div class="card" id="card-' + massage.id + '">' +
     '<div class="icon">' + massage.icon + '</div>' +
     '<div class="drip-name">' + massage.name + '</div>' +
     '<div class="tile-divider"></div>' +
@@ -1182,7 +1241,7 @@ renderMassages();
 
 // Light selector logic
 function suggestLights() {
-  const checkboxes = document.querySelectorAll('.light-selector input:checked');
+  const checkboxes = document.querySelectorAll('#light-selector-content input:checked');
   const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
   const concernToLights = {
     'anti-aging': ['Red', 'Yellow', 'White'],
@@ -1213,6 +1272,72 @@ function suggestLights() {
   const suggestion = document.getElementById('suggestion');
   suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]}; font-weight: bold;">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
 }
+
+// Massage selector logic
+function suggestMassages() {
+    const checkboxes = document.querySelectorAll('#massage-selector-content input:checked');
+    const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
+    const allMassages = [...relaxationMassages, ...therapeuticMassages, ...comboMassages];
+
+    const concernToMassages = {
+        'stress': ['hot-stone', 'swedish', 'indian-head', 'neck-back-shoulder'],
+        'soreness': ['deep-tissue', 'sports'],
+        'detox': ['lymphatic-drainage'],
+        'mental-clarity': ['indian-head', 'foot-reflexology'],
+        'couples': comboMassages.map(m => m.id)
+    };
+
+    let recommendedIds = new Set();
+    selectedConcerns.forEach(concern => {
+        if (concernToMassages[concern]) {
+            concernToMassages[concern].forEach(id => recommendedIds.add(id));
+        }
+    });
+
+    const suggestion = document.getElementById('massage-suggestion');
+    if (recommendedIds.size > 0) {
+        let resultsHtml = '<p>Recommended massages:</p>';
+        Array.from(recommendedIds).forEach(id => {
+            const massage = allMassages.find(m => m.id === id);
+            if (massage) {
+                resultsHtml += `<a class="suggestion-pill" href="#card-${massage.id}" onclick="event.preventDefault(); document.getElementById('card-${massage.id}').scrollIntoView({behavior: 'smooth'});">${massage.name}</a>`;
+            }
+        });
+        suggestion.innerHTML = resultsHtml;
+    } else {
+        suggestion.innerHTML = '<p>Select at least one need to get recommendations.</p>';
+    }
+}
+
+// NEW: Scroll Navigation Logic
+let scrollStopTimer;
+const backToTopBtn = document.getElementById('back-to-top-btn');
+const dynamicBackBtn = document.getElementById('dynamic-back-btn');
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.onscroll = () => {
+    // Back to Top Logic
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
+
+    // Dynamic Back Button Logic
+    dynamicBackBtn.classList.remove('visible');
+    clearTimeout(scrollStopTimer);
+
+    scrollStopTimer = setTimeout(() => {
+        const canGoBack = viewHistory.length > 0;
+        const isScrolledDown = document.body.scrollTop > 200 || document.documentElement.scrollTop > 200;
+        if (canGoBack && isScrolledDown) {
+            dynamicBackBtn.classList.add('visible');
+        }
+    }, 250); // ms of inactivity
+};
 </script>
 </body>
 </html>
