@@ -31,11 +31,11 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.4), 0 8px 16px rgba(0,50,0,.3);
     }
     header h1 {
-      margin: 0 0 6px; font: 700 2.1em/1.2 Lora, serif;
+      margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
       text-shadow: -1px -1px 0 rgba(0,0,0,.4), 1px 1px 0 rgba(255,255,0,.3), 0 0 10px rgba(255,215,0,.6);
     }
     header p {
-      margin: 6px 0 0; font-style: italic; color: #fff;
+      margin: 6px 0 0; font-style: italic; color: #fff; font-size: 0.9em;
       text-shadow: -1px -1px 0 rgba(0,0,0,.35), 1px 1px 0 rgba(255,255,255,.2), 0 0 6px rgba(255,215,0,.5);
     }
     /* Layout */
@@ -1202,16 +1202,16 @@ function suggestLights() {
     }
   });
   const colors = {
-    'Red': 'red',
-    'Blue': 'blue',
-    'Green': 'green',
-    'Yellow': 'gold',
-    'Purple': 'purple',
-    'Cyan': 'cyan',
-    'White': 'gray'
+    'Red': '#ff4d4d',
+    'Blue': '#4da6ff',
+    'Green': '#52d452',
+    'Yellow': '#ffdb4d',
+    'Purple': '#a64dff',
+    'Cyan': '#4dffff',
+    'White': '#f2f2f2'
   };
   const suggestion = document.getElementById('suggestion');
-  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]};">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
+  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]}; font-weight: bold;">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
 }
 </script>
 </body>
