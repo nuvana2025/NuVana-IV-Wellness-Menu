@@ -116,33 +116,17 @@
     .group-rose .accordion-content { background: #FFF0F0; border-color: #F5C5C5; }
     .group-lav .accordion-header { background: #F3E8FD; }
     .group-lav .accordion-content { background: #F8F1FE; border-color: #E3D3FB; }
-    /* Did you know corner */
+    /* MODIFIED: Did you know corner */
     .did-you-know {
-      position: relative;
       display: inline-block;
       margin-top: 8px;
       font-size: .9em;
       color: #006400;
       cursor: pointer;
     }
-    .did-you-know .did-you-know-tooltip {
-      display: none;
-      width: 260px;
-      background: #fff;
-      color: #333;
-      text-align: left;
-      border-radius: 6px;
-      padding: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,.2);
-      position: absolute;
-      z-index: 10;
-      left: 50%;
-      transform: translateX(-50%);
-      top: calc(100% + 5px);
-      font-size: .8em;
-      word-wrap: break-word;
+    .did-you-know-tooltip {
+      display: none; /* Content is now handled by JS modal */
     }
-    .did-you-know.open .did-you-know-tooltip { display: block; }
     /* Series blurb */
     .series-blurb {
       font-size: .9em;
@@ -639,9 +623,9 @@
 <p class="price">Price: R<span id="detail-price"></span></p>
 <p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
 <div class="series-blurb" id="series-blurb"></div>
-<div class="did-you-know" onclick="this.classList.toggle('open');">
-          ℹ️ Did you know?
-          <div class="did-you-know-tooltip">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine.</div>
+<div class="did-you-know" onclick="showDidYouKnowTooltip()">
+    ℹ️ Did you know?
+    <div class="did-you-know-tooltip" id="did-you-know-content">Each NuVana infusion is formulated under the careful supervision of our medical team in collaboration with <a href="https://fagron.co.za/quality/" rel="noopener noreferrer" target="_blank">Fagron</a> - a world-leading company in pharmaceutical compounding dedicated to delivering personalised medicine.</div>
 </div>
 <div class="group-rose">
 <button class="accordion-header" onclick="toggleAccordion('perfect-section', this)">Perfect For</button>
@@ -1245,6 +1229,12 @@ function showTooltip(massageId) {
 }
 function closeTooltip() {
   document.getElementById('tooltip-overlay').classList.remove('open');
+}
+// NEW: Function to show the "Did you know" content in the main modal
+function showDidYouKnowTooltip() {
+    const contentHTML = document.getElementById('did-you-know-content').innerHTML;
+    document.getElementById('tooltip-content').innerHTML = `<h3>Did you know?</h3><p>${contentHTML}</p>`;
+    document.getElementById('tooltip-overlay').classList.add('open');
 }
 
 // Search Functions (NEW/MODIFIED)
