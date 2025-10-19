@@ -28,11 +28,11 @@
       background: linear-gradient(135deg, #002106 0%, #003819 50%, #b8860b 100%);
       color: #FFD700;
       text-align: center;
-      padding: 20px 20px 20px 60px; /* MODIFIED for icon spacing */
+      padding: 10px 60px 10px 60px; /* Padding reduced */
       border-radius: 16px;
       max-width: 850px;
       margin: 20px auto;
-      box-shadow: inset 0 3px 5px rgba(0,0,0,0.5), inset 0 -3px 5px rgba(255, 255, 255, 0.2), 0 5px 15px rgba(0,0,0,0.5);
+      /* REMOVED box-shadow for emboss and shadow effect */
       cursor: pointer;
     }
     /* Home button in header */
@@ -52,7 +52,7 @@
         width: 28px;
         height: 28px;
         fill: #FFFFFF;
-        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+        /* Removed filter drop shadow */
     }
     header h1 {
       margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
@@ -61,12 +61,11 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      text-shadow: -1px -1px 1px rgba(0,0,0,0.4), 1px 1px 4px rgba(255,215,0,0.8);
-      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+      /* REMOVED text-shadow and filter: drop-shadow */
     }
     header p {
       margin: 6px 0 0; font-style: italic; color: #fff; font-size: 0.9em;
-      text-shadow: -1px -1px 0 rgba(0,0,0,.35), 1px 1px 0 rgba(255,255,255,.2), 0 0 6px rgba(255,215,0,.5);
+      /* Removed text-shadow */
     }
     /* Layout */
     .container { max-width: 960px; margin: 30px auto; padding: 0 20px; }
@@ -122,7 +121,7 @@
     /* Select row */
     .select-row { margin: 8px 0 18px; }
     .select-row select { padding: 10px 12px; border: 1px solid #333; border-radius: 6px; background: #fff; }
-    .drip-tagline { color: #A8E4A0; font-style: italic; margin: 4px 0 8px; }
+    .drip-tagline { color: #2E8B57; font-style: italic; margin: 4px 0 8px; } /* Darker green - SeaGreen */
     .price { font-weight: 700; }
     /* Accordions */
     .accordion-header {
@@ -140,6 +139,7 @@
       -webkit-transition: max-height .28s ease, padding .28s ease;
       padding: 0 14px; border-radius: 8px; margin-bottom: 8px;
       border: 1px solid transparent;
+      text-align: left; /* Explicitly left-align */
     }
     .accordion-content.open { max-height: 2000px; padding: 14px; }
     /* Pastel groups */
@@ -181,6 +181,7 @@
     .ingredient-list li {
       position: relative; background: #FAFFFA; border: 1px solid #E6F5E6;
       border-radius: 18px; padding: 10px 12px 10px 30px; margin: 8px 0;
+      text-align: left; /* Ensure pills are left aligned */
     }
     .ingredient-list li::before {
       content: "•"; position: absolute; left: 12px; top: 8px;
@@ -191,7 +192,7 @@
     .drip-details { opacity: 1; }
     .drip-details.animate-in { animation: fadeSlideUp .8s ease both; }
     /* Price list */
-    .price-list { list-style: none; padding: 0; margin: 10px 0 0; font-size: .85em; color: #333; }
+    .price-list { list-style: none; padding: 0; margin: 10px 0 0; font-size: .85em; color: #333; text-align: left; }
     .price-list li { margin: 2px 0; }
     /* Massage sections */
     .massage-section { padding: 0; border-radius: 0; margin: 0; }
@@ -269,7 +270,7 @@
       background: #fdf9ff;
       border: 1px solid #E3D3FB;
       border-radius: 0 0 12px 12px;
-      text-align: left;
+      text-align: left; /* Changed from justify */
       font-size: 0.9em;
       box-shadow: inset 0 3px 6px rgba(0,0,0,0.06);
       border-top: none;
@@ -280,10 +281,10 @@
         max-height: 2500px;
     }
     .addon-accordion-content .accordion-header { font-size: 0.9em; padding: 10px 14px; margin: 6px 0; }
-    .addon-accordion-content .accordion-content { font-size: 0.95em; padding: 0 10px; }
+    .addon-accordion-content .accordion-content { font-size: 0.95em; padding: 0 10px; text-align: left; } /* Ensure nested is left */
     .addon-accordion-content .accordion-content.open { padding: 10px; }
     .addon-accordion-content .ingredient-list { margin-top: 8px; }
-    .addon-accordion-content .ingredient-list li { background: #fff; border-color: #eee; font-size: 0.95em; padding: 8px 10px 8px 25px;}
+    .addon-accordion-content .ingredient-list li { background: #fff; border-color: #eee; font-size: 0.95em; padding: 8px 10px 8px 25px; text-align: left; }
     .addon-accordion-content .ingredient-list li::before { left: 10px; top: 6px; }
 
     /* Light spectrum cards */
@@ -356,7 +357,7 @@
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
-      header { padding: 20px 12px 20px 60px; } /* MODIFIED for icon spacing */
+      header { padding: 10px 60px 10px 60px; } /* Padding reduced */
       header h1 { font-size: 1.8em; }
       .container { margin: 20px auto; padding: 0 12px; }
       .grid { grid-template-columns: 1fr; gap: 20px; }
@@ -427,7 +428,6 @@
 <div data-view-id="main-menu-view" id="main-menu-view">
 
 <h2 class="main-menu-title">Menu</h2>
-<p style="text-align: left; margin: -18px 0 24px 5px; font-style: italic; color: #666; font-size: 0.8em;">Tap to view</p>
 <div class="grid">
 <div class="card" onclick="navigateTo('categories-view')">
 <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
@@ -603,7 +603,7 @@
     <div class="group-rose">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
       <div class="accordion-content" id="lt-discover">
-        <p style="font-style: italic; color: #666;">Transform your skincare routine with the Colourful Light Beauty Mask, a cutting-edge optical instrument designed to bring professional photodynamic therapy to your home. This innovative device harnesses the power of seven light wavelengths to target a range of skin concerns, delivering visible results with consistent use.</p> </div>
+        <p style="font-style: italic; color: #666;">Unlock radiant skin with the Colourful Light Beauty Mask, a cutting-edge optical instrument bringing professional photodynamic therapy right to you. This innovative device harnesses seven light wavelengths to target diverse skin concerns, delivering visible rejuvenation with consistent use.</p> </div>
     </div>
     <div class="group-rose">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
