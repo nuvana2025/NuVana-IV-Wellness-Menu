@@ -43,16 +43,25 @@
         transform: translateY(-50%);
         background: transparent;
         border: none;
-        font-size: 1.8em;
         cursor: pointer;
         padding: 0;
         z-index: 2; /* Position above gradient */
         line-height: 1;
     }
+    .header-home-button svg {
+        width: 28px;
+        height: 28px;
+        fill: #FFD700; /* UPDATED: Use fill for SVG color */
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+    }
     header h1 {
       margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
-      color: #FFDE7A; /* UPDATED: Brighter gold */
-      text-shadow: -1px -1px 0 rgba(0,0,0,.45), 0 0 18px rgba(255,215,0,.7); /* UPDATED: More elegant pop */
+      background: linear-gradient(145deg, #FFF8E1, #FFD700, #BFA76A); /* UPDATED */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4)); /* UPDATED */
     }
     header p {
       margin: 6px 0 0; font-style: italic; color: #fff; font-size: 0.9em;
@@ -88,14 +97,14 @@
     /* View helpers */
     .hidden { display: none !important; }
     h2 { margin: 10px 0 14px; }
-    .main-menu-title { /* NEW: Style for Menu title on main page */
-        text-align: center;
+    .main-menu-title {
+        text-align: left; /* UPDATED */
         margin-bottom: 24px;
         color: #004d26;
+        padding-left: 5px;
     }
     /* Buttons & Nav */
     button { -webkit-appearance: none; appearance: none; cursor: pointer; }
-    /* UPDATED: Nav Controls Wrapper for single button */
     .nav-controls {
         display: flex;
         margin-bottom: 18px;
@@ -106,7 +115,7 @@
       border: none;
       border-radius: 8px;
       padding: 12px 20px;
-      margin: 0; /* Margin handled by parent */
+      margin: 0;
       box-shadow: 0 3px 6px rgba(0,100,0,.18);
     }
     /* Select row */
@@ -118,7 +127,7 @@
     .accordion-header {
       color: #333; padding: 14px; border: none; border-radius: 8px;
       cursor: pointer; margin: 8px 0; width: 100%; font-weight: 700;
-      display: flex; justify-content: space-between; align-items: center; /* Spelling: centre */
+      display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 2px 4px rgba(0,100,0,.15);
       text-align: left;
     }
@@ -202,7 +211,7 @@
     .table-container { overflow-x: auto; margin-top: 16px; }
     .led-specs-table { width: 100%; border-collapse: collapse; font-size: 1em; text-align: left; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
     .led-specs-table th, .led-specs-table td { padding: 16px 12px; border-bottom: 1px solid #eee; vertical-align: top; }
-    .led-specs-table thead th { background-color: #f0f8f0; font-weight: 700; color: #333; text-align: center; white-space: nowrap; } /* Spelling: centre */
+    .led-specs-table thead th { background-color: #f0f8f0; font-weight: 700; color: #333; text-align: center; white-space: nowrap; }
     .led-specs-table tbody tr:hover { background-color: #f9f9f9; }
     .led-specs-table tbody td { text-align: left; }
     .led-color-dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%; margin-right: 8px; vertical-align: middle; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
@@ -216,45 +225,44 @@
     .checkmark { color: #28a745; font-size: 1.2em; font-weight: bold; }
     .dash { color: #ccc; }
     /* Footer */
-    .nv-footer-v2 { color: #FFD700 !important; font-style: italic !important; text-align: center; margin-top: 20px; padding: 10px 10px; font-size: 0.9em; border-top: 1px solid #ddd; background: #00310c; } /* Spelling: centre */
-    .copyright { font-size: 0.8em; color: #FFD700; text-align: center; margin-top: 8px; } /* Spelling: centre */
+    .nv-footer-v2 { color: #FFD700 !important; font-style: italic !important; text-align: center; margin-top: 20px; padding: 10px 10px; font-size: 0.9em; border-top: 1px solid #ddd; background: #00310c; }
+    .copyright { font-size: 0.8em; color: #FFD700; text-align: center; margin-top: 8px; }
 
     /* --- Add-on Section Styles --- */
     .addon-section-container { background: #F8F1FE; border-radius: 12px; padding: 24px; margin-top: 16px; }
-    #addon-ivs-grid { /* Base grid for addons */
+    #addon-ivs-grid {
         display: grid;
-        grid-template-columns: 1fr; /* Default mobile: stacked */
+        grid-template-columns: 1fr;
         gap: 16px;
     }
-    .addon-card { /* Individual addon card */
+    .addon-card {
         border-left: 4px solid #A8E4A0;
         padding: 20px;
         font-size: 0.95em;
         position: relative;
         cursor: pointer;
-        margin-bottom: 0; /* Important for accordion flow */
-        background: #fff; /* Ensure card background */
-         border-radius: 14px; /* Match main card radius */
-        box-shadow: 0 4px 8px rgba(0,100,0,.1); /* Lighter shadow */
-        text-align: center; /* Ensure content is centered */
+        margin-bottom: 0;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 8px rgba(0,100,0,.1);
+        text-align: center;
     }
      .addon-card .drip-name { font-size: 1em; }
     .addon-card .price { color: #006400; font-size: 1em; }
 
     /* Addon Accordion Content */
      .addon-accordion-content {
-      /* IMPORTANT: Positioned after its card in the HTML, spans grid columns */
-      grid-column: 1 / -1; /* Make details span full width */
+      grid-column: 1 / -1;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease-out, padding 0.4s ease-out, margin 0.4s ease-out, opacity 0.4s ease-out;
       opacity: 0;
       padding: 0 16px;
-      margin-top: -10px; /* Overlap slightly with card above */
-      margin-bottom: 10px; /* Space before next card row */
-      background: #fdf9ff; /* Slightly lighter Lav background */
+      margin-top: -10px;
+      margin-bottom: 10px;
+      background: #fdf9ff;
       border: 1px solid #E3D3FB;
-      border-radius: 0 0 12px 12px; /* Round bottom corners */
+      border-radius: 0 0 12px 12px;
       text-align: left;
       font-size: 0.9em;
       box-shadow: inset 0 3px 6px rgba(0,0,0,0.06);
@@ -263,7 +271,7 @@
     .addon-accordion-content.open {
         opacity: 1;
         padding: 20px;
-        max-height: 2500px; /* Allow ample height */
+        max-height: 2500px;
     }
     .addon-accordion-content .accordion-header { font-size: 0.9em; padding: 10px 14px; margin: 6px 0; }
     .addon-accordion-content .accordion-content { font-size: 0.95em; padding: 0 10px; }
@@ -278,7 +286,6 @@
     .light-card .light-name { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; }
     .light-card .wavelength { font-size: 0.9em; color: #666; margin-bottom: 8px; }
     .light-card .effects { font-size: 0.95em; line-height: 1.4; }
-    .light-card .frequency { /* Style removed, now in accordion */ }
 
     /* Light matrix cards */
     .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
@@ -289,7 +296,7 @@
     .matrix-card .light-list li .checkmark { margin-right: 8px; color: #28a745; }
     /* Selectors */
     .selector-container { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #f0f0f0; margin-bottom: 24px; overflow: hidden; }
-    .selector-header { padding: 10px 16px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; } /* Spelling: centre */
+    .selector-header { padding: 10px 16px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; }
     .selector-header::after { content: "▼"; font-size: 12px; }
     .selector-header.active::after { content: "▲"; }
     .selector-content { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s ease; }
@@ -302,19 +309,19 @@
     /* Sidebar Layout */
     .page-with-sidebar {} .sidebar {} .main-content {}
     /* Scroll Navigation Buttons */
-    .scroll-nav-btn { position: fixed; bottom: 20px; z-index: 1000; background: #004d26; color: #fff; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 22px; line-height: 45px; text-align: center; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; } /* Spelling: centre */
+    .scroll-nav-btn { position: fixed; bottom: 20px; z-index: 1000; background: #004d26; color: #fff; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 22px; line-height: 45px; text-align: center; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; }
     .scroll-nav-btn.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #back-to-top-btn { right: 20px; bottom: 75px; } /* UPDATED: Moved up to make space for search */
+    #back-to-top-btn { right: 20px; bottom: 75px; }
     #dynamic-back-btn { left: 20px; }
 
-    /* Contextual Search - UPDATED */
+    /* Contextual Search */
     .contextual-search {
       position: fixed;
-      bottom: 20px; /* MOVED from top */
+      bottom: 20px;
       right: 15px;
       z-index: 1001;
       display: flex;
-      align-items: center; /* Spelling: centre */
+      align-items: center;
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -324,8 +331,8 @@
       height: 35px;
     }
     .contextual-search.open { width: 210px; }
-    .search-icon { font-size: 16px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } /* Spelling: centre */
-    .search-box { display: flex; align-items: center; width: 100%; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; } /* Spelling: centre */
+    .search-icon { font-size: 16px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .search-box { display: flex; align-items: center; width: 100%; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
     .contextual-search.open .search-box { opacity: 1; pointer-events: auto; }
     .search-box input { border: none; outline: none; padding: 6px 8px; width: 100%; font-size: 0.85em; background: transparent; }
     .search-box button { background: #006400; color: #fff; border: none; padding: 0 10px; height: 35px; cursor: pointer; font-weight: 700; font-size: 0.85em; }
@@ -339,7 +346,7 @@
       header h1 { font-size: 1.8em; }
       .container { margin: 20px auto; padding: 0 12px; }
       .grid { grid-template-columns: 1fr; gap: 20px; }
-      #addon-ivs-grid { grid-template-columns: 1fr; } /* Stack addons */
+      #addon-ivs-grid { grid-template-columns: 1fr; }
       .card { padding: 24px; font-size: 0.95em; }
       .accordion-header { font-size: 0.95em; }
       .nv-footer-v2 { text-align: left; padding-left: 20px; }
@@ -349,7 +356,7 @@
       .led-specs-table td { text-align: right; padding: 12px 16px; position: relative; border-bottom: 1px solid #f5f5f5; font-size: 0.95em; }
       .led-specs-table td:last-child { border-bottom: none; }
       .led-specs-table td::before { content: attr(data-label) ": "; position: absolute; left: 16px; width: 50%; padding-right: 10px; font-weight: 700; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .led-specs-table td[data-label="Light Colour"]::before { content: attr(data-label) ": "; } /* Spelling: Colour */
+      .led-specs-table td[data-label="Light Colour"]::before { content: attr(data-label) ": "; }
       .led-specs-table .led-color-dot { position: absolute; left: 50%; transform: translateX(-50%); margin-right: 0; }
       .light-grid, .matrix-grid { grid-template-columns: 1fr; }
       .contextual-search.open { width: calc(100vw - 40px); }
@@ -357,14 +364,14 @@
       .addon-accordion-content .accordion-header { font-size: 0.85em; padding: 8px 12px; }
       .addon-accordion-content .accordion-content { font-size: 0.9em; }
     }
-    @media (min-width: 769px) and (max-width: 1024px) { /* Tablet Landscape */
+    @media (min-width: 769px) and (max-width: 1024px) {
       .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-      #addon-ivs-grid { grid-template-columns: 1fr 1fr; } /* 2 Columns for addons */
+      #addon-ivs-grid { grid-template-columns: 1fr 1fr; }
       .container { margin: 24px auto; padding: 0 16px; }
       .nv-footer-v2 { text-align: left; padding-left: 20px; }
     }
-    @media (min-width: 1025px) { /* Desktop */
-       #addon-ivs-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); } /* Full grid for addons */
+    @media (min-width: 1025px) {
+       #addon-ivs-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     }
     /* Tablet Landscape & Desktop Sidebar Styles */
     @media (min-width: 992px) {
@@ -383,8 +390,8 @@
 <div class="contextual-search" id="contextual-search-container">
   <div class="search-icon" onclick="toggleSearch()">🔍</div>
   <div class="search-box">
-    <input type="text" id="ai-search-input" placeholder="How are you feeling?" oninput="handleSearchInput(this)" onkeydown="if(event.key==='Enter') aiSearch()">
-    <button onclick="aiSearch()">Go</button>
+    <input type="text" id="ai-search-input" placeholder="e.g., 'energy', 'skin'" oninput="handleSearchInput(this)" onkeydown="if(event.key==='Enter') handleSearchInput(this)">
+    <button onclick="handleSearchInput(document.getElementById('ai-search-input'))">Go</button>
   </div>
 </div>
 
@@ -398,7 +405,9 @@
 
 <a href="#" class="header-link" onclick="event.preventDefault(); goHome();">
   <header>
-    <button class="header-home-button hidden" onclick="goHome(event)">🏠</button>
+    <button class="header-home-button hidden" onclick="goHome(event)">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    </button>
     <h1>NuVana IV &amp; Wellness</h1>
     <p>Rewire your reality...</p>
   </header>
@@ -746,6 +755,7 @@
 </div>
 <button id="back-to-top-btn" class="scroll-nav-btn" onclick="scrollToTop()">↑</button>
 <button id="dynamic-back-btn" class="scroll-nav-btn" onclick="goBack()">←</button>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6/dist/fuse.min.js"></script>
 <script>
 // Data - Ensure allDrips object reflects spreadsheet accurately
 const allDrips = {
@@ -866,7 +876,6 @@ function navigateTo(viewId) {
         const contentId = viewId === 'massages-view' ? 'massage-selector-content' : 'light-selector-content';
         const header = document.querySelector(`${wrapperId} .selector-header`);
         const content = document.getElementById(contentId);
-        // Default open the selector only if it's not already open
         if (header && content && !content.classList.contains('open')) {
             header.classList.add('active');
             content.classList.add('open');
@@ -889,7 +898,7 @@ function goBack() {
   }
 }
 function goHome(event) {
-    if (event) { event.stopPropagation(); } // Prevent header link from firing
+    if (event) { event.stopPropagation(); event.preventDefault(); }
     closeAllAddonAccordions();
     const currentEl = document.getElementById(currentView);
     const homeEl = document.getElementById('main-menu-view');
@@ -986,7 +995,6 @@ function showDripDetails(dripName) {
           ? `<p class="price">Standalone: R${addon.price}</p>` : '';
       const addonIdSuffix = addonName.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
 
-      // IMPORTANT: Addon accordion content div is PLACED AFTER the card div
       return `
         <div class="card addon-card" onclick="toggleAddonAccordion('${addonName.replace(/'/g, "\\'")}', this)">
             <div class="icon">${addon.icon || '➕'}</div>
@@ -1020,8 +1028,6 @@ function showDripDetails(dripName) {
 }
 
 // --- Accordion Toggle Functions ---
-
-// Toggle Addon Accordion (Inline, Nested)
 function toggleAddonAccordion(addonName, cardElement) {
     const addon = allDrips[addonName];
     if (!addon) return;
@@ -1030,17 +1036,16 @@ function toggleAddonAccordion(addonName, cardElement) {
     if (!contentElement) return;
 
     const isOpen = contentElement.classList.contains('open');
-    closeAllAddonAccordions(contentElement.id); // Close others first
+    closeAllAddonAccordions(contentElement.id);
 
     if (isOpen) {
         contentElement.classList.remove('open');
-        setTimeout(() => { if (!contentElement.classList.contains('open')) contentElement.innerHTML = ''; }, 400); // Clear after animation
+        setTimeout(() => { if (!contentElement.classList.contains('open')) contentElement.innerHTML = ''; }, 400);
     } else {
         let notSuitableText = addon.notSuitableFor || '';
         if (notSuitableText.toLowerCase() === 'n/a') { notSuitableText = 'Considered suitable for most individuals. Consult practitioner for specific concerns.'; }
         else { notSuitableText = notSuitableText.replace(/\s+/g, ' ').trim(); }
 
-        // Populate with nested accordions
         contentElement.innerHTML = `
             <div class="group-rose">
                 <button class="accordion-header" onclick="toggleNestedAccordion(this)">Perfect For</button>
@@ -1064,11 +1069,10 @@ function toggleAddonAccordion(addonName, cardElement) {
                     </ul>
                 </div>
             </div>`;
-        setTimeout(() => { contentElement.classList.add('open'); }, 10); // Open after population
+        setTimeout(() => { contentElement.classList.add('open'); }, 10);
     }
 }
 
-// Toggle Nested Accordions (within Addon details)
 function toggleNestedAccordion(headerBtn) {
     const content = headerBtn.nextElementSibling;
     if (!content || !content.classList.contains('accordion-content')) return;
@@ -1083,52 +1087,39 @@ function toggleNestedAccordion(headerBtn) {
     content.classList.toggle('open');
 }
 
-// Close All Addon Accordions Helper
 function closeAllAddonAccordions(excludeId = null) {
     const openAccordions = document.querySelectorAll('.addon-accordion-content.open');
     openAccordions.forEach(acc => {
         if (!excludeId || acc.id !== excludeId) {
             acc.classList.remove('open');
-            setTimeout(() => { if (!acc.classList.contains('open')) acc.innerHTML = ''; }, 400); // Clear after animation
+            setTimeout(() => { if (!acc.classList.contains('open')) acc.innerHTML = ''; }, 400);
         }
     });
 }
 
-// Toggle Main Accordions (for main drip details & massages) - UPDATED
 function toggleAccordion(contentId, headerBtn) {
     const content = document.getElementById(contentId);
     if (!content) return;
     const isOpen = content.classList.contains('open');
-
-    // Find the main container holding ALL related accordions.
-    // For drips, it's #drip-details-panel. For massages, it's the .card.
     const container = headerBtn.closest('#drip-details-panel, .card');
-
-    // Close ALL accordions within that container first.
     if (container) {
         const allHeaders = container.querySelectorAll('.accordion-header');
         const allContents = container.querySelectorAll('.accordion-content');
         allHeaders.forEach(h => h.classList.remove('active'));
         allContents.forEach(c => c.classList.remove('open'));
     }
-
-    // If the clicked one was NOT already open, open it.
-    // This makes clicking an open one simply close it.
     if (!isOpen) {
         headerBtn.classList.add('active');
         content.classList.add('open');
     }
 }
 
-// Toggle Light Therapy Accordions
 function toggleLightAccordion(contentId, headerBtn) {
   const content = document.getElementById(contentId);
    if (!content) return;
   const isOpen = content.classList.contains('open');
   const mainContentContainer = headerBtn.closest('.main-content');
-
   if (mainContentContainer) {
-      // Close direct sibling accordions within the light therapy main content
       const siblingHeaders = mainContentContainer.querySelectorAll(':scope > div[class^="group-"] > .accordion-header');
       const siblingContents = mainContentContainer.querySelectorAll(':scope > div[class^="group-"] > .accordion-content');
       siblingHeaders.forEach(h => { if(h !== headerBtn) h.classList.remove('active'); });
@@ -1138,7 +1129,6 @@ function toggleLightAccordion(contentId, headerBtn) {
   content.classList.toggle('open');
 }
 
-// Toggle Sidebar Selectors (Mobile only)
 function toggleSelector(contentId, headerBtn) {
     if (window.innerWidth < 992) {
         const content = document.getElementById(contentId);
@@ -1147,7 +1137,7 @@ function toggleSelector(contentId, headerBtn) {
     }
 }
 
-// --- Massage Functions --- (Remain mostly unchanged)
+// --- Massage Functions ---
 function renderMassages() {
   document.getElementById('relaxation-massages').innerHTML = relaxationMassages.map(createMassageCard).join('');
   document.getElementById('therapeutic-massages').innerHTML = therapeuticMassages.map(createMassageCard).join('');
@@ -1179,46 +1169,50 @@ function showDidYouKnowTooltip() {
     document.getElementById('tooltip-overlay').classList.add('open');
 }
 
-// --- Search Functions ---
+// --- Search Functions (UPDATED with Fuse.js) ---
+const fuseDataset = Object.values(allDrips).map(drip => ({
+    name: drip.name,
+    description: drip.description,
+    perfectFor: drip.perfectFor,
+    overallBenefits: drip.overallBenefits,
+    tagline: drip.tagline
+}));
+const fuse = new Fuse(fuseDataset, {
+    keys: ['name', 'tagline', 'description', 'perfectFor', 'overallBenefits'],
+    threshold: 0.4
+});
+
 function toggleSearch() { document.getElementById('contextual-search-container').classList.toggle('open'); }
 function openSearchResults() { document.getElementById('search-results-overlay').classList.add('open'); }
 function closeSearchResults() { document.getElementById('search-results-overlay').classList.remove('open'); }
-// NEW: Live search handler
+
 function handleSearchInput(inputElement) {
-    if (inputElement.value.length >= 2) {
-        aiSearch();
-    } else {
-        const resultsContainer = document.getElementById('ai-search-results');
+    const query = inputElement.value;
+    const resultsContainer = document.getElementById('ai-search-results');
+    
+    if (query.length < 2) {
         resultsContainer.innerHTML = '';
         closeSearchResults();
+        return;
+    }
+
+    const results = fuse.search(query).slice(0, 6).map(r => r.item);
+
+    if (results.length > 0) {
+        let html = '<p style="font-style:normal; font-weight:700; margin-bottom:8px;">Suggestions:</p>';
+        results.forEach(drip => {
+            html += `<a class="suggestion-pill" onclick="closeSearchResults(); showDripDetails('${drip.name.replace(/'/g, "\\'")}');">${drip.name}</a>`;
+        });
+        resultsContainer.innerHTML = html;
+        openSearchResults();
+    } else {
+        resultsContainer.innerHTML = '<p>No results found for that term.</p>';
+        openSearchResults();
     }
 }
-function aiSearch() {
-    const query = document.getElementById('ai-search-input').value.toLowerCase();
-    const resultsContainer = document.getElementById('ai-search-results');
-    if (query.length < 2) return;
 
-    const keywordMap = { /* Defined in data section */
-        drips: { 'energy': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'focus': ['Jet Fuel', 'Recharge', 'Anti Ageing', 'Recharge Premium'], 'tired': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'fatigue': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'burnout': ['Recharge', 'Recharge Premium'], 'skin': ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin'], 'glow': ['Radiance', 'Radiance Plus', 'Radiance Premium'], 'acne': ['Radiance', 'Radiance Plus', 'Radiance Premium'], 'wrinkles': ['Anti Ageing', 'Radiance Premium'], 'anti-ageing': ['Anti Ageing', 'Radiance Premium'], 'beauty': ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin'], 'stress': ['Anxiety Relief', 'Anxiety Relief Premium'], 'anxiety': ['Anxiety Relief', 'Anxiety Relief Premium'], 'anxious': ['Anxiety Relief', 'Anxiety Relief Premium'], 'calm': ['Anxiety Relief', 'Anxiety Relief Premium'], 'recover': ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune'], 'gym': ['Sport Restore', 'Sports Edge', 'Glutamine'], 'workout': ['Sport Restore', 'Sports Edge', 'Glutamine'], 'athletic': ['Sport Restore', 'Sports Edge', 'Jet Fuel', 'Jet Fuel Premium'], 'muscle': ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune'], 'performance': ['Sports Edge', 'Jet Fuel Premium', 'Libido'], 'immune': ['Immune Booster', 'Immune Booster Premium', 'Trace Elements'], 'sick': ['Immune Booster', 'Immune Booster Premium'], 'defend': ['Immune Booster', 'Immune Booster Premium'], 'health': ['Immune Booster', 'Trace Elements', 'ALA'], 'wellness': ['Aqua Hydrate', 'Trace Elements'], 'detox': ['Detox', 'Detox Premium', 'Aqua Hydrate', 'ALA'], 'cleanse': ['Detox', 'Detox Premium', 'Aqua Hydrate'], 'hangover': ['Hangover & Jet Lag'], 'jet lag': ['Hangover & Jet Lag'], 'travel': ['Hangover & Jet Lag', 'Immune Booster', 'Aqua Hydrate'], 'weight loss': ['Weight Loss', 'Weight Loss Premium'], 'fat burn': ['Weight Loss', 'Weight Loss Premium'], 'metabolism': ['Weight Loss', 'Weight Loss Premium', 'Trace Elements'], 'libido': ['Libido'], 'drive': ['Libido'], 'inflammation': ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium'], 'joint pain': ['Anti Inflammatory & Auto Immune'], 'autoimmune': ['Anti Inflammatory & Auto Immune', 'ALA'], 'menopause': ['Menopause Relief'], 'hot flash': ['Menopause Relief'], 'fertility': ['Fertility', 'Libido'], 'conceive': ['Fertility'] },
-        massages: { 'stress': ['hot-stone', 'swedish', 'indian-head', 'neck-back-shoulder'], 'relax': ['hot-stone', 'swedish', 'indian-head'], 'tension': ['hot-stone', 'deep-tissue', 'neck-back-shoulder'], 'sore': ['deep-tissue', 'sports', 'hot-stone'], 'muscle': ['deep-tissue', 'sports', 'hot-stone'], 'recover': ['sports', 'deep-tissue'], 'detox': ['lymphatic-drainage'], 'swell': ['lymphatic-drainage'], 'couples': comboMassages.map(m => m.id), 'partner': comboMassages.map(m => m.id), 'duo': comboMassages.map(m => m.id), 'head': ['indian-head'], 'clarity': ['indian-head', 'foot-reflexology'] },
-        light: { 'skin': true, 'acne': true, 'wrinkles': true, 'pigmentation': true, 'redness': true, 'rejuvenation': true, 'anti-aging': true, 'spots': true, 'firmness': true }
-    };
-    let foundDrips = new Set(); let foundMassages = new Set(); let foundLight = false;
-    Object.keys(keywordMap.drips).forEach(keyword => { if (query.includes(keyword)) { keywordMap.drips[keyword].forEach(dripName => { if(allDrips[dripName] && allDrips[dripName].price !== null) foundDrips.add(dripName); }); } });
-    const allMassages = [...relaxationMassages, ...therapeuticMassages, ...comboMassages];
-    Object.keys(keywordMap.massages).forEach(keyword => { if (query.includes(keyword)) { keywordMap.massages[keyword].forEach(massageId => { const massage = allMassages.find(m => m.id === massageId); if (massage) foundMassages.add(massage); }); } });
-    Object.keys(keywordMap.light).forEach(keyword => { if (query.includes(keyword)) foundLight = true; });
-    let html = '';
-    if (foundDrips.size > 0) { html += '<p style="font-style:normal; font-weight:700; margin-bottom:8px;">IV Drip Suggestions:</p>'; Array.from(foundDrips).forEach(dripName => { html += `<a class="suggestion-pill" onclick="closeSearchResults(); showDripDetails('${dripName.replace(/'/g, "\\'")}');">${dripName}</a>`; }); }
-    if (foundMassages.size > 0) { html += '<p style="font-style:normal; font-weight:700; margin-bottom:8px; margin-top:16px;">Massage Suggestions:</p>'; Array.from(foundMassages).forEach(massage => { html += `<a class="suggestion-pill" onclick="closeSearchResults(); navigateTo('massages-view'); setTimeout(() => document.getElementById('card-${massage.id}').scrollIntoView({behavior: 'smooth'}), 100);">${massage.name}</a>`; }); }
-    if (foundLight) { html += '<p style="font-style:normal; font-weight:700; margin-bottom:8px; margin-top:16px;">Other Suggestions:</p>'; html += `<a class="suggestion-pill" onclick="closeSearchResults(); navigateTo('light-therapy-view');">Light Therapy</a>`; }
-    resultsContainer.innerHTML = html || '<p>No specific results found. Try rephrasing (e.g., "energy boost", "skin brightening", "muscle recovery"), or browse our categories!</p>';
-    openSearchResults();
-}
-
-
-// --- Selector Logic --- (Remain mostly unchanged)
-function suggestLights() { /* ... */
+// --- Selector Logic ---
+function suggestLights() {
   const checkboxes = document.querySelectorAll('#light-selector-content input:checked');
   const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
   const concernToLights = { 'anti-aging': ['Red', 'Yellow', 'White'], 'acne': ['Blue', 'Purple'], 'pigmentation': ['Yellow', 'Green'], 'elasticity': ['Red', 'White'], 'inflammation': ['Blue', 'Yellow', 'Purple', 'Cyan'], 'oil': ['Green'], 'scarring': ['Red', 'Blue', 'Purple'], 'tightening': ['White', 'Red'], 'energy': ['Cyan', 'White', 'Red'] };
@@ -1228,7 +1222,7 @@ function suggestLights() { /* ... */
   const suggestion = document.getElementById('suggestion');
   suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]}; font-weight: bold;">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
 }
-function suggestMassages() { /* ... */
+function suggestMassages() {
     const checkboxes = document.querySelectorAll('#massage-selector-content input:checked');
     const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
     const allMassages = [...relaxationMassages, ...therapeuticMassages, ...comboMassages];
@@ -1240,14 +1234,14 @@ function suggestMassages() { /* ... */
     else { suggestion.innerHTML = '<p>Select at least one need to get recommendations.</p>'; }
 }
 
-// --- Scroll Navigation Logic --- (Remain unchanged)
+// --- Scroll Navigation Logic ---
 let scrollStopTimer; const backToTopBtn = document.getElementById('back-to-top-btn'); const dynamicBackBtn = document.getElementById('dynamic-back-btn');
 function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 window.onscroll = () => { if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { backToTopBtn.classList.add('visible'); } else { backToTopBtn.classList.remove('visible'); } const canGoBack = viewHistory.length > 0; const isScrolledDown = document.body.scrollTop > 200 || document.documentElement.scrollTop > 200; dynamicBackBtn.classList.remove('visible'); clearTimeout(scrollStopTimer); scrollStopTimer = setTimeout(() => { if (canGoBack && isScrolledDown) { dynamicBackBtn.classList.add('visible'); } }, 250); };
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
-    renderCategories(); // Render initial categories ('feel-goal' is default)
+    renderCategories();
     renderMassages();
     updateHomeButtonVisibility(currentView);
 });
