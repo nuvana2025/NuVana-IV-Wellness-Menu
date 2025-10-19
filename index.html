@@ -25,14 +25,14 @@
     }
     header {
       position: relative;
-      background: linear-gradient(135deg, #002106 0%, #003819 45%, #b8860b 80%, #c09a3e 100%); /* MODIFIED */
+      background: linear-gradient(135deg, #002106 0%, #003819 50%, #b8860b 100%);
       color: #FFD700;
       text-align: center;
       padding: 20px 20px 20px 60px; /* MODIFIED for icon spacing */
       border-radius: 16px;
       max-width: 850px;
       margin: 20px auto;
-      box-shadow: 0 0 20px rgba(255,255,255,0.4), 0 8px 16px rgba(0,50,0,.3);
+      box-shadow: inset 0 3px 5px rgba(0,0,0,0.5), inset 0 -3px 5px rgba(255, 255, 255, 0.2), 0 5px 15px rgba(0,0,0,0.5);
       cursor: pointer;
     }
     /* Home button in header */
@@ -51,17 +51,17 @@
     .header-home-button svg {
         width: 28px;
         height: 28px;
-        fill: #FFD700;
+        fill: #FFFFFF;
         filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
     }
     header h1 {
       margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
-      background: linear-gradient(to bottom, #fcfaf4 0%, #f7e1a3 34%, #e5c100 50%, #b8860b 83%, #a87900 100%); /* MODIFIED for metallic look */
+      background: linear-gradient(180deg, #FFFFFF 15%, #FFD700 55%, #B8860B 85%, #A87900 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      text-shadow: 1px 1px 1px rgba(0,0,0,0.3); /* MODIFIED for 3D effect */
+      text-shadow: -1px -1px 1px rgba(0,0,0,0.4), 1px 1px 4px rgba(255,215,0,0.8);
       filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
     }
     header p {
@@ -233,8 +233,13 @@
     .addon-section-container { background: #F8F1FE; border-radius: 12px; padding: 24px; margin-top: 16px; }
     #addon-ivs-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* OPTIMISED: Single rule for responsive columns */
+        grid-template-columns: 1fr; /* Default to 1 column for mobile */
         gap: 20px;
+    }
+    @media (min-width: 600px) {
+        #addon-ivs-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet/landscape and up */
+        }
     }
     .addon-card {
         border-left: 4px solid #A8E4A0;
@@ -296,12 +301,13 @@
     .matrix-card .light-list li { display: flex; align-items: center; margin-bottom: 8px; font-size: 0.95em; }
     .matrix-card .light-list li .checkmark { margin-right: 8px; color: #28a745; }
     /* Selectors */
-    .selector-container { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #f0f0f0; margin-bottom: 24px; overflow: hidden; }
-    .selector-header { padding: 10px 16px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; }
+    .selector-container { background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #f0f0f0; margin-bottom: 12px; overflow: hidden; }
+    .selector-header { padding: 4px 16px; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background-color: #f9f9f9; }
+    .selector-header h3 { margin: 8px 0; }
     .selector-header::after { content: "▼"; font-size: 12px; }
     .selector-header.active::after { content: "▲"; }
-    .selector-content { padding: 0 16px; max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s ease; }
-    .selector-content.open { max-height: 1000px; padding: 16px; }
+    .selector-content { padding: 0 16px 4px; max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s ease; }
+    .selector-content.open { max-height: 1000px; padding: 4px 16px 12px; }
     .selector-content label { display: block; margin-bottom: 8px; font-size: 0.95em; }
     .selector-content button { background: #006400; color: #fff; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; margin-top: 12px; }
     #suggestion, #massage-suggestion, #ai-search-results { margin-top: 16px; font-style: italic; color: #333; }
@@ -421,7 +427,7 @@
 <div data-view-id="main-menu-view" id="main-menu-view">
 
 <h2 class="main-menu-title">Menu</h2>
-<p style="text-align: left; margin: -18px 0 24px 5px; font-style: italic; color: #666; font-size: 0.9em;">Tap a tile to view more</p>
+<p style="text-align: left; margin: -18px 0 24px 5px; font-style: italic; color: #666; font-size: 0.8em;">Tap to view</p>
 <div class="grid">
 <div class="card" onclick="navigateTo('categories-view')">
 <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
@@ -535,7 +541,7 @@
           <h3>Find Your Perfect Massage</h3>
         </div>
         <div id="massage-selector-content" class="selector-content">
-          <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select what you need below:</p>
+          <p style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 0; margin-bottom: 8px;">Select what you need below:</p>
           <label><input type="checkbox" value="stress"> Stress & Tension Relief</label>
           <label><input type="checkbox" value="soreness"> Muscle Soreness / Recovery</label>
           <label><input type="checkbox" value="detox"> Detox / Reduce Swelling</label>
@@ -578,7 +584,7 @@
             <h3>Find Your Perfect Light</h3>
         </div>
         <div id="light-selector-content" class="selector-content">
-            <p style="font-size: 0.9em; color: #666; font-style: italic; margin-bottom: 12px;">Select your skin concerns below:</p>
+            <p style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 0; margin-bottom: 8px;">Select your skin concerns below:</p>
             <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
             <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
             <label><input type="checkbox" value="pigmentation"> Pigmentation / Dark Spots</label>
@@ -866,7 +872,7 @@ const ingredientCategories = [
   {name: 'Selenium', icon: '🌿', drips: ['Trace Elements']}
 ];
 // Massage Data remains the same
-const relaxationMassages = [ {id: 'hot-stone', icon: '🔥', name: 'Hot Stone Massage', description: 'Warm stones melt away tension, soothe muscles and send you into restorative bliss.', tooltip: 'Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R500'}, {duration: '90 min', price: 'R750'}]}, {id: 'swedish', icon: '🌸', name: 'Swedish Massage', description: 'Long, flowing strokes calm your nervous system and restore peace to body and mind.', tooltip: 'The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R600'}, {duration: '90 min', price: 'R850'}]}, {id: 'indian-head', icon: '🧘', name: 'Indian Head Massage', description: 'A soothing head, neck & shoulder ritual that clears your mind and grounds your spirit.', tooltip: 'A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you feeling refreshed, grounded and mentally recharged.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R450'}]}, {id: 'neck-back-shoulder', icon: '💆', name: 'Neck, Back & Shoulder Massage', description: 'Release built‑up stress in your upper body, restoring comfort and instant relief.', tooltip: 'Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.', pricing: [{duration: '30 min', price: 'R300'}, {duration: '60 min', price: 'R450'}, {duration: '90 min', price: 'R700'}]} ];
+const relaxationMassages = [ {id: 'hot-stone', icon: '🔥', name: 'Hot Stone Massage', description: 'Warm stones melt away tension, soothe muscles and send you into restorative bliss.', tooltip: 'Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R500'}, {duration: '90 min', price: 'R750'}]}, {id: 'swedish', icon: '🌸', name: 'Swedish Massage', description: 'Long, flowing strokes calm your nervous system and restore peace to body and mind.', tooltip: 'The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R600'}, {duration: '90 min', price: 'R850'}]}, {id: 'indian-head', icon: '🧘', name: 'Indian Head Massage', description: 'A soothing head, neck & shoulder ritual that clears your mind and grounds your spirit.', tooltip: 'A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you refreshed, grounded and mentally recharged.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R450'}]}, {id: 'neck-back-shoulder', icon: '💆', name: 'Neck, Back & Shoulder Massage', description: 'Release built‑up stress in your upper body, restoring comfort and instant relief.', tooltip: 'Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.', pricing: [{duration: '30 min', price: 'R300'}, {duration: '60 min', price: 'R450'}, {duration: '90 min', price: 'R700'}]} ];
 const therapeuticMassages = [ {id: 'deep-tissue', icon: '💪', name: 'Deep Tissue Massage', description: 'Firm, targeted pressure relieves chronic tension and restores balance.', tooltip: 'A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R850'}, {duration: '90 min', price: 'R1,050'}]}, {id: 'sports', icon: '🏃', name: 'Sports Massage', description: 'Deep work and assisted stretches enhance performance, ease soreness and speed recovery.', tooltip: 'Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you\'re training, competing or simply staying active.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]}, {id: 'lymphatic-drainage', icon: '💧', name: 'Lymphatic Drainage Massage', description: 'Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.', tooltip: 'A gentle, rhythmic technique that supports your body\'s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]}, {id: 'foot-reflexology', icon: '👣', name: 'Foot Massage / Reflexology', description: 'Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.', tooltip: 'Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R400'}, {duration: '90 min', price: 'R600'}]} ];
 const comboMassages = [ {id: 'serenity-duo', icon: '💑', name: 'The Serenity Duo – Swedish Massage', description: 'A synchronised Swedish massage melts tension and deepens your connection.', tooltip: 'A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R1,080'}, {duration: '90 min', price: 'R1,530'}]}, {id: 'lava-escape', icon: '🌋', name: 'The Lava Escape – Hot Stone Massage', description: 'Heated stones and gentle strokes create a shared retreat into soothing warmth.', tooltip: 'Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R900'}, {duration: '90 min', price: 'R1,350'}]}, {id: 'power-pair', icon: '💪', name: 'The Power Pair – Deep Tissue Massage', description: 'Firm pressure releases stubborn knots, ideal for active pairs seeking relief.', tooltip: 'A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.', pricing: [{duration: '30 min', price: 'R810'}, {duration: '60 min', price: 'R1,530'}, {duration: '90 min', price: 'R1,890'}]}, {id: 'athletes-alignment', icon: '🏃', name: 'The Athletes Alignment – Sports Massage', description: 'Performance‑driven couples get deep work and stretches to recover and stay agile.', tooltip: 'Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,620'}, {duration: '90 min', price: 'R2,160'}]}, {id: 'detox-duo', icon: '💧', name: 'The Detox Duo – Lymphatic Drainage', description: 'A light touch encourages detox and circulation for refreshing renewal.', tooltip: 'A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,440'}, {duration: '90 min', price: 'R1,980'}]}, {id: 'tranquil-touch', icon: '🤲', name: 'The Tranquil Touch – Neck, Back & Shoulder Massage', description: 'Focused tension relief for neck, back & shoulders, bringing calm to couples.', tooltip: 'A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.', pricing: [{duration: '30 min', price: 'R540'}, {duration: '60 min', price: 'R810'}, {duration: '90 min', price: 'R1,260'}]}, {id: 'sole-connection', icon: '👣', name: 'The Sole Connection – Foot Massage / Reflexology', description: 'Grounding footwork stimulates energy flow and relieves tension for two.', tooltip: 'Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}, {duration: '90 min', price: 'R1,080'}]}, {id: 'crown-calm', icon: '👑', name: 'The Crown & Calm Ritual – Indian Head Massage', description: 'A meditative scalp, neck & shoulder ritual calms minds and balances energy.', tooltip: 'A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}]} ];
 
@@ -1001,7 +1007,7 @@ function showDripDetails(dripName) {
   if (priceP.querySelector('small')) {
     priceP.querySelector('small').remove();
   }
-  priceP.innerHTML += `<br><small style="font-weight: normal; font-size: 0.85em; color: #444;">+- 30min - speak to the attending nurse for more info</small>`;
+  priceP.innerHTML += `<br><small style="font-weight: normal; font-size: 0.85em; color: #444;">Approx. 30 min. Consult nurse for details.</small>`;
 
   document.getElementById('detail-tagline').textContent = drip.tagline || '';
   document.getElementById('detail-description').textContent = drip.description || '';
