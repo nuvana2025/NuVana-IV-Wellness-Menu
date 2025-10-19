@@ -24,6 +24,7 @@
       color: inherit;
     }
     header {
+      position: relative; /* ADDED for positioning context */
       background: linear-gradient(135deg, #00310c 0%, #004d26 45%, #bfa76a 75%, #f8f3e0 100%);
       color: #FFD700;
       text-align: center; /* Spelling: centre */
@@ -34,9 +35,24 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.4), 0 8px 16px rgba(0,50,0,.3);
       cursor: pointer;
     }
+    /* NEW: Home button in header */
+    .header-home-button {
+        position: absolute;
+        top: 50%;
+        left: 18px;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        font-size: 1.8em;
+        cursor: pointer;
+        padding: 0;
+        z-index: 2; /* Position above gradient */
+        line-height: 1;
+    }
     header h1 {
       margin: 0 0 6px; font: 700 1.8em/1.2 Lora, serif;
-      text-shadow: -1px -1px 0 rgba(0,0,0,.4), 1px 1px 0 rgba(255,255,0,.3), 0 0 10px rgba(255,215,0,.6);
+      color: #FFDE7A; /* UPDATED: Brighter gold */
+      text-shadow: -1px -1px 0 rgba(0,0,0,.45), 0 0 18px rgba(255,215,0,.7); /* UPDATED: More elegant pop */
     }
     header p {
       margin: 6px 0 0; font-style: italic; color: #fff; font-size: 0.9em;
@@ -72,15 +88,25 @@
     /* View helpers */
     .hidden { display: none !important; }
     h2 { margin: 10px 0 14px; }
-    /* Buttons */
+    .main-menu-title { /* NEW: Style for Menu title on main page */
+        text-align: center;
+        margin-bottom: 24px;
+        color: #004d26;
+    }
+    /* Buttons & Nav */
     button { -webkit-appearance: none; appearance: none; cursor: pointer; }
+    /* UPDATED: Nav Controls Wrapper for single button */
+    .nav-controls {
+        display: flex;
+        margin-bottom: 18px;
+    }
     .back-button {
       background: linear-gradient(135deg, #FBF5E8, #006B34);
       color: #fff;
       border: none;
       border-radius: 8px;
       padding: 12px 20px;
-      margin: 0 0 18px;
+      margin: 0; /* Margin handled by parent */
       box-shadow: 0 3px 6px rgba(0,100,0,.18);
     }
     /* Select row */
@@ -126,6 +152,13 @@
       cursor: pointer;
     }
     .did-you-know-tooltip { display: none; }
+    /* NEW: Style for tagline on details page */
+    .detail-tagline-style {
+        font-style: italic;
+        color: #555;
+        margin: -4px 0 12px 0;
+        font-size: 1.1em;
+    }
     /* Series blurb */
     .series-blurb {
       font-size: .9em;
@@ -271,11 +304,25 @@
     /* Scroll Navigation Buttons */
     .scroll-nav-btn { position: fixed; bottom: 20px; z-index: 1000; background: #004d26; color: #fff; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 22px; line-height: 45px; text-align: center; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none; } /* Spelling: centre */
     .scroll-nav-btn.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    #back-to-top-btn { right: 20px; }
+    #back-to-top-btn { right: 20px; bottom: 75px; } /* UPDATED: Moved up to make space for search */
     #dynamic-back-btn { left: 20px; }
 
-    /* Contextual Search */
-    .contextual-search { position: fixed; top: 15px; right: 15px; z-index: 1001; display: flex; align-items: center; background: #fff; border-radius: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); overflow: hidden; transition: width 0.3s ease; width: 35px; height: 35px; } /* Spelling: centre */
+    /* Contextual Search - UPDATED */
+    .contextual-search {
+      position: fixed;
+      bottom: 20px; /* MOVED from top */
+      right: 15px;
+      z-index: 1001;
+      display: flex;
+      align-items: center; /* Spelling: centre */
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      overflow: hidden;
+      transition: width 0.3s ease;
+      width: 35px;
+      height: 35px;
+    }
     .contextual-search.open { width: 210px; }
     .search-icon { font-size: 16px; cursor: pointer; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; } /* Spelling: centre */
     .search-box { display: flex; align-items: center; width: 100%; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; } /* Spelling: centre */
@@ -336,7 +383,7 @@
 <div class="contextual-search" id="contextual-search-container">
   <div class="search-icon" onclick="toggleSearch()">🔍</div>
   <div class="search-box">
-    <input type="text" id="ai-search-input" placeholder="How are you feeling?" onkeydown="if(event.key==='Enter') aiSearch()">
+    <input type="text" id="ai-search-input" placeholder="How are you feeling?" oninput="handleSearchInput(this)" onkeydown="if(event.key==='Enter') aiSearch()">
     <button onclick="aiSearch()">Go</button>
   </div>
 </div>
@@ -351,7 +398,8 @@
 
 <a href="#" class="header-link" onclick="event.preventDefault(); goHome();">
   <header>
-    <h1>NuVana IV &amp; Wellness<br/>Menu</h1>
+    <button class="header-home-button hidden" onclick="goHome(event)">🏠</button>
+    <h1>NuVana IV &amp; Wellness</h1>
     <p>Rewire your reality...</p>
   </header>
 </a>
@@ -359,6 +407,7 @@
 <div class="container">
 <div data-view-id="main-menu-view" id="main-menu-view">
 
+<h2 class="main-menu-title">Menu</h2>
 <div class="grid">
 <div class="card" onclick="navigateTo('categories-view')">
 <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
@@ -381,7 +430,9 @@
 </footer>
 </div>
 <div class="hidden" data-view-id="categories-view" id="categories-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="nav-controls">
+    <button class="back-button" onclick="goBack()">← Back</button>
+</div>
 <h2>Select Your IV Drip</h2>
 <div class="select-row">
 <label for="selection-type">Find by: </label>
@@ -398,7 +449,9 @@
 </footer>
 </div>
 <div class="hidden" data-view-id="drips-view" id="drips-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="nav-controls">
+    <button class="back-button" onclick="goBack()">← Back</button>
+</div>
 <h2 id="drips-heading"></h2>
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
@@ -407,12 +460,14 @@
 </footer>
 </div>
 <div class="hidden" data-view-id="details-view" id="details-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="nav-controls">
+    <button class="back-button" onclick="goBack()">← Back</button>
+</div>
 
 <div class="drip-details" id="drip-details-panel">
 <h2 id="detail-name"></h2>
+<p id="detail-tagline" class="detail-tagline-style"></p>
 <p class="price">Price: R<span id="detail-price"></span></p>
-<p><strong>Tagline:</strong> <span id="detail-tagline"></span></p>
 <div class="series-blurb" id="series-blurb"></div>
 <div class="did-you-know" onclick="showDidYouKnowTooltip()">
     ℹ️ Did you know?
@@ -448,7 +503,9 @@
 </footer>
 </div>
 <div class="hidden" data-view-id="massages-view" id="massages-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="nav-controls">
+    <button class="back-button" onclick="goBack()">← Back</button>
+</div>
 <div class="page-with-sidebar">
   <aside class="sidebar">
       <div id="massage-selector-wrapper" class="selector-container">
@@ -489,7 +546,9 @@
 </footer>
 </div>
 <div class="hidden" data-view-id="light-therapy-view" id="light-therapy-view">
-<button class="back-button" onclick="goBack()">← Back</button>
+<div class="nav-controls">
+    <button class="back-button" onclick="goBack()">← Back</button>
+</div>
 <div class="page-with-sidebar">
   <aside class="sidebar">
       <div id="light-selector-wrapper" class="selector-container">
@@ -777,6 +836,17 @@ let viewHistory = [];
 let currentFilterType = 'feel-goal';
 let selectedCategory = null;
 
+// --- Helper Functions ---
+function updateHomeButtonVisibility(viewId) {
+    const homeBtn = document.querySelector('.header-home-button');
+    if (!homeBtn) return;
+    if (viewId === 'main-menu-view') {
+        homeBtn.classList.add('hidden');
+    } else {
+        homeBtn.classList.remove('hidden');
+    }
+}
+
 // --- Navigation Functions ---
 function navigateTo(viewId) {
   closeAllAddonAccordions();
@@ -788,6 +858,7 @@ function navigateTo(viewId) {
       viewHistory.push(currentView);
   }
   currentView = viewId;
+  updateHomeButtonVisibility(currentView);
 
   if (window.innerWidth < 992) { // Mobile/Tablet specific behavior
     if (viewId === 'massages-view' || viewId === 'light-therapy-view') {
@@ -813,10 +884,12 @@ function goBack() {
     if (currentEl) currentEl.classList.add('hidden');
     if (previousEl) previousEl.classList.remove('hidden');
     currentView = previousView;
+    updateHomeButtonVisibility(currentView);
     window.scrollTo(0, 0);
   }
 }
-function goHome() {
+function goHome(event) {
+    if (event) { event.stopPropagation(); } // Prevent header link from firing
     closeAllAddonAccordions();
     const currentEl = document.getElementById(currentView);
     const homeEl = document.getElementById('main-menu-view');
@@ -825,6 +898,7 @@ function goHome() {
         if (homeEl) homeEl.classList.remove('hidden');
         currentView = 'main-menu-view';
         viewHistory = [];
+        updateHomeButtonVisibility(currentView);
         window.scrollTo(0, 0);
     }
 }
@@ -1020,24 +1094,30 @@ function closeAllAddonAccordions(excludeId = null) {
     });
 }
 
-// Toggle Main Accordions (for main drip details & massages)
+// Toggle Main Accordions (for main drip details & massages) - UPDATED
 function toggleAccordion(contentId, headerBtn) {
-  const content = document.getElementById(contentId);
-  if (!content) return;
-  const isOpen = content.classList.contains('open');
-  const parentGroup = headerBtn.closest('div[class^="group-"], .card'); // Find the immediate group or card
+    const content = document.getElementById(contentId);
+    if (!content) return;
+    const isOpen = content.classList.contains('open');
 
-  if (parentGroup) {
-      // Find direct sibling accordions within the same group/card
-      const siblingHeaders = Array.from(parentGroup.children).filter(el => el.classList.contains('accordion-header'));
-      const siblingContents = Array.from(parentGroup.children).filter(el => el.classList.contains('accordion-content'));
+    // Find the main container holding ALL related accordions.
+    // For drips, it's #drip-details-panel. For massages, it's the .card.
+    const container = headerBtn.closest('#drip-details-panel, .card');
 
-      siblingHeaders.forEach(h => { if (h !== headerBtn) h.classList.remove('active'); });
-      siblingContents.forEach(c => { if (c !== content) c.classList.remove('open'); });
-  }
+    // Close ALL accordions within that container first.
+    if (container) {
+        const allHeaders = container.querySelectorAll('.accordion-header');
+        const allContents = container.querySelectorAll('.accordion-content');
+        allHeaders.forEach(h => h.classList.remove('active'));
+        allContents.forEach(c => c.classList.remove('open'));
+    }
 
-  headerBtn.classList.toggle('active');
-  content.classList.toggle('open');
+    // If the clicked one was NOT already open, open it.
+    // This makes clicking an open one simply close it.
+    if (!isOpen) {
+        headerBtn.classList.add('active');
+        content.classList.add('open');
+    }
 }
 
 // Toggle Light Therapy Accordions
@@ -1099,17 +1179,25 @@ function showDidYouKnowTooltip() {
     document.getElementById('tooltip-overlay').classList.add('open');
 }
 
-// --- Search Functions --- (Remain mostly unchanged)
-function toggleSearch() { /* ... */ }
-function openSearchResults() { /* ... */ }
-function closeSearchResults() { /* ... */ }
-function aiSearch() { /* ... updated keyword map inside data section ... */
+// --- Search Functions ---
+function toggleSearch() { document.getElementById('contextual-search-container').classList.toggle('open'); }
+function openSearchResults() { document.getElementById('search-results-overlay').classList.add('open'); }
+function closeSearchResults() { document.getElementById('search-results-overlay').classList.remove('open'); }
+// NEW: Live search handler
+function handleSearchInput(inputElement) {
+    if (inputElement.value.length >= 2) {
+        aiSearch();
+    } else {
+        const resultsContainer = document.getElementById('ai-search-results');
+        resultsContainer.innerHTML = '';
+        closeSearchResults();
+    }
+}
+function aiSearch() {
     const query = document.getElementById('ai-search-input').value.toLowerCase();
     const resultsContainer = document.getElementById('ai-search-results');
-    if (!query.trim()) {
-        resultsContainer.innerHTML = '<p>Please enter what you\'re looking for.</p>';
-        openSearchResults(); return;
-    }
+    if (query.length < 2) return;
+
     const keywordMap = { /* Defined in data section */
         drips: { 'energy': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'focus': ['Jet Fuel', 'Recharge', 'Anti Ageing', 'Recharge Premium'], 'tired': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'fatigue': ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12'], 'burnout': ['Recharge', 'Recharge Premium'], 'skin': ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin'], 'glow': ['Radiance', 'Radiance Plus', 'Radiance Premium'], 'acne': ['Radiance', 'Radiance Plus', 'Radiance Premium'], 'wrinkles': ['Anti Ageing', 'Radiance Premium'], 'anti-ageing': ['Anti Ageing', 'Radiance Premium'], 'beauty': ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin'], 'stress': ['Anxiety Relief', 'Anxiety Relief Premium'], 'anxiety': ['Anxiety Relief', 'Anxiety Relief Premium'], 'anxious': ['Anxiety Relief', 'Anxiety Relief Premium'], 'calm': ['Anxiety Relief', 'Anxiety Relief Premium'], 'recover': ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune'], 'gym': ['Sport Restore', 'Sports Edge', 'Glutamine'], 'workout': ['Sport Restore', 'Sports Edge', 'Glutamine'], 'athletic': ['Sport Restore', 'Sports Edge', 'Jet Fuel', 'Jet Fuel Premium'], 'muscle': ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune'], 'performance': ['Sports Edge', 'Jet Fuel Premium', 'Libido'], 'immune': ['Immune Booster', 'Immune Booster Premium', 'Trace Elements'], 'sick': ['Immune Booster', 'Immune Booster Premium'], 'defend': ['Immune Booster', 'Immune Booster Premium'], 'health': ['Immune Booster', 'Trace Elements', 'ALA'], 'wellness': ['Aqua Hydrate', 'Trace Elements'], 'detox': ['Detox', 'Detox Premium', 'Aqua Hydrate', 'ALA'], 'cleanse': ['Detox', 'Detox Premium', 'Aqua Hydrate'], 'hangover': ['Hangover & Jet Lag'], 'jet lag': ['Hangover & Jet Lag'], 'travel': ['Hangover & Jet Lag', 'Immune Booster', 'Aqua Hydrate'], 'weight loss': ['Weight Loss', 'Weight Loss Premium'], 'fat burn': ['Weight Loss', 'Weight Loss Premium'], 'metabolism': ['Weight Loss', 'Weight Loss Premium', 'Trace Elements'], 'libido': ['Libido'], 'drive': ['Libido'], 'inflammation': ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium'], 'joint pain': ['Anti Inflammatory & Auto Immune'], 'autoimmune': ['Anti Inflammatory & Auto Immune', 'ALA'], 'menopause': ['Menopause Relief'], 'hot flash': ['Menopause Relief'], 'fertility': ['Fertility', 'Libido'], 'conceive': ['Fertility'] },
         massages: { 'stress': ['hot-stone', 'swedish', 'indian-head', 'neck-back-shoulder'], 'relax': ['hot-stone', 'swedish', 'indian-head'], 'tension': ['hot-stone', 'deep-tissue', 'neck-back-shoulder'], 'sore': ['deep-tissue', 'sports', 'hot-stone'], 'muscle': ['deep-tissue', 'sports', 'hot-stone'], 'recover': ['sports', 'deep-tissue'], 'detox': ['lymphatic-drainage'], 'swell': ['lymphatic-drainage'], 'couples': comboMassages.map(m => m.id), 'partner': comboMassages.map(m => m.id), 'duo': comboMassages.map(m => m.id), 'head': ['indian-head'], 'clarity': ['indian-head', 'foot-reflexology'] },
@@ -1161,6 +1249,7 @@ window.onscroll = () => { if (document.body.scrollTop > 300 || document.document
 document.addEventListener('DOMContentLoaded', () => {
     renderCategories(); // Render initial categories ('feel-goal' is default)
     renderMassages();
+    updateHomeButtonVisibility(currentView);
 });
 
 </script>
