@@ -820,6 +820,10 @@
 // --- START OF UPDATES ---
 // Updated disclaimer text for frequency sections
 const disclaimer = '<p style="font-size: 0.9em; font-style: italic; color: #555; margin-top: 12px;"><em>Remember that you have a unique bio-chemistry. This experience is about decoding it - learning what fuels you best and adapting as we go...</em></p>';
+
+// New styled disclaimer for Not Suitable For sections
+const notSuitableDisclaimer = '\n\n<div style="margin-top: 10px; color: #0056b3; font-size: 0.95em; font-style: italic;">Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</div>';
+
 // --- END OF UPDATES ---
 
 // Data - Ensure allDrips object reflects spreadsheet accurately
@@ -834,11 +838,11 @@ const allDrips = {
     description: 'The Jet Fuel IV Drip is a powerful, energising blend designed to recharge your body and mind. It supports focus, stamina, and your body\'s natural detoxification processes, all working at a cellular level to boost your vitality.',
     overallBenefits: 'Boosts energy, focus, and recovery. Supports detoxification and brightens skin.',
     ingredients: '<strong>Vitamin B12 & B-Complex:</strong> These are the "energy vitamins." They are crucial for your metabolism, helping to convert food into fuel. They also support brain function and mood, actively reducing fatigue.\n<strong>Magnesium:</strong> This is the "relaxation mineral." It helps your muscles relax, eases tension, and is vital for supporting nerve and heart health.\n<strong>Vitamin C:</strong> Your body\'s primary protector. This high dose of Vitamin C strengthens your immune system, supports collagen production for glowing skin, and helps fight off cellular stress.\n<strong>Glutathione (slow push):</strong> This is the body\'s "master antioxidant." It\'s a powerful detoxifier that helps clear out cellular "junk," improves skin clarity, and protects your cells from stress.',
-    // START OF FREQUENCY EDIT: Removed 'What is a "loading phase"? Think of it like refilling your body\'s \'tank\' when it\'s running low.'
+    // Frequency updated in previous iteration
     frequency: '<p><strong>Loading Phase:</strong> If your energy is very low or stress is high, you can start with one or two sessions per week for 2–3 weeks.</p><p><strong>Maintenance Phase:</strong> To sustain that balanced energy, one session every 2–4 weeks is ideal.</p><p><strong>Performance Boost:</strong> You can also use it weekly during periods of heavy training, travel, or intense work.</p><p><strong>Safety Note:</strong> For your safety, a maximum of 2 sessions per week may be used for loading (for a max of 3 weeks).</p>' + disclaimer,
-    // END OF FREQUENCY EDIT
     perfectFor: 'Feeling low on energy or mentally drained? Need a boost before/after workouts, travel, or busy weeks? Choose this for clean energy, faster recovery, focus, and a healthy glow.', // Rewritten
-    notSuitableFor: 'This formulation is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease, congestive heart failure, uncontrolled high blood pressure, G6PD deficiency, or active asthma. It should also be avoided by anyone with a known allergy to the listed ingredients or clients undergoing chemotherapy (unless cleared by their doctor). \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This formulation is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease, congestive heart failure, uncontrolled high blood pressure, G6PD deficiency, or active asthma. It should also be avoided by anyone with a known allergy to the listed ingredients or clients undergoing chemotherapy (unless cleared by their doctor).' + notSuitableDisclaimer,
     icon: '⚡'
   },
   'Jet Fuel Premium': {
@@ -851,11 +855,11 @@ const allDrips = {
     description: 'The Jet Fuel Premium IV Drip is designed to supercharge your system. This high-potency blend provides maximum support for focus, stamina, and detoxification, working at a cellular level to boost vitality and overall wellbeing.',
     overallBenefits: 'Maximises energy, focus, and recovery. Supports detoxification and brightens skin.',
     ingredients: '<strong>Vitamin B12 & B-Complex:</strong> These are the "energy vitamins." This premium dose is crucial for your metabolism, helping to convert food into fuel. They also support brain function and mood, actively reducing fatigue.\n<strong>Magnesium:</strong> This is the "relaxation mineral." It helps your muscles relax, eases tension, and is vital for supporting nerve and heart health.\n<strong>Vitamin C:</strong> Your body\'s primary protector. This high dose of Vitamin C strengthens your immune system, supports collagen production for glowing skin, and helps fight off cellular stress.\n<strong>Glutathione (slow push):</strong> This is the body\'s "master antioxidant." It\'s a powerful detoxifier that helps clear out cellular "junk," improves skin clarity, and protects your cells from stress.',
-    // START OF FREQUENCY EDIT: Removed 'What is a "loading phase"? Think of it like refilling your body\'s \'tank\' when it\'s running low.'
+    // Frequency updated in previous iteration
     frequency: '<p><strong>Loading Phase:</strong> If your energy is very low or stress is high, you can start with one or two sessions per week for 2–3 weeks.</p><p><strong>Maintenance Phase:</strong> To sustain that balanced energy, one session every 2–4 weeks is ideal.</p><p><strong>Performance Boost:</strong> You can also use it weekly during periods of heavy training, travel, or intense work.</p><p><strong>Safety Note:</strong> For your safety, a maximum of 2 sessions per week may be used for loading (for a max of 3 weeks).</p>' + disclaimer,
-    // END OF FREQUENCY EDIT
     perfectFor: 'Need maximum performance? Ideal for deep drain, intense physical/mental demands (events, workouts, work). Aimed at faster recovery, peak focus, and radiant glow.', // Rewritten
-    notSuitableFor: 'This formulation is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease, congestive heart failure, uncontrolled high blood pressure, G6PD deficiency, or active asthma. It should also be avoided by anyone with a known allergy to the listed ingredients or clients undergoing chemotherapy (unless cleared by their doctor). \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This formulation is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease, congestive heart failure, uncontrolled high blood pressure, G6PD deficiency, or active asthma. It should also be avoided by anyone with a known allergy to the listed ingredients or clients undergoing chemotherapy (unless cleared by their doctor).' + notSuitableDisclaimer,
     icon: '⚡⚡⚡'
   },
   'Recharge': {
@@ -870,7 +874,8 @@ const allDrips = {
       ingredients: '<strong>B12:</strong> This is your energy activator. It sparks vibrant energy and sharpens mental clarity, powering your nerves for that feeling of unstoppable focus.\n<strong>B-Complex:</strong> This is your mood and energy foundation. This blend of B vitamins works together to ignite energy, uplift your mood, and nourish your skin, hair, and nails.\n<strong>Magnesium:</strong> This is the "relaxation mineral." It famously melts away muscle tension and stress, calming your nerves to restore a serene sense of balance.',
       frequency: '<p><strong>Maintenance Phase:</strong> For sustained energy, we recommend one session every 2–4 weeks.</p><p><strong>As-Needed Boost:</strong> You can also use this drip as needed when you feel your energy levels dipping or are experiencing mental fog.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Experiencing fatigue, low energy, or mental fog? Excellent for vegans, vegetarians, or stressed professionals needing focus/mood support. A quick infusion for recovery.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor.' + notSuitableDisclaimer,
       icon: '🔋'
   },
   'Recharge Premium': {
@@ -885,7 +890,8 @@ const allDrips = {
       ingredients: '<strong>B12:</strong> This is your high-voltage energy activator. This premium dose sparks vibrant energy and sharpens mental clarity, powerfully supporting your nerves for unstoppable focus.\n<strong>B-Complex:</strong> This is your mood and energy foundation. This potent blend of B vitamins works together to ignite energy, uplift your mood, and nourish your skin, hair, and nails.\n<strong>Magnesium:</strong> This is the "relaxation mineral." It famously melts away muscle tension and stress, calming your nerves to restore a serene sense of balance.',
       frequency: '<p><strong>Maintenance Phase:</strong> For sustained energy, we recommend one session every 2–4 weeks.</p><p><strong>As-Needed Boost:</strong> You can also use this drip as needed when you feel your energy levels dipping or are experiencing mental fog.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Feeling true burnout or chronic fatigue? This high-potency formula provides a powerful energy and focus surge for stressed professionals, vegans, or anyone needing to shatter exhaustion.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor.' + notSuitableDisclaimer,
       icon: '🔋🔋🔋'
   },
   'Libido': {
@@ -900,7 +906,8 @@ const allDrips = {
       ingredients: '<strong>Vitamin B-Complex & B12:</strong> These are your energy and hormone regulators. They support metabolism and nerve function, helping you combat the fatigue and stress that can dampen desire.\n<strong>Vitamin C:</strong> This antioxidant supports your blood vessels. It helps protect cells from stress and enhances the availability of nitric oxide, which is crucial for healthy circulation.\n<strong>L-Arginine:</strong> This is the "circulation star." It’s a key precursor to nitric oxide, which helps dilate blood vessels, promoting enhanced circulation and performance.\n<strong>L-Carnitine:</strong> This is your endurance builder. It boosts energy production at a cellular level, enhances stamina, and supports sperm and egg cell health.\n<strong>Taurine:</strong> This amino acid aids in muscle function, helps balance your mood, and enhances cellular hydration, all of which support a state of relaxed readiness.\n<strong>Magnesium & Zinc:</strong> These are the "hormone balancers." Magnesium relaxes muscles and supports nerve function, while Zinc is absolutely essential for healthy testosterone production and fertility.',
       frequency: '<p><strong>Loading Phase:</strong> Some clients choose a weekly course for 3–4 sessions to jumpstart their energy and circulation. <em>This initial series builds up your nutrient levels to an optimal state.</em></p><p><strong>Maintenance Phase:</strong> For ongoing support, one session every 2 to 4 weeks is recommended.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Looking to reignite vitality, boost stamina, and support sexual wellness? Ideal for men and women experiencing fatigue, low libido, or decreased endurance due to stress or lifestyle.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for individuals with severe renal impairment, congestive heart failure, or G6PD deficiency. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra, Cialis) within 24 hours of infusion. It is also not for people with uncontrolled hypertension, electrolyte imbalances, or severe anaemia. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for individuals with severe renal impairment, congestive heart failure, or G6PD deficiency. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra, Cialis) within 24 hours of infusion. It is also not for people with uncontrolled hypertension, electrolyte imbalances, or severe anaemia.' + notSuitableDisclaimer,
       icon: '💋'
   },
   'Glutamine': {
@@ -915,7 +922,8 @@ const allDrips = {
       ingredients: '<strong>L-Glutamine:</strong> This is the "repair" amino acid. It is the primary fuel for your gut lining, helping to support healthy digestion and nutrient absorption. It also plays a vital role in muscle recovery and supporting your immune system, especially after physical stress.',
       frequency: '<p><strong>Loading Phase (Active Training):</strong> If you are training hard or recovering from illness, a weekly session for 2-4 weeks will provide the best results.</p><p><strong>Maintenance Phase (Wellness):</strong> For general gut and wellness support, one session every 2–3 weeks is ideal.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Athletes, fitness fans, or anyone recovering from intense physical stress. Also beneficial for digestive issues or low energy, helping restore the body from within.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for clients with severe liver or kidney disease (renal failure), or those with metabolic disorders affecting amino acid processing (like severe acidosis). It should be avoided by anyone with a known hypersensitivity to L-Glutamine. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for clients with severe liver or kidney disease (renal failure), or those with metabolic disorders affecting amino acid processing (like severe acidosis). It should be avoided by anyone with a known hypersensitivity to L-Glutamine.' + notSuitableDisclaimer,
       icon: '🏋️'
   },
   'Anxiety Relief': {
@@ -930,7 +938,8 @@ const allDrips = {
       ingredients: '<strong>Taurine:</strong> This is your "calm and focus" agent. It helps to calm the nervous system while also boosting mental resilience and stamina, helping you feel more grounded and less reactive.\n<strong>Magnesium:</strong> This is the "relaxation mineral." It’s famous for its ability to melt away muscle tension and stress, physically calming your nerves to restore a serene sense of balance.\n<strong>Vitamin C:</strong> This is your "stress shield." High stress uses up your Vitamin C stores. This drip replenishes it, supercharging your immunity (which stress weakens) and neutralising stress-induced free radicals.',
       frequency: '<p><strong>Loading Phase:</strong> To get on top of high-stress levels, we recommend one session weekly for 2-3 weeks. <em>This initial series builds up your nutrient levels to an optimal state where you feel calm and in control.</em></p><p><strong>Maintenance Phase:</strong> To maintain that serene balance, one session every 2–4 weeks is ideal.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Feeling overwhelmed by anxiety or stress? Need deep relaxation, better sleep, or mental pressure relief? This drip helps restore inner peace and clarity.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe kidney or liver disease, G6PD deficiency, hypotension (low blood pressure), Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe kidney or liver disease, G6PD deficiency, hypotension (low blood pressure), Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
       icon: '😌'
   },
   'Anxiety Relief Premium': {
@@ -945,7 +954,8 @@ const allDrips = {
       ingredients: '<strong>Magnesium & Calcium Gluconate:</strong> This is your "calm nervous system" duo. Magnesium relaxes muscles and calms the nervous system, while Calcium supports healthy muscle and nerve signalling. Together, they are essential for stress relief.\n<strong>Full B-Vitamin Complex (B1, B2, B3, B5, B6, B12):</strong> This is your "mood and stress-coping" toolkit. B6 helps your body produce serotonin (the \'happy\' chemical). B5 supports your adrenal (stress) glands. B12 enhances mood and energy. This complex works together to build resilience.\n<strong>Ascorbic Acid (Vitamin C):</strong> This is your "stress shield." High stress depletes your Vitamin C. This drip replenishes it, strengthening your immunity (which stress weakens) and combating oxidative stress.',
       frequency: '<p><strong>Loading Phase:</strong> For intensive support, one session every 1–2 weeks for 3-4 sessions is recommended. <em>This initial series builds up your nutrient levels to an optimal state.</em></p><p><strong>Maintenance Phase:</strong> To maintain your balance, one session every 3–4 weeks is ideal.</p><p><strong>Safety Note:</strong> To get the most out of your treatment, we highly recommend staying well-hydrated.</p>' + disclaimer,
       perfectFor: 'Need profound calm? This advanced formula targets high anxiety/stress, supports restful sleep, and restores a joyful, confident focus.', // Rewritten
-      notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe kidney or liver disease, G6PD deficiency, hypotension (low blood pressure), Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+      // Not Suitable For updated
+      notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe kidney or liver disease, G6PD deficiency, hypotension (low blood pressure), Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
       icon: '😌😌'
   },
   'Radiance': {
@@ -960,7 +970,8 @@ const allDrips = {
     ingredients: '<strong>Ascorbic Acid (Vitamin C) (2500 mg):</strong> This is your skin’s best friend. It’s a powerful antioxidant that helps protect your skin from daily stressors (like pollution) and is essential for building new collagen, which keeps skin firm. It also helps to brighten your complexion and even out skin tone.\n<strong>Glutathione (1000 mg) (administered as a slow push):</strong> Known as the body’s "master antioxidant," this is your primary detoxifier. It works hard to neutralise toxins, reduce pigmentation, and promote a clear, luminous complexion from the inside out.',
     frequency: '<p><strong>Loading Phase:</strong> For the very best results, we recommend one session per week for 4–6 weeks. <em>This initial series builds up your body’s antioxidant levels to achieve noticeable improvements in skin tone.</em></p><p><strong>Maintenance Phase:</strong> After the loading phase, you can continue with one session every 2–4 weeks to sustain your glow.</p><p><strong>Safety Note:</strong> The Radiance drip is very well-tolerated. For optimal results, limit loading sessions to a maximum of 2 per week (for up to 3 weeks).</p>' + disclaimer,
     perfectFor: 'Seeking a healthy, luminous glow? Ideal for dull skin, uneven tone, or oxidative stress. Brightens, protects, and rejuvenates skin at a cellular level.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for clients with severe kidney or liver disease, G6PD deficiency, active asthma, active infections, or known sensitivities to Vitamin C or Glutathione. If you are pregnant, breastfeeding, or on medication such as chemotherapy or anticoagulants, please discuss this with our medical team. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for clients with severe kidney or liver disease, G6PD deficiency, active asthma, active infections, or known sensitivities to Vitamin C or Glutathione. If you are pregnant, breastfeeding, or on medication such as chemotherapy or anticoagulants, please discuss this with our medical team.' + notSuitableDisclaimer,
     icon: '✨'
   },
   'Radiance Plus': {
@@ -975,7 +986,8 @@ const allDrips = {
     ingredients: '<strong>High-Potency Ascorbic Acid (Vitamin C):</strong> This larger, more potent dose powerfully boosts collagen synthesis, brightens the skin, and protects your cells from damage.\n<strong>High-Potency Glutathione (administered as a slow push):</strong> This increased amount of the "master antioxidant" works even harder to neutralise toxins, reduce pigmentation, and promote a clear, brilliant complexion.',
     frequency: '<p><strong>Loading Phase:</strong> For best results, we recommend one session per week for 4–6 weeks. <em>The loading phase helps your body build up a strong reserve of nutrients to achieve noticeable improvements.</em></p><p><strong>Maintenance Phase:</strong> After the loading phase, continue with maintenance sessions every 2–4 weeks to sustain your enhanced glow.</p><p><strong>Safety Note:</strong> Radiance Plus is a high-potency drip. Limit loading sessions to a maximum of 2 per week for up to 3 weeks.</p>' + disclaimer,
     perfectFor: 'Want faster, enhanced results than Radiance? Maximise skin brightness and clarity while combating oxidative stress from a busy modern life.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for clients with severe kidney or liver disease, G6PD deficiency, active asthma, active infections, or known sensitivities to Vitamin C or Glutathione. If you are pregnant, breastfeeding, or on medication such as chemotherapy or anticoagulants, please discuss this with our medical team. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for clients with severe kidney or liver disease, G6PD deficiency, active asthma, active infections, or known sensitivities to Vitamin C or Glutathione. If you are pregnant, breastfeeding, or on medication such as chemotherapy or anticoagulants, please discuss this with our medical team.' + notSuitableDisclaimer,
     icon: '✨✨'
   },
   'Radiance Premium': {
@@ -989,7 +1001,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.',
     frequency: '<p><strong>Loading Phase:</strong> For the ultimate anti-aging and glow results, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> After the initial phase, one session per month is recommended to maintain cellular energy and radiance.</p>' + disclaimer,
     perfectFor: 'Our ultimate anti-aging and glow formula. Combats aging signs, brightens dull skin, boosts cellular energy. Comprehensive support for skin, energy, and repair.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, uncontrolled diabetes, or active thyroid conditions (due to ALA). It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, uncontrolled diabetes, or active thyroid conditions (due to ALA). It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '✨✨✨'
   },
   'Biotin': {
@@ -1003,7 +1016,8 @@ const allDrips = {
     ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.',
     frequency: '<p><strong>Loading Phase:</strong> To strengthen hair, skin, and nails, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> To maintain results, one session every 2-4 weeks is ideal.</p>' + disclaimer,
     perfectFor: 'Got brittle nails or thinning hair? This focused drip strengthens hair, skin, and nails for a radiant boost.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a known hypersensitivity to Biotin. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a known hypersensitivity to Biotin. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor.' + notSuitableDisclaimer,
     icon: '🧴✨'
   },
   'Vitamin C': {
@@ -1017,7 +1031,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin C</strong>: Strengthens immune defense. Supports collagen synthesis for skin, joints, and connective tissue. Neutralises free radicals and reduces inflammation. Aids in iron absorption and wound healing. Promotes overall vitality and detox support.',
     frequency: '<p><strong>Loading Phase (Immune Support):</strong> During high stress, recovery, or illness, one session weekly for 2-3 weeks can be beneficial.</p><p><strong>Maintenance Phase (Wellness):</strong> For general wellness and immune support, one session every 2–4 weeks is recommended.</p>' + disclaimer,
     perfectFor: 'Your go-to add-on for immune defence and skin health. Ideal if you feel run down, are exposed to bugs, or want to boost collagen and radiance. Great for recovery.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for clients with a known allergy to ascorbic acid, a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding clients without prior medical clearance. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for clients with a known allergy to ascorbic acid, a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding clients without prior medical clearance.' + notSuitableDisclaimer,
     icon: '🍊'
   },
   'Anti Inflammatory & Auto Immune': {
@@ -1031,7 +1046,8 @@ const allDrips = {
     ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Loading Phase:</strong> To help reduce systemic inflammation, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> To maintain balance, one session every 2-4 weeks is recommended, or as flare-ups occur.</p>' + disclaimer,
     perfectFor: 'Seeking to calm systemic inflammation? Ideal for autoimmune conditions, chronic joint pain, or athlete recovery. Powerful antioxidant blend plus nerve/muscle support.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, Myasthenia Graenia, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, Myasthenia Graenia, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🧘'
   },
   'Anti Inflammatory Premium': {
@@ -1045,7 +1061,8 @@ const allDrips = {
     ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Loading Phase:</strong> For active inflammation or nerve discomfort, one session weekly or bi-weekly for 3-4 sessions is recommended.</p><p><strong>Maintenance Phase:</strong> For ongoing support, one session every 2-4 weeks is ideal.</p>' + disclaimer,
     perfectFor: 'Our advanced drip for chronic inflammation, joint pain, or nerve discomfort. High-potency antioxidants (Glutathione, Vit C) plus targeted nerve support (ALA).', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, uncontrolled diabetes, active thyroid conditions, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, uncontrolled diabetes, active thyroid conditions, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🧘🧘'
   },
   'Immune Booster': {
@@ -1059,7 +1076,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.',
     frequency: '<p><strong>Loading Phase (Active Support):</strong> When feeling run down or during illness, one session weekly for 2-3 weeks can provide support.</p><p><strong>Maintenance Phase (Prevention):</strong> For general prevention, one session every 2-4 weeks is ideal, especially during cold and flu season.</p>' + disclaimer,
     perfectFor: 'Your core immune shield. Great if you feel run down, travel often, or need extra support during cold/flu season. Strengthens natural defences with Vitamin C.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding individuals without medical clearance. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding individuals without medical clearance.' + notSuitableDisclaimer,
     icon: '🛡️'
   },
   'Immune Booster Premium': {
@@ -1073,7 +1091,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.',
     frequency: '<p><strong>Loading Phase (Active Support):</strong> When recovering from illness or under high stress, one session weekly for 2-3 weeks provides maximum support.</p><p><strong>Maintenance Phase (Prevention):</strong> For robust prevention, one session every 2-4 weeks is recommended.</p>' + disclaimer,
     perfectFor: 'High-potency immune defence. Ideal for significant stress, illness recovery, or maximum immune support. Supercharges resilience with premium Vitamin C.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding individuals without medical clearance. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, severe renal impairment, or G6PD deficiency. It is also not recommended for pregnant or breastfeeding individuals without medical clearance.' + notSuitableDisclaimer,
     icon: '🛡️🛡️'
   },
   'Trace Elements': {
@@ -1087,7 +1106,8 @@ const allDrips = {
     ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.',
     frequency: '<p><strong>Loading Phase (Deficiency):</strong> If you suspect a deficiency, one session weekly for 3-4 weeks is recommended.</p><p><strong>Maintenance Phase:</strong> For general metabolic and immune support, one session every 2-4 weeks is ideal.</p>' + disclaimer,
     perfectFor: 'Supports core metabolic and immune functions. Good for potential dietary gaps, boosting thyroid health (Selenium), and immune response (Zinc).', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with known allergies to trace minerals (like Zinc or Selenium), severe kidney disease, or conditions like Hemochromatosis (iron overload). It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with known allergies to trace minerals (like Zinc or Selenium), severe kidney disease, or conditions like Hemochromatosis (iron overload). It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🌿'
   },
   'Anti Ageing': {
@@ -1101,7 +1121,8 @@ const allDrips = {
     ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.',
     frequency: '<p><strong>Loading Phase:</strong> For cellular repair and a noticeable boost in vitality, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> To maintain cognitive and energy benefits, one session per month is recommended.</p>' + disclaimer,
     perfectFor: 'Concerned with aging, energy decline, or cognitive function? This drip supports cellular repair and rejuvenation with NAD⁺.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for pregnant or breastfeeding individuals, or those with active, uncontrolled medical conditions without prior clearance from their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for pregnant or breastfeeding individuals, or those with active, uncontrolled medical conditions without prior clearance from their doctor.' + notSuitableDisclaimer,
     icon: '⏳'
   },
   'ALA': {
@@ -1115,7 +1136,8 @@ const allDrips = {
     ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.',
     frequency: '<p><strong>Loading Phase:</strong> For active antioxidant and nerve support, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> For ongoing support, one session every 2-4 weeks is ideal.</p>' + disclaimer,
     perfectFor: 'Need antioxidant and nerve support? Beneficial for diabetic neuropathy or autoimmune conditions, enhancing cellular resilience with ALA.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with uncontrolled diabetes (as it can lower blood sugar), active thyroid conditions, severe liver or kidney disease, or a thiamine (B1) deficiency. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with uncontrolled diabetes (as it can lower blood sugar), active thyroid conditions, severe liver or kidney disease, or a thiamine (B1) deficiency. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🌟'
   },
   'Menopause Relief': {
@@ -1129,7 +1151,8 @@ const allDrips = {
     ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Loading Phase (Active Symptoms):</strong> For more pronounced symptoms like hot flashes or mood swings, one session weekly for 2-3 weeks can help restore balance.</p><p><strong>Maintenance Phase:</strong> For ongoing support, one session every 2-3 weeks is recommended.</p>' + disclaimer,
     perfectFor: 'Experiencing menopause symptoms like hot flashes, mood swings, fatigue? This drip offers hormone balance support and symptom relief.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with a history of kidney stones, G6PD deficiency, active asthma, severe kidney or liver disease, Myasthenia Gravis, or severe heart block. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🌡️'
   },
   'Weight Loss': {
@@ -1143,7 +1166,8 @@ const allDrips = {
     ingredients: '<strong>MIC (Methionine, Inositol, Choline)</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.',
     frequency: '<p><strong>Loading Phase:</strong> As part of an active diet and exercise plan, we recommend one session weekly for 4-6 weeks to support fat metabolism.</p><p><strong>Maintenance Phase:</strong> To continue supporting your goals, one session every 2-4 weeks is recommended.</p>' + disclaimer,
     perfectFor: 'Aiming for weight loss or targeting stubborn fat? Supports metabolism and muscle preservation, especially for fitness enthusiasts. Powered by MIC.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with severe liver or kidney disease, or a known allergy to its components (Methionine, Inositol, Choline). It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with severe liver or kidney disease, or a known allergy to its components (Methionine, Inositol, Choline). It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🔥'
   },
   'Weight Loss Premium': {
@@ -1157,7 +1181,8 @@ const allDrips = {
     ingredients: '<strong>MIC</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.',
     frequency: '<p><strong>Loading Phase:</strong> To maximize energy and fat metabolism during an active fitness regimen, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> To maintain metabolic support and performance, one session every 2-4 weeks is ideal.</p>' + disclaimer,
     perfectFor: 'Serious about weight loss or fitness? This advanced formula combines MIC with amino acids to boost energy, enhance performance, and support lean muscle recovery.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra) or those who have had a recent heart attack (due to L-Arginine). It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra) or those who have had a recent heart attack (due to L-Arginine). It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🔥🔥'
   },
   'Fertility': {
@@ -1171,7 +1196,8 @@ const allDrips = {
     ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Support Phase:</strong> For antioxidant support while trying to conceive or preparing for treatments, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> One session every 2-4 weeks can be continued for ongoing support.</p>' + disclaimer,
     perfectFor: 'Couples trying to conceive, women undergoing fertility treatments, or anyone needing antioxidant support for reproductive health affected by oxidative stress.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It should also be avoided by those currently pregnant or breastfeeding unless cleared by their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It should also be avoided by those currently pregnant or breastfeeding unless cleared by their doctor.' + notSuitableDisclaimer,
     icon: '👶'
   },
   'Detox': {
@@ -1185,7 +1211,8 @@ const allDrips = {
     ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Loading Phase (Deep Cleanse):</strong> For a deep detoxification, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> For ongoing liver support and antioxidant benefits, one session per month is ideal.</p>' + disclaimer,
     perfectFor: 'Need to support your liver\'s natural cleansing? Ideal after indulgence or toxin exposure. Glutathione helps clear out cellular "junk".', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🧹'
   },
   'Detox Premium': {
@@ -1199,7 +1226,8 @@ const allDrips = {
     ingredients: '<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.',
     frequency: '<p><strong>Loading Phase (Deep Cleanse):</strong> For a high-potency detoxification, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> For ongoing liver support and antioxidant benefits, one session per month is ideal.</p>' + disclaimer,
     perfectFor: 'Want a deep cleanse or maximum antioxidant support? This high-potency Glutathione drip powerfully supports liver function, fights oxidative stress, and improves skin clarity.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with active asthma or severe kidney/liver disease. It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🧹🧹'
   },
   'Sport Restore': {
@@ -1213,7 +1241,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin B12 (Cobalamin)</strong> – Enhances red blood cell production, energy, and nerve function.\n<strong>Vitamin B Complex</strong> – Recharges metabolism, supports endurance, and reduces fatigue.\n<strong>Magnesium Sulphate</strong> – Relieves muscle cramps, supports heart rhythm, and reduces inflammation.\n<strong>Glutathione</strong> – Powerful antioxidant that promotes cellular recovery and detoxification.',
     frequency: '<p><strong>Loading Phase (Intense Training):</strong> During periods of intense training or competition, one session weekly can provide optimal recovery support.</p><p><strong>Maintenance Phase:</strong> During regular training cycles, one session every 2–3 weeks helps maintain performance and recovery.</p>' + disclaimer,
     perfectFor: 'Athletes and fitness enthusiasts needing rapid recovery and performance restoration after intense physical activity or training.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease (renal failure), congestive heart failure, uncontrolled hypertension, active asthma, Myasthenia Gravis, or active electrolyte imbalances. It should also be avoided by anyone with a known allergy to the ingredients. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for pregnant or breastfeeding individuals, those with severe kidney disease (renal failure), congestive heart failure, uncontrolled hypertension, active asthma, Myasthenia Gravis, or active electrolyte imbalances. It should also be avoided by anyone with a known allergy to the ingredients.' + notSuitableDisclaimer,
     icon: '🏅'
   },
   'Sports Edge': {
@@ -1227,7 +1256,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin B12</strong> -Boosts energy production and reduces fatigue.Supports red blood cell formation for improved oxygen delivery.Enhances focus and cognitive function.Aids in muscle endurance and stamina.\n<strong>Magnesium</strong> - Prevents muscle cramps and supports electrolyte balance. Reduces inflammation and supports muscle relaxation. Plays a vital role in ATP (energy) synthesis. Aids recovery from strenuous workouts.\n<strong>G.A.C. Blend (Glutamine, Arginine, Carnitine)</strong>\n<strong>Glutamine</strong>: Supports muscle repair, reduces soreness, and strengthens immune function.\n<strong>Arginine</strong>: Increases nitric oxide for improved circulation and oxygen delivery to muscles.\n<strong>Carnitine</strong>: Enhances fat metabolism, boosts endurance, and supports lean muscle performance.\n<strong>Vitamin C</strong>-Acts as a powerful antioxidant to combat oxidative stress. Reduces muscle inflammation post-exercise.Strengthens the immune system and supports collagen production. Aids iron absorption for better oxygen transport.',
     frequency: '<p><strong>Loading Phase (Peak Performance):</strong> During active training periods, 1-2 sessions per week can maximize endurance and recovery.</p><p><strong>Maintenance Phase:</strong> As needed post-intense workouts or every 2-3 weeks for maintenance.</p>' + disclaimer,
     perfectFor: 'Athletes, fitness enthusiasts, runners, cyclists, gym-goers wanting to enhance recovery, endurance, and energy for peak performance.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with severe kidney disease, congestive heart failure, G6PD deficiency, or Myasthenia Gravis. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra) or those who have had a recent heart attack (due to L-Arginine). It is also not recommended for pregnant or breastfeeding individuals. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with severe kidney disease, congestive heart failure, G6PD deficiency, or Myasthenia Gravis. It must be avoided by those on nitrates or PDE5 inhibitors (e.g., Viagra) or those who have had a recent heart attack (due to L-Arginine). It is also not recommended for pregnant or breastfeeding individuals.' + notSuitableDisclaimer,
     icon: '🏅🏅'
   },
   'Aqua Hydrate': {
@@ -1241,7 +1271,8 @@ const allDrips = {
     ingredients: '<strong>Saline</strong> is a sterile, balanced solution of water and sodium chloride that matches your body’s natural fluid composition.',
     frequency: '<p><strong>As-Needed Boost:</strong> This drip is perfect as needed after exertion, illness, travel, or dehydration.</p><p><strong>Maintenance Phase:</strong> For sustained hydration and general wellbeing, one session every 2–4 weeks is also beneficial.</p>' + disclaimer,
     perfectFor: 'Feeling fatigued, dehydrated, or low energy? Ideal for travellers, athletes, post-illness/hangover recovery, or anyone needing a gentle hydration reset.', // Rewritten
-    notSuitableFor: 'This drip is not recommended for individuals with severe kidney disease, congestive heart failure, or uncontrolled high blood pressure, as they may be sensitive to fluid volume. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not recommended for individuals with severe kidney disease, congestive heart failure, or uncontrolled high blood pressure, as they may be sensitive to fluid volume.' + notSuitableDisclaimer,
     icon: '💦'
   },
   'B12': {
@@ -1255,7 +1286,8 @@ const allDrips = {
     ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.',
     frequency: '<p><strong>Loading Phase (Deficiency):</strong> To correct a deficiency, we recommend one session weekly for 4-6 weeks.</p><p><strong>Maintenance Phase:</strong> For ongoing energy and mood support, one session per month is ideal.</p>' + disclaimer,
     perfectFor: 'Have a B12 deficiency, follow a vegan/vegetarian diet, or experience fatigue/nerve issues? This provides a direct boost of essential B12.', // Rewritten
-    notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Leber\'s disease (a hereditary eye condition), or a known allergy to Cobalamin or cobalt. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not suitable for individuals with severe kidney or liver disease, Leber\'s disease (a hereditary eye condition), or a known allergy to Cobalamin or cobalt. It is also not recommended for pregnant or breastfeeding individuals without clearance from their doctor.' + notSuitableDisclaimer,
     icon: '🔥'
   }, // Spelling: Energise, Fuelling
   'Hangover & Jet Lag': {
@@ -1269,7 +1301,8 @@ const allDrips = {
     ingredients: '<strong>Vitamin B12</strong> – Restores energy and supports nervous system recovery\n<strong>Vitamin B Complex</strong> – Enhances metabolism and relieves fatigue\n<strong>Magnesium</strong> - Eases muscle tension and headaches\n<strong>Vitamin C</strong> – Strengthens immunity and fights oxidative stress\n<strong>Taurine</strong> – Boosts focus and supports liver function\n<strong>Glutathione</strong> – Potent antioxidant for detoxification and skin radiance',
     frequency: '<p><strong>As-Needed Rescue:</strong> This drip is designed for occasional use as a rapid recovery boost after travel, events, or periods of fatigue.</p><p><strong>Wellness Support:</strong> If used for general detox and wellness, one session every 2–4 weeks can be beneficial.</p>' + disclaimer,
     perfectFor: 'Travellers, partygoers, or busy professionals needing a fast reset from fatigue, dehydration, and mental fog after travel or events.', // Rewritten
-    notSuitableFor: 'This drip is not recommended if you’re pregnant or breastfeeding, have severe kidney, liver, or heart conditions, G6PD deficiency, active asthma, or Myasthenia Gravis. It should also be avoided if you’re unwell with an infection, have uncontrolled high blood pressure, or have known allergies to any ingredients. \n\n<small><i>Important Disclaimer: Your wellbeing is our top priority. It is essential that all pre-existing medical conditions, current medications, and any supplements you are taking are fully disclosed on your consent form. This allows our medical team to ensure your IV is perfectly safe and tailored to your needs.</i></small>',
+    // Not Suitable For updated
+    notSuitableFor: 'This drip is not recommended if you’re pregnant or breastfeeding, have severe kidney, liver, or heart conditions, G6PD deficiency, active asthma, or Myasthenia Gravis. It should also be avoided if you’re unwell with an infection, have uncontrolled high blood pressure, or have known allergies to any ingredients.' + notSuitableDisclaimer,
     icon: '💧'}
 };
 // UPDATED Categories for Emotive Feel and Refined Lifestyle
@@ -1428,13 +1461,18 @@ function renderDrips() {
   const grid = document.getElementById('drips-grid');
   grid.innerHTML = selectedCategory.drips.map(dripName => {
     const drip = allDrips[dripName];
-    if (!drip || drip.price === null || String(drip.price).toLowerCase() === 'n/a') return '';
+    // CORRECTED FILTER LOGIC: Display all drips in the category, regardless of price, unless the drip data is missing.
+    if (!drip) return '';
+    
+    // Check if drip.price is defined and not explicitly 'N/A' to determine if price should be shown
+    const priceText = (drip.price !== null && String(drip.price).toLowerCase() !== 'n/a') ? `R${drip.price}` : 'Price: N/A';
+
     return `<div class="card" onclick="showDripDetails('${dripName.replace(/'/g, "\\'")}')">
               <div class="icon">${drip.icon || '💧'}</div>
               <div class="drip-name">${drip.name}</div>
               <div class="tile-divider"></div>
               <p class="drip-tagline">${drip.tagline || ''}</p>
-              <p class="price">R${drip.price}</p>
+              <p class="price">${priceText}</p>
             </div>`;
   }).join('');
 }
