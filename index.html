@@ -990,18 +990,18 @@ const defaultLifestyleCategories = [
   {name: 'Weekend Warriors / Socialites', icon: '🎉', drips: ['Hangover & Jet Lag', 'Detox', 'Detox Premium', 'Libido', 'Aqua Hydrate', 'Jet Fuel']}
 ];
 
-// --- GENERATION-SPECIFIC CATEGORIES ---
+// --- GENERATION-SPECIFIC CATEGORIES (UPDATED GEN Z) ---
 
 // FEEL/GOAL CATEGORIES (31 Drips included)
 const feelGoalCategories_GenZ = [
   {name: "Shame, I'm Vired! (Need Energy/Reset)", icon: '🥵', drips: ['Recharge', 'Recharge Premium', 'Jet Fuel', 'Jet Fuel Premium', 'B12', 'Hangover & Jet Lag', 'Aqua Hydrate']},
   {name: 'Gees Boost & Focus (Level Up)', icon: '⚡', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Anti Ageing', 'Libido', 'Sports Edge']},
-  {name: 'Skin Glow Up & Vibe Check', icon: '✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Detox Premium', 'Detox']},
+  {name: 'Skin Vibe & Glow Up', icon: '✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Detox Premium', 'Detox']},
   {name: 'Full Body Reset & Shredding', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA', 'Aqua Hydrate', 'Glutamine', 'Hangover & Jet Lag', 'Weight Loss', 'Weight Loss Premium']},
   {name: 'Chill, Man (Anxiety/Stress Relief)', icon: '😌', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate', 'Anti Inflammatory & Auto Immune']},
-  {name: 'Muscle Shreking & Gains', icon: '💪', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
+  {name: 'Muscle Gains & Recovery', icon: '💪', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
   {name: 'Immune Armour & Protection', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
-  {name: 'Anti-Aging & Future Proofing', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium', 'Radiance Plus', 'ALA', 'Fertility']},
+  {name: 'Future Proofing My Vibe', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium', 'Radiance Plus', 'ALA', 'Fertility']},
   {name: 'Hormone Balance & Fertility', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']}
 ];
 
@@ -1045,7 +1045,7 @@ const lifestyleCategories_GenZ = [
   {name: 'The Side Hustle Flex', icon: '💻', drips: ['Recharge Premium', 'Jet Fuel Premium', 'B12', 'Anxiety Relief Premium', 'Detox Premium', 'Radiance Premium']},
   {name: 'Weekend Sesh Recovery', icon: '🎉', drips: ['Hangover & Jet Lag', 'Aqua Hydrate', 'Detox', 'B12']},
   {name: 'The Aesthetic Drips (Skin/Hair)', icon: '💅', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Anti Ageing']},
-  {name: 'The Gym Rat Drip (Shred/Gains)', icon: '💪', drips: ['Sports Edge', 'Sport Restore', 'Glutamine', 'Weight Loss Premium']},
+  {name: 'The Gym Vibe (Shred/Gains)', icon: '💪', drips: ['Sports Edge', 'Sport Restore', 'Glutamine', 'Weight Loss Premium']},
   {name: 'Mental Health Vibe', icon: '😌', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Recharge', 'Detox']},
   {name: 'The Conscious Eater (Vegan/Wellness)', icon: '🥗', drips: ['Trace Elements', 'B12', 'ALA', 'Immune Booster', 'Glutamine']},
   {name: 'Travel & FOMO Support', icon: '✈️', drips: ['Jet Fuel', 'Recharge', 'Immune Booster', 'Hangover & Jet Lag', 'Aqua Hydrate']},
@@ -1141,7 +1141,7 @@ function submitPersonalization() {
     }
     if (isNaN(age) || age < 18 || age > 100) { // Enforcing >= 18
         // User-friendly message for age validation
-        errorMessage.textContent = 'Just a heads-up: We can only treat clients who are 18 years or older. Please ensure you enter a valid age.';
+        errorMessage.textContent = 'Just a heads-up: IV drips are only permitted for clients aged 18 and older. Please check your age and try again.';
         return;
     }
     
@@ -1189,17 +1189,17 @@ function updateFilterOptions() {
 
     // Filter Select Labels
     if (generation.includes('Gen Z') || generation.includes('Alpha')) {
-        feelGoalText = "What's My Glow Up Vibe?"; // Removed * and changed to first person
-        lifestyleText = "My Daily Shifting Grind"; // Removed * and changed to first person
+        feelGoalText = "What's My Vibe/Glow Up Goal?"; 
+        lifestyleText = "My Daily Shifting Grind"; 
     } else if (generation.includes('Millennial')) {
-        feelGoalText = "What's My Level Up Goal?"; // Removed * and changed to first person
-        lifestyleText = "My Daily Hustle"; // Removed * and changed to first person
+        feelGoalText = "What's My Level Up Goal?"; 
+        lifestyleText = "My Daily Hustle"; 
     } else if (generation.includes('Gen X')) {
-        feelGoalText = "My Balance & Focus Need"; // Removed * and changed to first person
-        lifestyleText = "My Current Routine"; // Removed * and changed to first person
+        feelGoalText = "My Balance & Focus Need"; 
+        lifestyleText = "My Current Routine"; 
     } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-        feelGoalText = "Wellness Focus & Longevity"; // Removed * and kept as 3rd person plural for dignity
-        lifestyleText = "My Health & Experience"; // Removed * and changed to first person
+        feelGoalText = "My Wellness Focus & Longevity"; 
+        lifestyleText = "My Health & Experience"; 
     } else {
         // Default
         feelGoalText = "What's My Vibe/Goal?";
