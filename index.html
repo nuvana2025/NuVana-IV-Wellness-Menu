@@ -324,7 +324,7 @@
 
     /* NEW: Light Therapy Frequency Guide Layout */
     .frequency-guide-list { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-    .frequency-guide-item { display: flex; flex-flow: row wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9em; }
+    .frequency-guide-item { display: flex; flex-flow: row flex-start; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.9em; }
     .frequency-guide-item:last-child { border-bottom: none; }
     .light-info { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .light-frequency { text-align: right; color: #555; flex-grow: 1; }
@@ -420,6 +420,20 @@
         margin-top: -10px;
         margin-bottom: 20px;
         font-size: 0.9em;
+    }
+    /* Custom style for wrapped service text */
+    .value-add-service-hook {
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 12px; 
+        color: #006400; 
+        line-height: 1.3;
+    }
+    .value-add-service-hook span {
+        display: block;
+        font-size: 0.8em; /* 2 points smaller than 1.1em */
+        font-weight: 400;
+        color: #333;
     }
 
 
@@ -759,8 +773,9 @@
       <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
       <div class="accordion-content" id="lt-pricing">
         <!-- IMPROVED PRICING LAYOUT -->
-        <p style="font-size: 1.1em; font-weight: 700; margin-bottom: 12px; color: #006400; text-align: center;">
-            **Value-Add:** Get a complimentary **Portable High Pressure Oxygen Atomizer** treatment with every session!
+        <p class="value-add-service-hook">
+            Value-Added Service: Portable High Pressure 
+            <span>Oxygen Atomizer treatment with every session</span>
         </p>
         <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
             <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
@@ -770,8 +785,8 @@
 
             <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
             <ul class="price-list" style="font-size: 1.05em;">
-                <li style="margin-bottom: 4px;">**3 Sessions:** R1,125 (R375 per session - **Ideal for Loading Phase**)</li>
-                <li style="margin-bottom: 4px;">**6 Sessions:** R1,800 (R300 per session - **Best for Maintenance Phase**)</li>
+                <li style="margin-bottom: 4px;">3 Sessions: R1,125 (R375 per session - **Ideal for Loading Phase**)</li>
+                <li style="margin-bottom: 4px;">6 Sessions: R1,800 (R300 per session - **Best for Maintenance Phase**)</li>
             </ul>
         </div>
         
@@ -1338,10 +1353,9 @@ window.selectCategory = function(categoryName) {
 }
 window.renderDrips = function() {
   if (!selectedCategory) return;
-  const firstName = userSession.name.split(' ')[0];
   
-  // RETAINING ONLY THE FIRST NAME AND A GENERIC PROMPT (FIX)
-  document.getElementById('drips-heading').textContent = `${firstName}, check out the recommended IV Drips.`;
+  // RETAINING ONLY "Recommendations" (FIX)
+  document.getElementById('drips-heading').textContent = `Recommendations`;
   
   const grid = document.getElementById('drips-grid');
   grid.innerHTML = selectedCategory.drips.map(dripName => {
@@ -1364,6 +1378,7 @@ window.showDripDetails = function(dripName) {
   const firstName = userSession.name.split(' ')[0];
 
   // --- CRUCIAL FIX: Dynamic Personalized Title is simplified to Drip Name only ---
+  // Ensuring the title is just the Drip Name + 'Drip' (e.g., "Jet Fuel Drip")
   document.getElementById('detail-name').textContent = `${drip.name} Drip`;
   // --- END CRUCIAL FIX ---
   
