@@ -102,7 +102,33 @@
         margin-bottom: 24px;
         color: #004d26;
         padding-left: 5px;
+        display: inline-block; /* Allow alignment */
     }
+    .main-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+    /* WhatsApp Icon Styling */
+    .whatsapp-enquiry {
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 700;
+        color: #004d26;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-right: 5px; /* Alignment adjustment */
+        flex-shrink: 0;
+    }
+    .whatsapp-icon {
+        width: 18px;
+        height: 18px;
+        fill: #25D366; /* WhatsApp green */
+        vertical-align: middle;
+    }
+
     /* Buttons & Nav */
     button { -webkit-appearance: none; appearance: none; cursor: pointer; }
     .nav-controls {
@@ -546,7 +572,39 @@
     .price-list li:last-child {
         border-bottom: none;
     }
-
+    /* Footer Styling */
+    .nv-footer-v2 { 
+      color: #FFD700 !important; 
+      font-style: italic !important; 
+      margin-top: 20px; 
+      padding: 10px 10px; 
+      font-size: 0.9em; 
+      border-top: 1px solid #ddd; 
+      background: #00310c;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-whatsapp {
+        text-align: right;
+        font-weight: 700;
+        margin-top: 4px;
+        flex-shrink: 0;
+        width: 100%; /* Default to full width on mobile */
+    }
+    .footer-powered-by {
+        text-align: left;
+        flex-grow: 1;
+        width: 100%; /* Default to full width on mobile */
+    }
+    .copyright { 
+        font-size: 0.8em; 
+        color: #FFD700; 
+        margin-top: 8px; 
+        width: 100%;
+        text-align: center;
+    }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
@@ -565,10 +623,15 @@
       .footer-whatsapp, .footer-powered-by, .copyright {
           width: 100%;
           text-align: center;
-          margin-top: 8px;
-      }
-      .nv-footer-v2 > p {
           margin: 4px 0;
+      }
+      .main-menu-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .whatsapp-enquiry {
+        margin-top: 10px;
+        margin-right: 0;
       }
       .led-specs-table thead { display: none; }
       .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td { display: block; width: 100%; }
@@ -614,6 +677,14 @@
           text-align: center;
           margin-top: 8px;
       }
+      .main-menu-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .whatsapp-enquiry {
+        margin-top: 0;
+      }
     }
 </style>
 </head>
@@ -648,7 +719,14 @@
 <div class="container">
 <div data-view-id="main-menu-view" id="main-menu-view">
 
-<h2 class="main-menu-title">Menu</h2>
+<div class="main-menu-header">
+    <h2 class="main-menu-title">Menu</h2>
+    <a href="https://wa.me/27717347578" class="whatsapp-enquiry" target="_blank">
+        Enquire via 
+        <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.031 0C5.399 0 0 5.405 0 12.023c0 2.226.591 4.364 1.716 6.223L.003 24l5.973-1.637c1.782.977 3.82 1.547 5.955 1.547 6.632 0 12.031-5.393 12.031-12.028C24.031 5.405 18.632 0 12.031 0zm0 2.223c5.385 0 9.809 4.394 9.809 9.8s-4.424 9.802-9.809 9.802c-2.072 0-4.04-.68-5.719-1.921l-.409-.238-4.256 1.168 1.18-4.148-.266-.418c-1.129-1.848-1.74-3.957-1.74-6.155 0-5.388 4.424-9.802 9.809-9.802zM12.031 4.441c-4.159 0-7.585 3.424-7.585 7.582 0 1.564.484 3.09 1.393 4.382l.142.215-.658 2.308 2.36-.648.214.137c1.293.91 2.82 1.391 4.39 1.391 4.158 0 7.584-3.418 7.584-7.582 0-4.158-3.426-7.575-7.584-7.575zm-3.619 4.322c-.11-.295-.246-.358-.501-.368-.255-.011-.531-.01-.812-.01-.282 0-.742.106-1.13.568-.39.462-1.488 1.458-1.488 3.559 0 2.1 1.528 4.12 1.745 4.415.217.295 3.042 4.887 7.375 6.772 4.162 1.769 4.717 1.472 5.568 1.37.852-.102 2.685-.929 3.056-1.838.373-.911.373-.847.262-1.57-.111-.722-.406-1.13-.824-1.353-.418-.223-.89-.356-1.282-.551-.39-.196-.927-.308-1.432-.191-.506.117-.988.756-1.205 1.05-.216.295-.445.322-.824.113-.379-.209-1.566-.582-2.986-1.841-1.104-.972-1.847-2.176-2.064-2.585-.217-.409-.024-.593.193-.802.196-.196.44-.462.66-.693.22-.232.296-.407.445-.66.148-.253.074-.462-.037-.694-.11-.231-.994-2.39-1.373-3.266-.378-.875-.756-.757-1.13-.772-.375-.018-.809-.018-1.242-.018Z"/></svg>
+        071 734 7578
+    </a>
+</div>
 <div class="grid">
 <div class="card" onclick="navigateTo('age-input-view')"> <!-- Changed navigation here -->
 <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
@@ -666,8 +744,7 @@
 </div>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -710,8 +787,7 @@
 </div>
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -722,8 +798,7 @@
 <h2 id="drips-heading">Recommendations</h2>
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -771,8 +846,7 @@
 
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -815,8 +889,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1026,8 +1099,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Fagron Pharmaceuticals – Global leader with an affinity for the highest standards of safety and effectiveness.</p>
-    <p class="footer-whatsapp"><a href="https://wa.me/27717347578" style="color: inherit; text-decoration: underline;">Bookings via WhatsApp: 071 734 7578</a></p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1316,10 +1388,10 @@ window.submitPersonalization = function() {
 }
 
 window.skipPersonalization = function() {
-    // Set default name and enforce Millennial/GenY experience
+    // Set default name and enforce Gen X experience (as requested: Millennial/GenY = Hustle Generation)
     userSession.name = 'Wellness Seeker';
-    userSession.age = 35; // Default age for Millennial (GenY)
-    userSession.generation = 'Millennial (The Hustle Generation)'; 
+    userSession.age = 50; // Default age for Gen X
+    userSession.generation = 'Gen X (The Bridge Builders)'; 
 
     updateFilterOptions();
     navigateTo('categories-view');
