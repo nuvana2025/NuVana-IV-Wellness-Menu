@@ -514,10 +514,10 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2>Personalise Your Wellness Journey</h2>
+    <h2>Tailor My Drip: Unlock Your Perfect Formula</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
-        <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="Your Name">
+        <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
 
         <label for="user-age">My Age (in years)</label>
         <input type="number" id="user-age" placeholder="e.g., 35" min="18" max="100" required aria-label="My Age">
@@ -994,15 +994,15 @@ const defaultLifestyleCategories = [
 
 // FEEL/GOAL CATEGORIES (31 Drips included)
 const feelGoalCategories_GenZ = [
-  {name: "Shame, I'm Vired! (Need Energy/Reset)", icon: '🥵', drips: ['Recharge', 'Recharge Premium', 'Jet Fuel', 'Jet Fuel Premium', 'B12', 'Hangover & Jet Lag', 'Aqua Hydrate']},
-  {name: 'Gees Boost & Focus (Level Up)', icon: '⚡', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Anti Ageing', 'Libido', 'Sports Edge']},
+  {name: "Life showing me flames!🔥 (Energy Booster & Reset)", icon: '🥵', drips: ['Recharge', 'Recharge Premium', 'Jet Fuel', 'Jet Fuel Premium', 'B12', 'Hangover & Jet Lag', 'Aqua Hydrate']}, 
+  {name: 'Level Up (Boost & Focus)', icon: '⚡', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Anti Ageing', 'Libido', 'Sports Edge']}, 
   {name: 'Skin Vibe & Glow Up', icon: '✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Detox Premium', 'Detox']},
   {name: 'Full Body Reset & Shredding', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA', 'Aqua Hydrate', 'Glutamine', 'Hangover & Jet Lag', 'Weight Loss', 'Weight Loss Premium']},
-  {name: 'Chill, Man (Anxiety/Stress Relief)', icon: '😌', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate', 'Anti Inflammatory & Auto Immune']},
-  {name: 'Muscle Gains & Recovery', icon: '💪', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
+  {name: 'Baby Calm Down (Anxiety/Stress Relief)', icon: '😌', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate', 'Anti Inflammatory & Auto Immune']}, 
+  {name: 'Muscle & Body Recovery', icon: '💪', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']}, 
   {name: 'Immune Armour & Protection', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
-  {name: 'Future Proofing My Vibe', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium', 'Radiance Plus', 'ALA', 'Fertility']},
-  {name: 'Hormone Balance & Fertility', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']}
+  {name: 'Dear Future Me (Anti-Aging & Future Proofing)', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium', 'Radiance Plus', 'ALA', 'Fertility']}, 
+  {name: 'Go with the Flow', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']} 
 ];
 
 const feelGoalCategories_Millennial = [
@@ -1080,7 +1080,7 @@ const lifestyleCategories_Boomer = [
   {name: 'Skin & Hair Longevity', icon: '🧴', drips: ['Radiance', 'Radiance Plus', 'Biotin', 'Anti Ageing']},
   {name: 'Cognitive Function', icon: '🧠', drips: ['Jet Fuel Premium', 'Recharge Premium', 'Anxiety Relief Premium', 'Anti Ageing']},
   {name: 'Hydration & Daily Wellness', icon: '💧', drips: ['Aqua Hydrate', 'Detox', 'Hangover & Jet Lag']},
-  {name: 'Hormone/Balance Support', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']}
+  {name: 'Hormone/Balance Support', icon: '🌡️', drips: ['Menopause Relief', 'Libido', 'Fertility']}
 ];
 
 // Ingredient categories (No change needed)
@@ -1140,8 +1140,8 @@ function submitPersonalization() {
         return;
     }
     if (isNaN(age) || age < 18 || age > 100) { // Enforcing >= 18
-        // User-friendly message for age validation
-        errorMessage.textContent = 'Just a heads-up: IV drips are only permitted for clients aged 18 and older. Please check your age and try again.';
+        // User-friendly message for age validation (REVISED)
+        errorMessage.textContent = 'We just need to check: IV Drips are only available to clients 18 years and older for safety reasons. Thank you for understanding.';
         return;
     }
     
