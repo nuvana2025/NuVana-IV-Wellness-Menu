@@ -706,7 +706,9 @@
       <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
       <div class="accordion-content" id="lt-pricing">
         <!-- UPDATED LIGHT THERAPY PRICING FOR SUNNINGHILL CONTEXT -->
-        <p style="font-size: 1em; font-weight: 700; margin-bottom: 4px; color: #006400;">All sessions include a complimentary Oxygen Infusion Pen treatment (Value R100)</p>
+        <p style="font-size: 1em; font-weight: 700; margin-bottom: 4px; color: #006400;">
+          **Value-Add:** All sessions include a complimentary **Portable High Pressure Oxygen Atomizer** treatment!
+        </p>
         <ul class="price-list" style="font-size: 1.05em; margin-bottom: 20px;">
             <li style="margin: 8px 0;"><strong>Single Session (30 mins):</strong> R450</li>
             <li style="margin: 8px 0;"><strong>Package of 3 Sessions:</strong> R1,125 (R375 per session - Ideal for loading)</li>
@@ -1139,7 +1141,8 @@ window.submitPersonalization = function() {
     
     // Custom Age Validation (overriding default browser behavior)
     if (isNaN(age) || age < 18) { 
-        errorMessage.textContent = `Hey there! IV Drips are only permitted for clients aged 18 and over for safety reasons. We look forward to welcoming you when you qualify!`;
+        // User-friendly and contextual age error message
+        errorMessage.textContent = `Hey there! IV Drips are only available to clients aged 18 and over, which is a medical requirement. We look forward to welcoming you when you qualify!`;
         return;
     }
     
@@ -1374,25 +1377,9 @@ window.showDripDetails = function(dripName) {
   const drip = allDrips[dripName];
   if (!drip) return;
   const firstName = userSession.name.split(' ')[0];
-  const coreBenefit = drip.overallBenefits.split(',')[0].trim(); // Get the primary benefit
 
-  // --- CRUCIAL FIX: Dynamic Personalized Title based on Drip/Benefit (CONCISE) ---
-  let personalizedTitle;
-  
-  if (dripName.includes('Jet Fuel')) {
-      personalizedTitle = `${drip.name}: My Max Gees Boost, ${firstName}`;
-  } else if (dripName.includes('Radiance')) {
-      personalizedTitle = `${drip.name}: My Next-Level Glow, ${firstName}`;
-  } else if (dripName.includes('Anti Ageing')) {
-      personalizedTitle = `${drip.name}: My Longevity Investment, ${firstName}`;
-  } else if (dripName.includes('Anxiety Relief')) {
-      personalizedTitle = `${drip.name}: My Calm & Zen Moment, ${firstName}`;
-  } else {
-      // Fallback: [Drip Name]: My [Primary Benefit] Drip, [Name]
-      personalizedTitle = `${drip.name}: My ${coreBenefit} Drip, ${firstName}`;
-  }
-  
-  document.getElementById('detail-name').textContent = personalizedTitle;
+  // --- CRUCIAL FIX: Dynamic Personalized Title is simplified to Drip Name only ---
+  document.getElementById('detail-name').textContent = `${drip.name} Drip, ${firstName}`;
   // --- END CRUCIAL FIX ---
   
   const priceText = (drip.price !== null && String(drip.price).toLowerCase() !== 'n/a') ? drip.price : 'N/A';
