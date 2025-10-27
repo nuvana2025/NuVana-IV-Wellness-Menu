@@ -523,7 +523,7 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2>My Perfect Drip Formula</h2>
+    <h2>Tailor my drip experience to me...</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
@@ -703,6 +703,19 @@
       </div>
     </div>
     
+    <div class="group-gold">
+        <button class="accordion-header" onclick="toggleLightAccordion('lt-oxygen', this)">Oxygen Atomizer Pen Benefits</button>
+        <div class="accordion-content" id="lt-oxygen">
+            <p style="font-style: italic; color: #666; margin-bottom: 12px;">The Portable High Pressure Oxygen Atomizer works by infusing oxygen and product deep into the skin, boosting the effectiveness of the light therapy.</p>
+            <ul class="ingredient-list">
+                <li><strong>Hydration Boost:</strong> Delivers essential moisture and nutrients directly into the skin layers.</li>
+                <li><strong>Product Absorption:</strong> Enhances the penetration of serums and active ingredients.</li>
+                <li><strong>Skin Radiance:</strong> Oxygenate skin cells for a fresher, plumper, and more vibrant look.</li>
+                <li><strong>Anti-Inflammatory:</strong> Helps soothe and calm irritated skin before and after light treatment.</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- FREQUENCY GUIDE MOVED ABOVE PRICING -->
     <div class="group-cyan">
         <button class="accordion-header" onclick="toggleLightAccordion('lt-frequency-rationale', this)">Usage Frequency Guide</button>
@@ -766,47 +779,6 @@
       </div>
     </div>
     
-    <div class="group-gold">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-spectrums', this)">Customisable Light Spectrums</button> <div class="accordion-content" id="lt-spectrums">
-        <p style="font-style: italic; color: #666; margin-bottom: 16px;">Choose from seven colours—each tailored to specific needs. Our advanced light technology penetrates deep into your skin, stimulating natural repair and rejuvenation.</p> <div class="light-grid">
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-red"></span>Red</div>
-            <div class="wavelength">Wavelength: 630nm</div>
-            <div class="effects">Boosts collagen, improves elasticity, and acts as an anti-aging antioxidant.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-blue"></span>Blue</div>
-            <div class="wavelength">Wavelength: 470nm</div>
-            <div class="effects">Inhibits inflammation and bacteria, reduces acne, and prevents scarring.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-green"></span>Green</div>
-            <div class="wavelength">Wavelength: 520nm</div>
-            <div class="effects">Balances oil production, relieves mental stress, and supports lymphatic drainage.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-yellow"></span>Yellow</div>
-            <div class="wavelength">Wavelength: 590nm</div>
-            <div class="effects">Enhances oxygen exchange, decomposes pigments, and reduces redness/wrinkles.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-purple"></span>Purple</div>
-            <div class="wavelength">Wavelength: Red + Blue</div>
-            <div class="effects">Combines anti-inflammatory and acne-fighting effects, ideal for repairing scars.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-cyan"></span>Cyan</div>
-            <div class="wavelength">Wavelength: Varies</div>
-            <div class="effects">Enhances cell energy and metabolism for overall skin vitality and healing.</div>
-          </div>
-          <div class="light-card">
-            <div class="light-name"><span class="led-color-dot dot-white"></span>White</div>
-            <div class="wavelength">Wavelength: Varies</div>
-            <div class="effects">Penetrates deeply to accelerate metabolism, reduce fine lines, and tighten skin.</div>
-          </div>
-        </div>
-      </div>
-    </div>
     
     <div class="group-lav">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-matrix', this)">Light Benefits Matrix</button>
@@ -1055,7 +1027,7 @@ const feelGoalCategories_GenX = [
   {name: 'Full Body Cleanse & Detox', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA', 'Aqua Hydrate', 'Trace Elements']},
   {name: 'Inflammation & Joint Health', icon: '🩹', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Sport Restore', 'Glutamine']},
   {name: 'Stress & Sleep Quality', icon: '🌙', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate']},
-  {name: 'Immune Support (Seasonal/Travel)', icon: '🌿', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Hangover & Jet Lag']},
+  {name: 'Immune Support (Seasonal/Travel)', icon: '🌿', drips: ['Immune Booster', 'Immune Booster Premium', 'Hangover & Jet Lag', 'Trace Elements']},
   {name: 'Metabolism & Core Wellness', icon: '🔥', drips: ['Weight Loss', 'Weight Loss Premium', 'Libido', 'Fertility']}, 
 ];
 
@@ -1096,7 +1068,7 @@ const lifestyleCategories_GenX = [
   {name: 'Balancing Career & Family', icon: '⚖️', drips: ['Jet Fuel Premium', 'Recharge Premium', 'Anxiety Relief Premium', 'Immune Booster Premium', 'Anti Ageing', 'Menopause Relief']},
   {name: 'Wellness & Longevity Planning', icon: '🧬', drips: ['Anti Ageing', 'ALA', 'Trace Elements', 'Radiance Premium', 'Detox Premium']},
   {name: 'Targeting Aches & Pains', icon: '🤸', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Glutamine', 'Sport Restore']},
-  {name: 'Focus on Sleep & Stress', icon: '🌙', drips: ['Anxiety Relief', 'Recharge', 'Aqua Hydrate', 'Detox', 'B12']},
+  {name: 'Focus on Sleep & Stress', icon: '🌙', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate']},
   {name: 'Travel & Immunity Shield', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Hangover & Jet Lag', 'Trace Elements']},
   {name: 'Hormonal Shifts (Menopause/Libido)', icon: '🌡️', drips: ['Menopause Relief', 'Libido', 'Fertility']},
   {name: 'Weight & Metabolism Support', icon: '🔥', drips: ['Weight Loss', 'Weight Loss Premium', 'Detox Premium', 'Sports Edge']},
@@ -1106,7 +1078,7 @@ const lifestyleCategories_Boomer = [
   {name: 'Health Maintenance & Prevention', icon: '🩺', drips: ['Immune Booster Premium', 'Trace Elements', 'Detox Premium', 'Anti Inflammatory Premium', 'ALA', 'Anti Ageing']},
   {name: 'Active Aging & Vitality', icon: '⏳', drips: ['Anti Ageing', 'Jet Fuel', 'Recharge', 'Libido', 'Glutamine', 'B12']},
   {name: 'Joint & Mobility Support', icon: '🚶‍♀️', drips: ['Anti Inflammatory & Auto Immune', 'Sport Restore', 'Anti Inflammatory Premium', 'ALA']},
-  {name: 'Skin & Hair Longevity', icon: '🧴', drips: ['Radiance', 'Radiance Plus', 'Biotin', 'Radiance Premium']},
+  {name: 'Skin & Hair Maintenance', icon: '🧴', drips: ['Radiance', 'Radiance Plus', 'Biotin', 'Radiance Premium']},
   {name: 'Cognitive Function', icon: '🧠', drips: ['Jet Fuel Premium', 'Recharge Premium', 'Anxiety Relief Premium', 'Anti Ageing', 'B12']},
   {name: 'Hydration & Daily Wellness', icon: '💧', drips: ['Aqua Hydrate', 'Detox', 'Hangover & Jet Lag']},
   {name: 'Hormone/Balance Support', icon: '🌡️', drips: ['Menopause Relief', 'Libido', 'Fertility']}
