@@ -523,7 +523,7 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2>Tailor My Drip: Unlock My Perfect Formula</h2>
+    <h2>My Perfect Drip Formula</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
@@ -1011,7 +1011,7 @@ const defaultLifestyleCategories = [
 
 // FEEL/GOAL CATEGORIES (30 Drips included)
 const feelGoalCategories_GenZ = [
-  {name: "Life showing me flames!🔥 (Energy Booster & Reset)", icon: '🥵', drips: ['Recharge', 'Recharge Premium', 'Jet Fuel', 'Jet Fuel Premium', 'B12', 'Hangover & Jet Lag', 'Aqua Hydrate']}, 
+  {name: "Life showing me flames!🔥 (Energy & Reset)", icon: '🥵', drips: ['Recharge', 'Recharge Premium', 'Jet Fuel', 'Jet Fuel Premium', 'B12', 'Hangover & Jet Lag', 'Aqua Hydrate']}, 
   {name: 'Level Up (Boost & Focus)', icon: '⚡', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Sports Edge']}, 
   {name: 'Skin Vibe & Glow Up', icon: '✨', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Detox Premium', 'Detox']},
   {name: 'Full Body Reset & Shredding', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA', 'Aqua Hydrate', 'Glutamine', 'Hangover & Jet Lag', 'Weight Loss', 'Weight Loss Premium']},
@@ -1023,32 +1023,32 @@ const feelGoalCategories_GenZ = [
 ];
 
 const feelGoalCategories_Millennial = [
-  {name: "Burnt Out? (Need Recharge/Focus)", icon: '🔋', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Hangover & Jet Lag', 'Libido']}, 
+  {name: "Burnt Out? (Recharge/Focus)", icon: '🔋', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Hangover & Jet Lag', 'Libido']}, 
   {name: 'Level Up Energy & Performance', icon: '📈', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge Premium', 'Sports Edge', 'Anti Ageing']}, 
   {name: 'Skin Health & Proactive Aging', icon: '🌟', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Anti Ageing']},
   {name: 'Deep Detox & Gut Health', icon: '🌱', drips: ['Detox', 'Detox Premium', 'ALA', 'Glutamine', 'Aqua Hydrate', 'Weight Loss', 'Weight Loss Premium']}, 
   {name: 'Anxiety/Stress Management', icon: '🧘', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Anti Inflammatory & Auto Immune', 'Aqua Hydrate']},
   {name: 'Post-Workout Recovery & Joints', icon: '🏅', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
-  {name: 'Immune Resilience (The Travel Drip)', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Hangover & Jet Lag']},
+  {name: 'Immune Resilience (Travel Drip)', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Hangover & Jet Lag']},
   {name: 'Hormone & Family Planning', icon: '👶', drips: ['Menopause Relief', 'Fertility', 'Libido']},
 ];
 
 const feelGoalCategories_GenX = [
   {name: "Fatigue & Energy Sustainment", icon: '☕', drips: ['Jet Fuel', 'Jet Fuel Premium', 'Recharge', 'Recharge Premium', 'B12', 'Hangover & Jet Lag']},
-  {name: 'Achieve Mental Clarity & Focus', icon: '🧠', drips: ['Jet Fuel Premium', 'Anxiety Relief Premium', 'Anti Ageing', 'Sports Edge', 'Libido']},
+  {name: 'Mental Clarity & Focus', icon: '🧠', drips: ['Jet Fuel Premium', 'Anxiety Relief Premium', 'Anti Ageing', 'Sports Edge', 'Libido']},
   {name: 'Skin Resilience & Anti-Ageing', icon: '⏳', drips: ['Radiance', 'Radiance Plus', 'Radiance Premium', 'Biotin', 'Anti Ageing', 'ALA']},
   {name: 'Full Body Cleanse & Detox', icon: '🧹', drips: ['Detox', 'Detox Premium', 'ALA', 'Aqua Hydrate', 'Trace Elements']},
   {name: 'Inflammation & Joint Health', icon: '🩹', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Sport Restore', 'Glutamine']},
   {name: 'Stress & Sleep Quality', icon: '🌙', drips: ['Anxiety Relief', 'Anxiety Relief Premium', 'Menopause Relief', 'Aqua Hydrate']},
   {name: 'Immune Support (Seasonal/Travel)', icon: '🌿', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Hangover & Jet Lag']},
-  {name: 'Metabolism & Core Wellness', icon: '🔥', drips: ['Weight Loss', 'Weight Loss Premium', 'Libido', 'Fertility']}, // Added Fertility/Libido as part of core wellness
+  {name: 'Metabolism & Core Wellness', icon: '🔥', drips: ['Weight Loss', 'Weight Loss Premium', 'Libido', 'Fertility']}, 
 ];
 
 const feelGoalCategories_Boomer = [
-  {name: "Sustained Energy & Vitality", icon: '✨', drips: ['Jet Fuel', 'Recharge', 'B12', 'Aqua Hydrate', 'Libido']}, // Removed Anti Ageing
-  {name: 'Promote Cognitive Clarity', icon: '🧠', drips: ['Jet Fuel Premium', 'Anti Ageing', 'Anxiety Relief Premium']},
-  {name: 'Longevity & Cellular Health', icon: '🧬', drips: ['Anti Ageing', 'Radiance Premium', 'ALA', 'Trace Elements', 'Detox Premium', 'Fertility']}, // Added Fertility (long term health/balance)
-  {name: 'Reduce Inflammation & Aches', icon: '🧘', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Glutamine', 'Sport Restore', 'ALA']}, // Added ALA
+  {name: "Sustained Energy & Vitality", icon: '✨', drips: ['Jet Fuel', 'Recharge', 'B12', 'Aqua Hydrate', 'Libido']}, 
+  {name: 'Cognitive Clarity', icon: '🧠', drips: ['Jet Fuel Premium', 'Anti Ageing', 'Anxiety Relief Premium']},
+  {name: 'Longevity & Cellular Health', icon: '🧬', drips: ['Anti Ageing', 'Radiance Premium', 'ALA', 'Trace Elements', 'Detox Premium', 'Fertility']}, 
+  {name: 'Reduce Inflammation & Aches', icon: '🧘', drips: ['Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium', 'Glutamine', 'Sport Restore', 'ALA']}, 
   {name: 'Immunity & Seasonal Wellness', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements']},
   {name: 'Hormonal & Sexual Wellness', icon: '💋', drips: ['Menopause Relief', 'Libido', 'Fertility']},
   {name: 'Hydration & Daily Reset', icon: '💧', drips: ['Aqua Hydrate', 'Detox', 'Hangover & Jet Lag', 'Detox Premium', 'ALA']},
@@ -1163,17 +1163,17 @@ window.updateCategoryHeading = function() {
     const generation = userSession.generation;
     const firstName = userSession.name.split(' ')[0];
     
-    let personalizedText = 'Select My IV Drip'; // Changed to first person
+    let personalizedText = 'Select My Drip'; 
 
     // CONCISE HOOK IMPLEMENTATION
     if (generation.includes('Gen Z')) {
-        personalizedText = `Howzit, ${firstName}! Find My Next Vibe.`; 
+        personalizedText = `Howzit, ${firstName}! Find My Vibe.`; 
     } else if (generation.includes('Millennial')) {
-        personalizedText = `Sharp, ${firstName}! Choose My Performance Boost.`;
+        personalizedText = `Sharp, ${firstName}! My Boost.`;
     } else if (generation.includes('Gen X')) {
-        personalizedText = `Howzit, ${firstName}. Choose My Balance Drip.`;
+        personalizedText = `Howzit, ${firstName}. My Balance.`;
     } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-        personalizedText = `Welcome, ${firstName}. Select My Core Wellness Drip.`;
+        personalizedText = `Welcome, ${firstName}. My Core Wellness.`;
     } else if (firstName !== 'Wellness Seeker') {
         personalizedText = `Hello ${firstName}, discover My Drip options.`;
     }
@@ -1188,20 +1188,20 @@ window.updateFilterOptions = function() {
 
     // Filter Select Labels - First-person, no asterisks
     if (generation.includes('Gen Z') || generation.includes('Alpha')) {
-        feelGoalText = "What's My Vibe/Glow Up Goal?"; 
-        lifestyleText = "My Daily Shifting Grind"; 
+        feelGoalText = "My Vibe/Glow Up Goal"; 
+        lifestyleText = "My Daily Grind"; 
     } else if (generation.includes('Millennial')) {
-        feelGoalText = "What's My Level Up Goal?"; 
+        feelGoalText = "My Level Up Goal"; 
         lifestyleText = "My Daily Hustle"; 
     } else if (generation.includes('Gen X')) {
         feelGoalText = "My Balance & Focus Need"; 
         lifestyleText = "My Current Routine"; 
     } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-        feelGoalText = "My Wellness Focus & Longevity"; 
+        feelGoalText = "My Wellness & Longevity Focus"; 
         lifestyleText = "My Health & Experience"; 
     } else {
         // Default
-        feelGoalText = "What's My Vibe/Goal?";
+        feelGoalText = "My Vibe/Goal?";
         lifestyleText = "My Daily Grind";
     }
 
@@ -1374,22 +1374,22 @@ window.showDripDetails = function(dripName) {
   const drip = allDrips[dripName];
   if (!drip) return;
   const firstName = userSession.name.split(' ')[0];
+  const coreBenefit = drip.overallBenefits.split(',')[0].trim(); // Get the primary benefit
 
-  // --- CRUCIAL FIX: Dynamic Personalized Title based on Drip/Benefit (REVISITED) ---
+  // --- CRUCIAL FIX: Dynamic Personalized Title based on Drip/Benefit (CONCISE) ---
   let personalizedTitle;
   
-  // Custom hooks based on Drip name (This provides unique value instead of repetitive text)
   if (dripName.includes('Jet Fuel')) {
-      personalizedTitle = `${drip.name}: My Ultimate Gees and Focus Booster, ${firstName}`;
+      personalizedTitle = `${drip.name}: My Max Gees Boost, ${firstName}`;
   } else if (dripName.includes('Radiance')) {
-      personalizedTitle = `${drip.name}: My Secret for the Next-Level Glow, ${firstName}`;
+      personalizedTitle = `${drip.name}: My Next-Level Glow, ${firstName}`;
   } else if (dripName.includes('Anti Ageing')) {
-      personalizedTitle = `${drip.name}: My Investment in Long-Term Vitality, ${firstName}`;
+      personalizedTitle = `${drip.name}: My Longevity Investment, ${firstName}`;
   } else if (dripName.includes('Anxiety Relief')) {
-      personalizedTitle = `${drip.name}: My Calm and Zen Moment, ${firstName}`;
+      personalizedTitle = `${drip.name}: My Calm & Zen Moment, ${firstName}`;
   } else {
-      // Fallback: Use the original name + a personalized benefit-driven hook (much better than repeating the generic phrase)
-      personalizedTitle = `${drip.name}: My Go-To Drip for ${drip.overallBenefits.split(',')[0]}, ${firstName}`;
+      // Fallback: [Drip Name]: My [Primary Benefit] Drip, [Name]
+      personalizedTitle = `${drip.name}: My ${coreBenefit} Drip, ${firstName}`;
   }
   
   document.getElementById('detail-name').textContent = personalizedTitle;
