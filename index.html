@@ -524,6 +524,28 @@
         font-weight: 400;
         color: #333;
     }
+    
+    /* Light Therapy Pricing Specific Styling */
+    .package-item {
+        font-weight: 700; 
+        font-size: 1.1em; /* Larger size for primary cost */
+        color: #333; 
+        margin-bottom: 6px;
+    }
+    .package-detail {
+        font-size: 0.9em; /* Smaller detail text */
+        font-weight: 400;
+        color: #555;
+        margin-left: 15px; /* Indent details */
+        display: block;
+    }
+    .price-list li {
+        padding: 4px 0;
+        border-bottom: 1px dotted #eee;
+    }
+    .price-list li:last-child {
+        border-bottom: none;
+    }
 
 
     /* --- Responsive --- */
@@ -667,7 +689,7 @@
 
         <div class="form-buttons">
             <button type="submit" class="submit-btn">Let's go...</button> <!-- LOCALIZED BUTTON TEXT -->
-            <button type="button" class="skip-btn" onclick="skipPersonalization()">Skip</button>
+            <button type="button" class="skip-btn" onclick="skipPersonalization()">Skip tailoring my experience</button>
         </div>
     </form>
 </div>
@@ -910,8 +932,14 @@
 
             <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
             <ul class="price-list" style="font-size: 1.05em;">
-                <li style="margin-bottom: 4px;">3 Sessions: R1,125 (R375 per session - Ideal for Loading Phase)</li>
-                <li style="margin-bottom: 4px;">6 Sessions: R1,800 (R300 per session - Best for Maintenance Phase)</li>
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">3 Sessions: R1,125</span> 
+                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
+                </li>
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">6 Sessions: R1,800</span>
+                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
+                </li>
             </ul>
         </div>
         
@@ -1290,7 +1318,7 @@ window.submitPersonalization = function() {
 window.skipPersonalization = function() {
     // Set default name and enforce Millennial/GenY experience
     userSession.name = 'Wellness Seeker';
-    userSession.age = 35; // Default age for Millennial
+    userSession.age = 35; // Default age for Millennial (GenY)
     userSession.generation = 'Millennial (The Hustle Generation)'; 
 
     updateFilterOptions();
