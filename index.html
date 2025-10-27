@@ -462,7 +462,8 @@
     }
     #age-input-view h2 {
         color: #006400;
-        font-size: 1.5em;
+        font-size: 1.6em; /* Adjusted for brevity */
+        font-weight: 700;
         margin-bottom: 20px;
     }
     #age-input-form label {
@@ -573,7 +574,7 @@
     .price-list li:last-child {
         border-bottom: none;
     }
-    /* Footer Styling */
+    /* Footer */
     .nv-footer-v2 { 
       color: #FFD700 !important; 
       font-style: italic !important; 
@@ -587,17 +588,12 @@
       align-items: center;
       text-align: center;
     }
-    .footer-whatsapp {
-        text-align: right;
-        font-weight: 700;
-        margin-top: 4px;
-        flex-shrink: 0;
-        width: 100%; /* Default to full width on mobile */
-    }
-    .footer-powered-by {
-        text-align: left;
-        flex-grow: 1;
-        width: 100%; /* Default to full width on mobile */
+    .nv-footer-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 960px;
+        padding: 0 10px;
     }
     .copyright { 
         font-size: 0.8em; 
@@ -606,86 +602,35 @@
         width: 100%;
         text-align: center;
     }
-
-    /* --- Responsive --- */
-    @media (max-width: 768px) {
-      header { padding: 10px 60px 10px 60px; } /* Padding reduced */
-      header h1 { font-size: 1.8em; }
-      .container { margin: 20px auto; padding: 0 12px; }
-      .grid { grid-template-columns: 1fr; gap: 20px; }
-      .card { padding: 24px; font-size: 0.95em; }
-      .accordion-header { font-size: 0.95em; }
-      .nv-footer-v2 { 
-        flex-direction: column; 
-        align-items: center; 
-        text-align: center; 
-        padding: 10px;
-      }
-      .footer-whatsapp, .footer-powered-by, .copyright {
-          width: 100%;
-          text-align: center;
-          margin: 4px 0;
-      }
-      .main-menu-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .whatsapp-enquiry {
-        margin-top: 10px;
-        margin-right: 0;
-      }
-      .led-specs-table thead { display: none; }
-      .led-specs-table, .led-specs-table tbody, .led-specs-table tr, .led-specs-table td { display: block; width: 100%; }
-      .led-specs-table tr { margin-bottom: 15px; border: 1px solid #eee; border-radius: 8px; overflow: hidden; background: #fff; }
-      .led-specs-table td { text-align: right; padding: 12px 16px; position: relative; border-bottom: 1px solid #f5f5f5; font-size: 0.95em; }
-      .led-specs-table td:last-child { border-bottom: none; }
-      .led-specs-table td::before { content: attr(data-label) ": "; position: absolute; left: 16px; width: 50%; padding-right: 10px; font-weight: 700; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .led-specs-table td[data-label="Light Colour"]::before { content: attr(data-label) ": "; }
-      .led-specs-table .led-color-dot { position: absolute; left: 50%; transform: translateX(-50%); margin-right: 0; }
-      .light-grid, .matrix-grid { grid-template-columns: 1fr; }
-      .contextual-search.open { width: calc(100vw - 40px); }
-      .addon-accordion-content { font-size: 0.85em; }
-      .addon-accordion-content .accordion-header { font-size: 0.85em; padding: 8px 12px; }
-      .addon-accordion-content .accordion-content { font-size: 0.9em; }
-      .frequency-guide-item { flex-direction: column; align-items: flex-start; gap: 4px; } /* Mobile layout for frequency guide */
-      .light-frequency { text-align: left; }
+    .footer-powered-by {
+        text-align: left;
+        flex-grow: 1;
     }
-    @media (min-width: 769px) { /* Simplified tablet and up media query */
-      .grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-      .container { margin: 24px auto; padding: 0 16px; }
-
-      /* Desktop Footer Layout */
-      .nv-footer-v2 {
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px 20px;
-      }
-      .footer-powered-by {
-          order: 1;
-          text-align: left;
-          flex-grow: 0;
-      }
-      .footer-whatsapp {
-          order: 2;
-          text-align: right;
-          margin-left: auto;
-          margin-right: 0;
-      }
-      .copyright {
-          order: 3;
-          width: 100%; 
-          text-align: center;
-          margin-top: 8px;
-      }
-      .main-menu-header {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .whatsapp-enquiry {
-        margin-top: 0;
-      }
+    /* Added to ensure layout holds on wide screens */
+    @media (min-width: 768px) {
+        .nv-footer-v2 {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 20px;
+        }
+        .footer-powered-by {
+            order: 1;
+            text-align: left;
+            margin-right: 20px;
+        }
+        .copyright {
+            order: 3;
+            width: auto;
+            text-align: center;
+        }
+    }
+    @media (max-width: 767px) {
+        .footer-powered-by, .copyright {
+            width: 100%;
+            text-align: center;
+            margin: 4px 0;
+        }
     }
 </style>
 </head>
@@ -755,7 +700,7 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2>Tailor my drip experience to me...</h2>
+    <h2 style="font-size: 1.6em; font-weight: 700; color: #004d26;">My Wellness Profile</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
@@ -1180,7 +1125,7 @@ const allDrips = {
   'Anti Inflammatory & Auto Immune': {name: 'Anti Inflammatory & Auto Immune', price: 1490, addonPrice: null, duration: '45-60 mins', tagline: 'Soothe Body, Restore Harmony', description: "Embrace a soothing embrace of calm with this transformative IV drip, blending B12, Vitamin C, and Glutathione to quell inflammation and spark radiant energy. Magnesium dissolves tension, restoring your body's harmony and igniting a serene clarity that empowers you to live freely and joyfully", overallBenefits: 'Reduces inflammation, boosts energy, supports immunity, tissue repair, mental clarity.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.', notSuitableFor: 'Avoid if you have kidney stones, asthma, kidney/liver disease, or are pregnant.', icon: '🧘'},
   'Anti Inflammatory Premium': {name: 'Anti Inflammatory Premium', price: 1550, addonPrice: null, duration: '60 mins', tagline: 'Quell Flames, Embrace Ease', description: "Extinguish inflammation's fire with this powerful IV drip, blending Vitamin C, ALA, and Glutathione to soothe aching joints and muscles, while Magnesium restores a tranquil balance. This premium formula, with fiercer potency than Anti Inflammatory & Auto Immune, delivers profound relief, empowering you to move with grace and embrace life's joys with radiant ease.", overallBenefits: 'Reduces inflammation, supports recovery, detoxes, boosts immunity.', ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly or bi-weekly for inflammation or activity.', perfectFor: 'Individuals with chronic inflammation or autoimmune conditions, people with joint pain, athletes for recovery.', notSuitableFor: 'Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant.', icon: '🧘🧘'},
   'Immune Booster': {name: 'Immune Booster', price: 420, addonPrice: null, duration: '30 mins', tagline: 'Shield, Vibe, Thrive', description: "Awaken your body's natural armour with this Vitamin C-rich IV drip, designed to fortify immunity and banish fatigue. Ignite radiant energy and collagen production, empowering you to embrace travel or illness recovery with unwavering vitality and confidence.", overallBenefits: 'Boosts immunity, fights fatigue, supports collagen, lifts energy.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly during illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immune systems, cancer patients, frequent travelers needing immunity support.', notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', icon: '🛡️'},
-  'Immune Booster Premium': {name: 'Immune Booster Premium', price: 850, addonPrice: null, duration: '45 mins', tagline: 'Fortify, Radiate, Conquer', description: "Unleash your body's invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.", overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly for illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immunity, frequent travelers, those under stress or needing immune support.', notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', icon: '🛡️🛡️'},
+  'Immune Booster Premium': {name: 'Immune Booster Premium', price: 800, addonPrice: null, duration: '45 mins', tagline: 'Fortify, Radiate, Conquer', description: "Unleash your body's invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.", overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly for illness; every 2-4 weeks for prevention.', perfectFor: 'Individuals with weakened immunity, frequent travelers, those under stress or needing immune support.', notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', icon: '🛡️🛡️'},
   'Trace Elements': {name: 'Trace Elements', price: 350, addonPrice: 300, duration: '30 mins', tagline: 'Balance, Vitalise, Thrive', description: "Ignite cellular harmony with this essential mineral infusion, blending Zinc and Selenium to fortify immunity and metabolism. Feel your body's vitality surge as balance is restored, empowering you to embrace life with radiant energy and unwavering confidence.", overallBenefits: 'Supports immunity, metabolism, vitality, cellular health.', ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.', frequency: 'Weekly for deficiency; every 2-4 weeks for maintenance.', perfectFor: 'Individuals with trace element deficiencies, those needing immune or metabolic support, patients on parenteral nutrition.', notSuitableFor: 'Avoid if you have metal allergies, kidney disease, or are pregnant.', icon: '🌿'},
   'Anti Ageing': {name: 'Anti Ageing', price: 1200, addonPrice: null, duration: '45-60 mins', tagline: 'Renew, Revive, Radiate', description: "Turn back time with this rejuvenating NAD⁺ infusion, designed to spark DNA repair and cellular energy. Feel your vitality surge as youthful radiance returns, sharpening your focus and empowering you to embrace life with timeless confidence and boundless joy.", overallBenefits: 'Supports DNA repair, cellular energy, youthful vitality, focus.', ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', perfectFor: 'Individuals concerned with ageing, energy decline, or cognitive function seeking cellular repair and rejuvenation.', notSuitableFor: 'Avoid if you are pregnant or breastfeeding.', icon: '⏳'},
   'ALA': {name: 'ALA', price: 620, addonPrice: null, duration: '30-45 mins', tagline: 'Protect, Renew, Restore', description: 'Shield your cells with this potent IV drip, infused with alpha-lipoic acid to unleash antioxidant power and support detoxification. Ignite nerve health and cellular resilience, empowering you to recover from illness or surgery with radiant vitality and unwavering confidence.', overallBenefits: 'Supports antioxidants, detox, nerve health, immunity, recovery.', ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', perfectFor: 'Individuals with diabetic neuropathy, autoimmune conditions, those seeking antioxidant and nerve support.', notSuitableFor: 'Avoid if you have diabetes or are pregnant.', icon: '🌟'},
@@ -1333,8 +1278,8 @@ const lifestyleCategories_Boomer = [
 const userSession = {
     name: 'Wellness Seeker',
     age: null,
-    // Defaulting skip users to Millennial for GenY experience
-    generation: 'Millennial (The Hustle Generation)', 
+    // Defaulting skip users to GenX as requested
+    generation: 'Gen X (The Bridge Builders)', 
 };
 
 // Function to determine user's generation based on birth year
@@ -1592,8 +1537,8 @@ window.selectCategory = function(categoryName) {
 window.renderDrips = function() {
   if (!selectedCategory) return;
   
-  // RETAINING ONLY "Recommendations" (FIX)
-  document.getElementById('drips-heading').textContent = `Recommendations`;
+  // FIX: Drips heading now shows the actual selected category name
+  document.getElementById('drips-heading').textContent = selectedCategory.name;
   
   const grid = document.getElementById('drips-grid');
   grid.innerHTML = selectedCategory.drips.map(dripName => {
