@@ -387,6 +387,15 @@
         font-size: 1em;
         transition: border-color 0.3s;
     }
+    /* Disable default browser validation tooltip for age input */
+    #user-age {
+        -moz-appearance: textfield; /* Firefox */
+    }
+    #user-age::-webkit-inner-spin-button, 
+    #user-age::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
     #age-input-form input:focus {
         border-color: #006400;
         outline: none;
@@ -514,13 +523,14 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2>Tailor My Drip: Unlock Your Perfect Formula</h2>
+    <h2>Tailor My Drip: Unlock My Perfect Formula</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
 
         <label for="user-age">My Age (in years)</label>
-        <input type="number" id="user-age" placeholder="e.g., 35" min="18" max="100" required aria-label="My Age">
+        <!-- Removed min attribute to control validation via JS only and suppress default browser tooltip -->
+        <input type="number" id="user-age" placeholder="e.g., 35" max="100" required aria-label="My Age">
         <div class="error-message" id="age-error-message"></div>
 
         <button type="submit">Let's go...</button> <!-- LOCALIZED BUTTON TEXT -->
@@ -695,7 +705,14 @@
     <div class="group-aqua">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
       <div class="accordion-content" id="lt-pricing">
-        <p style="text-align: center; padding: 16px; font-style: italic; color: #555;">Coming soon...</p>
+        <!-- UPDATED LIGHT THERAPY PRICING FOR SUNNINGHILL CONTEXT -->
+        <p style="font-size: 1em; font-weight: 700; margin-bottom: 4px; color: #006400;">All sessions include a complimentary Oxygen Infusion Pen treatment (Value R100)</p>
+        <ul class="price-list" style="font-size: 1.05em; margin-bottom: 20px;">
+            <li style="margin: 8px 0;"><strong>Single Session (30 mins):</strong> R349</li>
+            <li style="margin: 8px 0;"><strong>Package of 3 Sessions:</strong> R990 (R330 per session)</li>
+            <li style="margin: 8px 0;"><strong>Package of 6 Sessions:</strong> R1,890 (R315 per session, ultimate value!)</li>
+        </ul>
+        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center;">Book a package to lock in the best value and maximize your skin's transformation.</p>
       </div>
     </div>
     <div class="group-gold">
@@ -1132,16 +1149,18 @@ function submitPersonalization() {
     const errorMessage = document.getElementById('age-error-message');
 
     const name = nameInput.value.trim();
-    const age = parseInt(ageInput.value);
+    // Use parseInt with radix 10 to ensure proper parsing
+    const age = parseInt(ageInput.value, 10);
 
-    // Basic Validation - UPDATED TO 18
+    // Basic Name Validation
     if (!name) {
-        errorMessage.textContent = 'Shame, please enter your name first.'; // Friendlier prompt
+        errorMessage.textContent = 'Shame, please enter your name first.';
         return;
     }
-    if (isNaN(age) || age < 18 || age > 100) { // Enforcing >= 18
-        // User-friendly message for age validation (REVISED)
-        errorMessage.textContent = 'We just need to check: IV Drips are only available to clients 18 years and older for safety reasons. Thank you for understanding.';
+    
+    // Custom Age Validation (overriding default browser behavior by removing 'min=18' from HTML)
+    if (isNaN(age) || age < 18) { 
+        errorMessage.textContent = `Hey there! IV Drips are only permitted for clients aged 18 and over. We look forward to welcoming you soon!`;
         return;
     }
     
@@ -1167,16 +1186,17 @@ function updateCategoryHeading() {
     
     let personalizedText = 'Select My IV Drip'; // Changed to first person
 
+    // CONCISE HOOK IMPLEMENTATION
     if (generation.includes('Gen Z')) {
-        personalizedText = `Howzit, ${firstName}! Check the Drips for My Vibe.`;
+        personalizedText = `Howzit, ${firstName}! Find My Next Vibe.`; 
     } else if (generation.includes('Millennial')) {
-        personalizedText = `Hey ${firstName}, what's My next Level Up Drip?`;
+        personalizedText = `Sharp, ${firstName}! Choose My Performance Boost.`;
     } else if (generation.includes('Gen X')) {
-        personalizedText = `Sharp, ${firstName}. Find the Drip for My Balance.`;
+        personalizedText = `Howzit, ${firstName}. Choose My Balance Drip.`;
     } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-        personalizedText = `Welcome, ${firstName}. Explore IV Drips for My enduring Wellness.`;
+        personalizedText = `Welcome, ${firstName}. Select My Core Wellness Drip.`;
     } else if (firstName !== 'Wellness Seeker') {
-        personalizedText = `Hello ${firstName}, discover the best Drip options for me.`;
+        personalizedText = `Hello ${firstName}, discover My Drip options.`;
     }
     
     heading.innerHTML = personalizedText;
@@ -1187,7 +1207,7 @@ function updateFilterOptions() {
     const generation = userSession.generation;
     let feelGoalText, lifestyleText;
 
-    // Filter Select Labels
+    // Filter Select Labels - First-person, no asterisks
     if (generation.includes('Gen Z') || generation.includes('Alpha')) {
         feelGoalText = "What's My Vibe/Glow Up Goal?"; 
         lifestyleText = "My Daily Shifting Grind"; 
@@ -1352,7 +1372,10 @@ function selectCategory(categoryName) {
 function renderDrips() {
   if (!selectedCategory) return;
   const firstName = userSession.name.split(' ')[0];
-  document.getElementById('drips-heading').textContent = `${firstName}, here are the options for ${selectedCategory.name}`;
+  
+  // RETAINING ONLY THE FIRST NAME AND A GENERIC PROMPT (FIX)
+  document.getElementById('drips-heading').textContent = `${firstName}, check out the recommended IV Drips.`;
+  
   const grid = document.getElementById('drips-grid');
   grid.innerHTML = selectedCategory.drips.map(dripName => {
     const drip = allDrips[dripName];
@@ -1373,14 +1396,31 @@ function showDripDetails(dripName) {
   if (!drip) return;
   const firstName = userSession.name.split(' ')[0];
 
-  // Personalized Title
-  document.getElementById('detail-name').textContent = `${drip.name} - The Drip for You, ${firstName}!`;
+  // --- CRUCIAL FIX: Dynamic Personalized Title based on Drip/Benefit (REVISITED) ---
+  let personalizedTitle;
+  
+  // Custom hooks based on Drip name (This provides unique value instead of repetitive text)
+  if (dripName.includes('Jet Fuel')) {
+      personalizedTitle = `${drip.name}: My Ultimate Gees and Focus Booster, ${firstName}`;
+  } else if (dripName.includes('Radiance')) {
+      personalizedTitle = `${drip.name}: My Secret for the Next-Level Glow, ${firstName}`;
+  } else if (dripName.includes('Anti Ageing')) {
+      personalizedTitle = `${drip.name}: My Investment in Long-Term Vitality, ${firstName}`;
+  } else if (dripName.includes('Anxiety Relief')) {
+      personalizedTitle = `${drip.name}: My Calm and Zen Moment, ${firstName}`;
+  } else {
+      // Fallback: Use the original name + a personalized benefit-driven hook (much better than repeating the generic phrase)
+      personalizedTitle = `${drip.name}: My Go-To Drip for ${drip.overallBenefits.split(',')[0]}, ${firstName}`;
+  }
+  
+  document.getElementById('detail-name').textContent = personalizedTitle;
+  // --- END CRUCIAL FIX ---
   
   const priceText = (drip.price !== null && String(drip.price).toLowerCase() !== 'n/a') ? drip.price : 'N/A';
   
   document.getElementById('detail-price').textContent = priceText;
   
-  // Personalized Tagline
+  // Personalized Tagline (existing logic remains)
   let personalizedTagline = drip.tagline || '';
   if (userSession.generation.includes('Millennial') && drip.name.includes('Premium')) {
       personalizedTagline = `The Premium Boost you need to keep hustling, ${firstName}. ${personalizedTagline}`;
