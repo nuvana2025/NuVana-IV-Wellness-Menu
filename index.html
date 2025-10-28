@@ -2402,13 +2402,17 @@ window.toggleLightAccordion = function(contentId, headerBtn) {
   content.classList.toggle('open');
 }
 
+// <!-- THIS IS THE FIX -->
+// The function was wrapped in 'if (window.innerWidth < 992)', which prevented it from working on desktop.
+// I have removed that condition so it runs on all screen sizes.
 window.toggleSelector = function(contentId, headerBtn) {
-    if (window.innerWidth < 992) {
-        const content = document.getElementById(contentId);
+    const content = document.getElementById(contentId);
+    if (content) { // Added a check to make sure content exists
         headerBtn.classList.toggle('active');
         content.classList.toggle('open');
     }
 }
+// <!-- END OF FIX -->
 
 // --- Massage Functions ---
 window.renderMassages = function() {
@@ -2421,7 +2425,7 @@ function createMassageCard(massage) {
     <div class="icon">${massage.icon}</div>
     <div class="drip-name">${massage.name}</div>
     <div class="tile-divider"></div>
-    <div class="small">${massage.description}</div>
+    <div classsmall">${massage.description}</div>
     <div class="info" onclick="event.stopPropagation(); showTooltip('${massage.id}')">ℹ️</div>
     <button class="accordion-header" onclick="event.stopPropagation(); toggleAccordion('price-${massage.id}', this)">Pricing</button>
     <div class="accordion-content" id="price-${massage.id}">
