@@ -941,6 +941,35 @@
       </div>
   </aside>
   <main class="main-content">
+    <div class="group-aqua">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+      <div class="accordion-content" id="lt-pricing">
+        <p class="value-add-service-hook">
+            Value-Added Service: Portable High Pressure 
+            <span>Oxygen Atomizer treatment with every session</span>
+        </p>
+        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
+            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
+            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
+                <li style="font-weight: 700;">30 mins: R450</li>
+            </ul>
+
+            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
+            <ul class="price-list" style="font-size: 1.05em;">
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">3 Sessions: R1,125</span> 
+                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
+                </li>
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">6 Sessions: R1,800</span>
+                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
+                </li>
+            </ul>
+        </div>
+        
+        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
+      </div>
+    </div>
     <div class="group-rose">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
       <div class="accordion-content" id="lt-discover">
@@ -1009,35 +1038,6 @@
         </div>
     </div>
     
-    <div class="group-aqua">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-      <div class="accordion-content" id="lt-pricing">
-        <p class="value-add-service-hook">
-            Value-Added Service: Portable High Pressure 
-            <span>Oxygen Atomizer treatment with every session</span>
-        </p>
-        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
-            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
-            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
-                <li style="font-weight: 700;">30 mins: R450</li>
-            </ul>
-
-            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
-            <ul class="price-list" style="font-size: 1.05em;">
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">3 Sessions: R1,125</span> 
-                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
-                </li>
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">6 Sessions: R1,800</span>
-                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
-                </li>
-            </ul>
-        </div>
-        
-        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
-      </div>
-    </div>
     
     
     <div class="group-lav">
@@ -1514,11 +1514,11 @@ window.updateCategoryHeading = function() {
 
     // REVISED LUXURY HOOK IMPLEMENTATION
     if (generation.includes('Gen Z')) {
-        personalizedText = `Welcome, ${firstName}. Discover your perfect Vibe.`; 
+        personalizedText = `Hi, ${firstName}. Discover your perfect Vibe.`; 
     } else if (generation.includes('Millennial')) {
         personalizedText = `Hello, ${firstName}. Optimize your Performance.`;
     } else if (generation.includes('Gen X')) {
-        personalizedText = `Hi, ${firstName}. Restore your Vitality.`;
+        personalizedText = `Welcome, ${firstName}. Restore your Vitality.`;
     } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
         personalizedText = `Greetings, ${firstName}. Enhance your Core Wellness.`;
     } else {
@@ -2002,8 +2002,12 @@ const fuse = new Fuse(fuseDataset, {
 window.toggleSearch = function() { 
     const searchContainer = document.getElementById('contextual-search-container');
     searchContainer.classList.toggle('open'); 
-    searchContainer.classList.add('visible'); // Keep visible when manually opened
-
+    // Always show/keep visible when manually opened on mobile
+    if (window.innerWidth < 992) {
+        searchContainer.classList.add('visible'); 
+        clearTimeout(visibilityTimer); // Reset inactivity timer
+        visibilityTimer = setTimeout(updateButtonVisibility, 2000); // Set 2s timer
+    }
 }
 window.openSearchResults = function() { document.getElementById('search-results-overlay').classList.add('open'); }
 window.closeSearchResults = function() { document.getElementById('search-results-overlay').classList.remove('open'); }
@@ -2056,73 +2060,65 @@ window.suggestMassages = function() {
     else { suggestion.innerHTML = '<p>Select at least one need to get recommendations.</p>'; }
 }
 
-// --- Scroll Navigation Logic (UPDATED) ---
+// --- Scroll Navigation Logic (UPDATED for 2s inactivity & tap) ---
 let scrollStopTimer; 
 let visibilityTimer;
 const backToTopBtn = document.getElementById('back-to-top-btn'); 
 const dynamicBackBtn = document.getElementById('dynamic-back-btn');
 const searchContainer = document.getElementById('contextual-search-container');
 
-window.scrollToTop = function() { 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+function showAllMobileControls() {
+    if (window.innerWidth < 992) {
+        backToTopBtn.classList.add('visible');
+        if (viewHistory.length > 0) dynamicBackBtn.classList.add('visible');
+        searchContainer.classList.add('visible');
+    }
 }
 
 function updateButtonVisibility() {
+    const isSearchOpen = searchContainer.classList.contains('open');
+    const isMobile = window.innerWidth < 992;
     const canGoBack = viewHistory.length > 0;
     const isScrolledDown = document.body.scrollTop > 200 || document.documentElement.scrollTop > 200;
-    const isMobile = window.innerWidth < 992;
-    const isSearchOpen = searchContainer.classList.contains('open');
 
-    // Always show/hide the back-to-top button based on scroll position regardless of mobile view.
-    // However, on mobile, we will hide it if the user is inactive.
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { 
-        backToTopBtn.classList.add('visible'); 
-    } else { 
-        backToTopBtn.classList.remove('visible'); 
-    }
-
-    // Dynamic back button logic
-    if (canGoBack && isScrolledDown) {
-        dynamicBackBtn.classList.add('visible');
-    } else {
-        dynamicBackBtn.classList.remove('visible');
-    }
-
-    // Search button visibility (only hide if not open)
-    if (!isSearchOpen) {
-        searchContainer.classList.add('visible');
-    }
-    
-    // If on desktop or search is open, stop here.
+    // Desktop/Default visibility logic (always visible when not scrolling)
     if (!isMobile) {
-        // Ensure all are fully visible on desktop
-        backToTopBtn.classList.add('visible');
-        dynamicBackBtn.classList.add('visible');
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { backToTopBtn.classList.add('visible'); } else { backToTopBtn.classList.remove('visible'); }
+        if (canGoBack) { dynamicBackBtn.classList.add('visible'); } else { dynamicBackBtn.classList.remove('visible'); }
         searchContainer.classList.add('visible');
         return;
     }
 
     // --- Mobile Inactivity Logic ---
-    // Clear the hide timer
     clearTimeout(visibilityTimer);
     
-    // Set a new timer to hide buttons if scrolling stops after 3000ms
+    // Check if controls should be visible based on scroll position/state
+    const shouldBeVisible = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) || canGoBack && isScrolledDown || isSearchOpen;
+
+    if (shouldBeVisible) {
+        // Only explicitly set class on immediate scroll or tap
+        // On scroll, the event handler will handle the immediate 'visible' class setting
+    } else {
+        // Ensure buttons disappear if scrolled up/at top, regardless of inactivity timer
+        backToTopBtn.classList.remove('visible');
+        dynamicBackBtn.classList.remove('visible');
+        if (!isSearchOpen) searchContainer.classList.remove('visible'); 
+    }
+    
+    // Set a new timer to hide buttons if no activity occurs for 2000ms
     visibilityTimer = setTimeout(() => {
-        // Only hide if the search bar is NOT open and we are on a mobile view
         if (!isSearchOpen) {
             backToTopBtn.classList.remove('visible');
             dynamicBackBtn.classList.remove('visible');
             searchContainer.classList.remove('visible');
         }
-    }, 3000); 
+    }, 2000); 
 }
 
 window.onscroll = () => {
-    // Show buttons immediately on scroll start
+    // Show buttons immediately on scroll start on mobile
     if (window.innerWidth < 992) {
-        backToTopBtn.classList.add('visible');
-        if (viewHistory.length > 0) dynamicBackBtn.classList.add('visible');
-        searchContainer.classList.add('visible');
+        showAllMobileControls();
     }
     
     // Clear the scroll stop timer to prevent rapid firing of visibility updates
@@ -2131,9 +2127,18 @@ window.onscroll = () => {
     // Set a new timer to check for visibility changes when scrolling stops (after a short delay)
     scrollStopTimer = setTimeout(updateButtonVisibility, 250); 
     
-    // Also run the visibility update function to apply initial logic
+    // Run the visibility update function to apply desktop logic instantly on scroll if needed
     updateButtonVisibility();
 };
+
+// New Event Listener for Tap/Touch to make controls reappear on mobile
+window.addEventListener('touchstart', (event) => {
+    if (window.innerWidth < 992) {
+        showAllMobileControls();
+        clearTimeout(visibilityTimer); // Reset inactivity timer
+        visibilityTimer = setTimeout(updateButtonVisibility, 2000); // Set 2s timer to hide again
+    }
+});
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -2143,7 +2148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFilterOptions(); // Call initial update in case user session data is somehow pre-loaded
     updateButtonVisibility(); // Initial visibility check
 });
-
 </script>
 </body>
 </html>
