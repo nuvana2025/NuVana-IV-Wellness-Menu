@@ -639,6 +639,13 @@
   </div>
 </div>
 
+<div class="nv-tooltip-overlay" id="tooltip-overlay" onclick="closeTooltip()">
+<div class="nv-tooltip-card" onclick="event.stopPropagation()">
+<span class="nv-tooltip-close" onclick="closeTooltip()">×</span>
+<div id="tooltip-content"></div>
+</div>
+</div>
+
 <a href="#" class="header-link" onclick="event.preventDefault(); goHome();">
   <header>
     <button class="header-home-button hidden" onclick="goHome(event)">
@@ -786,9 +793,10 @@
 <p id="detail-tagline" class="detail-tagline-style"></p>
 <p class="price">Price: R<span id="detail-price"></span></p>
 <div class="series-blurb" id="series-blurb"></div>
-<p id="detail-duration-text" style="font-style: italic; color: #555; margin-bottom: 4px;"></p>
+
+<!-- REQUIRED CHANGE: Update Tooltip Text and Title -->
 <div class="did-you-know" onclick="showDidYouKnowTooltip()">
-    ℹ️ Why the gentle pace?
+    ℹ️ Did you know?
     <div class="did-you-know-tooltip" id="did-you-know-content"></div>
 </div>
 
@@ -1114,18 +1122,12 @@
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
-<div class="nv-tooltip-overlay" id="tooltip-overlay" onclick="closeTooltip()">
-<div class="nv-tooltip-card" onclick="event.stopPropagation()">
-<span class="nv-tooltip-close" onclick="closeTooltip()">×</span>
-<div id="tooltip-content"></div>
-</div>
-</div>
-</div>
 <button id="back-to-top-btn" class="scroll-nav-btn" onclick="scrollToTop()">↑</button>
 <button id="dynamic-back-btn" class="scroll-nav-btn" onclick="goBack()">←</button>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6/dist/fuse.min.js"></script>
 <script>
 // Data - Ensure allDrips object reflects spreadsheet accurately
+// UPDATED DATA STRUCTURE with Gen-Specific Taglines and Scientific Tips
 const allDrips = {
   'Jet Fuel': {
     name: 'Jet Fuel', 
@@ -1133,6 +1135,11 @@ const allDrips = {
     addonPrice: null, 
     duration: '25-40 minutes', 
     tagline: 'Clean, Lasting Vibe Boost', 
+    taglineZ: 'Peak mode, unlocked.',
+    taglineY: 'Fuel your focus. Stay limitless.',
+    taglineX: 'Sharper energy. Steady results.',
+    taglineB: 'Sustain your strength. Feel renewed.',
+    didYouKnowTip: 'B Vitamins are crucial cofactors in energy metabolism, helping convert food into ATP, the body\'s primary energy currency. This ensures a clean, sustained energy release.',
     description: 'The Jet Fuel IV Drip is designed to recharge your body and mind when your gees dips. This energising blend of essential vitamins, minerals, and antioxidants supports focus, stamina, recovery, and natural detoxification — helping you perform and feel your best. Together, these nutrients work at a cellular level to boost vitality, clarity, and overall wellbeing.', 
     overallBenefits: 'Boosts energy, focus, and recovery. Supports detox and skin brightening.', 
     ingredients: '<strong>Vitamin B12 & B-Complex:</strong> Support metabolism, brain function, and mood while reducing fatigue.\n<strong>Magnesium:</strong> Helps muscles relax, eases tension, and supports nerve and heart health.\n<strong>Vitamin C:</strong> Strengthens the immune system, supports collagen production, and brightens skin.\n<strong>Glutathione (slow push):</strong> A master antioxidant that aids detoxification, improves skin clarity, and protects against cellular stress.', 
@@ -1147,6 +1154,11 @@ const allDrips = {
     addonPrice: null, 
     duration: '30-45 minutes', 
     tagline: 'Premium, Maximum Gees Boost', 
+    taglineZ: 'Maximum vibes, activated.',
+    taglineY: 'High-potency focus. Achieve breakthrough.',
+    taglineX: 'Essential performance. Trust the results.',
+    taglineB: 'Maximum vitality. Embrace your best life.',
+    didYouKnowTip: 'Glutathione is a master antioxidant that helps the liver neutralize toxins, which contributes significantly to reducing mental fog and chronic fatigue by improving cellular health.',
     description: 'The Jet Fuel Premium IV Drip is designed to supercharge your body and mind. This high-potency blend of essential vitamins, minerals, and antioxidants supports maximum focus, stamina, recovery, and natural detoxification — helping you perform and feel your absolute best. Together, these nutrients work at a cellular level to boost vitality, clarity, and overall wellbeing.', 
     overallBenefits: 'Maximises energy, focus, and recovery. Supports detox and skin brightening.', 
     ingredients: '<strong>Vitamin B12 & B-Complex:</strong> Support metabolism, brain function, and mood while reducing fatigue.\n<strong>Magnesium:</strong> Helps muscles relax, eases tension, and supports nerve and heart health.\n<strong>Vitamin C:</strong> Strengthens the immune system, supports collagen production, and brightens skin.\n<strong>Glutathione (slow push):</strong> A master antioxidant that aids detoxification, improves skin clarity, and protects against cellular stress.', 
@@ -1155,31 +1167,132 @@ const allDrips = {
     notSuitableFor: 'Pregnant or breastfeeding individuals. Those with severe kidney disease, heart failure, or uncontrolled high blood pressure. Anyone allergic to any of the listed ingredients. Clients undergoing chemotherapy or with serious medical conditions (unless cleared by their doctor). \n\n<small><i>Disclaimer: This list is not exhaustive. All pre-existing medical conditions, current medications, and supplements must be disclosed on the consent form for discussion with the attending nurse before treatment.</i></small>',
     icon: '⚡⚡⚡'
   },
-  'Recharge': {name: 'Recharge', price: 500, addonPrice: null, duration: '30 mins', tagline: 'Spark Clarity, Ignite Vigor', description: "Awaken your soul's spark with this swift IV drip, infusing B12, B-Complex, and magnesium to banish mental fog and ignite a radiant clarity. Feel your energy soar, ready to embrace busy days or recover from travel with vibrant, unstoppable zest.", overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', frequency: 'Every 2-4 weeks; as needed for energy.', 
+  'Recharge': {
+    name: 'Recharge', 
+    price: 500, 
+    addonPrice: null, 
+    duration: '30 mins', 
+    tagline: 'Spark Clarity, Ignite Vigor',
+    taglineZ: 'Quick charge, no crash.',
+    taglineY: 'Ignite your day. Find your flow.',
+    taglineX: 'Simple boost. Lasting vitality.',
+    taglineB: 'Restore your natural spark.',
+    didYouKnowTip: 'Magnesium is a natural calcium channel blocker, which helps relax muscles and blood vessels, promoting a feeling of calm and reducing tension headaches often associated with fatigue.',
+    description: "Awaken your soul's spark with this swift IV drip, infusing B12, B-Complex, and magnesium to banish mental fog and ignite a radiant clarity. Feel your energy soar, ready to embrace busy days or recover from travel with vibrant, unstoppable zest.", 
+    overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', 
+    ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', 
+    frequency: 'Every 2-4 weeks; as needed for energy.', 
     perfectFor: 'Individuals with chronic fatigue or low energy, vegans or vegetarians, stressed professionals needing focus and mood support, or for a quick energy pick-me-up.', 
-    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', icon: '🔋'},
-  'Recharge Premium': {name: 'Recharge Premium', price: 950, addonPrice: null, duration: '45 mins', tagline: 'Surge with Boundless Vibe', description: 'Shatter exhaustion with this electrifying IV drip, infused with B12, B-Complex, and magnesium to ignite your metabolism and unleash a torrent of radiant vitality. This premium formula, with fiercer potency than Recharge, fuels your focus and passion, empowering you to conquer burnout and live life with unstoppable joy.', overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', frequency: 'Every 2-4 weeks; as needed for energy.', 
+    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', 
+    icon: '🔋'
+  },
+  'Recharge Premium': {
+    name: 'Recharge Premium', 
+    price: 950, 
+    addonPrice: null, 
+    duration: '45 mins', 
+    tagline: 'Surge with Boundless Vibe',
+    taglineZ: 'Turbo boost. Full send energy.',
+    taglineY: 'Unlock peak potential. Go further.',
+    taglineX: 'Comprehensive energy. Steady power.',
+    taglineB: 'Enhanced vitality. Feel the difference.',
+    didYouKnowTip: 'Higher B12 potency supports nerve myelin sheath, improving nerve signal speed, which translates to faster mental processing and sharper clarity for enhanced cognitive function.',
+    description: 'Shatter exhaustion with this electrifying IV drip, infused with B12, B-Complex, and magnesium to ignite your metabolism and unleash a torrent of radiant vitality. This premium formula, with fiercer potency than Recharge, fuels your focus and passion, empowering you to conquer burnout and live life with unstoppable joy.', 
+    overallBenefits: 'Boosts energy, focus, eases muscle tension, supports health.', 
+    ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.', 
+    frequency: 'Every 2-4 weeks; as needed for energy.', 
     perfectFor: 'For overcoming severe burnout, chronic fatigue, or when a high-potency energy and focus solution is required. Excellent for prolonged mental or physical exertion.', 
-    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', icon: '🔋🔋🔋'},
-  'Libido': {name: 'Libido', price: 900, addonPrice: null, duration: '45-60 mins', tagline: 'Revive your drive, lekker!', description: 'The Libido Drip is a targeted infusion that boosts circulation, vitality, energy, and desire. Combining amino acids and vital nutrients, it enhances blood flow, stamina, and mood — helping you reconnect with your natural vitality and confidence.', overallBenefits: 'Enhances sexual performance and libido. Improves blood flow and circulation. Boosts energy and physical endurance. Supports hormone and neurotransmitter balance. Reduces fatigue and enhances mood. Promotes muscle recovery and vitality.', ingredients: '<strong>Vitamin B Complex</strong> – Supports metabolism, nerve function, and hormone regulation, helping you combat fatigue and stress.\n<strong>Vitamin B12 (Methylcobalamin)</strong> – Elevates energy and mood while supporting red blood cell formation for improved oxygen delivery.\n<strong>Vitamin C (Ascorbic Acid)</strong> – Potent antioxidant that enhances nitric oxide availability and protects cells from oxidative stress.\n<strong>L-Arginine</strong> – A key precursor to nitric oxide, improving blood vessel dilation and promoting enhanced circulation and performance.\n<strong>L-Carnitine</strong> – Boosts mitochondrial energy production, enhances endurance, and supports sperm and egg cell health.\n<strong>Taurine</strong> – Aids in muscle function, balances mood, and enhances cellular hydration.\n<strong>Magnesium Sulphate</strong> – Relaxes muscles, supports nerve function, and helps regulate testosterone and cortisol balance.\n<strong>Zinc Sulphate</strong> – Essential for testosterone production, fertility, and immune function.', frequency: 'Recommended: Every 2 to 4 weeks for maintenance, or as advised by your practitioner. Some clients choose a weekly course for 3–4 sessions to jumpstart their energy and circulation before switching to monthly top-ups.', 
+    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', 
+    icon: '🔋🔋🔋'
+  },
+  'Libido': {
+    name: 'Libido', 
+    price: 900, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Revive your drive, lekker!',
+    taglineZ: 'Vibe check: high.',
+    taglineY: 'Reignite your fire. Maximize connection.',
+    taglineX: 'Optimized energy. Improved endurance.',
+    taglineB: 'Renew your drive. Feel the vigor.',
+    didYouKnowTip: 'L-Arginine is a precursor to Nitric Oxide (NO), a powerful vasodilator that relaxes blood vessels, significantly improving circulation, oxygen delivery, and physical performance.',
+    description: 'The Libido Drip is a targeted infusion that boosts circulation, vitality, energy, and desire. Combining amino acids and vital nutrients, it enhances blood flow, stamina, and mood — helping you reconnect with your natural vitality and confidence.', 
+    overallBenefits: 'Enhances sexual performance and libido. Improves blood flow and circulation. Boosts energy and physical endurance. Supports hormone and neurotransmitter balance. Reduces fatigue and enhances mood. Promotes muscle recovery and vitality.', 
+    ingredients: '<strong>Vitamin B Complex</strong> – Supports metabolism, nerve function, and hormone regulation, helping you combat fatigue and stress.\n<strong>Vitamin B12 (Methylcobalamin)</strong> – Elevates energy and mood while supporting red blood cell formation for improved oxygen delivery.\n<strong>Vitamin C (Ascorbic Acid)</strong> – Potent antioxidant that enhances nitric oxide availability and protects cells from oxidative stress.\n<strong>L-Arginine</strong> – A key precursor to nitric oxide, improving blood vessel dilation and promoting enhanced circulation and performance.\n<strong>L-Carnitine</strong> – Boosts mitochondrial energy production, enhances endurance, and supports sperm and egg cell health.\n<strong>Taurine</strong> – Aids in muscle function, balances mood, and enhances cellular hydration.\n<strong>Magnesium Sulphate</strong> – Relaxes muscles, supports nerve function, and helps regulate testosterone and cortisol balance.\n<strong>Zinc Sulphate</strong> – Essential for testosterone production, fertility, and immune function.', 
+    frequency: 'Recommended: Every 2 to 4 weeks for maintenance, or as advised by your practitioner. Some clients choose a weekly course for 3–4 sessions to jumpstart their energy and circulation before switching to monthly top-ups.', 
     perfectFor: 'Those looking to reignite their vitality, boost stamina, and support overall sexual wellness. Ideal for men and women experiencing fatigue, low libido, or decreased endurance — whether due to stress, hormonal fluctuations, or lifestyle demands', 
-    notSuitableFor: 'Individuals with severe renal impairment or heart failure. Those on nitrates or PDE5 inhibitors (e.g., Viagra) within 24 hours of infusion. People with uncontrolled hypertension, electrolyte imbalances, or severe anaemia. Pregnant or breastfeeding clients (unless cleared by a medical professional)', icon: '💋'},
-  'Glutamine': {name: 'Glutamine', price: 400, addonPrice: 300, duration: '30 mins', tagline: 'Rebuild. Restore. Rise renewed', description: 'For those who push their limits, the Glutamine Drip delivers deep internal renewal. It restores muscle vitality, soothes the gut, and strengthens immune balance — a quiet reset for the body that does it all.', overallBenefits: 'Promotes muscle repair and reduces post-exercise fatigue. Supports a healthy gut lining and improves digestion. Strengthens immune resilience during stress or recovery. Enhances cellular hydration and nutrient absorption. Aids in faster recovery from illness or physical strain. Boosts overall vitality and energy balance.', ingredients: '<strong>L-Glutamine</strong>: Supports muscle recovery, gut health, and immune balance — helping your body repair, refuel, and restore energy from within.', frequency: 'Wellness Maintenance: Every 2–3 weeks. Active Training or Recovery Phase: Weekly or as part of a post-exertion IV blend.', 
+    notSuitableFor: 'Individuals with severe renal impairment or heart failure. Those on nitrates or PDE5 inhibitors (e.g., Viagra) within 24 hours of infusion. People with uncontrolled hypertension, electrolyte imbalances, or severe anaemia. Pregnant or breastfeeding clients (unless cleared by a medical professional)', 
+    icon: '💋'
+  },
+  'Glutamine': {
+    name: 'Glutamine', 
+    price: 400, 
+    addonPrice: 300, 
+    duration: '30 mins', 
+    tagline: 'Rebuild. Restore. Rise renewed',
+    taglineZ: 'Reset your core.',
+    taglineY: 'Deep cellular repair. Optimize recovery.',
+    taglineX: 'Post-exertion healing.',
+    taglineB: 'Support your immunity.',
+    didYouKnowTip: 'L-Glutamine is the primary fuel source for immune cells and cells lining the gut (enterocytes). It is critical for repairing the gut barrier and maintaining immune function, especially during stress or post-training.',
+    description: 'For those who push their limits, the Glutamine Drip delivers deep internal renewal. It restores muscle vitality, soothes the gut, and strengthens immune balance — a quiet reset for the body that does it all.', 
+    overallBenefits: 'Promotes muscle repair and reduces post-exercise fatigue. Supports a healthy gut lining and improves digestion. Strengthens immune resilience during stress or recovery. Enhances cellular hydration and nutrient absorption. Aids in faster recovery from illness or physical strain. Boosts overall vitality and energy balance.', 
+    ingredients: '<strong>L-Glutamine</strong>: Supports muscle recovery, gut health, and immune balance — helping your body repair, refuel, and restore energy from within.', 
+    frequency: 'Wellness Maintenance: Every 2–3 weeks. Active Training or Recovery Phase: Weekly or as part of a post-exertion IV blend.', 
     perfectFor: 'Athletes, fitness enthusiasts, or anyone recovering from physical stress, digestive issues, or low energy. Excellent for supporting gut health and immune recovery.', 
-    notSuitableFor: 'Clients with severe liver or kidney disease. Individuals with metabolic disorders affecting amino acid processing. Those with known hypersensitivity or allergy to L-Glutamine. Pregnant or breastfeeding clients (unless approved by a medical practitioner). Clients currently undergoing active chemotherapy or radiation therapy. Anyone with uncontrolled hypertension or severe dehydration.', icon: '🏋️'},
-  'Anxiety Relief': {name: 'Anxiety Relief', price: 790, addonPrice: null, duration: '45-60 mins', tagline: 'Embrace Serene Tranquility', description: 'Dissolve stress and embrace a tranquil haven with this soothing IV drip, infusing Taurine, Magnesium, and Vitamin C to uplift your spirit and restore inner peace. Feel tension melt away as radiant clarity emerges, guiding you to a serene, joyful state of confidence.', overallBenefits: 'Reduces stress, relaxes muscles, boosts immunity, sharpens clarity.', ingredients: '<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly for 2-3 weeks, then every 2-4 weeks', 
+    notSuitableFor: 'Clients with severe liver or kidney disease. Individuals with metabolic disorders affecting amino acid processing. Those with known hypersensitivity or allergy to L-Glutamine. Pregnant or breastfeeding clients (unless approved by a medical practitioner). Clients currently undergoing active chemotherapy or radiation therapy. Anyone with uncontrolled hypertension or severe dehydration.', 
+    icon: '🏋️'
+  },
+  'Anxiety Relief': {
+    name: 'Anxiety Relief', 
+    price: 790, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Embrace Serene Tranquility',
+    taglineZ: 'Chill mode: permanent.',
+    taglineY: 'Find your calm. Navigate with ease.',
+    taglineX: 'Effective stress defense.',
+    taglineB: 'Experience deep, restorative peace.',
+    didYouKnowTip: 'Taurine acts as an inhibitory neurotransmitter, similar to GABA, helping to stabilize nerve cell membranes and calm the central nervous system, reducing feelings of stress and anxiety.',
+    description: 'Dissolve stress and embrace a tranquil haven with this soothing IV drip, infusing Taurine, Magnesium, and Vitamin C to uplift your spirit and restore inner peace. Feel tension melt away as radiant clarity emerges, guiding you to a serene, joyful state of confidence.', 
+    overallBenefits: 'Reduces stress, relaxes muscles, boosts immunity, sharpens clarity.', 
+    ingredients: '<strong>Taurine</strong>: Boosts stamina and mental resilience, detoxifying your system for renewed endurance.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', 
+    frequency: 'Weekly for 2-3 weeks, then every 2-4 weeks', 
     perfectFor: 'Individuals with anxiety or stress, those needing relaxation and better sleep, people under high mental pressure. A great foundational choice for mental well-being.', 
-    notSuitableFor: 'Avoid if you have kidney stones, severe kidney/liver disease, hypotension, or are pregnant. Consult your practitioner if on psychoactive medication.', icon: '😌'},
-  'Anxiety Relief Premium': {name: 'Anxiety Relief Premium', price: 1100, addonPrice: null, duration: '60 mins', tagline: 'Drift into Deep Calm', description: "Surrender to a profound oasis of calm with this advanced IV drip, blending Taurine, Magnesium, and Vitamin C to silence anxiety and ignite radiant focus. This premium formula, with fiercer potency than Anxiety Relief, envelops you in serene confidence, empowering restful sleep and a joyful embrace of life's moments.", overallBenefits: 'Reduces anxiety, muscle tension, boosts focus, mood, stress resistance', ingredients: '<strong>Magnesium (32 mg)</strong> – Relaxes muscles, supports nerve function, and calms the nervous system; essential for stress relief and improved sleep quality.\n<strong>Calcium Gluconate (8 mg)</strong> – Supports healthy muscle and nerve signalling while promoting bone and cardiovascular health.\n<strong>Methylcobalamin (Vitamin B12) (0.8 mg)</strong> – Enhances mood, energy production, and cognitive clarity.\n<strong>Pyridoxine (Vitamin B6) (4 mg)</strong> – Assists in serotonin and dopamine production, supporting mood balance and emotional wellbeing.\n<strong>Riboflavin (Vitamin B2) (0.08 mg)</strong> – Aids in cellular energy production and helps maintain glowing skin and eye health.\n<strong>Thiamine (Vitamin B1) (0.4 mg)</strong> – Converts nutrients into energy and supports a calm, steady mood.\n<strong>d-Panthenol (Vitamin B5) (10 mg)</strong> – Reduces fatigue, supports adrenal health, and helps the body cope with stress.\n<strong>Nicotinamide (Vitamin B3) (4 mg)</strong> – Enhances circulation, supports brain function, and promotes calm focus.\n<strong>Ascorbic Acid (Vitamin C) (60 mg)</strong> – Strengthens immunity and combats oxidative stress.', frequency: 'Every 1-2 weeks; maintenance every 3-4 weeks.', 
+    notSuitableFor: 'Avoid if you have kidney stones, severe kidney/liver disease, hypotension, or are pregnant. Consult your practitioner if on psychoactive medication.', 
+    icon: '😌'
+  },
+  'Anxiety Relief Premium': {
+    name: 'Anxiety Relief Premium', 
+    price: 1100, 
+    addonPrice: null, 
+    duration: '60 mins', 
+    tagline: 'Drift into Deep Calm',
+    taglineZ: 'Unlocked zen. All the good feels.',
+    taglineY: 'Profound tranquility. Master your mind.',
+    taglineX: 'Advanced calm. Reliable balance.',
+    taglineB: 'Comprehensive nerve support.',
+    didYouKnowTip: 'The high dose of B Vitamins and Magnesium works synergistically to stabilize the HPA axis (stress response system), building long-term resilience against chronic stress and promoting deep relaxation.',
+    description: "Surrender to a profound oasis of calm with this advanced IV drip, blending Taurine, Magnesium, and Vitamin C to silence anxiety and ignite radiant focus. This premium formula, with fiercer potency than Anxiety Relief, envelops you in serene confidence, empowering restful sleep and a joyful embrace of life's moments.", 
+    overallBenefits: 'Reduces anxiety, muscle tension, boosts focus, mood, stress resistance', 
+    ingredients: '<strong>Magnesium (32 mg)</strong> – Relaxes muscles, supports nerve function, and calms the nervous system; essential for stress relief and improved sleep quality.\n<strong>Calcium Gluconate (8 mg)</strong> – Supports healthy muscle and nerve signalling while promoting bone and cardiovascular health.\n<strong>Methylcobalamin (Vitamin B12) (0.8 mg)</strong> – Enhances mood, energy production, and cognitive clarity.\n<strong>Pyridoxine (Vitamin B6) (4 mg)</strong> – Assists in serotonin and dopamine production, supporting mood balance and emotional wellbeing.\n<strong>Riboflavin (Vitamin B2) (0.08 mg)</strong> – Aids in cellular energy production and helps maintain glowing skin and eye health.\n<strong>Thiamine (Vitamin B1) (0.4 mg)</strong> – Converts nutrients into energy and supports a calm, steady mood.\n<strong>d-Panthenol (Vitamin B5) (10 mg)</strong> – Reduces fatigue, supports adrenal health, and helps the body cope with stress.\n<strong>Nicotinamide (Vitamin B3) (4 mg)</strong> – Enhances circulation, supports brain function, and promotes calm focus.\n<strong>Ascorbic Acid (Vitamin C) (60 mg)</strong> – Strengthens immunity and combats oxidative stress.', 
+    frequency: 'Every 1-2 weeks; maintenance every 3-4 weeks.', 
     perfectFor: 'Individuals with high levels of chronic stress, severe anxiety, or sleep disturbances seeking maximum therapeutic effect and comprehensive nutrient support.', 
-    notSuitableFor: 'Avoid if you have kidney stones, severe kidney/liver disease, hypotension, or are pregnant. Consult your practitioner if on psychoactive medication.', icon: '😌😌'},
+    notSuitableFor: 'Avoid if you have kidney stones, severe kidney/liver disease, hypotension, or are pregnant. Consult your practitioner if on psychoactive medication.', 
+    icon: '😌😌'
+  },
   'Radiance': {
     name: 'Radiance', 
     price: 950, 
     addonPrice: null, 
     duration: '25-40 minutes',
-    durationDetails: '<p>Each session takes approximately <strong>25–40 minutes</strong>, which includes:</p><ul style="text-align: left; padding-left: 20px;"><li>20–30 minutes for the Vitamin C infusion in saline</li><li>5–10 minutes for the gentle Glutathione slow push at the end</li></ul><p style="text-align: center; font-style: italic; color: #333; margin-top: 16px;">Your comfort is our priority — the drip is paced to your body’s rhythm, ensuring a calm and relaxing experience throughout.</p>',
     tagline: 'Glow Up, Like a Boss', 
+    taglineZ: 'Glow up, no filter needed.',
+    taglineY: 'Luminous skin. Your daily advantage.',
+    taglineX: 'Clear complexion. Consistent results.',
+    taglineB: 'Refreshed skin. Maintain your look.',
+    didYouKnowTip: 'Vitamin C is essential for collagen synthesis (the skin\'s structural protein) and also helps inhibit tyrosinase, the enzyme responsible for melanin production, leading to brighter, more even skin tone.',
+    durationDetails: '<p>Each session takes approximately <strong>25–40 minutes</strong>, which includes:</p><ul style="text-align: left; padding-left: 20px;"><li>20–30 minutes for the Vitamin C infusion in saline</li><li>5–10 minutes for the gentle Glutathione slow push at the end</li></ul><p style="text-align: center; font-style: italic; color: #333; margin-top: 16px;">Your comfort is our priority — the drip is paced to your body’s rhythm, ensuring a calm and relaxing experience throughout.</p>',
     description: 'Radiance is a gentle, antioxidant-rich formulation designed to support skin health, detoxification, and overall wellbeing. Delivered in a soothing saline base, this drip hydrates the body while allowing these antioxidants to circulate and nourish your cells directly.', 
     overallBenefits: 'Brightens and evens skin tone, boosts collagen, supports detox, and enhances immunity.', 
     ingredients: '<strong>Ascorbic Acid (Vitamin C) – 2500 mg:</strong> Brightens the skin by supporting collagen production and protecting against free radicals. It helps even out skin tone, boosts immunity, and assists your body in managing daily stress and fatigue.\n<strong>Glutathione – 1000 mg (administered as a slow push at the end):</strong> Known as the body’s master antioxidant, Glutathione helps neutralise toxins, reduce pigmentation, and promote a clear, luminous complexion. It also supports liver function and cellular repair.', 
@@ -1194,6 +1307,11 @@ const allDrips = {
     addonPrice: null, 
     duration: '45-60 minutes', 
     tagline: 'Radiate Timeless Beauty', 
+    taglineZ: 'Max shine. High-key glow.',
+    taglineY: 'Accelerated glow. Next-level clarity.',
+    taglineX: 'Proactive aging. Enhanced skin clarity.',
+    taglineB: 'Boost your natural radiance.',
+    didYouKnowTip: 'Higher doses of Glutathione are needed to effectively bind to and eliminate heavy metals and environmental toxins, offering a deeper level of cellular clean-up for superior skin clarity and detoxification.',
     description: "For those seeking accelerated results, Radiance Plus enhances our foundational glow formula with a significantly higher potency of essential antioxidants. It’s the ideal next step for maximising your skin's brightness and clarity.\n\nThis powerful formulation works to more intensively combat oxidative stress from modern life, helping you achieve a luminous, even-toned complexion faster and maintain your glow for longer.",
     overallBenefits: 'Maximises skin brightening and collagen production. Offers enhanced detox and powerfully fights free radicals.',
     ingredients: '<strong>High-Potency Ascorbic Acid (Vitamin C):</strong> A larger, more potent dose that powerfully boosts collagen synthesis, brightens the skin, and protects against cellular damage.\n<strong>High-Potency Glutathione (administered as a slow push at the end):</strong> An increased amount of the body’s master antioxidant to more effectively neutralise toxins, reduce pigmentation, and promote a clear, brilliant complexion.',
@@ -1202,69 +1320,405 @@ const allDrips = {
     notSuitableFor: 'This drip is not suitable for clients with kidney or liver disease, active infections, or known sensitivities to Vitamin C or Glutathione. If you are pregnant, breastfeeding, or on medication such as chemotherapy, anticoagulants, or corticosteroids, please discuss this with our nurse or doctor before treatment. \n\n<small><i>Important: All pre-existing medical conditions, medications, and supplements must be disclosed on your consent form to ensure your IV is safe and tailored to your needs.</i></small>',
     icon: '✨✨'
   },
-  'Radiance Premium': {name: 'Radiance Premium', price: 1800, addonPrice: null, duration: '60 mins', tagline: 'Shine with Eternal Youth', description: "Ascend to your most radiant, youthful self with this luxurious IV drip, weaving antioxidants, B vitamins, and NAD⁺ to rejuvenate your skin and spark boundless vitality. Glutathione and Biotin amplify your glow, hair, and nails, while this premium formula, with fiercer potency than Radiance Plus, unveils an eternal radiance that captivates every moment, from grand celebrations to daily elegance.", overallBenefits: 'Brightens skin, hydrates, boosts energy, collagen, supports hair, nails.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', 
+  'Radiance Premium': {
+    name: 'Radiance Premium', 
+    price: 1800, 
+    addonPrice: null, 
+    duration: '60 mins', 
+    tagline: 'Shine with Eternal Youth',
+    taglineZ: 'Main character energy. Eternal glow.',
+    taglineY: 'Timeless beauty. Maximize vitality.',
+    taglineX: 'Comprehensive rejuvenation.',
+    taglineB: 'The ultimate wellness and beauty fusion.',
+    didYouKnowTip: 'NAD⁺ is a coenzyme central to energy production and DNA repair. By boosting NAD⁺ levels, this drip supports cellular longevity, improving the appearance and function of skin cells from within.',
+    description: "Ascend to your most radiant, youthful self with this luxurious IV drip, weaving antioxidants, B vitamins, and NAD⁺ to rejuvenate your skin and spark boundless vitality. Glutathione and Biotin amplify your glow, hair, and nails, while this premium formula, with fiercer potency than Radiance Plus, unveils an eternal radiance that captivates every moment, from grand celebrations to daily elegance.", 
+    overallBenefits: 'Brightens skin, hydrates, boosts energy, collagen, supports hair, nails.', 
+    ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione (slow push)</strong>: Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', 
+    frequency: 'Weekly for 4-6 weeks, then monthly.', 
     perfectFor: 'The ultimate anti-aging and beauty treatment. Ideal for maximizing NAD+ benefits, severe skin concerns, or preparing for a big event where you need to look and feel your absolute best.',
-    notSuitableFor: 'Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant. Consult your practitioner for personalized advice.', icon: '✨✨✨'},
-  'Biotin': {name: 'Biotin', price: 420, addonPrice: 300, duration: '30 mins', tagline: 'Strengthen, Glow, Shine', description: 'Unveil your radiant beauty with this nourishing IV drip, infused with Biotin to fortify hair, skin, and nails. Ignite cellular energy and embrace a luminous glow that mirrors your inner vitality, empowering you to shine with confidence and grace at every moment.', overallBenefits: 'Strengthens hair, skin, nails, boosts energy.', ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Avoid if you have kidney stones, asthma, kidney/liver disease, diabetes, or are pregnant. Consult your practitioner for personalized advice.', 
+    icon: '✨✨✨'
+  },
+  'Biotin': {
+    name: 'Biotin', 
+    price: 420, 
+    addonPrice: 300, 
+    duration: '30 mins', 
+    tagline: 'Strengthen, Glow, Shine',
+    taglineZ: 'Hair, skin, nails on point.',
+    taglineY: 'Strengthen your beauty foundation.',
+    taglineX: 'Durable vitality.',
+    taglineB: 'Support for healthy appearance.',
+    didYouKnowTip: 'Biotin is a coenzyme crucial for the metabolism of fatty acids, which is vital for the structure of keratin, the protein that makes up hair and nails, resulting in increased strength and thickness.',
+    description: 'Unveil your radiant beauty with this nourishing IV drip, infused with Biotin to fortify hair, skin, and nails. Ignite cellular energy and embrace a luminous glow that mirrors your inner vitality, empowering you to shine with confidence and grace at every moment.', 
+    overallBenefits: 'Strengthens hair, skin, nails, boosts energy.', 
+    ingredients: '<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Individuals with brittle nails or thinning hair, or those seeking stronger hair, skin, and nails. Perfect as a beauty maintenance booster.', 
-    notSuitableFor: 'Avoid if you have known hypersensitivity to Biotin or are pregnant. Consult your practitioner if you are planning laboratory tests, as high doses may interfere with some results.', icon: '🧴✨'},
-  'Vitamin C': {name: 'Vitamin C', price: null, addonPrice: 225, duration: '30 mins', tagline: 'Glow stronger, heal deeper — powered by Vitamin C', description: 'A revitalising antioxidant boost that strengthens immunity, enhances collagen, and restores natural glow. This drip supports energy, recovery, and cellular repair for overall wellness.', overallBenefits: 'Our Vitamin C Drip delivers a powerful antioxidant boost directly into your bloodstream, enhancing your immune system, supporting collagen production for radiant skin, and improving cellular repair and energy levels. It helps combat fatigue, oxidative stress, and environmental damage—keeping you feeling refreshed, resilient, and glowing from within.', ingredients: '<strong>Vitamin C</strong>: Strengthens immune defense. Supports collagen synthesis for skin, joints, and connective tissue. Neutralises free radicals and reduces inflammation. Aids in iron absorption and wound healing. Promotes overall vitality and detox support.', frequency: 'For general wellness and immune support: once every 2–4 weeks. During high stress, recovery, or illness: weekly (as advised by the practitioner).', 
+    notSuitableFor: 'Avoid if you have known hypersensitivity to Biotin or are pregnant. Consult your practitioner if you are planning laboratory tests, as high doses may interfere with some results.', 
+    icon: '🧴✨'
+  },
+  'Vitamin C': {
+    name: 'Vitamin C', 
+    price: null, 
+    addonPrice: 225, 
+    duration: '30 mins', 
+    tagline: 'Glow stronger, heal deeper — powered by Vitamin C',
+    taglineZ: 'Core strength. Immune check.',
+    taglineY: 'Essential defense. Optimize function.',
+    taglineX: 'Foundational immune support.',
+    taglineB: 'Enhance your body\'s natural resilience.',
+    didYouKnowTip: 'As a powerful water-soluble antioxidant, Vitamin C is rapidly depleted during periods of stress, illness, or high physical activity, making IV replenishment highly effective for fast immune defense.',
+    description: 'A revitalising antioxidant boost that strengthens immunity, enhances collagen, and restores natural glow. This drip supports energy, recovery, and cellular repair for overall wellness.', 
+    overallBenefits: 'Our Vitamin C Drip delivers a powerful antioxidant boost directly into your bloodstream, enhancing your immune system, supporting collagen production for radiant skin, and improving cellular repair and energy levels. It helps combat fatigue, oxidative stress, and environmental damage—keeping you feeling refreshed, resilient, and glowing from within.', 
+    ingredients: '<strong>Vitamin C</strong>: Strengthens immune defense. Supports collagen synthesis for skin, joints, and connective tissue. Neutralises free radicals and reduces inflammation. Aids in iron absorption and wound healing. Promotes overall vitality and detox support.', 
+    frequency: 'For general wellness and immune support: once every 2–4 weeks. During high stress, recovery, or illness: weekly (as advised by the practitioner).', 
     perfectFor: 'Immune support and seasonal defense. Skin brightening and collagen boost. Fatigue, post-travel, or post-illness recovery. Antioxidant detox and cellular rejuvenation.', 
-    notSuitableFor: 'Clients with a known allergy to ascorbic acid. Those with kidney stones or renal impairment. Individuals with glucose-6-phosphate dehydrogenase (G6PD) deficiency. Pregnant or breastfeeding clients without prior medical clearance.', icon: '🍊'},
-  'Anti Inflammatory & Auto Immune': {name: 'Anti Inflammatory & Auto Immune', price: 1490, addonPrice: null, duration: '45-60 mins', tagline: 'Soothe Body, Restore Harmony', description: "Embrace a soothing embrace of calm with this transformative IV drip, blending B12, Vitamin C, and Glutathione to quell inflammation and spark radiant energy. Magnesium dissolves tension, restoring your body's harmony and igniting a serene clarity that empowers you to live freely and joyfully", overallBenefits: 'Reduces inflammation, boosts energy, supports immunity, tissue repair, mental clarity.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Clients with a known allergy to ascorbic acid. Those with kidney stones or renal impairment. Individuals with glucose-6-phosphate dehydrogenase (G6PD) deficiency. Pregnant or breastfeeding clients without prior medical clearance.', 
+    icon: '🍊'
+  },
+  'Anti Inflammatory & Auto Immune': {
+    name: 'Anti Inflammatory & Auto Immune', 
+    price: 1490, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Soothe Body, Restore Harmony',
+    taglineZ: 'No drama, just calm.',
+    taglineY: 'Quell the storm. Regain control.',
+    taglineX: 'Daily comfort. Sustained function.',
+    taglineB: 'Restore deep physical harmony.',
+    didYouKnowTip: 'Magnesium plays a key role in regulating over 300 enzyme systems, including those involved in muscle contraction and inflammation. Its relaxing effect is critical for soothing autoimmune flare-ups.',
+    description: "Embrace a soothing embrace of calm with this transformative IV drip, blending B12, Vitamin C, and Glutathione to quell inflammation and spark radiant energy. Magnesium dissolves tension, restoring your body's harmony and igniting a serene clarity that empowers you to live freely and joyfully", 
+    overallBenefits: 'Reduces inflammation, boosts energy, supports immunity, tissue repair, mental clarity.', 
+    ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Individuals with chronic low-grade inflammation, muscle aches, or those seeking comprehensive support for autoimmune system regulation and general wellness.', 
-    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, or are pregnant. Consult your practitioner if on immunosuppressants.', icon: '🧘'},
-  'Anti Inflammatory Premium': {name: 'Anti Inflammatory Premium', price: 1550, addonPrice: null, duration: '60 mins', tagline: 'Quell Flames, Embrace Ease', description: "Extinguish inflammation's fire with this powerful IV drip, blending Vitamin C, ALA, and Glutathione to soothe aching joints and muscles, while Magnesium restores a tranquil balance. This premium formula, with fiercer potency than Anti Inflammatory & Auto Immune, delivers profound relief, empowering you to move with grace and embrace life's joys with radiant ease.", overallBenefits: 'Reduces inflammation, supports recovery, detoxes, boosts immunity.', ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly or bi-weekly for inflammation or activity.', 
+    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, or are pregnant. Consult your practitioner if on immunosuppressants.', 
+    icon: '🧘'
+  },
+  'Anti Inflammatory Premium': {
+    name: 'Anti Inflammatory Premium', 
+    price: 1550, 
+    addonPrice: null, 
+    duration: '60 mins', 
+    tagline: 'Quell Flames, Embrace Ease',
+    taglineZ: 'Elite calm. Reset the system.',
+    taglineY: 'Advanced relief. Total body ease.',
+    taglineX: 'Serious support. Reliable results.',
+    taglineB: 'Deep renewal. Embrace ease of movement.',
+    didYouKnowTip: 'Alpha-Lipoic Acid (ALA) is unique because it\'s both water- and fat-soluble, allowing it to regenerate other antioxidants (like Vitamin C and Glutathione) in different parts of the cell for superior, systemic anti-inflammatory action.',
+    description: "Extinguish inflammation's fire with this powerful IV drip, blending Vitamin C, ALA, and Glutathione to soothe aching joints and muscles, while Magnesium restores a tranquil balance. This premium formula, with fiercer potency than Anti Inflammatory & Auto Immune, delivers profound relief, empowering you to move with grace and embrace life's joys with radiant ease.", 
+    overallBenefits: 'Reduces inflammation, supports recovery, detoxes, boosts immunity.', 
+    ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>ALA</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Weekly or bi-weekly for inflammation or activity.', 
     perfectFor: 'Targeting severe or chronic inflammatory conditions, chronic fatigue syndrome, or seeking maximum antioxidant support for nerve health and detoxification.', 
-    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, diabetes, or are pregnant. Consult your practitioner if on immunosuppressants.', icon: '🧘🧘'},
-  'Immune Booster': {name: 'Immune Booster', price: 420, addonPrice: null, duration: '30 mins', tagline: 'Shield, Vibe, Thrive', description: "Awaken your body's natural armour with this Vitamin C-rich IV drip, designed to fortify immunity and banish fatigue. Ignite radiant energy and collagen production, empowering you to embrace travel or illness recovery with unwavering vitality and confidence.", overallBenefits: 'Boosts immunity, fights fatigue, supports collagen, lifts energy.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly during illness; every 2-4 weeks for prevention.', 
+    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, diabetes, or are pregnant. Consult your practitioner if on immunosuppressants.', 
+    icon: '🧘🧘'
+  },
+  'Immune Booster': {
+    name: 'Immune Booster', 
+    price: 420, 
+    addonPrice: null, 
+    duration: '30 mins', 
+    tagline: 'Shield, Vibe, Thrive',
+    taglineZ: 'Defense mode, activated.',
+    taglineY: 'Essential shield. Stay resilient.',
+    taglineX: 'Reliable immunity.',
+    taglineB: 'Strengthen your defenses.',
+    didYouKnowTip: 'A high intake of Vitamin C can increase the production and function of white blood cells (phagocytes and lymphocytes), which are the body\'s primary immune responders against pathogens.',
+    description: "Awaken your body's natural armour with this Vitamin C-rich IV drip, designed to fortify immunity and banish fatigue. Ignite radiant energy and collagen production, empowering you to embrace travel or illness recovery with unwavering vitality and confidence.", 
+    overallBenefits: 'Boosts immunity, fights fatigue, supports collagen, lifts energy.', 
+    ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', 
+    frequency: 'Weekly during illness; every 2-4 weeks for prevention.', 
     perfectFor: 'Individuals with weakened immune systems, before travel, or during cold/flu season for defense.', 
-    notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', icon: '🛡️'},
-  'Immune Booster Premium': {name: 'Immune Booster Premium', price: 800, addonPrice: null, duration: '45 mins', tagline: 'Fortify, Radiate, Conquer', description: "Unleash your body's invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.", overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', frequency: 'Weekly for illness; every 2-4 weeks for prevention.', 
+    notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', 
+    icon: '🛡️'
+  },
+  'Immune Booster Premium': {
+    name: 'Immune Booster Premium', 
+    price: 800, 
+    addonPrice: null, 
+    duration: '45 mins', 
+    tagline: 'Fortify, Radiate, Conquer',
+    taglineZ: 'Unstoppable defense.',
+    taglineY: 'Maximize resilience. Stay ahead.',
+    taglineX: 'Advanced protection.',
+    taglineB: 'Comprehensive immune wellness.',
+    didYouKnowTip: 'Super high-dose Vitamin C works as a potent antiviral and antibacterial agent, creating an unfavorable environment for pathogens, especially during acute illness for maximal recovery.',
+    description: "Unleash your body's invincible shield with this powerful IV drip, infused with high-dose Vitamin C to fortify immunity and banish fatigue. This premium formula, with fiercer potency than Immune Booster, fuels collagen and radiates boundless energy, empowering you to conquer illness or travel with unwavering vitality and radiant confidence.", 
+    overallBenefits: 'Supercharges immunity, boosts energy, collagen, fights fatigue.', 
+    ingredients: '<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.', 
+    frequency: 'Weekly for illness; every 2-4 weeks for prevention.', 
     perfectFor: 'For serious immune support, cancer patients (under medical guidance), or for maximum antioxidant power.', 
-    notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', icon: '🛡️🛡️'},
-  'Trace Elements': {name: 'Trace Elements', price: 350, addonPrice: 300, duration: '30 mins', tagline: 'Balance, Vitalise, Thrive', description: "Ignite cellular harmony with this essential mineral infusion, blending Zinc and Selenium to fortify immunity and metabolism. Feel your body's vitality surge as balance is restored, empowering you to embrace life with radiant energy and unwavering confidence.", overallBenefits: 'Supports immunity, metabolism, vitality, cellular health.', ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.', frequency: 'Weekly for deficiency; every 2-4 weeks for maintenance.', 
+    notSuitableFor: 'Avoid if you have kidney stones or are pregnant.', 
+    icon: '🛡️🛡️'
+  },
+  'Trace Elements': {
+    name: 'Trace Elements', 
+    price: 350, 
+    addonPrice: 300, 
+    duration: '30 mins', 
+    tagline: 'Balance, Vitalise, Thrive',
+    taglineZ: 'Core minerals. Next level balance.',
+    taglineY: 'Foundational health. Tune your system.',
+    taglineX: 'Essential minerals. Daily confidence.',
+    taglineB: 'Maintain internal balance.',
+    didYouKnowTip: 'Zinc is integral to thousands of bodily functions, including DNA synthesis and immune cell development. Even marginal deficiency can significantly impact immune response and metabolic health.',
+    description: "Ignite cellular harmony with this essential mineral infusion, blending Zinc and Selenium to fortify immunity and metabolism. Feel your body's vitality surge as balance is restored, empowering you to embrace life with radiant energy and unwavering confidence.", 
+    overallBenefits: 'Supports immunity, metabolism, vitality, cellular health.', 
+    ingredients: '<strong>Trace Elements (Zinc, Selenium)</strong>: Essential minerals that fortify immunity, metabolism, and cellular vitality for balanced health.', 
+    frequency: 'Weekly for deficiency; every 2-4 weeks for maintenance.', 
     perfectFor: 'Individuals with known trace element deficiencies, or those needing general support for metabolism and cellular vitality.', 
-    notSuitableFor: 'Avoid if you have metal allergies, severe kidney disease, or are pregnant.', icon: '🌿'},
-  'Anti Ageing': {name: 'Anti Ageing', price: 1200, addonPrice: null, duration: '45-60 mins', tagline: 'Renew, Revive, Radiate', description: "Turn back time with this rejuvenating NAD⁺ infusion, designed to spark DNA repair and cellular energy. Feel your vitality surge as youthful radiance returns, sharpening your focus and empowering you to embrace life with timeless confidence and boundless joy.", overallBenefits: 'Supports DNA repair, cellular energy, youthful vitality, focus.', ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', 
+    notSuitableFor: 'Avoid if you have metal allergies, severe kidney disease, or are pregnant.', 
+    icon: '🌿'
+  },
+  'Anti Ageing': {
+    name: 'Anti Ageing', 
+    price: 1200, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Renew, Revive, Radiate',
+    taglineZ: 'Future proofing. Full power on.',
+    taglineY: 'Biohack your youth. Maximize longevity.',
+    taglineX: 'Optimize vitality. Confident aging.',
+    taglineB: 'Embrace graceful, energetic aging.',
+    didYouKnowTip: 'NAD⁺ is required for sirtuin activity ("longevity genes") and poly(ADP-ribose) polymerases (PARPs), which repair damaged DNA. Replenishment supports cellular survival and youthfulness.',
+    description: "Turn back time with this rejuvenating NAD⁺ infusion, designed to spark DNA repair and cellular energy. Feel your vitality surge as youthful radiance returns, sharpening your focus and empowering you to embrace life with timeless confidence and boundless joy.", 
+    overallBenefits: 'Supports DNA repair, cellular energy, youthful vitality, focus.', 
+    ingredients: '<strong>NAD⁺</strong>: Recharges cells by enhancing DNA repair and energy production, promoting youthful vitality and sharper focus.', 
+    frequency: 'Weekly for 4-6 weeks, then monthly.', 
     perfectFor: 'Individuals focused on anti-aging, energy decline, cognitive performance, or general cellular repair and longevity.', 
-    notSuitableFor: 'Avoid if you are pregnant or breastfeeding. Consult your practitioner if you have complex neurological conditions.', icon: '⏳'},
-  'ALA': {name: 'ALA', price: 620, addonPrice: null, duration: '30-45 mins', tagline: 'Protect, Renew, Restore', description: 'Shield your cells with this potent IV drip, infused with alpha-lipoic acid to unleash antioxidant power and support detoxification. Ignite nerve health and cellular resilience, empowering you to recover from illness or surgery with radiant vitality and unwavering confidence.', overallBenefits: 'Supports antioxidants, detox, nerve health, immunity, recovery.', ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Avoid if you are pregnant or breastfeeding. Consult your practitioner if you have complex neurological conditions.', 
+    icon: '⏳'
+  },
+  'ALA': {
+    name: 'ALA', 
+    price: 620, 
+    addonPrice: null, 
+    duration: '30-45 mins', 
+    tagline: 'Protect, Renew, Restore',
+    taglineZ: 'Cellular detox. Max protection.',
+    taglineY: 'Nerve support. Enhanced recovery.',
+    taglineX: 'Proactive defense.',
+    taglineB: 'Renew your core health.',
+    didYouKnowTip: 'ALA is particularly effective at crossing the blood-brain barrier, offering superior antioxidant protection to delicate neurological tissue, which is vital for patients with nerve-related conditions.',
+    description: 'Shield your cells with this potent IV drip, infused with alpha-lipoic acid to unleash antioxidant power and support detoxification. Ignite nerve health and cellular resilience, empowering you to recover from illness or surgery with radiant vitality and unwavering confidence.', 
+    overallBenefits: 'Supports antioxidants, detox, nerve health, immunity, recovery.', 
+    ingredients: '<strong>ALA (Alpha-Lipoic Acid)</strong>: Shields cells with potent antioxidants, supports nerve health, and aids detoxification for vibrant resilience.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Individuals with diabetic neuropathy, autoimmune conditions, or those seeking maximum antioxidant and nerve support.', 
-    notSuitableFor: 'Avoid if you have diabetes (monitor blood sugar closely during treatment) or are pregnant.', icon: '🌟'},
-  'Menopause Relief': {name: 'Menopause Relief', price: 1100, addonPrice: null, duration: '45-60 mins', tagline: 'Embrace Balance, Bloom Anew', description: 'Bloom into your radiant, empowered self with this balancing IV drip, infused with Magnesium, B-Complex, and Glutathione to soothe hot flashes and ignite vibrant energy. Biotin and Vitamin C unveil a luminous glow, empowering you to navigate menopause with grace, confidence, and a joyful spark.', overallBenefits: 'Eases moods, hot flashes, boosts energy, skin glow, detoxes.', ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Every 2-3 weeks; weekly for tough symptoms.', 
+    notSuitableFor: 'Avoid if you have diabetes (monitor blood sugar closely during treatment) or are pregnant.', 
+    icon: '🌟'
+  },
+  'Menopause Relief': {
+    name: 'Menopause Relief', 
+    price: 1100, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Embrace Balance, Bloom Anew',
+    taglineZ: 'Balance the vibes. Smooth sailing.',
+    taglineY: 'Hormone support. Navigate with grace.',
+    taglineX: 'Steady relief. Confident transition.',
+    taglineB: 'Find your comfort. Feel restored.',
+    didYouKnowTip: 'B Vitamins are essential for liver pathways that metabolize excess hormones and neurotransmitters, which helps in reducing the intensity and frequency of menopausal symptoms like mood swings and hot flashes.',
+    description: 'Bloom into your radiant, empowered self with this balancing IV drip, infused with Magnesium, B-Complex, and Glutathione to soothe hot flashes and ignite vibrant energy. Biotin and Vitamin C unveil a luminous glow, empowering you to navigate menopause with grace, confidence, and a joyful spark.', 
+    overallBenefits: 'Eases moods, hot flashes, boosts energy, skin glow, detoxes.', 
+    ingredients: '<strong>Magnesium</strong>: Melts away muscle tension and stress, calming nerves for serene balance.\n<strong>B-Complex</strong>: Ignites energy, uplifts mood, and nourishes skin, hair, and nails with a powerful blend of B vitamins.\n<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.\n<strong>Vitamin C</strong>: Supercharges immunity and fuels collagen production for radiant, youthful skin while neutralising stress-induced free radicals.\n<strong>Biotin</strong>: Strengthens hair, skin, and nails, unlocking a luminous, confident glow.\n<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Every 2-3 weeks; weekly for tough symptoms.', 
     perfectFor: 'Women experiencing hormonal symptoms like hot flashes, mood swings, fatigue, or seeking hormone balance support.', 
-    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, or are pregnant.', icon: '🌡️'},
-  'Weight Loss': {name: 'Weight Loss', price: 800, addonPrice: null, duration: '30-45 mins', tagline: 'Torch Fat, Ignite Confidence', description: 'Ignite your transformation with this metabolism-boosting IV drip, powered by MIC to torch stubborn fat and unleash a surge of radiant energy. Feel your spirit lighten as your body reshapes, empowering you to chase your fitness dreams with fearless confidence and joy.', overallBenefits: 'Speeds fat burning, detoxes liver, boosts energy, mood.', ingredients: '<strong>MIC (Methionine, Inositol, Choline)</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Avoid if you have kidney stones, asthma, severe kidney/liver disease, or are pregnant.', 
+    icon: '🌡️'
+  },
+  'Weight Loss': {
+    name: 'Weight Loss', 
+    price: 800, 
+    addonPrice: null, 
+    duration: '30-45 mins', 
+    tagline: 'Torch Fat, Ignite Confidence',
+    taglineZ: 'Metabolism on fire.',
+    taglineY: 'Accelerate results. Fuel your goals.',
+    taglineX: 'Optimize metabolism.',
+    taglineB: 'Support your health journey.',
+    didYouKnowTip: 'MIC (Methionine, Inositol, Choline) compounds are lipotropic agents, meaning they help the liver process and metabolize fats and cholesterol more efficiently, supporting the breakdown of fat stores.',
+    description: 'Ignite your transformation with this metabolism-boosting IV drip, powered by MIC to torch stubborn fat and unleash a surge of radiant energy. Feel your spirit lighten as your body reshapes, empowering you to chase your fitness dreams with fearless confidence and joy.', 
+    overallBenefits: 'Speeds fat burning, detoxes liver, boosts energy, mood.', 
+    ingredients: '<strong>MIC (Methionine, Inositol, Choline)</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Individuals aiming for metabolic support, liver detoxification, and energy enhancement as part of a weight loss program.', 
-    notSuitableFor: 'Avoid if you have severe liver disease or are pregnant. This treatment is a supplement to, not a replacement for, diet and exercise.', icon: '🔥'},
-  'Weight Loss Premium': {name: 'Weight Loss Premium', price: 950, addonPrice: null, duration: '45-60 mins', tagline: 'Sculpt Lean, Energised You', description: 'Sculpt a leaner, bolder you with this advanced IV drip, blending MIC, L-Glutamine, and L-Carnitine to incinerate fat and ignite relentless stamina. This premium formula, with fiercer potency than Weight Loss, supercharges your workouts and preserves muscle, empowering you to conquer your weight goals with radiant energy and unshakable confidence.', overallBenefits: 'Boosts metabolism, fat breakdown, energy, stamina, recovery.', ingredients: '<strong>MIC</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Avoid if you have severe liver disease or are pregnant. This treatment is a supplement to, not a replacement for, diet and exercise.', 
+    icon: '🔥'
+  },
+  'Weight Loss Premium': {
+    name: 'Weight Loss Premium', 
+    price: 950, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Sculpt Lean, Energised You',
+    taglineZ: 'Shred mode: professional.',
+    taglineY: 'Elite performance. Leaner results.',
+    taglineX: 'Maximize output. Effective recovery.',
+    taglineB: 'Comprehensive metabolic support.',
+    didYouKnowTip: 'L-Carnitine\'s primary function is transporting long-chain fatty acids into the mitochondria (the cell\'s powerhouse) to be burned for energy, making it critical for fat loss and endurance.',
+    description: 'Sculpt a leaner, bolder you with this advanced IV drip, blending MIC, L-Glutamine, and L-Carnitine to incinerate fat and ignite relentless stamina. This premium formula, with fiercer potency than Weight Loss, supercharges your workouts and preserves muscle, empowering you to conquer your weight goals with radiant energy and unshakable confidence.', 
+    overallBenefits: 'Boosts metabolism, fat breakdown, energy, stamina, recovery.', 
+    ingredients: '<strong>MIC</strong>: Turbocharges fat metabolism, cleanses the liver, and boosts energy, empowering your weight loss journey with confidence.\n<strong>L-Glutamine</strong>: Fuels muscle recovery and endurance, supporting gut health for sustained performance.\n<strong>L-Arginine</strong>: Enhances blood flow and stamina, boosting circulation for peak athletic output.\n<strong>L-Carnitine</strong>: Accelerates fat burning and muscle recovery, powering your body for a leaner, stronger you.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Fitness enthusiasts and individuals committed to aggressive weight goals, seeking maximum support for muscle preservation and fat metabolism.', 
-    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. This treatment is a supplement to, not a replacement for, diet and exercise.', icon: '🔥🔥'},
-  'Fertility': {name: 'Fertility', price: 800, addonPrice: null, duration: '45 mins', tagline: 'Nurture Hope, Spark Life', description: 'Nurture your dreams of parenthood with this cleansing IV drip, infused with Glutathione to purify your body and harmonise hormones. Ignite a radiant energy and protect your reproductive vitality, fuelling a hopeful, vibrant journey with unwavering confidence and joy.', overallBenefits: 'Boosts hormone balance, protects eggs/sperm, lifts energy, immunity.', ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
+    notSuitableFor: 'Avoid if you have severe kidney/liver disease or are pregnant. This treatment is a supplement to, not a replacement for, diet and exercise.', 
+    icon: '🔥🔥'
+  },
+  'Fertility': {
+    name: 'Fertility', 
+    price: 800, 
+    addonPrice: null, 
+    duration: '45 mins', 
+    tagline: 'Nurture Hope, Spark Life',
+    taglineZ: 'Prep for the future.',
+    taglineY: 'Optimize conception. Nurture life.',
+    taglineX: 'Proactive fertility support.',
+    taglineB: 'Nurture your body for life\'s journey.',
+    didYouKnowTip: 'Glutathione protects delicate reproductive cells (eggs and sperm) from damaging oxidative stress, which is a major factor in unexplained infertility and poor cell quality.',
+    description: 'Nurture your dreams of parenthood with this cleansing IV drip, infused with Glutathione to purify your body and harmonise hormones. Ignite a radiant energy and protect your reproductive vitality, fuelling a hopeful, vibrant journey with unwavering confidence and joy.', 
+    overallBenefits: 'Boosts hormone balance, protects eggs/sperm, lifts energy, immunity.', 
+    ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Weekly for 4-6 weeks, then every 2-4 weeks.', 
     perfectFor: 'Couples trying to conceive, women undergoing IVF or fertility treatments, individuals with oxidative stress affecting reproductive health.', 
-    notSuitableFor: 'Avoid if you have asthma or are currently pregnant/breastfeeding. Consult your fertility specialist before use.', icon: '👶'},
-  'Detox': {name: 'Detox', price: 400, addonPrice: null, duration: '30 mins', tagline: 'Cleanse, Renew, Awaken', description: 'Purify your core with this cleansing IV drip, powered by Glutathione to sweep away toxins and unveil a radiant, luminous complexion. Feel your body lighten and your spirit soar as cellular clarity ignites, leaving you refreshed and ready to embrace a vibrant, joyful existence.', overallBenefits: 'Detoxifies liver, brightens skin, boosts immunity, energy.', ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', 
+    notSuitableFor: 'Avoid if you have asthma or are currently pregnant/breastfeeding. Consult your fertility specialist before use.', 
+    icon: '👶'
+  },
+  'Detox': {
+    name: 'Detox', 
+    price: 400, 
+    addonPrice: null, 
+    duration: '30 mins', 
+    tagline: 'Cleanse, Renew, Awaken',
+    taglineZ: 'Quick system reboot.',
+    taglineY: 'Clean slate. Feel lighter.',
+    taglineX: 'Reliable daily detox.',
+    taglineB: 'Gentle internal reset.',
+    didYouKnowTip: 'Glutathione (administered as a slow push) has a powerful negative charge, enabling it to attract and bind to positively charged heavy metals and toxins, facilitating their safe removal from the body.',
+    description: 'Purify your core with this cleansing IV drip, powered by Glutathione to sweep away toxins and unveil a radiant, luminous complexion. Feel your body lighten and your spirit soar as cellular clarity ignites, leaving you refreshed and ready to embrace a vibrant, joyful existence.', 
+    overallBenefits: 'Detoxifies liver, brightens skin, boosts immunity, energy.', 
+    ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Weekly for 4-6 weeks, then monthly.', 
     perfectFor: 'Individuals needing liver detoxification, those with fatty liver, people exposed to toxins seeking antioxidant support, or for a quick physical reset.', 
-    notSuitableFor: 'Avoid if you have asthma or are pregnant. Consult your practitioner if you have severe liver impairment.', icon: '🧹'},
-  'Detox Premium': {name: 'Detox Premium', price: 800, addonPrice: null, duration: '45 mins', tagline: 'Purify, Illuminate, Soar', description: 'Embark on a profound cleansing journey with this advanced IV drip, infused with elevated Glutathione to flush toxins and illuminate a flawless complexion. This premium formula, with fiercer potency than Detox, unveils cellular clarity and radiant vitality, empowering you to soar through life with a revitalised, purified essence.', overallBenefits: 'Deep detox, liver support, brightens skin, boosts energy, immunity.', ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', frequency: 'Weekly for 4-6 weeks, then monthly.', 
+    notSuitableFor: 'Avoid if you have asthma or are pregnant. Consult your practitioner if you have severe liver impairment.', 
+    icon: '🧹'
+  },
+  'Detox Premium': {
+    name: 'Detox Premium', 
+    price: 800, 
+    addonPrice: null, 
+    duration: '45 mins', 
+    tagline: 'Purify, Illuminate, Soar',
+    taglineZ: 'Deep cleanse. Elite clarity.',
+    taglineY: 'Ultimate system overhaul.',
+    taglineX: 'Comprehensive internal renewal.',
+    taglineB: 'Maximize your cleansing process.',
+    didYouKnowTip: 'The premium dose of Glutathione supports Phase II liver detoxification, which is the conjugation pathway required to make fat-soluble toxins water-soluble for safe elimination by the kidneys.',
+    description: 'Embark on a profound cleansing journey with this advanced IV drip, infused with elevated Glutathione to flush toxins and illuminate a flawless complexion. This premium formula, with fiercer potency than Detox, unveils cellular clarity and radiant vitality, empowering you to soar through life with a revitalised, purified essence.', 
+    overallBenefits: 'Deep detox, liver support, brightens skin, boosts energy, immunity.', 
+    ingredients: '<strong>Glutathione (slow push):</strong> Purifies your body by flushing toxins, brightening skin, and restoring cellular vitality for a refreshed glow.', 
+    frequency: 'Weekly for 4-6 weeks, then monthly.', 
     perfectFor: 'Individuals needing deep detoxification, addressing chronic liver issues, or seeking enhanced skin brightening and anti-pollutant defense.', 
-    notSuitableFor: 'Avoid if you have asthma or are pregnant. Consult your practitioner if you have severe liver impairment.', icon: '🧹🧹'},
-  'Sport Restore': {name: 'Sport Restore', price: 1050, addonPrice: null, duration: '45-60 mins', tagline: 'Recover faster. Perform stronger. Feel unstoppable.', description: 'Rehydrate, recharge, and recover with our Sports Restore IV Drip — a performance-focused blend designed to replenish essential nutrients, reduce muscle fatigue, and accelerate cellular recovery. Delivered in a saline base for optimal absorption, this drip restores balance and energy from the inside out.', overallBenefits: 'Boosts muscle recovery and reduces post-workout soreness. Replenishes electrolytes and B vitamins lost through sweat and exertion. Enhances energy metabolism and endurance. Supports liver detoxification and cellular repair with Glutathione. Improves oxygen delivery and performance output', ingredients: '<strong>Vitamin B12 (Cobalamin)</strong> – Enhances red blood cell production, energy, and nerve function.\n<strong>Vitamin B Complex</strong> – Recharges metabolism, supports endurance, and reduces fatigue.\n<strong>Magnesium Sulphate</strong> – Relieves muscle cramps, supports heart rhythm, and reduces inflammation.\n<strong>Glutathione (slow push):</strong> Powerful antioxidant that promotes cellular recovery and detoxification.', frequency: 'Every 2–3 weeks during regular training cycles, Weekly sessions for optimal results', 
+    notSuitableFor: 'Avoid if you have asthma or are pregnant. Consult your practitioner if you have severe liver impairment.', 
+    icon: '🧹🧹'
+  },
+  'Sport Restore': {
+    name: 'Sport Restore', 
+    price: 1050, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Recover faster. Perform stronger. Feel unstoppable.',
+    taglineZ: 'Max recovery. Back in the game.',
+    taglineY: 'Refuel and repair. Beat the soreness.',
+    taglineX: 'Efficient recovery. Steady performance.',
+    taglineB: 'Restore strength. Maintain mobility.',
+    didYouKnowTip: 'Magnesium, essential for muscle function, also helps in removing lactate (lactic acid) from muscle tissue, dramatically reducing delayed onset muscle soreness (DOMS) after intense workouts.',
+    description: 'Rehydrate, recharge, and recover with our Sports Restore IV Drip — a performance-focused blend designed to replenish essential nutrients, reduce muscle fatigue, and accelerate cellular recovery. Delivered in a saline base for optimal absorption, this drip restores balance and energy from the inside out.', 
+    overallBenefits: 'Boosts muscle recovery and reduces post-workout soreness. Replenishes electrolytes and B vitamins lost through sweat and exertion. Enhances energy metabolism and endurance. Supports liver detoxification and cellular repair with Glutathione. Improves oxygen delivery and performance output', 
+    ingredients: '<strong>Vitamin B12 (Cobalamin)</strong> – Enhances red blood cell production, energy, and nerve function.\n<strong>Vitamin B Complex</strong> – Recharges metabolism, supports endurance, and reduces fatigue.\n<strong>Magnesium Sulphate</strong> – Relieves muscle cramps, supports heart rhythm, and reduces inflammation.\n<strong>Glutathione (slow push):</strong> Powerful antioxidant that promotes cellular recovery and detoxification.', 
+    frequency: 'Every 2–3 weeks during regular training cycles, Weekly sessions for optimal results', 
     perfectFor: 'Athletes and fitness enthusiasts needing rapid hydration, electrolyte replenishment, and muscle recovery post-intense training or competition.', 
-    notSuitableFor: 'Are pregnant or breastfeeding (unless cleared by a healthcare professional). Have severe kidney disease or impaired renal function (due to magnesium). Have heart failure or fluid overload conditions. Are currently on chemotherapy or immunosuppressive medication. Have a known allergy or hypersensitivity to any of the ingredients. Have uncontrolled hypertension, liver disease, or electrolyte imbalances', icon: '🏅'},
-  'Sports Edge': {name: 'Sports Edge', price: 1250, addonPrice: null, duration: '60 mins', tagline: 'Fuel your performance. Recover like a pro.', description: 'The Sports Edge IV Drip is designed for athletes and active individuals who demand more from their bodies. Formulated to replenish key nutrients, accelerate recovery, and enhance endurance, this blend restores balance at a cellular level — so you perform stronger, recover faster, and feel your best.', overallBenefits: 'Boosts energy, stamina, and endurance for peak physical performance. Accelerates muscle recovery and reduces post-workout soreness. Replenishes electrolytes and prevents cramps or fatigue. Enhances oxygen delivery and circulation to active muscles. Promotes lean muscle development and fat metabolism. Reduces oxidative stress and inflammation after intense training. Strengthens immune system and overall resilience. Improves mental focus and alertness during and after workouts. Supports cellular repair and hydration balance. Helps maintain optimal performance levels during high-intensity training or competition.', ingredients: '<strong>Vitamin B12</strong> -Boosts energy production and reduces fatigue.Supports red blood cell formation for improved oxygen delivery.Enhances focus and cognitive function.Aids in muscle endurance and stamina.\n<strong>Magnesium</strong> - Prevents muscle cramps and supports electrolyte balance. Reduces inflammation and supports muscle relaxation. Plays a vital role in ATP (energy) synthesis. Aids recovery from strenuous workouts.\n<strong>G.A.C. Blend (Glutamine, Arginine, Carnitine)</strong>\n<strong>Glutamine</strong>: Supports muscle repair, reduces soreness, and strengthens immune function.\n<strong>Arginine</strong>: Increases nitric oxide for improved circulation and oxygen delivery to muscles.\n<strong>Carnitine</strong>: Enhances fat metabolism, boosts endurance, and supports lean muscle performance.\n<strong>Vitamin C</strong>-Acts as a powerful antioxidant to combat oxidative stress. Reduces muscle inflammation post-exercise.Strengthens the immune system and supports collagen production. Aids iron absorption for better oxygen transport.', frequency: '1–2 times per week during active training periods or as needed post-intense workouts for optimal recovery and performance maintenance', 
+    notSuitableFor: 'Are pregnant or breastfeeding (unless cleared by a healthcare professional). Have severe kidney disease or impaired renal function (due to magnesium). Have heart failure or fluid overload conditions. Are currently on chemotherapy or immunosuppressive medication. Have a known allergy or hypersensitivity to any of the ingredients. Have uncontrolled hypertension, liver disease, or electrolyte imbalances', 
+    icon: '🏅'
+  },
+  'Sports Edge': {
+    name: 'Sports Edge', 
+    price: 1250, 
+    addonPrice: null, 
+    duration: '60 mins', 
+    tagline: 'Fuel your performance. Recover like a pro.',
+    taglineZ: 'Go hard, recover harder.',
+    taglineY: 'Elite fuel. Unstoppable output.',
+    taglineX: 'Peak performance. Confident edge.',
+    taglineB: 'Maintain athletic vigor.',
+    didYouKnowTip: 'G.A.C. (Glutamine, Arginine, Carnitine) is a powerful trio: Arginine boosts blood flow (NO), Carnitine burns fat for fuel, and Glutamine rebuilds muscle/immune function, ensuring complete athletic system support.',
+    description: 'The Sports Edge IV Drip is designed for athletes and active individuals who demand more from their bodies. Formulated to replenish key nutrients, accelerate recovery, and enhance endurance, this blend restores balance at a cellular level — so you perform stronger, recover faster, and feel your best.', 
+    overallBenefits: 'Boosts energy, stamina, and endurance for peak physical performance. Accelerates muscle recovery and reduces post-workout soreness. Replenishes electrolytes and prevents cramps or fatigue. Enhances oxygen delivery and circulation to active muscles. Promotes lean muscle development and fat metabolism. Reduces oxidative stress and inflammation after intense training. Strengthens immune system and overall resilience. Improves mental focus and alertness during and after workouts. Supports cellular repair and hydration balance. Helps maintain optimal performance levels during high-intensity training or competition.', 
+    ingredients: '<strong>Vitamin B12</strong> -Boosts energy production and reduces fatigue.Supports red blood cell formation for improved oxygen delivery.Enhances focus and cognitive function.Aids in muscle endurance and stamina.\n<strong>Magnesium</strong> - Prevents muscle cramps and supports electrolyte balance. Reduces inflammation and supports muscle relaxation. Plays a vital role in ATP (energy) synthesis. Aids recovery from strenuous workouts.\n<strong>G.A.C. Blend (Glutamine, Arginine, Carnitine)</strong>\n<strong>Glutamine</strong>: Supports muscle repair, reduces soreness, and strengthens immune function.\n<strong>Arginine</strong>: Increases nitric oxide for improved circulation and oxygen delivery to muscles.\n<strong>Carnitine</strong>: Enhances fat metabolism, boosts endurance, and supports lean muscle performance.\n<strong>Vitamin C</strong>-Acts as a powerful antioxidant to combat oxidative stress. Reduces muscle inflammation post-exercise.Strengthens the immune system and supports collagen production. Aids iron absorption for better oxygen transport.', 
+    frequency: '1–2 times per week during active training periods or as needed post-intense workouts for optimal recovery and performance maintenance', 
     perfectFor: 'Elite athletes, professional trainers, or those requiring the highest level of performance, stamina, and recovery support.', 
-    notSuitableFor: 'Have serious kidney or heart conditions. Are pregnant or breastfeeding, unless approved by a doctor. Have allergies to any of the ingredients. Are taking certain chronic medications (especially for heart, blood pressure, or blood-thinning). Have low blood pressure or unstable medical conditions.', icon: '🏅🏅'},
-  'Aqua Hydrate': {name: 'Aqua Hydrate', price: 300, addonPrice: null, duration: '30 mins', tagline: 'Hydrate, Refresh, Revive', description: 'The Aqua Hydrate IV Drip delivers 1000 ml of medical-grade saline directly into your bloodstream for deep, cellular-level hydration. It’s designed to restore balance, enhance vitality, and leave you feeling instantly recharged — the ultimate reset for your body and mind.', overallBenefits: 'Rapid full-body rehydration. Restores fluid and electrolyte balance. Improves skin radiance and elasticity. Supports detoxification and kidney function. Boosts energy and mental clarity. Aids recovery after travel, heat exposure, or workouts', ingredients: '<strong>Saline</strong> is a sterile, balanced solution of water and sodium chloride that matches your body’s natural fluid composition.', frequency: 'Every 2–4 weeks for sustained hydration and wellbeing or as needed after exertion, illness, or dehydration', 
+    notSuitableFor: 'Have serious kidney or heart conditions. Are pregnant or breastfeeding, unless approved by a doctor. Have allergies to any of the ingredients. Are taking certain chronic medications (especially for heart, blood pressure, or blood-thinning). Have low blood pressure or unstable medical conditions.', 
+    icon: '🏅🏅'
+  },
+  'Aqua Hydrate': {
+    name: 'Aqua Hydrate', 
+    price: 300, 
+    addonPrice: null, 
+    duration: '30 mins', 
+    tagline: 'Hydrate, Refresh, Revive',
+    taglineZ: 'Just hydration, pure vibes.',
+    taglineY: 'Essential hydration. Quick reset.',
+    taglineX: 'Foundational wellness.',
+    taglineB: 'Simple, effective refreshment.',
+    didYouKnowTip: 'Saline solution (0.9% NaCl) matches the body\'s natural blood osmolality. This deep hydration efficiently transports nutrients and waste products across cell membranes, supporting every major bodily function.',
+    description: 'The Aqua Hydrate IV Drip delivers 1000 ml of medical-grade saline directly into your bloodstream for deep, cellular-level hydration. It’s designed to restore balance, enhance vitality, and leave you feeling instantly recharged — the ultimate reset for your body and mind.', 
+    overallBenefits: 'Rapid full-body rehydration. Restores fluid and electrolyte balance. Improves skin radiance and elasticity. Supports detoxification and kidney function. Boosts energy and mental clarity. Aids recovery after travel, heat exposure, or workouts', 
+    ingredients: '<strong>Saline</strong> is a sterile, balanced solution of water and sodium chloride that matches your body’s natural fluid composition.', 
+    frequency: 'Every 2–4 weeks for sustained hydration and wellbeing or as needed after exertion, illness, or dehydration', 
     perfectFor: 'Individuals feeling fatigued, dehydrated, or low in energy. Frequent travellers or those recovering from jet lag. Athletes and active individuals. Those recovering from mild illness or hangovers. Anyone seeking a gentle body reset and hydration boost', 
-    notSuitableFor: 'This drip is not recommended for individuals with heart or kidney conditions, fluid retention, or uncontrolled high blood pressure. Those who are pregnant, breastfeeding, or have known allergies should consult their doctor before treatment.', icon: '💦'},
-  'B12': {name: 'B12', price: 300, addonPrice: 250, duration: '30 mins', tagline: 'Gees Boost, Focus, Vibe', description: 'Spark a vibrant awakening with this pure B12 infusion, designed to banish fatigue and ignite razor-sharp mental clarity. Empower your nerves and uplift your mood, fuelling your body and spirit with radiant energy to embrace every moment with unstoppable vitality.', overallBenefits: 'Boosts energy, mood, mental clarity, nerve health.', ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', frequency: 'Weekly for 4-6 weeks, then monthly.', 
+    notSuitableFor: 'This drip is not recommended for individuals with heart or kidney conditions, fluid retention, or uncontrolled high blood pressure. Those who are pregnant, breastfeeding, or have known allergies should consult their doctor before treatment.', 
+    icon: '💦'
+  },
+  'B12': {
+    name: 'B12', 
+    price: 300, 
+    addonPrice: 250, 
+    duration: '30 mins', 
+    tagline: 'Gees Boost, Focus, Vibe',
+    taglineZ: 'Fast boost. High energy.',
+    taglineY: 'Power your day. Stay sharp.',
+    taglineX: 'Quick focus. Trusted results.',
+    taglineB: 'Simple energy lift.',
+    didYouKnowTip: 'Intravenous B12 is absorbed 100%, bypassing potential digestive issues (like low stomach acid or intrinsic factor deficiency) that prevent effective oral absorption, delivering maximal energy benefit.',
+    description: 'Spark a vibrant awakening with this pure B12 infusion, designed to banish fatigue and ignite razor-sharp mental clarity. Empower your nerves and uplift your mood, fuelling your body and spirit with radiant energy to embrace every moment with unstoppable vitality.', 
+    overallBenefits: 'Boosts energy, mood, mental clarity, nerve health.', 
+    ingredients: '<strong>B12</strong>: Sparks vibrant energy and sharpens mental clarity, powering your nerves for unstoppable focus.', 
+    frequency: 'Weekly for 4-6 weeks, then monthly.', 
     perfectFor: 'Individuals with B12 deficiency, vegans or vegetarians, those experiencing fatigue or nerve issues, or seeking general energy uplift.', 
-    notSuitableFor: 'Avoid if you have kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', icon: '🔥'}, // Spelling: Energise, Fuelling
-  'Hangover & Jet Lag': {name: 'Hangover & Jet Lag', price: 1100, addonPrice: null, duration: '45-60 mins', tagline: 'Revive. Rehydrate. Reset.', description: 'Say goodbye to post-party fatigue, dehydration, or travel exhaustion with this all-in-one restorative infusion. Our Hangover & Jet Lag IV delivers a powerful combination of vitamins, minerals, and antioxidants designed to rehydrate your body, boost energy, and clear mental fog — helping you feel refreshed, focused, and ready to take on the day', overallBenefits: 'Rapid hydration and electrolyte balance. Eases nausea, headache, and fatigue. Replenishes lost nutrients and boosts metabolism. Detoxifies the liver and supports recovery. Restores focus and mental clarity. Promotes healthy skin and cellular repair', ingredients: '<strong>Vitamin B12</strong> – Restores energy and supports nervous system recovery\n<strong>Vitamin B Complex</strong> – Enhances metabolism and relieves fatigue\n<strong>Magnesium</strong> - Eases muscle tension and headaches\n<strong>Vitamin C</strong> – Strengthens immunity and fights oxidative stress\n<strong>Taurine</strong> – Boosts focus and supports liver function\n<strong>Glutathione (slow push):</strong> Potent antioxidant for detoxification and skin radiance', frequency: 'Recommended as an occasional recovery boost after travel, events, or periods of fatigue. For optimal wellness and detox support, repeat every 2–4 weeks', 
+    notSuitableFor: 'Avoid if you have kidney/liver disease or are pregnant. Consult your practitioner for personalized advice.', 
+    icon: '🔥'
+  }, 
+  'Hangover & Jet Lag': {
+    name: 'Hangover & Jet Lag', 
+    price: 1100, 
+    addonPrice: null, 
+    duration: '45-60 mins', 
+    tagline: 'Revive. Rehydrate. Reset.',
+    taglineZ: 'Reset button. Back to life.',
+    taglineY: 'Quick recovery. Get back on track.',
+    taglineX: 'Reliable relief. Feel functional fast.',
+    taglineB: 'Restore comfort and balance.',
+    didYouKnowTip: 'Dehydration rapidly depletes B Vitamins and electrolytes. By providing 1000ml of fluid plus nutrients, this drip restores optimal plasma volume and balances electrolytes much faster than oral intake.',
+    description: 'Say goodbye to post-party fatigue, dehydration, or travel exhaustion with this all-in-one restorative infusion. Our Hangover & Jet Lag IV delivers a powerful combination of vitamins, minerals, and antioxidants designed to rehydrate your body, boost energy, and clear mental fog — helping you feel refreshed, focused, and ready to take on the day', 
+    overallBenefits: 'Rapid hydration and electrolyte balance. Eases nausea, headache, and fatigue. Replenishes lost nutrients and boosts metabolism. Detoxifies the liver and supports recovery. Restores focus and mental clarity. Promotes healthy skin and cellular repair', 
+    ingredients: '<strong>Vitamin B12</strong> – Restores energy and supports nervous system recovery\n<strong>Vitamin B Complex</strong> – Enhances metabolism and relieves fatigue\n<strong>Magnesium</strong> - Eases muscle tension and headaches\n<strong>Vitamin C</strong> – Strengthens immunity and fights oxidative stress\n<strong>Taurine</strong> – Boosts focus and supports liver function\n<strong>Glutathione (slow push):</strong> Potent antioxidant for detoxification and skin radiance', 
+    frequency: 'Recommended as an occasional recovery boost after travel, events, or periods of fatigue. For optimal wellness and detox support, repeat every 2–4 weeks', 
     perfectFor: 'Travellers, partygoers, busy professionals, and anyone needing a rapid reset to feel and look their best after exhaustion or dehydration.', 
-    notSuitableFor: 'This drip isn’t recommended if you’re pregnant or breastfeeding, have serious kidney, liver, or heart conditions, or have allergies to any ingredients. It should also be avoided if you’re unwell with an infection, have very high blood pressure, or a G6PD deficiency.', icon: '💧'}
+    notSuitableFor: 'This drip isn’t recommended if you’re pregnant or breastfeeding, have serious kidney, liver, or heart conditions, or have allergies to any ingredients. It should also be avoided if you’re unwell with an infection, have very high blood pressure, or a G6PD deficiency.', 
+    icon: '💧'
+  }
 };
 
 // Injectables Data (Replicated from B12 Drip, adjusted price and duration)
@@ -1416,7 +1870,7 @@ const lifestyleCategories_Boomer = [
 const userSession = {
     name: 'Wellness Seeker',
     age: null,
-    // Defaulting skip users to GenX as requested
+    // Defaulting skip users to Gen X as requested
     generation: 'Gen X (The Bridge Builders)', 
 };
 
@@ -1487,15 +1941,13 @@ window.updateCategoryHeading = function() {
     const heading = document.getElementById('categories-main-heading');
     const firstName = userSession.name.split(' ')[0];
     
-    let personalizedText = 'Select My IV Drip'; 
-
     if (firstName === 'Wellness Seeker') {
-        // REQUIRED CHANGE: Header for skip button
+        // REQUIRED CHANGE: Header for skip button: "Find your drip..."
         heading.innerHTML = 'Find your drip...';
         heading.style.color = '#004d26'; // Revert to standard menu color for non-personalized view
     } else {
-        // REQUIRED CHANGE: Header when name and age are entered
-        personalizedText = `Hi ${firstName}, find your drip...`;
+        // REQUIRED CHANGE: Header when name and age are entered: "Hi {Name}, find your drip..."
+        const personalizedText = `Hi ${firstName}, find your drip...`;
         heading.innerHTML = personalizedText;
         // REQUIRED CHANGE: Set color to green
         heading.style.color = '#006400'; // Using the primary green color defined in CSS
@@ -1684,16 +2136,37 @@ window.renderDrips = function() {
               <div class="icon">${drip.icon || '💧'}</div>
               <div class="drip-name">${drip.name}</div>
               <div class="tile-divider"></div>
-              <p class="drip-tagline">${drip.tagline || ''}</p>
+              <p class="drip-tagline">${getDripTagline(drip, userSession.generation)}</p>
               <p class="price">R${drip.price}</p>
             </div>`;
   }).join('');
 }
 
+// NEW FUNCTION: Determine Tagline based on Generation
+window.getDripTagline = function(drip, generation) {
+    let tagline;
+    // Map generation string to the corresponding key in the drip object
+    const genKeyMap = {
+        'Gen Z (The Vibe Chasers)': 'taglineZ',
+        'Millennial (The Hustle Generation)': 'taglineY',
+        'Gen X (The Bridge Builders)': 'taglineX',
+        'Baby Boomer (The Legacy Setters)': 'taglineB',
+        'Silent Generation (The Builders)': 'taglineB',
+        'Older Generation (The Wisdom Keepers)': 'taglineB',
+        'Younger': 'taglineZ', // Default younger to Gen Z
+        'Gen Alpha (The Future)': 'taglineZ' // Default alpha to Gen Z
+    };
+    const genKey = genKeyMap[generation] || 'taglineX'; // Default to Gen X if generation is unknown
+
+    // Retrieve the generation-specific tagline, falling back to the original 'tagline'
+    tagline = drip[genKey] || drip.tagline || '';
+
+    return tagline;
+}
+
 window.showDripDetails = function(dripName) {
   const drip = allDrips[dripName];
   if (!drip) return;
-  const firstName = userSession.name.split(' ')[0];
 
   // FIX: Detail name is just the Drip Name (no "Drip" suffix)
   document.getElementById('detail-name').textContent = drip.name;
@@ -1702,29 +2175,20 @@ window.showDripDetails = function(dripName) {
   
   document.getElementById('detail-price').textContent = priceText;
   
-  // Personalized Tagline (existing logic remains)
-  let personalizedTagline = drip.tagline || '';
-  if (userSession.generation.includes('Millennial') && drip.name.includes('Premium')) {
-      personalizedTagline = `The Premium Boost you need to keep hustling, ${firstName}. ${personalizedTagline}`;
-  } else if (userSession.generation.includes('Gen Z') && drip.name.includes('Radiance')) {
-      personalizedTagline = `It's a definite Glow Up for the next selfie, ${firstName}. ${personalizedTagline}`;
-  } else if ((userSession.generation.includes('Boomer') || userSession.generation.includes('Legacy')) && drip.name.includes('Anti Ageing')) {
-      personalizedTagline = `A focused choice for vitality and grace, ${firstName}. ${personalizedTagline}`;
-  }
+  // Personalized Tagline (NEW LOGIC)
+  const personalizedTagline = getDripTagline(drip, userSession.generation);
   document.getElementById('detail-tagline').textContent = personalizedTagline;
 
-  const durationText = drip.duration || '25-40 minutes';
-  document.getElementById('detail-duration-text').textContent = `Approximate Duration: ${durationText}`;
+  // REMOVED: duration setting (as requested)
+  // document.getElementById('detail-duration-text').textContent = `Approximate Duration: ${durationText}`;
 
+  // Tooltip Content Update (NEW LOGIC)
   const didYouKnowContentEl = document.getElementById('did-you-know-content');
-  if (drip.durationDetails) {
-      didYouKnowContentEl.innerHTML = drip.durationDetails;
-  } else {
-      didYouKnowContentEl.innerHTML = `
-        <p>Each session takes around <strong>${durationText}</strong>, depending on your body’s natural absorption rate and vein size. We follow best practice to ensure maximum benefit, comfort, and safety.</p>
-        <p>The main infusion runs for about 20–30 minutes, followed by a gentle 5–10 minute Glutathione push to complete your treatment.</p>
-        <p style="text-align: center; font-style: italic; color: #333; margin-top: 16px;">We never rush the process — infusing too quickly can cause lightheadedness or vein discomfort, so every drip is paced to your body’s unique rhythm for the most soothing and effective experience.</p>`;
-  }
+  // Prioritize the new specific tip, fallback to duration details, then generic duration info
+  const tipContent = drip.didYouKnowTip ? `<p>${drip.didYouKnowTip}</p>` : drip.durationDetails || 
+      `<p>Each session takes around <strong>${drip.duration || '25-40 minutes'}</strong>, depending on your body’s natural absorption rate and vein size. We pace every drip to your body’s unique rhythm for the most soothing and effective experience.</p>`;
+  
+  didYouKnowContentEl.innerHTML = tipContent;
 
   document.getElementById('detail-description').innerHTML = drip.description ? drip.description.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available. Consult your practitioner for more details.</p>';
   
@@ -1749,6 +2213,8 @@ window.showDripDetails = function(dripName) {
   addonGrid.innerHTML = filteredAddons.map(addonName => {
       const addon = allDrips[addonName];
       if (!addon) return '';
+      const addonTagline = getDripTagline(addon, userSession.generation);
+
       const standalonePriceHTML = (addon.price !== null && String(addon.price).toLowerCase() !== 'n/a')
           ? `<p class="price">Standalone: R${addon.price}</p>` : '';
       const addonIdSuffix = addonName.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
@@ -1758,7 +2224,7 @@ window.showDripDetails = function(dripName) {
             <div class="icon">${addon.icon || '➕'}</div>
             <div class="drip-name">${addon.name}</div>
             <div class="tile-divider"></div>
-            <p class="drip-tagline" style="font-size: 0.9em; font-style: italic; color: #666; margin: 8px 0;">${addon.tagline || ''}</p>
+            <p class="drip-tagline" style="font-size: 0.9em; font-style: italic; color: #666; margin: 8px 0;">${addonTagline || ''}</p>
             <p class="price">Add-on: R${addon.addonPrice}</p>
             ${standalonePriceHTML}
         </div>
@@ -1953,9 +2419,11 @@ window.showTooltip = function(massageId) {
   document.getElementById('tooltip-overlay').classList.add('open');
 }
 window.closeTooltip = function() { document.getElementById('tooltip-overlay').classList.remove('open'); }
+
+// REQUIRED CHANGE: Update Tooltip Modal Title
 window.showDidYouKnowTooltip = function() {
     const contentHTML = document.getElementById('did-you-know-content').innerHTML;
-    document.getElementById('tooltip-content').innerHTML = `<h3>Why the gentle pace?</h3><div style="text-align: left;">${contentHTML}</div>`;
+    document.getElementById('tooltip-content').innerHTML = `<h3>Did you know?</h3><div style="text-align: left;">${contentHTML}</div>`;
     document.getElementById('tooltip-overlay').classList.add('open');
 }
 
