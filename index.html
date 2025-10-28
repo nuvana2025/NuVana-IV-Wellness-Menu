@@ -716,7 +716,7 @@
 </div>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -755,7 +755,7 @@
 </div>
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -780,7 +780,7 @@
     </p>
 
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+        <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
@@ -791,7 +791,7 @@
 <h2 id="drips-heading">Recommendations</h2>
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -839,7 +839,7 @@
 
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -867,7 +867,7 @@
         </div>
     </div>
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+        <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
@@ -910,7 +910,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1118,7 +1118,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1706,7 +1706,7 @@ window.renderDrips = function() {
   grid.innerHTML = selectedCategory.drips.map(dripName => {
     const drip = allDrips[dripName];
     // Check if drip exists and if it has a price (excluding pure add-ons like Vitamin C)
-    if (!drip || drip.price === null || String(drip.price).toLowerCase() === 'n/a') return ''; 
+    if (!drip || drip.price === null || String(drip.price).toLowerCase() !== 'n/a') return ''; 
     return `<div class="card" onclick="showDripDetails('${dripName.replace(/'/g, "\\'")}')">
               <div class="icon">${drip.icon || '💧'}</div>
               <div class="drip-name">${drip.name}</div>
@@ -2092,17 +2092,14 @@ function updateButtonVisibility() {
     // --- Mobile Inactivity Logic ---
     clearTimeout(visibilityTimer);
     
-    // Check if controls should be visible based on scroll position/state
-    const shouldBeVisible = (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) || canGoBack && isScrolledDown || isSearchOpen;
+    // Check if controls should be explicitly hidden (scrolled up/at top)
+    const isAtTopOrNear = !(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300);
 
-    if (shouldBeVisible) {
-        // Only explicitly set class on immediate scroll or tap
-        // On scroll, the event handler will handle the immediate 'visible' class setting
-    } else {
+    if (isAtTopOrNear) {
         // Ensure buttons disappear if scrolled up/at top, regardless of inactivity timer
         backToTopBtn.classList.remove('visible');
-        dynamicBackBtn.classList.remove('visible');
-        if (!isSearchOpen) searchContainer.classList.remove('visible'); 
+        if (!canGoBack) dynamicBackBtn.classList.remove('visible'); 
+        if (!isSearchOpen) searchContainer.classList.remove('visible');
     }
     
     // Set a new timer to hide buttons if no activity occurs for 2000ms
