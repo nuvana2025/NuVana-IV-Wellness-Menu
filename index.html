@@ -97,18 +97,6 @@
     /* View helpers */
     .hidden { display: none !important; }
     h2 { margin: 10px 0 14px; }
-    
-    /* NEW: Style for the personalized greeting under the main H2 */
-    .personalized-greeting {
-        display: block;
-        font-size: 0.8em; /* Reduced font size */
-        font-style: italic;
-        color: #555;
-        margin-top: -12px;
-        margin-bottom: 18px;
-        padding-left: 5px;
-    }
-    
     .main-menu-title {
         text-align: left;
         margin-bottom: 0; /* Adjusted for flex parent */
@@ -123,23 +111,21 @@
         align-items: center;
         margin-bottom: 24px;
     }
-    /* WhatsApp Icon Styling - REDUCED SIZE AND CHANGED FONT COLOUR */
+    /* WhatsApp Icon Styling */
     .whatsapp-enquiry {
         text-decoration: none;
-        /* font-size reduced from 0.9em to 0.63em (30% reduction) */
-        font-size: 0.63em; 
+        font-size: 0.9em;
         font-weight: 700;
-        color: #888; /* Changed to grey colour font */
+        color: #004d26;
         display: flex;
         align-items: center;
-        gap: 4px; /* Reduced gap for smaller font */
-        margin-right: 5px;
+        gap: 6px;
+        margin-right: 5px; /* Alignment adjustment */
         flex-shrink: 0;
     }
     .whatsapp-icon {
-        /* size reduced from 18px to 12.6px (30% reduction) */
-        width: 12.6px;
-        height: 12.6px;
+        width: 18px;
+        height: 18px;
         fill: #25D366; /* WhatsApp green */
         vertical-align: middle;
     }
@@ -295,6 +281,12 @@
         width: 100%;
         text-align: center;
     }
+    .footer-whatsapp {
+        text-align: right;
+        font-weight: 700;
+        margin-top: 4px;
+        flex-shrink: 0;
+    }
     .footer-powered-by {
         text-align: left;
         flex-grow: 1;
@@ -325,29 +317,6 @@
             margin: 4px 0;
         }
     }
-    /* Button Visibility on Mobile */
-    @media (max-width: 991px) {
-        .scroll-nav-btn, .contextual-search {
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        .scroll-nav-btn:not(.visible), .contextual-search:not(.visible) {
-            opacity: 0 !important;
-            transform: translateY(20px) !important;
-            pointer-events: none !important;
-        }
-        .scroll-nav-btn.visible, .contextual-search.visible.open {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            pointer-events: auto !important;
-        }
-        .contextual-search.visible:not(.open) {
-             /* Keep icon visible when stationary and closed on scroll stop */
-             opacity: 1 !important; 
-             transform: translateY(0) !important;
-             width: 35px;
-        }
-    }
-
 
     /* --- Add-on Section Styles (OPTIMISED) --- */
     .addon-section-container { background: #F8F1FE; border-radius: 12px; padding: 24px; margin-top: 16px; }
@@ -691,13 +660,15 @@
 
 <div class="main-menu-header">
     <h2 class="main-menu-title">Menu</h2>
+    <!-- WhatsApp moved to top right of menu container -->
     <a href="https://wa.me/27717347578" class="whatsapp-enquiry" target="_blank">
         <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.031 0C5.399 0 0 5.405 0 12.023c0 2.226.591 4.364 1.716 6.223L.003 24l5.973-1.637c1.782.977 3.82 1.547 5.955 1.547 6.632 0 12.031-5.393 12.031-12.028C24.031 5.405 18.632 0 12.031 0zm0 2.223c5.385 0 9.809 4.394 9.809 9.8s-4.424 9.802-9.809 9.802c-2.072 0-4.04-.68-5.719-1.921l-.409-.238-4.256 1.168 1.18-4.148-.266-.418c-1.129-1.848-1.74-3.957-1.74-6.155 0-5.388 4.424-9.802 9.809-9.802zM12.031 4.441c-4.159 0-7.585 3.424-7.585 7.582 0 1.564.484 3.09 1.393 4.382l.142.215-.658 2.308 2.36-.648.214.137c1.293.91 2.82 1.391 4.39 1.391 4.158 0 7.584-3.418 7.584-7.582 0-4.158-3.426-7.575-7.584-7.575zm-3.619 4.322c-.11-.295-.246-.358-.501-.368-.255-.011-.531-.01-.812-.01-.282 0-.742.106-1.13.568-.39.462-1.488 1.458-1.488 3.559 0 2.1 1.528 4.12 1.745 4.415.217.295 3.042 4.887 7.375 6.772 4.162 1.769 4.717 1.472 5.568 1.37.852-.102 2.685-.929 3.056-1.838.373-.911.373-.847.262-1.57-.111-.722-.406-1.13-.824-1.353-.418-.223-.89-.356-1.282-.551-.39-.196-.927-.308-1.432-.191-.506.117-.988.756-1.205 1.05-.216.295-.445.322-.824.113-.379-.209-1.566-.582-2.986-1.841-1.104-.972-1.847-2.176-2.064-2.585-.217-.409-.024-.593.193-.802.196-.196.44-.462.66-.693.22-.232.296-.407.445-.66.148-.253.074-.462-.037-.694-.11-.231-.994-2.39-1.373-3.266-.378-.875-.756-.757-1.13-.772-.375-.018-.809-.018-1.242-.018Z"/></svg>
         071 734 7578
     </a>
 </div>
 <div class="grid">
-<div class="card" onclick="navigateTo('age-input-view')"> <div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
+<div class="card" onclick="navigateTo('age-input-view')"> <!-- Changed navigation here -->
+<div class="icon">💧</div><div class="drip-name">IV Drip Selector</div><div class="tile-divider"></div>
 <div class="small">Personalised infusions to match your lifestyle, goals, and energy.</div>
 </div>
 <div class="card" onclick="navigateTo('injectables-view')">
@@ -716,35 +687,39 @@
 </div>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 
+<!-- NEW VIEW: AGE AND NAME INPUT -->
 <div class="hidden" data-view-id="age-input-view" id="age-input-view">
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2 style="font-size: 1.6em; font-weight: 700; color: #004d26;">Personalise my experience</h2>
+    <h2 style="font-size: 1.6em; font-weight: 700; color: #004d26;">My Wellness Profile</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
 
         <label for="user-age">My Age (in years)</label>
+        <!-- Removed min attribute to control validation via JS only and suppress default browser tooltip -->
         <input type="number" id="user-age" placeholder="e.g., 35" max="100" required aria-label="My Age">
         <div class="error-message" id="age-error-message"></div>
 
         <div class="form-buttons">
-            <button type="submit" class="submit-btn">Let's go...</button> <button type="button" class="skip-btn" onclick="skipPersonalization()">Skip tailoring my experience</button>
+            <button type="submit" class="submit-btn">Let's go...</button> <!-- LOCALIZED BUTTON TEXT -->
+            <button type="button" class="skip-btn" onclick="skipPersonalization()">Skip tailoring my experience</button>
         </div>
     </form>
 </div>
+<!-- END NEW VIEW -->
+
 <div class="hidden" data-view-id="categories-view" id="categories-view">
 <div class="nav-controls">
     <button class="back-button" onclick="goBack()">← Back</button>
 </div>
 <h2 id="categories-main-heading">Select My IV Drip</h2>
-<span id="personalized-greeting-text" class="personalized-greeting"></span> 
 <div class="select-row">
 <label for="selection-type">Find by: </label>
 <select id="selection-type" onchange="filterCategories(this.value)">
@@ -755,17 +730,21 @@
 </div>
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
 
+<!-- NEW INJECTABLES VIEW -->
 <div class="hidden" data-view-id="injectables-view" id="injectables-view">
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
     <h2>Injectables</h2>
+    <p style="font-style: italic; color: #666; text-align: center; margin-bottom: 20px;">Targeted, high-concentration boosts for immediate impact.</p>
+    
     <div class="grid" id="injectables-grid">
+        <!-- B12 Injectable Card -->
         <div class="card" onclick="showInjectableDetails('B12')">
             <div class="icon">💉</div>
             <div class="drip-name">B12</div>
@@ -780,10 +759,12 @@
     </p>
 
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
+<!-- END NEW INJECTABLES VIEW -->
+
 <div class="hidden" data-view-id="drips-view" id="drips-view">
 <div class="nav-controls">
     <button class="back-button" onclick="goBack()">← Back</button>
@@ -791,7 +772,7 @@
 <h2 id="drips-heading">Recommendations</h2>
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -839,7 +820,7 @@
 
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -867,10 +848,12 @@
         </div>
     </div>
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
+<!-- END INJECTABLE DETAILS VIEW -->
+
 <div class="hidden" data-view-id="massages-view" id="massages-view">
 <div class="nav-controls">
     <button class="back-button" onclick="goBack()">← Back</button>
@@ -910,7 +893,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -941,35 +924,6 @@
       </div>
   </aside>
   <main class="main-content">
-    <div class="group-aqua">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-      <div class="accordion-content" id="lt-pricing">
-        <p class="value-add-service-hook">
-            Value-Added Service: Portable High Pressure 
-            <span>Oxygen Atomizer treatment with every session</span>
-        </p>
-        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
-            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
-            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
-                <li style="font-weight: 700;">30 mins: R450</li>
-            </ul>
-
-            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
-            <ul class="price-list" style="font-size: 1.05em;">
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">3 Sessions: R1,125</span> 
-                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
-                </li>
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">6 Sessions: R1,800</span>
-                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
-                </li>
-            </ul>
-        </div>
-        
-        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
-      </div>
-    </div>
     <div class="group-rose">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
       <div class="accordion-content" id="lt-discover">
@@ -1000,6 +954,7 @@
         </div>
     </div>
 
+    <!-- FREQUENCY GUIDE MOVED ABOVE PRICING -->
     <div class="group-cyan">
         <button class="accordion-header" onclick="toggleLightAccordion('lt-frequency-rationale', this)">Usage Frequency Guide</button>
         <div class="accordion-content" id="lt-frequency-rationale">
@@ -1038,6 +993,36 @@
         </div>
     </div>
     
+    <div class="group-aqua">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+      <div class="accordion-content" id="lt-pricing">
+        <!-- IMPROVED PRICING LAYOUT -->
+        <p class="value-add-service-hook">
+            Value-Added Service: Portable High Pressure 
+            <span>Oxygen Atomizer treatment with every session</span>
+        </p>
+        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
+            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
+            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
+                <li style="font-weight: 700;">30 mins: R450</li>
+            </ul>
+
+            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
+            <ul class="price-list" style="font-size: 1.05em;">
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">3 Sessions: R1,125</span> 
+                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
+                </li>
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">6 Sessions: R1,800</span>
+                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
+                </li>
+            </ul>
+        </div>
+        
+        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
+      </div>
+    </div>
     
     
     <div class="group-lav">
@@ -1118,7 +1103,7 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by Global Leader in Pharmaceutical Compounding - FAGRON -</p>
+    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1489,44 +1474,36 @@ window.skipPersonalization = function() {
 
     updateFilterOptions();
     navigateTo('categories-view');
-    // Ensure the personalized greeting element is cleared when skipping.
-    document.getElementById('categories-main-heading').textContent = 'Select My IV Drip';
-    document.getElementById('personalized-greeting-text').textContent = '';
+    updateCategoryHeading();
 }
 
 window.updateCategoryHeading = function() {
-    const mainHeading = document.getElementById('categories-main-heading');
-    const greetingEl = document.getElementById('personalized-greeting-text');
+    const heading = document.getElementById('categories-main-heading');
     const firstName = userSession.name.split(' ')[0];
     
-    // Default main title
-    mainHeading.textContent = 'Select My IV Drip'; 
-    
-    let personalizedText = ''; 
+    let personalizedText = 'Select My IV Drip'; 
     
     if (firstName === 'Wellness Seeker') {
-        // If skipped, clear the personalized greeting element
-        greetingEl.textContent = '';
-        return; 
-    } 
-    
-    const generation = userSession.generation;
-
-    // REVISED LUXURY HOOK IMPLEMENTATION
-    if (generation.includes('Gen Z')) {
-        personalizedText = `Hi, ${firstName}. Discover your perfect Vibe.`; 
-    } else if (generation.includes('Millennial')) {
-        personalizedText = `Hello, ${firstName}. Optimize your Performance.`;
-    } else if (generation.includes('Gen X')) {
-        personalizedText = `Welcome, ${firstName}. Restore your Vitality.`;
-    } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-        personalizedText = `Greetings, ${firstName}. Enhance your Core Wellness.`;
+        // If skipped, set header to only the static title
+        heading.innerHTML = 'Select My IV Drip';
+        // This ensures the header is clean and removes any lingering personalized text
     } else {
-        personalizedText = `Hello ${firstName}, discover my options.`;
-    }
+        const generation = userSession.generation;
 
-    // Update the separate greeting element
-    greetingEl.textContent = personalizedText;
+        // CONCISE HOOK IMPLEMENTATION
+        if (generation.includes('Gen Z')) {
+            personalizedText = `Howzit, ${firstName}! Find My Vibe.`; 
+        } else if (generation.includes('Millennial')) {
+            personalizedText = `Sharp, ${firstName}! My Boost.`;
+        } else if (generation.includes('Gen X')) {
+            personalizedText = `Howzit, ${firstName}. My Balance.`;
+        } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
+            personalizedText = `Welcome, ${firstName}. My Core Wellness.`;
+        } else {
+            personalizedText = `Hello ${firstName}, discover My Drip options.`;
+        }
+        heading.innerHTML = personalizedText;
+    }
 }
 
 // --- UPDATED FUNCTION: Update filter select options based on generation ---
@@ -1706,7 +1683,7 @@ window.renderDrips = function() {
   grid.innerHTML = selectedCategory.drips.map(dripName => {
     const drip = allDrips[dripName];
     // Check if drip exists and if it has a price (excluding pure add-ons like Vitamin C)
-    if (!drip || drip.price === null || String(drip.price).toLowerCase() !== 'n/a') return ''; 
+    if (!drip || drip.price === null || String(drip.price).toLowerCase() === 'n/a') return ''; 
     return `<div class="card" onclick="showDripDetails('${dripName.replace(/'/g, "\\'")}')">
               <div class="icon">${drip.icon || '💧'}</div>
               <div class="drip-name">${drip.name}</div>
@@ -1999,16 +1976,7 @@ const fuse = new Fuse(fuseDataset, {
     threshold: 0.4
 });
 
-window.toggleSearch = function() { 
-    const searchContainer = document.getElementById('contextual-search-container');
-    searchContainer.classList.toggle('open'); 
-    // Always show/keep visible when manually opened on mobile
-    if (window.innerWidth < 992) {
-        searchContainer.classList.add('visible'); 
-        clearTimeout(visibilityTimer); // Reset inactivity timer
-        visibilityTimer = setTimeout(updateButtonVisibility, 2000); // Set 2s timer
-    }
-}
+window.toggleSearch = function() { document.getElementById('contextual-search-container').classList.toggle('open'); }
 window.openSearchResults = function() { document.getElementById('search-results-overlay').classList.add('open'); }
 window.closeSearchResults = function() { document.getElementById('search-results-overlay').classList.remove('open'); }
 
@@ -2060,82 +2028,10 @@ window.suggestMassages = function() {
     else { suggestion.innerHTML = '<p>Select at least one need to get recommendations.</p>'; }
 }
 
-// --- Scroll Navigation Logic (UPDATED for 2s inactivity & tap) ---
-let scrollStopTimer; 
-let visibilityTimer;
-const backToTopBtn = document.getElementById('back-to-top-btn'); 
-const dynamicBackBtn = document.getElementById('dynamic-back-btn');
-const searchContainer = document.getElementById('contextual-search-container');
-
-function showAllMobileControls() {
-    if (window.innerWidth < 992) {
-        backToTopBtn.classList.add('visible');
-        if (viewHistory.length > 0) dynamicBackBtn.classList.add('visible');
-        searchContainer.classList.add('visible');
-    }
-}
-
-function updateButtonVisibility() {
-    const isSearchOpen = searchContainer.classList.contains('open');
-    const isMobile = window.innerWidth < 992;
-    const canGoBack = viewHistory.length > 0;
-    const isScrolledDown = document.body.scrollTop > 200 || document.documentElement.scrollTop > 200;
-
-    // Desktop/Default visibility logic (always visible when not scrolling)
-    if (!isMobile) {
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { backToTopBtn.classList.add('visible'); } else { backToTopBtn.classList.remove('visible'); }
-        if (canGoBack) { dynamicBackBtn.classList.add('visible'); } else { dynamicBackBtn.classList.remove('visible'); }
-        searchContainer.classList.add('visible');
-        return;
-    }
-
-    // --- Mobile Inactivity Logic ---
-    clearTimeout(visibilityTimer);
-    
-    // Check if controls should be explicitly hidden (scrolled up/at top)
-    const isAtTopOrNear = !(document.body.scrollTop > 300 || document.documentElement.scrollTop > 300);
-
-    if (isAtTopOrNear) {
-        // Ensure buttons disappear if scrolled up/at top, regardless of inactivity timer
-        backToTopBtn.classList.remove('visible');
-        if (!canGoBack) dynamicBackBtn.classList.remove('visible'); 
-        if (!isSearchOpen) searchContainer.classList.remove('visible');
-    }
-    
-    // Set a new timer to hide buttons if no activity occurs for 2000ms
-    visibilityTimer = setTimeout(() => {
-        if (!isSearchOpen) {
-            backToTopBtn.classList.remove('visible');
-            dynamicBackBtn.classList.remove('visible');
-            searchContainer.classList.remove('visible');
-        }
-    }, 2000); 
-}
-
-window.onscroll = () => {
-    // Show buttons immediately on scroll start on mobile
-    if (window.innerWidth < 992) {
-        showAllMobileControls();
-    }
-    
-    // Clear the scroll stop timer to prevent rapid firing of visibility updates
-    clearTimeout(scrollStopTimer); 
-    
-    // Set a new timer to check for visibility changes when scrolling stops (after a short delay)
-    scrollStopTimer = setTimeout(updateButtonVisibility, 250); 
-    
-    // Run the visibility update function to apply desktop logic instantly on scroll if needed
-    updateButtonVisibility();
-};
-
-// New Event Listener for Tap/Touch to make controls reappear on mobile
-window.addEventListener('touchstart', (event) => {
-    if (window.innerWidth < 992) {
-        showAllMobileControls();
-        clearTimeout(visibilityTimer); // Reset inactivity timer
-        visibilityTimer = setTimeout(updateButtonVisibility, 2000); // Set 2s timer to hide again
-    }
-});
+// --- Scroll Navigation Logic ---
+let scrollStopTimer; const backToTopBtn = document.getElementById('back-to-top-btn'); const dynamicBackBtn = document.getElementById('dynamic-back-btn');
+window.scrollToTop = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+window.onscroll = () => { if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) { backToTopBtn.classList.add('visible'); } else { backToTopBtn.classList.remove('visible'); } const canGoBack = viewHistory.length > 0; const isScrolledDown = document.body.scrollTop > 200 || document.documentElement.scrollTop > 200; dynamicBackBtn.classList.remove('visible'); clearTimeout(scrollStopTimer); scrollStopTimer = setTimeout(() => { if (canGoBack && isScrolledDown) { dynamicBackBtn.classList.add('visible'); } }, 250); };
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -2143,8 +2039,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMassages();
     updateHomeButtonVisibility(currentView);
     updateFilterOptions(); // Call initial update in case user session data is somehow pre-loaded
-    updateButtonVisibility(); // Initial visibility check
 });
+
 </script>
 </body>
 </html>
