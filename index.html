@@ -281,12 +281,6 @@
         width: 100%;
         text-align: center;
     }
-    .footer-whatsapp {
-        text-align: right;
-        font-weight: 700;
-        margin-top: 4px;
-        flex-shrink: 0;
-    }
     .footer-powered-by {
         text-align: left;
         flex-grow: 1;
@@ -672,7 +666,8 @@
 <div class="small">Personalised infusions to match your lifestyle, goals, and energy.</div>
 </div>
 <div class="card" onclick="navigateTo('injectables-view')">
-<div class="icon">💉</div><div class="drip-name">Injectables Selector</div><div class="tile-divider"></div>
+<div class="icon">💉</div><!-- UPDATED ICON -->
+<div class="drip-name">Injectables Selector</div><div class="tile-divider"></div>
 <div class="small">Targeted boosts for energy, immune health, and vitality.</div>
 </div>
 <div class="card" onclick="navigateTo('massages-view')">
@@ -687,7 +682,8 @@
 </div>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -697,7 +693,8 @@
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
-    <h2 style="font-size: 1.6em; font-weight: 700; color: #004d26;">My Wellness Profile</h2>
+    <!-- UPDATED HEADER TEXT -->
+    <h2 style="font-size: 1.6em; font-weight: 700; color: #004d26;">Tailor my IV drip experience</h2>
     <form id="age-input-form" onsubmit="event.preventDefault(); submitPersonalization()">
         <label for="user-name">My Name</label>
         <input type="text" id="user-name" placeholder="e.g., Jané" required aria-label="My Name">
@@ -730,7 +727,8 @@
 </div>
 <div class="grid" id="categories-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -741,12 +739,12 @@
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
     <h2>Injectables</h2>
-    <p style="font-style: italic; color: #666; text-align: center; margin-bottom: 20px;">Targeted, high-concentration boosts for immediate impact.</p>
+    <!-- REMOVED HEADER: Targeted, high-concentration boosts for immediate impact. -->
     
     <div class="grid" id="injectables-grid">
         <!-- B12 Injectable Card -->
         <div class="card" onclick="showInjectableDetails('B12')">
-            <div class="icon">💉</div>
+            <div class="icon">💉</div><!-- UPDATED ICON -->
             <div class="drip-name">B12</div>
             <div class="tile-divider"></div>
             <p class="drip-tagline">Quick Energy & Focus Injection</p>
@@ -759,7 +757,8 @@
     </p>
 
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+        <!-- UPDATED FOOTER TEXT -->
+        <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
@@ -772,7 +771,8 @@
 <h2 id="drips-heading">Recommendations</h2>
 <div class="grid" id="drips-grid"></div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -820,7 +820,8 @@
 
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -848,7 +849,8 @@
         </div>
     </div>
     <footer class="nv-footer-v2">
-        <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+        <!-- UPDATED FOOTER TEXT -->
+        <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
         <p class="copyright">NuVana Wellness - All rights reserved.</p>
     </footer>
 </div>
@@ -893,7 +895,8 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -924,6 +927,40 @@
       </div>
   </aside>
   <main class="main-content">
+    
+    <!-- MOVED PRICING SECTION TO THE TOP (lt-pricing) -->
+    <div class="group-aqua">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+      <div class="accordion-content" id="lt-pricing">
+        <!-- IMPROVED PRICING LAYOUT -->
+        <p class="value-add-service-hook">
+            Value-Added Service: Portable High Pressure 
+            <span>Oxygen Atomizer treatment with every session</span>
+        </p>
+        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
+            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
+            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
+                <li style="font-weight: 700;">30 mins: R450</li>
+            </ul>
+
+            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
+            <ul class="price-list" style="font-size: 1.05em;">
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">3 Sessions: R1,125</span> 
+                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
+                </li>
+                <li style="margin-bottom: 4px;">
+                    <span class="package-item">6 Sessions: R1,800</span>
+                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
+                </li>
+            </ul>
+        </div>
+        
+        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
+      </div>
+    </div>
+    <!-- END MOVED PRICING SECTION -->
+    
     <div class="group-rose">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
       <div class="accordion-content" id="lt-discover">
@@ -954,7 +991,7 @@
         </div>
     </div>
 
-    <!-- FREQUENCY GUIDE MOVED ABOVE PRICING -->
+    <!-- FREQUENCY GUIDE REMAINS HERE -->
     <div class="group-cyan">
         <button class="accordion-header" onclick="toggleLightAccordion('lt-frequency-rationale', this)">Usage Frequency Guide</button>
         <div class="accordion-content" id="lt-frequency-rationale">
@@ -991,37 +1028,6 @@
             </div>
             <p style="font-style: italic; color: #666; font-size: 0.85em; margin-top: 10px;">Visible results typically require several weeks of consistent use. Always follow specific device instructions.</p>
         </div>
-    </div>
-    
-    <div class="group-aqua">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-      <div class="accordion-content" id="lt-pricing">
-        <!-- IMPROVED PRICING LAYOUT -->
-        <p class="value-add-service-hook">
-            Value-Added Service: Portable High Pressure 
-            <span>Oxygen Atomizer treatment with every session</span>
-        </p>
-        <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
-            <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
-            <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
-                <li style="font-weight: 700;">30 mins: R450</li>
-            </ul>
-
-            <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
-            <ul class="price-list" style="font-size: 1.05em;">
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">3 Sessions: R1,125</span> 
-                    <span class="package-detail">(R375 per session - Ideal for Loading Phase)</span>
-                </li>
-                <li style="margin-bottom: 4px;">
-                    <span class="package-item">6 Sessions: R1,800</span>
-                    <span class="package-detail">(R300 per session - Best for Maintenance Phase)</span>
-                </li>
-            </ul>
-        </div>
-        
-        <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
-      </div>
     </div>
     
     
@@ -1103,7 +1109,8 @@
   </main>
 </div>
 <footer class="nv-footer-v2">
-    <p class="footer-powered-by">Powered by a global pharmaceuticals leader – Fagron.</p>
+    <!-- UPDATED FOOTER TEXT -->
+    <p class="footer-powered-by">Powered by a global pharmaceutical compounding leader – Fagron</p>
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
@@ -1129,7 +1136,7 @@ const allDrips = {
     description: 'The Jet Fuel IV Drip is designed to recharge your body and mind when your gees dips. This energising blend of essential vitamins, minerals, and antioxidants supports focus, stamina, recovery, and natural detoxification — helping you perform and feel your best. Together, these nutrients work at a cellular level to boost vitality, clarity, and overall wellbeing.', 
     overallBenefits: 'Boosts energy, focus, and recovery. Supports detox and skin brightening.', 
     ingredients: '<strong>Vitamin B12 & B-Complex:</strong> Support metabolism, brain function, and mood while reducing fatigue.\n<strong>Magnesium:</strong> Helps muscles relax, eases tension, and supports nerve and heart health.\n<strong>Vitamin C:</strong> Strengthens the immune system, supports collagen production, and brightens skin.\n<strong>Glutathione (slow push):</strong> A master antioxidant that aids detoxification, improves skin clarity, and protects against cellular stress.', 
-    frequency: '<strong>Loading Phase:</strong> Once or twice a week for 2–3 weeks if energy is low or stress levels are high. <em>The loading phase helps your body “stock up” on nutrients to restore balance faster before moving to maintenance.</em>\n<strong>Maintenance:</strong> Every 2–4 weeks to sustain balanced energy and recovery.\n<strong>Performance Boost:</strong> Weekly during periods of heavy training, travel, or intense workload.\n<strong>Safety Note:</strong> Up to 2 sessions per week may be used for loading (max 3 weeks). Stay hydrated between drips. For long-term balance, continue every 2–4 weeks.', 
+    frequency: '<strong>Loading Phase:</strong> Once or twice a week for 2–3 weeks if energy is low or stress levels is high. <em>The loading phase helps your body “stock up” on nutrients to restore balance faster before moving to maintenance.</em>\n<strong>Maintenance:</strong> Every 2–4 weeks to sustain balanced energy and recovery.\n<strong>Performance Boost:</strong> Weekly during periods of heavy training, travel, or intense workload.\n<strong>Safety Note:</strong> Up to 2 sessions per week may be used for loading (max 3 weeks). Stay hydrated between drips. For long-term balance, continue every 2–4 weeks.', 
     perfectFor: 'When you’re feeling low on energy or mentally drained. Before or after intense workouts, travel, or demanding work weeks. When you want a clean, lasting energy lift — not a caffeine crash. For faster recovery, improved focus, and a healthy glow.',
     notSuitableFor: 'Pregnant or breastfeeding individuals. Those with severe kidney disease, heart failure, or uncontrolled high blood pressure. Anyone allergic to any of the listed ingredients. Clients undergoing chemotherapy or with serious medical conditions (unless cleared by their doctor). \n\n<small><i>Disclaimer: This list is not exhaustive. All pre-existing medical conditions, current medications, and supplements must be disclosed on the consent form for discussion with the attending nurse before treatment.</i></small>',
     icon: '⚡'
@@ -1282,8 +1289,6 @@ const comboMassages = [ {id: 'serenity-duo', icon: '💑', name: 'The Serenity D
 
 // --- END: MASSAGE DATA ADDED ---
 
-// --- START: GENERATIONAL CATEGORIES RESTRUCTURE ---
-
 // This ensures all 31 non-add-on drips are included in both category arrays.
 const allDripNames = Object.keys(allDrips).filter(name => allDrips[name].price !== null && String(allDrips[name].price).toLowerCase() !== 'n/a');
 const excludedDrips = ['Vitamin C']; // Only displayable as an add-on, so exclude from main lists
@@ -1300,7 +1305,7 @@ const defaultFeelGoalCategories = [
   {name: 'Muscle Recovery & Sports Edge', icon: '💪', drips: ['Sport Restore', 'Sports Edge', 'Glutamine', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
   {name: 'Immune Armour & Protection', icon: '🛡️', drips: ['Immune Booster', 'Immune Booster Premium', 'Trace Elements', 'Anti Inflammatory & Auto Immune', 'Anti Inflammatory Premium']},
   {name: 'Anti-Aging & Future Proofing', icon: '⏳', drips: ['Anti Ageing', 'Radiance Premium', 'Radiance Plus', 'ALA', 'Fertility']},
-  {name: 'Hormone Balance & Fertility', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']}
+  {name: 'Hormone Balance & Protection', icon: '🌡️', drips: ['Menopause Relief', 'Fertility', 'Libido']}
 ];
 
 const defaultLifestyleCategories = [
@@ -1477,32 +1482,23 @@ window.skipPersonalization = function() {
     updateCategoryHeading();
 }
 
+// UPDATED LOGIC FOR PERSONALIZED HEADING AND COLOR
 window.updateCategoryHeading = function() {
     const heading = document.getElementById('categories-main-heading');
     const firstName = userSession.name.split(' ')[0];
     
     let personalizedText = 'Select My IV Drip'; 
-    
-    if (firstName === 'Wellness Seeker') {
-        // If skipped, set header to only the static title
-        heading.innerHTML = 'Select My IV Drip';
-        // This ensures the header is clean and removes any lingering personalized text
-    } else {
-        const generation = userSession.generation;
 
-        // CONCISE HOOK IMPLEMENTATION
-        if (generation.includes('Gen Z')) {
-            personalizedText = `Howzit, ${firstName}! Find My Vibe.`; 
-        } else if (generation.includes('Millennial')) {
-            personalizedText = `Sharp, ${firstName}! My Boost.`;
-        } else if (generation.includes('Gen X')) {
-            personalizedText = `Howzit, ${firstName}. My Balance.`;
-        } else if (generation.includes('Boomer') || generation.includes('Silent') || generation.includes('Older')) {
-            personalizedText = `Welcome, ${firstName}. My Core Wellness.`;
-        } else {
-            personalizedText = `Hello ${firstName}, discover My Drip options.`;
-        }
+    if (firstName === 'Wellness Seeker') {
+        // REQUIRED CHANGE: Header for skip button
+        heading.innerHTML = 'Find your drip...';
+        heading.style.color = '#004d26'; // Revert to standard menu color for non-personalized view
+    } else {
+        // REQUIRED CHANGE: Header when name and age are entered
+        personalizedText = `Hi ${firstName}, find your drip...`;
         heading.innerHTML = personalizedText;
+        // REQUIRED CHANGE: Set color to green
+        heading.style.color = '#006400'; // Using the primary green color defined in CSS
     }
 }
 
@@ -1711,7 +1707,7 @@ window.showDripDetails = function(dripName) {
   if (userSession.generation.includes('Millennial') && drip.name.includes('Premium')) {
       personalizedTagline = `The Premium Boost you need to keep hustling, ${firstName}. ${personalizedTagline}`;
   } else if (userSession.generation.includes('Gen Z') && drip.name.includes('Radiance')) {
-      personalizedTagline = `It's a definite Glow Up for the next selfie, ${firstName}! ${personalizedTagline}`;
+      personalizedTagline = `It's a definite Glow Up for the next selfie, ${firstName}. ${personalizedTagline}`;
   } else if ((userSession.generation.includes('Boomer') || userSession.generation.includes('Legacy')) && drip.name.includes('Anti Ageing')) {
       personalizedTagline = `A focused choice for vitality and grace, ${firstName}. ${personalizedTagline}`;
   }
