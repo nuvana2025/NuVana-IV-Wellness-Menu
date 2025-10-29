@@ -800,24 +800,10 @@
     <div class="did-you-know-tooltip" id="did-you-know-content"></div>
 </div>
 
-<div class="group-rose">
-<button class="accordion-header" onclick="toggleAccordion('perfect-section', this)">Perfect For</button>
-<div class="accordion-content" id="perfect-section"><ul id="detail-perfect" class="ingredient-list" style="list-style: none;"></ul></div>
-<button class="accordion-header" onclick="toggleAccordion('not-suitable-section', this)">Not Suitable For</button>
-<div class="accordion-content" id="not-suitable-section"><ul id="detail-not-suitable" class="ingredient-list" style="list-style: none;"></ul></div>
+<div id="drip-content-accordions">
+    <!-- Content injected here by renderDripContentToHTML -->
 </div>
-<div class="group-aqua">
-<button class="accordion-header" onclick="toggleAccordion('description-section', this)">Description</button>
-<div class="accordion-content" id="description-section"><p id="detail-description"></p></div>
-<button class="accordion-header" onclick="toggleAccordion('frequency-section', this)">Frequency</button>
-<div class="accordion-content" id="frequency-section"></div>
-</div>
-<div class="group-gold">
-<button class="accordion-header" onclick="toggleAccordion('overall-benefits-section', this)">Overall Benefits</button>
-<div class="accordion-content" id="overall-benefits-section"><ul id="detail-overall-benefits" class="ingredient-list" style="list-style: none;"></ul></div>
-<button class="accordion-header" onclick="toggleAccordion('ingredients-section', this)">Individual Ingredients</button>
-<div class="accordion-content" id="ingredients-section"><ul class="ingredient-list" id="detail-ingredients"></ul></div>
-</div>
+
 
 <div class="addon-section-container">
     <h3 style="font-weight: 700; font-size: 1.1em; margin-bottom: 12px; text-align: center;">➕ Add-On IV for a Boost</h3>
@@ -833,28 +819,13 @@
     <p class="copyright">NuVana Wellness - All rights reserved.</p>
 </footer>
 </div>
+<!-- START: INJECTABLE DETAILS VIEW - UPDATED HTML STRUCTURE -->
 <div class="hidden" data-view-id="injectable-details-view" id="injectables-details-view">
     <div class="nav-controls">
         <button class="back-button" onclick="goBack()">← Back</button>
     </div>
     <div class="drip-details" id="injectable-details-panel">
-        <h2 id="injectable-detail-name"></h2>
-        <p id="injectable-detail-tagline" class="detail-tagline-style"></p>
-        <p class="price">Price: R<span id="injectable-detail-price"></span></p>
-        <p id="injectable-detail-duration-text" style="font-style: italic; color: #555; margin-bottom: 4px;">Duration: 5 minutes (IM Injection)</p>
-
-        <div class="group-aqua">
-            <button class="accordion-header" onclick="toggleAccordion('injectable-description-section', this)">What is B12?</button>
-            <div class="accordion-content" id="injectable-description-section"><p id="injectable-detail-description"></p></div>
-        </div>
-        <div class="group-gold">
-            <button class="accordion-header" onclick="toggleAccordion('injectable-benefits-section', this)">Key Benefits</button>
-            <div class="accordion-content" id="injectable-benefits-section"><ul id="injectable-detail-benefits" class="ingredient-list" style="list-style: none;"></ul></div>
-        </div>
-        <div class="group-rose">
-            <button class="accordion-header" onclick="toggleAccordion('injectable-frequency-section', this)">Recommended Frequency</button>
-            <div class="accordion-content" id="injectable-frequency-section"><p id="injectable-detail-frequency"></p></div>
-        </div>
+        <!-- Content headers and full IV drip accordions will be injected by showInjectableDetails -->
     </div>
     <footer class="nv-footer-v2">
         <!-- UPDATED FOOTER TEXT -->
@@ -1721,16 +1692,12 @@ const allDrips = {
   }
 };
 
-// Injectables Data (Replicated from B12 Drip, adjusted price and duration)
+// Injectables Data (UPDATED name to avoid confusion with drip, but keeping the key 'B12')
 const allInjectables = {
     'B12': {
-        name: 'B12',
+        name: 'B12 Injection',
         price: 200,
         tagline: 'Quick Energy & Focus Injection',
-        description: 'A powerful, concentrated dose of Vitamin B12 (Methylcobalamin) administered intramuscularly (IM) for rapid absorption. This injection bypasses the digestive system to give you a quick, pure boost of energy, mood support, and mental clarity.',
-        overallBenefits: 'Instant energy lift. Improves focus and reduces mental fatigue. Supports nerve health and red blood cell production. Boosts mood.',
-        ingredients: '<strong>Vitamin B12 (Methylcobalamin)</strong>: A highly bioavailable form of B12 that immediately supports energy production and neurological function.',
-        frequency: 'Weekly for 4-6 weeks during a loading phase, then monthly for maintenance.',
         icon: '💉',
     },
     // Add more injectables here as needed (e.g., Lipo-C, Vitamin D)
@@ -1865,6 +1832,89 @@ const lifestyleCategories_Boomer = [
 
 // --- END: GENERATIONAL CATEGORIES RESTRUCTURE ---
 
+// --- TASK 3: INGREDIENT FILTER FIX ---
+
+// Global variable for ingredient categories
+let ingredientCategories = [];
+
+// Function to generate Ingredient Categories from allDrips
+function generateIngredientCategories() {
+    const ingredientMap = {};
+    const excluded = ['Vitamin C']; // Exclude pure add-ons from main filter list
+
+    Object.keys(allDrips).filter(dripName => !excluded.includes(dripName) && allDrips[dripName].ingredients).forEach(dripName => {
+        const drip = allDrips[dripName];
+        
+        // Use a controlled list of normalized ingredient names based on strong tags or key identifiers
+        const ingredients = [];
+        
+        // Extract content within <strong> tags, which typically contain the ingredient name
+        const rawIngredientNames = drip.ingredients.match(/<strong>(.*?)<\/strong>/g) || [];
+        
+        rawIngredientNames.forEach(rawName => {
+            let mainName = rawName.replace(/<\/?strong>/g, '').split('–')[0].split(':')[0].split('-')[0].trim();
+
+            if (mainName.length > 2) {
+                // Normalize specific names
+                if (mainName.includes('Vitamin C') || mainName.includes('Ascorbic Acid')) mainName = 'Vitamin C';
+                if (mainName.includes('B12')) mainName = 'Vitamin B12';
+                if (mainName.includes('B Complex')) mainName = 'Vitamin B Complex';
+                if (mainName.includes('Magnesium')) mainName = 'Magnesium';
+                if (mainName.includes('Glutathione')) mainName = 'Glutathione';
+                if (mainName.includes('ALA')) mainName = 'Alpha-Lipoic Acid (ALA)';
+                if (mainName.includes('NAD')) mainName = 'NAD+ (Longevity)';
+                if (mainName.includes('Taurine')) mainName = 'Taurine';
+                if (mainName.includes('Glutamine')) mainName = 'L-Glutamine';
+                if (mainName.includes('Biotin')) mainName = 'Biotin';
+                if (mainName.includes('MIC')) mainName = 'MIC (Metabolism Boost)';
+                if (mainName.includes('Trace Elements')) mainName = 'Trace Elements (Zinc/Selenium)';
+                if (mainName.includes('L-Arginine')) mainName = 'L-Arginine';
+                if (mainName.includes('L-Carnitine')) mainName = 'L-Carnitine';
+                
+                if (mainName.includes('G.A.C')) {
+                    ingredients.push('L-Glutamine');
+                    ingredients.push('L-Arginine');
+                    ingredients.push('L-Carnitine');
+                } else {
+                    ingredients.push(mainName);
+                }
+            }
+        });
+        
+        // Special case for Aqua Hydrate which only contains 'Saline'
+        if (dripName === 'Aqua Hydrate') {
+            ingredients.push('Saline');
+        }
+
+        // Add to map
+        Array.from(new Set(ingredients)).forEach(ing => {
+            if (!ingredientMap[ing]) {
+                ingredientMap[ing] = { name: ing, icon: '💊', drips: [] };
+            }
+            if (!ingredientMap[ing].drips.includes(dripName)) {
+                ingredientMap[ing].drips.push(dripName);
+            }
+        });
+    });
+
+    // Convert map to array and sort alphabetically by ingredient name
+    let categories = Object.values(ingredientMap).sort((a, b) => a.name.localeCompare(b.name));
+    
+    // Assign specific icons
+    categories.forEach(cat => {
+        if (cat.name.includes('B12') || cat.name.includes('B Complex')) cat.icon = '⚡';
+        else if (cat.name.includes('Vitamin C') || cat.name.includes('Glutathione')) cat.icon = '✨';
+        else if (cat.name.includes('Magnesium') || cat.name.includes('Taurine')) cat.icon = '😌';
+        else if (cat.name.includes('L-Glutamine') || cat.name.includes('L-Carnitine')) cat.icon = '💪';
+        else if (cat.name.includes('Biotin')) cat.icon = '💅';
+        else if (cat.name.includes('NAD+')) cat.icon = '🧬';
+        else if (cat.name.includes('MIC')) cat.icon = '🔥';
+        else if (cat.name.includes('Saline') || cat.name.includes('Elements')) cat.icon = '🌿';
+        else cat.icon = '💊';
+    });
+
+    return categories;
+}
 
 // --- GLOBAL SESSION STATE ---
 const userSession = {
@@ -1984,6 +2034,7 @@ window.updateFilterOptions = function() {
     document.querySelector('#selection-type option[value="lifestyle"]').innerHTML = lifestyleText;
 }
 
+// UPDATED FUNCTION to handle ingredientCategories
 window.getCurrentCategories = function() {
   const generation = userSession.generation;
   let categories;
@@ -2014,7 +2065,8 @@ window.getCurrentCategories = function() {
       categories = lifestyleMap[generation];
       // Use the default if no specific generation mapping exists
       if (!categories) return defaultLifestyleCategories; 
-  } else {
+  } else if (currentFilterType === 'ingredients') {
+      // FIX: Use the newly generated ingredientCategories
       return ingredientCategories;
   }
   
@@ -2045,9 +2097,12 @@ window.navigateTo = function(viewId) {
   const nextEl = document.getElementById(viewId);
   if (currentEl) currentEl.classList.add('hidden');
   if (nextEl) nextEl.classList.remove('hidden');
+  
+  // Only push to history if navigating to a different view
   if (currentView !== viewId) {
       viewHistory.push(currentView);
   }
+  
   currentView = viewId;
   updateHomeButtonVisibility(currentView);
 
@@ -2109,11 +2164,16 @@ window.filterCategories = function(type) {
 window.renderCategories = function() {
   const grid = document.getElementById('categories-grid');
   const categories = getCurrentCategories();
+  
+  // FIX: Clear the grid before rendering new categories
+  grid.innerHTML = ''; 
+
   grid.innerHTML = categories.map(cat =>
     `<div class="card" onclick="selectCategory('${cat.name.replace(/'/g, "\\'")}')">
        <div class="icon">${cat.icon}</div>
        <div class="drip-name">${cat.name}</div>
        <div class="tile-divider"></div>
+       ${currentFilterType === 'ingredients' ? `<div class="small">${cat.drips.length} Drips contain this</div>` : ''}
      </div>`
   ).join('');
 }
@@ -2127,7 +2187,7 @@ window.renderDrips = function() {
   if (!selectedCategory) return;
   
   // FIX: Drips heading now shows the actual selected category name
-  document.getElementById('drips-heading').textContent = selectedCategory.name;
+  document.getElementById('drips-heading').textContent = `Drips featuring: ${selectedCategory.name}`;
   
   const grid = document.getElementById('drips-grid');
   grid.innerHTML = selectedCategory.drips.map(dripName => {
@@ -2171,51 +2231,69 @@ window.getDripTagline = function(drip, generation) {
 function cleanIngredients(ingredients) {
     if (!ingredients) return '';
     // Regex to remove common dosage formats: (number unit), - number unit, / number unit, number unit (ml, mg, µg)
-    // FIX: Added closing forward slash to complete the regex literal.
     const dosageRegex = /\s*(\(|-|\/)?\s*\d+(\.\d+)?\s*(mg|ml|mcg|µg|IU|g|units|cc|ml\/g|mg\/ml|%)\)?/gi;
     return ingredients.replace(dosageRegex, '').trim();
 }
 
+// NEW FUNCTION: Reusable function to render the core accordion content
+window.renderDripContentToHTML = function(drip, suffix = '') {
+    const cleanedIngredients = cleanIngredients(drip.ingredients);
+    
+    return `
+        <div class="group-rose">
+            <button class="accordion-header" onclick="toggleAccordion('perfect-section${suffix}', this)">Perfect For</button>
+            <div class="accordion-content" id="perfect-section${suffix}"><ul id="detail-perfect${suffix}" class="ingredient-list" style="list-style: none;">${
+                drip.perfectFor ? drip.perfectFor.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>General Wellness Support</li>').join('') : '<li>General Wellness Support</li>'
+            }</ul></div>
+            <button class="accordion-header" onclick="toggleAccordion('not-suitable-section${suffix}', this)">Not Suitable For</button>
+            <div class="accordion-content" id="not-suitable-section${suffix}"><ul id="detail-not-suitable${suffix}" class="ingredient-list" style="list-style: none;">${
+                drip.notSuitableFor ? drip.notSuitableFor.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>No specific contraindications mentioned.</li>').join('') : '<li>No specific contraindications mentioned.</li>'
+            }</ul></div>
+        </div>
+        <div class="group-aqua">
+            <button class="accordion-header" onclick="toggleAccordion('description-section${suffix}', this)">Description</button>
+            <div class="accordion-content" id="description-section${suffix}">${
+                drip.description ? drip.description.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available. Consult your practitioner for more details.</p>'
+            }</div>
+            <button class="accordion-header" onclick="toggleAccordion('frequency-section${suffix}', this)">Frequency</button>
+            <div class="accordion-content" id="frequency-section${suffix}">${
+                drip.frequency ? drip.frequency.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Consult your practitioner for best frequency, typically every 2-4 weeks for maintenance.</p>'
+            }</div>
+        </div>
+        <div class="group-gold">
+            <button class="accordion-header" onclick="toggleAccordion('overall-benefits-section${suffix}', this)">Overall Benefits</button>
+            <div class="accordion-content" id="overall-benefits-section${suffix}"><ul id="detail-overall-benefits${suffix}" class="ingredient-list" style="list-style: none;">${
+                drip.overallBenefits ? drip.overallBenefits.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>Offers overall wellness support.</li>').join('') : '<li>Offers overall wellness support.</li>'
+            }</ul></div>
+            <button class="accordion-header" onclick="toggleAccordion('ingredients-section${suffix}', this)">Individual Ingredients</button>
+            <div class="accordion-content" id="ingredients-section${suffix}"><ul class="ingredient-list" id="detail-ingredients${suffix}">${
+                cleanedIngredients ? cleanedIngredients.split('\n').map(ing => ing.trim() ? `<li>${ing.trim()}</li>` : '<li>Key ingredients support cellular function.</li>').join('') : '<li>Key ingredients support cellular function.</li>'
+            }</ul></div>
+        </div>
+    `;
+}
 
 window.showDripDetails = function(dripName) {
   const drip = allDrips[dripName];
   if (!drip) return;
 
-  // FIX: Detail name is just the Drip Name (no "Drip" suffix)
+  // Render the core accordion content
+  document.getElementById('drip-content-accordions').innerHTML = renderDripContentToHTML(drip);
+
+  // Update fixed elements
   document.getElementById('detail-name').textContent = drip.name;
-  
   const priceText = (drip.price !== null && String(drip.price).toLowerCase() !== 'n/a') ? drip.price : 'N/A';
-  
   document.getElementById('detail-price').textContent = priceText;
   
   // Personalized Tagline (NEW LOGIC)
   const personalizedTagline = getDripTagline(drip, userSession.generation);
   document.getElementById('detail-tagline').textContent = personalizedTagline;
 
-  // REMOVED: duration setting (as requested)
-  // document.getElementById('detail-duration-text').textContent = `Approximate Duration: ${durationText}`;
-
   // Tooltip Content Update (NEW LOGIC)
   const didYouKnowContentEl = document.getElementById('did-you-know-content');
-  // Prioritize the new specific tip, fallback to duration details, then generic duration info
   const tipContent = drip.didYouKnowTip ? `<p>${drip.didYouKnowTip}</p>` : drip.durationDetails || 
       `<p>Each session takes around <strong>${drip.duration || '25-40 minutes'}</strong>, depending on your body’s natural absorption rate and vein size. We pace every drip to your body’s unique rhythm for the most soothing and effective experience.</p>`;
-  
   didYouKnowContentEl.innerHTML = tipContent;
-
-  document.getElementById('detail-description').innerHTML = drip.description ? drip.description.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available. Consult your practitioner for more details.</p>';
-  
-  document.getElementById('detail-perfect').innerHTML = drip.perfectFor ? drip.perfectFor.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>General Wellness Support</li>').join('') : '<li>General Wellness Support</li>';
-  document.getElementById('detail-not-suitable').innerHTML = drip.notSuitableFor ? drip.notSuitableFor.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>No specific contraindications mentioned.</li>').join('') : '<li>No specific contraindications mentioned.</li>';
-  
-  document.getElementById('frequency-section').innerHTML = drip.frequency ? drip.frequency.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Consult your practitioner for best frequency, typically every 2-4 weeks for maintenance.</p>';
-
-  document.getElementById('detail-overall-benefits').innerHTML = drip.overallBenefits ? drip.overallBenefits.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>Offers overall wellness support.</li>').join('') : '<li>Offers overall wellness support.</li>';
-
-  const ingredientsEl = document.getElementById('detail-ingredients');
-  // Use the new cleanIngredients function here
-  const cleanedIngredients = cleanIngredients(drip.ingredients);
-  ingredientsEl.innerHTML = cleanedIngredients ? cleanedIngredients.split('\n').map(ing => ing.trim() ? `<li>${ing.trim()}</li>` : '<li>Key ingredients support cellular function.</li>').join('') : '<li>Key ingredients support cellular function.</li>';
 
   // RENDER ADDONS
   const addonGrid = document.getElementById('addon-ivs-grid');
@@ -2253,10 +2331,11 @@ window.showDripDetails = function(dripName) {
  
   // Default open 'Perfect For'
   setTimeout(() => {
+    // Note: We use the ID without a suffix since this is the main details view
     const perfectSection = document.getElementById('perfect-section');
-    const perfectButton = document.querySelector('#details-view > .drip-details > .group-rose > button[onclick*="perfect-section"]');
-    const allHeaders = document.querySelectorAll('#details-view > .drip-details > div[class*="group-"] > .accordion-header');
-    const allContents = document.querySelectorAll('#details-view > .drip-details > div[class*="group-"] > .accordion-content');
+    const perfectButton = document.querySelector('#drip-content-accordions > .group-rose > button[onclick*="perfect-section"]');
+    const allHeaders = document.querySelectorAll('#drip-details-panel button.accordion-header');
+    const allContents = document.querySelectorAll('#drip-details-panel .accordion-content');
     allHeaders.forEach(h => h.classList.remove('active'));
     allContents.forEach(c => c.classList.remove('open'));
     if (perfectButton && perfectSection) {
@@ -2266,33 +2345,71 @@ window.showDripDetails = function(dripName) {
   }, 50);
 }
 
-// --- Injectables Functions ---
+// --- TASK 1 & 2: Injectables Functions - DUPLICATE B12 IV DRIP CONTENT ---
 
 window.showInjectableDetails = function(injectableName) {
     const injectable = allInjectables[injectableName];
+    // Check if the request is specifically for B12, and if so, fetch the B12 IV Drip data for duplication
+    const dripToDuplicate = (injectableName === 'B12' && allDrips['B12']) ? allDrips['B12'] : null;
+
     if (!injectable) return;
 
-    document.getElementById('injectable-detail-name').textContent = injectable.name;
-    document.getElementById('injectable-detail-tagline').textContent = injectable.tagline || '';
-    document.getElementById('injectable-detail-price').textContent = injectable.price;
+    const detailPanel = document.getElementById('injectable-details-panel');
+    let contentHTML = '';
 
-    document.getElementById('injectable-detail-description').innerHTML = injectable.description ? injectable.description.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Description not available.</p>';
-    
-    // Using overallBenefits for benefits list
-    document.getElementById('injectable-detail-benefits').innerHTML = injectable.overallBenefits ? injectable.overallBenefits.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>General benefit support.</li>').join('') : '<li>General benefit support.</li>';
+    if (dripToDuplicate) {
+        // Use the comprehensive drip details rendering logic (suffix is empty for simplicity)
+        contentHTML = renderDripContentToHTML(dripToDuplicate, '-injected');
+    } else {
+        // Fallback to simple injectable data if we decide to add more later
+        contentHTML = `
+            <div class="group-aqua">
+                <button class="accordion-header" onclick="toggleAccordion('injectable-description-section', this)">Description</button>
+                <div class="accordion-content" id="injectable-description-section"><p>${injectable.originalDescription || 'Description not available.'}</p></div>
+            </div>
+            <div class="group-gold">
+                <button class="accordion-header" onclick="toggleAccordion('injectable-benefits-section', this)">Key Benefits</button>
+                <div class="accordion-content" id="injectable-benefits-section"><ul class="ingredient-list" style="list-style: none;">${
+                    injectable.originalBenefits ? injectable.originalBenefits.split('. ').map(s => s.trim() ? `<li>${s.trim().replace(/\.$/, '')}</li>` : '<li>General benefit support.</li>').join('') : '<li>General benefit support.</li>'
+                }</ul></div>
+            </div>
+            <div class="group-rose">
+                <button class="accordion-header" onclick="toggleAccordion('injectable-frequency-section', this)">Recommended Frequency</button>
+                <div class="accordion-content" id="injectable-frequency-section"><p>${injectable.originalFrequency || 'Consult your practitioner for best frequency.'}</p></div>
+            </div>
+        `;
+    }
 
-    document.getElementById('injectable-detail-frequency').innerHTML = injectable.frequency ? injectable.frequency.split('\n').map(p => `<p>${p}</p>`).join('') : '<p>Consult your practitioner for best frequency.</p>';
+    // Combine header and duplicated/fall-back content
+    detailPanel.innerHTML = `
+        <h2 id="injectable-detail-name">${injectable.name}</h2>
+        <p id="injectable-detail-tagline" class="detail-tagline-style">${injectable.tagline}</p>
+        <p class="price">Price: R<span id="injectable-detail-price">${injectable.price}</span></p>
+        <p id="injectable-detail-duration-text" style="font-style: italic; color: #555; margin-bottom: 4px;">Duration: 5 minutes (IM Injection) 
+            ${dripToDuplicate ? '— Full IV Drip details below for comprehensive B12 information.' : ''}
+        </p>
+        ${contentHTML}
+    `;
 
 
-    navigateTo('injectable-details-view');
+    navigateTo('injectables-details-view');
 
-    // Default open Description
+    // Default open 'Perfect For' or Description
     setTimeout(() => {
-        const descHeader = document.querySelector('#injectable-details-panel .group-aqua .accordion-header');
-        const descContent = document.querySelector('#injectable-details-panel #injectable-description-section');
-        if (descHeader && descContent) {
-            descHeader.classList.add('active');
-            descContent.classList.add('open');
+        const defaultHeader = dripToDuplicate ? 
+            document.querySelector('#injectable-details-panel .group-rose > button[onclick*="perfect-section-injected"]') :
+            document.querySelector('#injectable-details-panel .group-aqua .accordion-header');
+
+        if (defaultHeader) {
+            // Find the corresponding content by looking at the onclick attribute
+            const contentIdMatch = defaultHeader.getAttribute('onclick').match(/'([^']+)'/);
+            if (contentIdMatch) {
+                const defaultContent = document.getElementById(contentIdMatch[1]);
+                if (defaultContent) {
+                    defaultHeader.classList.add('active');
+                    defaultContent.classList.add('open');
+                }
+            }
         }
     }, 50);
 }
@@ -2374,13 +2491,19 @@ window.toggleAccordion = function(contentId, headerBtn) {
     const content = document.getElementById(contentId);
     if (!content) return;
     const isOpen = content.classList.contains('open');
+    // Use closest to find the relevant container (either main drip panel or injectable panel)
     const container = headerBtn.closest('#drip-details-panel, #injectable-details-panel, .card');
     if (container) {
+        // Only select headers/content within the current container to prevent closing other views' panels
         const allHeaders = container.querySelectorAll('.accordion-header');
         const allContents = container.querySelectorAll('.accordion-content');
+        
+        // Close siblings
         allHeaders.forEach(h => h.classList.remove('active'));
         allContents.forEach(c => c.classList.remove('open'));
     }
+    
+    // Open/Close current
     if (!isOpen) {
         headerBtn.classList.add('active');
         content.classList.add('open');
@@ -2520,6 +2643,9 @@ window.onscroll = () => { if (document.body.scrollTop > 300 || document.document
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
+    // FIX: Initialize ingredientCategories on load
+    ingredientCategories = generateIngredientCategories();
+    
     renderCategories();
     renderMassages();
     updateHomeButtonVisibility(currentView);
