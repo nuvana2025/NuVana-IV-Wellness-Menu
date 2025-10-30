@@ -2570,14 +2570,21 @@ function createMassageCard(massage) {
     ? massage.pricing.map(p => `<li>R${p.price} <span style="font-weight: 400; color: #555;">(${p.duration})</span></li>`).join('') 
     : '<li>Pricing N/A</li>';
 
+  // --- START: MODIFICATION FOR DEFAULT OPEN ACCORDION ---
+  // Add 'active' class to the button
+  const headerClass = "accordion-header active";
+  // Add 'open' class to the content
+  const contentClass = "accordion-content open";
+  // --- END: MODIFICATION ---
+
   return `<div class="card" id="card-${massage.id}">
     <div class="icon">${massage.icon}</div>
     <div class="drip-name">${massage.name}</div>
     <div class="tile-divider"></div>
     <div class="small">${massage.description}</div>
     <div class="info" onclick="event.stopPropagation(); showTooltip('${massage.id}')">ℹ️</div>
-    <button class="accordion-header" onclick="event.stopPropagation(); toggleAccordion('price-${massage.id}', this)">Pricing</button>
-    <div class="accordion-content" id="price-${massage.id}">
+    <button class="${headerClass}" onclick="event.stopPropagation(); toggleAccordion('price-${massage.id}', this)">Pricing</button>
+    <div class="${contentClass}" id="price-${massage.id}">
     <ul class="price-list" style="text-align: center;">${priceListHtml}</ul>
     </div></div>`;
 }
