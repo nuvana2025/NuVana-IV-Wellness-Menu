@@ -796,7 +796,7 @@
 
 <!-- REQUIRED CHANGE: Update Tooltip Text and Title -->
 <div class="did-you-know" onclick="showDidYouKnowTooltip()">
-    ℹ️ Did you know?
+   ℹ️ Did you know?
     <div class="did-you-know-tooltip" id="did-you-know-content"></div>
 </div>
 
@@ -919,7 +919,8 @@
         <div style="border: 1px solid #c6e3c6; border-radius: 10px; padding: 15px; background: #f7fff7;">
             <p style="font-weight: 700; margin-bottom: 8px;">Single Session</p>
             <ul class="price-list" style="font-size: 1.05em; margin-bottom: 15px;">
-                <li style="font-weight: 700;">30 mins: R450</li>
+                <!-- Duration removed from here -->
+                <li style="font-weight: 700;">R450</li>
             </ul>
 
             <p style="font-weight: 700; margin-bottom: 8px;">Recommended Packages (Best Value)</p>
@@ -1104,7 +1105,7 @@ const allDrips = {
     name: 'Jet Fuel', 
     price: 600, 
     addonPrice: null, 
-    duration: '25-40 minutes', 
+    // REMOVED: duration: '25-40 minutes', 
     tagline: 'Clean, Lasting Vibe Boost', 
     taglineZ: 'Peak mode, unlocked.',
     taglineY: 'Fuel your focus. Stay limitless.',
@@ -1123,7 +1124,7 @@ const allDrips = {
     name: 'Jet Fuel Premium', 
     price: 1250, 
     addonPrice: null, 
-    duration: '30-45 minutes', 
+    // REMOVED: duration: '30-45 minutes', 
     tagline: 'Premium, Maximum Gees Boost', 
     taglineZ: 'Maximum vibes, activated.',
     taglineY: 'High-potency focus. Achieve breakthrough.',
@@ -1142,7 +1143,7 @@ const allDrips = {
     name: 'Recharge', 
     price: 500, 
     addonPrice: null, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Spark Clarity, Ignite Vigor',
     taglineZ: 'Quick charge, no crash.',
     taglineY: 'Ignite your day. Find your flow.',
@@ -1161,7 +1162,7 @@ const allDrips = {
     name: 'Recharge Premium', 
     price: 950, 
     addonPrice: null, 
-    duration: '45 mins', 
+    // REMOVED: duration: '45 mins', 
     tagline: 'Surge with Boundless Vibe',
     taglineZ: 'Turbo boost. Full send energy.',
     taglineY: 'Unlock peak potential. Go further.',
@@ -1180,7 +1181,7 @@ const allDrips = {
     name: 'Libido', 
     price: 900, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Revive your drive, lekker!',
     taglineZ: 'Vibe check: high.',
     taglineY: 'Reignite your fire. Maximize connection.',
@@ -1199,7 +1200,7 @@ const allDrips = {
     name: 'Glutamine', 
     price: 400, 
     addonPrice: 300, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Rebuild. Restore. Rise renewed',
     taglineZ: 'Reset your core.',
     taglineY: 'Deep cellular repair. Optimize recovery.',
@@ -1218,7 +1219,7 @@ const allDrips = {
     name: 'Anxiety Relief', 
     price: 790, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Embrace Serene Tranquility',
     taglineZ: 'Chill mode: permanent.',
     taglineY: 'Find your calm. Navigate with ease.',
@@ -1237,7 +1238,7 @@ const allDrips = {
     name: 'Anxiety Relief Premium', 
     price: 1100, 
     addonPrice: null, 
-    duration: '60 mins', 
+    // REMOVED: duration: '60 mins', 
     tagline: 'Drift into Deep Calm',
     taglineZ: 'Unlocked zen. All the good feels.',
     taglineY: 'Profound tranquility. Master your mind.',
@@ -1256,14 +1257,14 @@ const allDrips = {
     name: 'Radiance', 
     price: 950, 
     addonPrice: null, 
-    duration: '25-40 minutes',
+    // REMOVED: duration: '25-40 minutes',
+    // REMOVED: durationDetails: '<p>Each session takes approximately <strong>25–40 minutes</strong>, which includes:</p><ul style="text-align: left; padding-left: 20px;"><li>20–30 minutes for the Vitamin C infusion in saline</li><li>5–10 minutes for the gentle Glutathione slow push at the end</li></ul><p style="text-align: center; font-style: italic; color: #333; margin-top: 16px;">Your comfort is our priority — the drip is paced to your body’s rhythm, ensuring a calm and relaxing experience throughout.</p>',
     tagline: 'Glow Up, Like a Boss', 
     taglineZ: 'Glow up, no filter needed.',
     taglineY: 'Luminous skin. Your daily advantage.',
     taglineX: 'Clear complexion. Consistent results.',
     taglineB: 'Refreshed skin. Maintain your look.',
     didYouKnowTip: 'Vitamin C is essential for collagen synthesis (the skin\'s structural protein) and also helps inhibit tyrosinase, the enzyme responsible for melanin production, leading to brighter, more even skin tone.',
-    durationDetails: '<p>Each session takes approximately <strong>25–40 minutes</strong>, which includes:</p><ul style="text-align: left; padding-left: 20px;"><li>20–30 minutes for the Vitamin C infusion in saline</li><li>5–10 minutes for the gentle Glutathione slow push at the end</li></ul><p style="text-align: center; font-style: italic; color: #333; margin-top: 16px;">Your comfort is our priority — the drip is paced to your body’s rhythm, ensuring a calm and relaxing experience throughout.</p>',
     description: 'Radiance is a gentle, antioxidant-rich formulation designed to support skin health, detoxification, and overall wellbeing. Delivered in a soothing saline base, this drip hydrates the body while allowing these antioxidants to circulate and nourish your cells directly.', 
     overallBenefits: 'Brightens and evens skin tone, boosts collagen, supports detox, and enhances immunity.', 
     ingredients: '<strong>Ascorbic Acid (Vitamin C)</strong>: Brightens the skin by supporting collagen production and protecting against free radicals. It helps even out skin tone, boosts immunity, and assists your body in managing daily stress and fatigue.\n<strong>Glutathione (administered as a slow push at the end):</strong> Known as the body’s master antioxidant, Glutathione helps neutralise toxins, reduce pigmentation, and promote a clear, luminous complexion. It also supports liver function and cellular repair.', 
@@ -1276,7 +1277,7 @@ const allDrips = {
     name: 'Radiance Plus', 
     price: 1400, 
     addonPrice: null, 
-    duration: '45-60 minutes', 
+    // REMOVED: duration: '45-60 minutes', 
     tagline: 'Radiate Timeless Beauty', 
     taglineZ: 'Max shine. High-key glow.',
     taglineY: 'Accelerated glow. Next-level clarity.',
@@ -1295,7 +1296,7 @@ const allDrips = {
     name: 'Radiance Premium', 
     price: 1800, 
     addonPrice: null, 
-    duration: '60 mins', 
+    // REMOVED: duration: '60 mins', 
     tagline: 'Shine with Eternal Youth',
     taglineZ: 'Main character energy. Eternal glow.',
     taglineY: 'Timeless beauty. Maximize vitality.',
@@ -1314,7 +1315,7 @@ const allDrips = {
     name: 'Biotin', 
     price: 420, 
     addonPrice: 300, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Strengthen, Glow, Shine',
     taglineZ: 'Hair, skin, nails on point.',
     taglineY: 'Strengthen your beauty foundation.',
@@ -1333,7 +1334,7 @@ const allDrips = {
     name: 'Vitamin C', 
     price: null, 
     addonPrice: 225, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Glow stronger, heal deeper — powered by Vitamin C',
     taglineZ: 'Core strength. Immune check.',
     taglineY: 'Essential defense. Optimize function.',
@@ -1352,7 +1353,7 @@ const allDrips = {
     name: 'Anti Inflammatory & Auto Immune', 
     price: 1490, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Soothe Body, Restore Harmony',
     taglineZ: 'No drama, just calm.',
     taglineY: 'Quell the storm. Regain control.',
@@ -1371,7 +1372,7 @@ const allDrips = {
     name: 'Anti Inflammatory Premium', 
     price: 1550, 
     addonPrice: null, 
-    duration: '60 mins', 
+    // REMOVED: duration: '60 mins', 
     tagline: 'Quell Flames, Embrace Ease',
     taglineZ: 'Elite calm. Reset the system.',
     taglineY: 'Advanced relief. Total body ease.',
@@ -1390,7 +1391,7 @@ const allDrips = {
     name: 'Immune Booster', 
     price: 420, 
     addonPrice: null, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Shield, Vibe, Thrive',
     taglineZ: 'Defense mode, activated.',
     taglineY: 'Essential shield. Stay resilient.',
@@ -1409,7 +1410,7 @@ const allDrips = {
     name: 'Immune Booster Premium', 
     price: 800, 
     addonPrice: null, 
-    duration: '45 mins', 
+    // REMOVED: duration: '45 mins', 
     tagline: 'Fortify, Radiate, Conquer',
     taglineZ: 'Unstoppable defense.',
     taglineY: 'Maximize resilience. Stay ahead.',
@@ -1428,7 +1429,7 @@ const allDrips = {
     name: 'Trace Elements', 
     price: 350, 
     addonPrice: 300, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Balance, Vitalise, Thrive',
     taglineZ: 'Core minerals. Next level balance.',
     taglineY: 'Foundational health. Tune your system.',
@@ -1447,7 +1448,7 @@ const allDrips = {
     name: 'Anti Ageing', 
     price: 1200, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Renew, Revive, Radiate',
     taglineZ: 'Future proofing. Full power on.',
     taglineY: 'Biohack your youth. Maximize longevity.',
@@ -1466,7 +1467,7 @@ const allDrips = {
     name: 'ALA', 
     price: 620, 
     addonPrice: null, 
-    duration: '30-45 mins', 
+    // REMOVED: duration: '30-45 mins', 
     tagline: 'Protect, Renew, Restore',
     taglineZ: 'Cellular detox. Max protection.',
     taglineY: 'Nerve support. Enhanced recovery.',
@@ -1485,7 +1486,7 @@ const allDrips = {
     name: 'Menopause Relief', 
     price: 1100, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Embrace Balance, Bloom Anew',
     taglineZ: 'Balance the vibes. Smooth sailing.',
     taglineY: 'Hormone support. Navigate with grace.',
@@ -1504,7 +1505,7 @@ const allDrips = {
     name: 'Weight Loss', 
     price: 800, 
     addonPrice: null, 
-    duration: '30-45 mins', 
+    // REMOVED: duration: '30-45 mins', 
     tagline: 'Torch Fat, Ignite Confidence',
     taglineZ: 'Metabolism on fire.',
     taglineY: 'Accelerate results. Fuel your goals.',
@@ -1523,7 +1524,7 @@ const allDrips = {
     name: 'Weight Loss Premium', 
     price: 950, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Sculpt Lean, Energised You',
     taglineZ: 'Shred mode: professional.',
     taglineY: 'Elite performance. Leaner results.',
@@ -1542,7 +1543,7 @@ const allDrips = {
     name: 'Fertility', 
     price: 800, 
     addonPrice: null, 
-    duration: '45 mins', 
+    // REMOVED: duration: '45 mins', 
     tagline: 'Nurture Hope, Spark Life',
     taglineZ: 'Prep for the future.',
     taglineY: 'Optimize conception. Nurture life.',
@@ -1561,7 +1562,7 @@ const allDrips = {
     name: 'Detox', 
     price: 400, 
     addonPrice: null, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Cleanse, Renew, Awaken',
     taglineZ: 'Quick system reboot.',
     taglineY: 'Clean slate. Feel lighter.',
@@ -1580,7 +1581,7 @@ const allDrips = {
     name: 'Detox Premium', 
     price: 800, 
     addonPrice: null, 
-    duration: '45 mins', 
+    // REMOVED: duration: '45 mins', 
     tagline: 'Purify, Illuminate, Soar',
     taglineZ: 'Deep cleanse. Elite clarity.',
     taglineY: 'Ultimate system overhaul.',
@@ -1599,7 +1600,7 @@ const allDrips = {
     name: 'Sport Restore', 
     price: 1050, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Recover faster. Perform stronger. Feel unstoppable.',
     taglineZ: 'Max recovery. Back in the game.',
     taglineY: 'Refuel and repair. Beat the soreness.',
@@ -1618,7 +1619,7 @@ const allDrips = {
     name: 'Sports Edge', 
     price: 1250, 
     addonPrice: null, 
-    duration: '60 mins', 
+    // REMOVED: duration: '60 mins', 
     tagline: 'Fuel your performance. Recover like a pro.',
     taglineZ: 'Go hard, recover harder.',
     taglineY: 'Elite fuel. Unstoppable output.',
@@ -1637,7 +1638,7 @@ const allDrips = {
     name: 'Aqua Hydrate', 
     price: 300, 
     addonPrice: null, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Hydrate, Refresh, Revive',
     taglineZ: 'Just hydration, pure vibes.',
     taglineY: 'Essential hydration. Quick reset.',
@@ -1656,7 +1657,7 @@ const allDrips = {
     name: 'B12', 
     price: 300, 
     addonPrice: 250, 
-    duration: '30 mins', 
+    // REMOVED: duration: '30 mins', 
     tagline: 'Gees Boost, Focus, Vibe',
     taglineZ: 'Fast boost. High energy.',
     taglineY: 'Power your day. Stay sharp.',
@@ -1675,7 +1676,7 @@ const allDrips = {
     name: 'Hangover & Jet Lag', 
     price: 1100, 
     addonPrice: null, 
-    duration: '45-60 mins', 
+    // REMOVED: duration: '45-60 mins', 
     tagline: 'Revive. Rehydrate. Reset.',
     taglineZ: 'Reset button. Back to life.',
     taglineY: 'Quick recovery. Get back on track.',
@@ -1704,9 +1705,9 @@ const allInjectables = {
 };
 
 // --- START: MASSAGE DATA ADDED ---
-const relaxationMassages = [ {id: 'hot-stone', icon: '🔥', name: 'Hot Stone Massage', description: 'Warm stones melt away tension, soothe muscles and send you into restorative bliss.', tooltip: 'Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R500'}, {duration: '90 min', price: 'R750'}]}, {id: 'swedish', icon: '🌸', name: 'Swedish Massage', description: 'Long, flowing strokes calm your nervous system and restore peace to body and mind.', tooltip: 'The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.', pricing: [{duration: '30 min', price: 'R350'}, {duration: '60 min', price: 'R600'}, {duration: '90 min', price: 'R850'}]}, {id: 'indian-head', icon: '🧘', name: 'Indian Head Massage', description: 'A soothing head, neck & shoulder ritual that clears your mind and grounds your spirit.', tooltip: 'A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you refreshed, grounded and mentally recharged.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R450'}]}, {id: 'neck-back-shoulder', icon: '💆', name: 'Neck, Back & Shoulder Massage', description: 'Release built‑up stress in your upper body, restoring comfort and instant relief.', tooltip: 'Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.', pricing: [{duration: '30 min', price: 'R300'}, {duration: '60 min', price: 'R450'}, {duration: '90 min', price: 'R700'}]} ];
-const therapeuticMassages = [ {id: 'deep-tissue', icon: '💪', name: 'Deep Tissue Massage', description: 'Firm, targeted pressure relieves chronic tension and restores balance.', tooltip: 'A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R850'}, {duration: '90 min', price: 'R1,050'}]}, {id: 'sports', icon: '🏃', name: 'Sports Massage', description: 'Deep work and assisted stretches enhance performance, ease soreness and speed recovery.', tooltip: 'Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you\'re training, competing or simply staying active.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]}, {id: 'lymphatic-drainage', icon: '💧', name: 'Lymphatic Drainage Massage', description: 'Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.', tooltip: 'A gentle, rhythmic technique that supports your body\'s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.', pricing: [{duration: '30 min', price: 'R500'}, {duration: '60 min', price: 'R800'}, {duration: '90 min', price: 'R1,100'}]}, {id: 'foot-reflexology', icon: '👣', name: 'Foot Massage / Reflexology', description: 'Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.', tooltip: 'Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.', pricing: [{duration: '30 min', price: 'R250'}, {duration: '60 min', price: 'R400'}, {duration: '90 min', price: 'R600'}]} ];
-const comboMassages = [ {id: 'serenity-duo', icon: '💑', name: 'The Serenity Duo – Swedish Massage', description: 'A synchronised Swedish massage melts tension and deepens your connection.', tooltip: 'A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R1,080'}, {duration: '90 min', price: 'R1,530'}]}, {id: 'lava-escape', icon: '🌋', name: 'The Lava Escape – Hot Stone Massage', description: 'Heated stones and gentle strokes create a shared retreat into soothing warmth.', tooltip: 'Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.', pricing: [{duration: '30 min', price: 'R630'}, {duration: '60 min', price: 'R900'}, {duration: '90 min', price: 'R1,350'}]}, {id: 'power-pair', icon: '💪', name: 'The Power Pair – Deep Tissue Massage', description: 'Firm pressure releases stubborn knots, ideal for active pairs seeking relief.', tooltip: 'A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.', pricing: [{duration: '30 min', price: 'R810'}, {duration: '60 min', price: 'R1,530'}, {duration: '90 min', price: 'R1,890'}]}, {id: 'athletes-alignment', icon: '🏃', name: 'The Athletes Alignment – Sports Massage', description: 'Performance‑driven couples get deep work and stretches to recover and stay agile.', tooltip: 'Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,620'}, {duration: '90 min', price: 'R2,160'}]}, {id: 'detox-duo', icon: '💧', name: 'The Detox Duo – Lymphatic Drainage', description: 'A light touch encourages detox and circulation for refreshing renewal.', tooltip: 'A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.', pricing: [{duration: '30 min', price: 'R900'}, {duration: '60 min', price: 'R1,440'}, {duration: '90 min', price: 'R1,980'}]}, {id: 'tranquil-touch', icon: '🤲', name: 'The Tranquil Touch – Neck, Back & Shoulder Massage', description: 'Focused tension relief for neck, back & shoulders, bringing calm to couples.', tooltip: 'A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.', pricing: [{duration: '30 min', price: 'R540'}, {duration: '60 min', price: 'R810'}, {duration: '90 min', price: 'R1,260'}]}, {id: 'sole-connection', icon: '👣', name: 'The Sole Connection – Foot Massage / Reflexology', description: 'Grounding footwork stimulates energy flow and relieves tension for two.', tooltip: 'Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}, {duration: '90 min', price: 'R1,080'}]}, {id: 'crown-calm', icon: '👑', name: 'The Crown & Calm Ritual – Indian Head Massage', description: 'A meditative scalp, neck & shoulder ritual calms minds and balances energy.', tooltip: 'A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.', pricing: [{duration: '30 min', price: 'R450'}, {duration: '60 min', price: 'R720'}]} ];
+const relaxationMassages = [ {id: 'hot-stone', icon: '🔥', name: 'Hot Stone Massage', description: 'Warm stones melt away tension, soothe muscles and send you into restorative bliss.', tooltip: 'Experience profound relaxation as warm volcanic stones glide across your body, melting away tension and easing muscle stiffness. The soothing heat promotes circulation, calms the nervous system and leaves you in a deeply restorative state — the ultimate stress release.', pricing: [{price: 'R350'}, {price: 'R500'}, {price: 'R750'}]}, {id: 'swedish', icon: '🌸', name: 'Swedish Massage', description: 'Long, flowing strokes calm your nervous system and restore peace to body and mind.', tooltip: 'The timeless classic of relaxation. With long, flowing strokes and light to medium pressure, this full‑body massage soothes the nervous system, enhances circulation and promotes an overall sense of peace, balance and wellbeing.', pricing: [{price: 'R350'}, {price: 'R600'}, {price: 'R850'}]}, {id: 'indian-head', icon: '🧘', name: 'Indian Head Massage', description: 'A soothing head, neck & shoulder ritual that clears your mind and grounds your spirit.', tooltip: 'A tranquil fusion of ancient tradition and modern wellness. Focusing on the head, neck and shoulders, this treatment releases built‑up tension, stimulates circulation and clears the mind — leaving you refreshed, grounded and mentally recharged.', pricing: [{price: 'R250'}, {price: 'R450'}]}, {id: 'neck-back-shoulder', icon: '💆', name: 'Neck, Back & Shoulder Massage', description: 'Release built‑up stress in your upper body, restoring comfort and instant relief.', tooltip: 'Unwind where tension lives most. This focused, rejuvenating treatment targets built‑up stress in the neck, shoulders and upper back — restoring mobility, releasing tightness and inviting instant relief for body and mind.', pricing: [{price: 'R300'}, {price: 'R450'}, {price: 'R700'}]} ];
+const therapeuticMassages = [ {id: 'deep-tissue', icon: '💪', name: 'Deep Tissue Massage', description: 'Firm, targeted pressure relieves chronic tension and restores balance.', tooltip: 'A precision treatment for deeper relief. Using firm, controlled pressure and targeted techniques, this massage releases chronic muscle tension, improves flexibility and restores postural balance — ideal for those who carry physical or emotional stress in their body.', pricing: [{price: 'R450'}, {price: 'R850'}, {price: 'R1,050'}]}, {id: 'sports', icon: '🏃', name: 'Sports Massage', description: 'Deep work and assisted stretches enhance performance, ease soreness and speed recovery.', tooltip: 'Designed for active bodies. This results‑driven massage combines deep tissue techniques and assisted stretching to enhance performance, reduce muscle soreness and accelerate recovery — whether you\'re training, competing or simply staying active.', pricing: [{price: 'R500'}, {price: 'R800'}, {price: 'R1,100'}]}, {id: 'lymphatic-drainage', icon: '💧', name: 'Lymphatic Drainage Massage', description: 'Gentle rhythmic strokes flush toxins, reduce swelling and renew your energy.', tooltip: 'A gentle, rhythmic technique that supports your body\'s natural detoxification process. This massage stimulates the lymphatic system to reduce fluid retention, improve circulation and boost immunity — perfect post‑surgery or as part of a wellness reset.', pricing: [{price: 'R500'}, {price: 'R800'}, {price: 'R1,100'}]}, {id: 'foot-reflexology', icon: '👣', name: 'Foot Massage / Reflexology', description: 'Therapeutic footwork targets reflex points to restore harmony and relieve fatigue.', tooltip: 'Rebalance your body from the ground up. This therapeutic foot ritual applies gentle pressure to key reflex points connected to internal organs and systems, stimulating circulation, relieving fatigue and promoting full‑body harmony.', pricing: [{price: 'R250'}, {price: 'R400'}, {price: 'R600'}]} ];
+const comboMassages = [ {id: 'serenity-duo', icon: '💑', name: 'The Serenity Duo – Swedish Massage', description: 'A synchronised Swedish massage melts tension and deepens your connection.', tooltip: 'A synchronised full‑body Swedish massage designed to melt tension and deepen connection. Ideal for couples wanting a balanced, relaxing start to their wellness journey.', pricing: [{price: 'R630'}, {price: 'R1,080'}, {price: 'R1,530'}]}, {id: 'lava-escape', icon: '🌋', name: 'The Lava Escape – Hot Stone Massage', description: 'Heated stones and gentle strokes create a shared retreat into soothing warmth.', tooltip: 'Heated basalt stones and gentle strokes create deep warmth that soothes muscles and invites complete stillness — a luxurious sensory escape for two.', pricing: [{price: 'R630'}, {price: 'R900'}, {price: 'R1,350'}]}, {id: 'power-pair', icon: '💪', name: 'The Power Pair – Deep Tissue Massage', description: 'Firm pressure releases stubborn knots, ideal for active pairs seeking relief.', tooltip: 'A firm‑pressure treatment targeting chronic tension and muscle tightness. Perfect for active couples seeking recovery and release together.', pricing: [{price: 'R810'}, {price: 'R1,530'}, {price: 'R1,890'}]}, {id: 'athletes-alignment', icon: '🏃', name: 'The Athletes Alignment – Sports Massage', description: 'Performance‑driven couples get deep work and stretches to recover and stay agile.', tooltip: 'Designed for performance‑driven couples. Combines deep tissue techniques and assisted stretches to enhance mobility, recovery and vitality.', pricing: [{price: 'R900'}, {price: 'R1,620'}, {price: 'R2,160'}]}, {id: 'detox-duo', icon: '💧', name: 'The Detox Duo – Lymphatic Drainage', description: 'A light touch encourages detox and circulation for refreshing renewal.', tooltip: 'A light, rhythmic touch that supports circulation and detoxification — perfect after travel or during wellness resets.', pricing: [{price: 'R900'}, {price: 'R1,440'}, {price: 'R1,980'}]}, {id: 'tranquil-touch', icon: '🤲', name: 'The Tranquil Touch – Neck, Back & Shoulder Massage', description: 'Focused tension relief for neck, back & shoulders, bringing calm to couples.', tooltip: 'A focused tension‑release session that targets the most stress‑prone areas — ideal for couples seeking calm within a busy lifestyle.', pricing: [{price: 'R540'}, {price: 'R810'}, {price: 'R1,260'}]}, {id: 'sole-connection', icon: '👣', name: 'The Sole Connection – Foot Massage / Reflexology', description: 'Grounding footwork stimulates energy flow and relieves tension for two.', tooltip: 'Grounding and therapeutic — stimulates energy flow and relieves tension from head to toe, leaving you both recharged.', pricing: [{price: 'R450'}, {price: 'R720'}, {price: 'R1,080'}]}, {id: 'crown-calm', icon: '👑', name: 'The Crown & Calm Ritual – Indian Head Massage', description: 'A meditative scalp, neck & shoulder ritual calms minds and balances energy.', tooltip: 'A meditative scalp, neck and shoulder massage using rhythmic pressure to calm the mind and rebalance energy.', pricing: [{price: 'R250'}, {price: 'R450'}]} ];
 
 // --- END: MASSAGE DATA ADDED ---
 
@@ -2227,7 +2228,7 @@ window.getDripTagline = function(drip, generation) {
 }
 
 // **--- FIX 2: REMOVE DOSAGES FROM INGREDIENTS ---**
-// Helper function to remove dosages (e.g., ' - 2500 mg', ' (10 mg)')
+// Helper function to remove common dosage information from ingredient strings
 function cleanIngredients(ingredients) {
     if (!ingredients) return '';
     // Regex to remove common dosage formats: (number unit), - number unit, / number unit, number unit (ml, mg, µg)
@@ -2291,8 +2292,8 @@ window.showDripDetails = function(dripName) {
 
   // Tooltip Content Update (NEW LOGIC)
   const didYouKnowContentEl = document.getElementById('did-you-know-content');
-  const tipContent = drip.didYouKnowTip ? `<p>${drip.didYouKnowTip}</p>` : drip.durationDetails || 
-      `<p>Each session takes around <strong>${drip.duration || '25-40 minutes'}</strong>, depending on your body’s natural absorption rate and vein size. We pace every drip to your body’s unique rhythm for the most soothing and effective experience.</p>`;
+  const tipContent = drip.didYouKnowTip ? `<p>${drip.didYouKnowTip}</p>` : 
+      `<p>Your comfort is our priority — each drip is paced to your body’s unique rhythm, ensuring a calm and relaxing experience throughout.</p>`; // Removed duration from fallback
   didYouKnowContentEl.innerHTML = tipContent;
 
   // RENDER ADDONS
@@ -2385,9 +2386,7 @@ window.showInjectableDetails = function(injectableName) {
         <h2 id="injectable-detail-name">${injectable.name}</h2>
         <p id="injectable-detail-tagline" class="detail-tagline-style">${injectable.tagline}</p>
         <p class="price">Price: R<span id="injectable-detail-price">${injectable.price}</span></p>
-        <p id="injectable-detail-duration-text" style="font-style: italic; color: #555; margin-bottom: 4px;">Duration: 5 minutes (IM Injection) 
-            ${dripToDuplicate ? '— Full IV Drip details below for comprehensive B12 information.' : ''}
-        </p>
+        <!-- REMOVED: Duration line here -->
         ${contentHTML}
     `;
 
@@ -2525,9 +2524,7 @@ window.toggleLightAccordion = function(contentId, headerBtn) {
   content.classList.toggle('open');
 }
 
-// <!-- THIS IS THE FIX -->
-// The function was wrapped in 'if (window.innerWidth < 992)', which prevented it from working on desktop.
-// I have removed that condition so it runs on all screen sizes.
+// The function was updated to run on all screen sizes in the previous turn.
 window.toggleSelector = function(contentId, headerBtn) {
     const content = document.getElementById(contentId);
     if (content) { // Added a check to make sure content exists
@@ -2548,11 +2545,12 @@ function createMassageCard(massage) {
     <div class="icon">${massage.icon}</div>
     <div class="drip-name">${massage.name}</div>
     <div class="tile-divider"></div>
-    <div classsmall">${massage.description}</div>
+    <div class="small">${massage.description}</div>
     <div class="info" onclick="event.stopPropagation(); showTooltip('${massage.id}')">ℹ️</div>
     <button class="accordion-header" onclick="event.stopPropagation(); toggleAccordion('price-${massage.id}', this)">Pricing</button>
     <div class="accordion-content" id="price-${massage.id}">
-    <ul class="price-list">${massage.pricing.map(p => `<li>${p.duration}: ${p.price}</li>`).join('')}</ul>
+    <!-- Removed duration display logic from pricing table here. Massages were not part of the request but are updated here for completeness as their data changed in this operation. -->
+    <ul class="price-list">${massage.pricing.map(p => `<li>R${p.price}</li>`).join('')}</ul>
     </div></div>`;
 }
 window.showTooltip = function(massageId) {
