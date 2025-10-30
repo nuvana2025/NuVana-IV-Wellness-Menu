@@ -907,10 +907,10 @@
   </aside>
   <main class="main-content">
     
-    <!-- MOVED PRICING SECTION TO THE TOP (lt-pricing) -->
+    <!-- 1. PRICING SECTION (NOW DEFAULT OPEN) -->
     <div class="group-aqua">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
-      <div class="accordion-content" id="lt-pricing">
+      <button class="accordion-header active" onclick="toggleLightAccordion('lt-pricing', this)">Pricing &amp; Packages</button>
+      <div class="accordion-content open" id="lt-pricing">
         <!-- IMPROVED PRICING LAYOUT -->
         <p class="value-add-service-hook">
             Value-Added Service: Portable High Pressure 
@@ -939,39 +939,8 @@
         <p style="font-style: italic; color: #555; font-size: 0.9em; text-align: center; margin-top: 15px;">Book a package to lock in the best value and maximize your skin's transformation.</p>
       </div>
     </div>
-    <!-- END MOVED PRICING SECTION -->
     
-    <div class="group-rose">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
-      <div class="accordion-content" id="lt-discover">
-        <p style="font-style: italic; color: #666;">Unlock radiant skin with the Colourful Light Beauty Mask, a cutting-edge optical instrument bringing professional photodynamic therapy right to you. This innovative device harnesses seven light wavelengths to target diverse skin concerns, delivering visible rejuvenation with consistent use.</p> </div>
-    </div>
-    <div class="group-rose">
-      <button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
-      <div class="accordion-content" id="lt-benefits">
-        <ul class="ingredient-list">
-          <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
-          <li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
-          <li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
-          <li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="group-gold">
-        <button class="accordion-header" onclick="toggleLightAccordion('lt-oxygen', this)">Oxygen Atomizer Pen Benefits</button>
-        <div class="accordion-content" id="lt-oxygen">
-            <p style="font-style: italic; color: #666; margin-bottom: 12px;">The Portable High Pressure Oxygen Atomizer works by infusing oxygen and product deep into the skin, boosting the effectiveness of the light therapy.</p>
-            <ul class="ingredient-list">
-                <li><strong>Hydration Boost:</strong> Delivers essential moisture and nutrients directly into the skin layers.</li>
-                <li><strong>Product Absorption:</strong> Enhances the penetration of serums and active ingredients.</li>
-                <li><strong>Skin Radiance:</strong> Oxygenate skin cells for a fresher, plumper, and more vibrant look.</li>
-                <li><strong>Anti-Inflammatory:</strong> Helps soothe and calm irritated skin before and after light treatment.</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- FREQUENCY GUIDE REMAINS HERE -->
+    <!-- 2. FREQUENCY GUIDE (MOVED UP FOR BETTER UX FLOW) -->
     <div class="group-cyan">
         <button class="accordion-header" onclick="toggleLightAccordion('lt-frequency-rationale', this)">Usage Frequency Guide</button>
         <div class="accordion-content" id="lt-frequency-rationale">
@@ -1010,7 +979,41 @@
         </div>
     </div>
     
+    <!-- 3. DISCOVER -->
+    <div class="group-rose">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-discover', this)">What is light therapy</button>
+      <div class="accordion-content" id="lt-discover">
+        <p style="font-style: italic; color: #666;">Unlock radiant skin with the Colourful Light Beauty Mask, a cutting-edge optical instrument bringing professional photodynamic therapy right to you. This innovative device harnesses seven light wavelengths to target diverse skin concerns, delivering visible rejuvenation with consistent use.</p> </div>
+    </div>
     
+    <!-- 4. BENEFITS -->
+    <div class="group-rose">
+      <button class="accordion-header" onclick="toggleLightAccordion('lt-benefits', this)">Benefits You'll Love</button>
+      <div class="accordion-content" id="lt-benefits">
+        <ul class="ingredient-list">
+          <li><strong>Whitening:</strong> Achieve a brighter, even-toned complexion by reducing pigmentation.</li>
+          <li><strong>Anti-Aging:</strong> Diminish wrinkles, fade scars, and restore elasticity for a youthful look.</li>
+          <li><strong>Skin Tightening:</strong> Firm up sagging skin and enhance overall resilience.</li>
+          <li><strong>Acne Control:</strong> Clear breakouts and prevent scarring with targeted blue light therapy.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- 5. OXYGEN ATOMIZER -->
+    <div class="group-gold">
+        <button class="accordion-header" onclick="toggleLightAccordion('lt-oxygen', this)">Oxygen Atomizer Pen Benefits</button>
+        <div class="accordion-content" id="lt-oxygen">
+            <p style="font-style: italic; color: #666; margin-bottom: 12px;">The Portable High Pressure Oxygen Atomizer works by infusing oxygen and product deep into the skin, boosting the effectiveness of the light therapy.</p>
+            <ul class="ingredient-list">
+                <li><strong>Hydration Boost:</strong> Delivers essential moisture and nutrients directly into the skin layers.</li>
+                <li><strong>Product Absorption:</strong> Enhances the penetration of serums and active ingredients.</li>
+                <li><strong>Skin Radiance:</strong> Oxygenate skin cells for a fresher, plumper, and more vibrant look.</li>
+                <li><strong>Anti-Inflammatory:</strong> Helps soothe and calm irritated skin before and after light treatment.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 6. MATRIX -->
     <div class="group-lav">
       <button class="accordion-header" onclick="toggleLightAccordion('lt-matrix', this)">Light Benefits Matrix</button>
       <div class="accordion-content" id="lt-matrix">
@@ -2288,8 +2291,8 @@ window.renderDripContentToHTML = function(drip, suffix = '') {
             }</ul></div>
             <button class="accordion-header" onclick="toggleAccordion('ingredients-section${suffix}', this)">Individual Ingredients</button>
             <div class="accordion-content" id="ingredients-section${suffix}"><ul class="ingredient-list" id="detail-ingredients${suffix}">${
-                cleanedIngredients ? cleanedIngredients.split('\n').map(ing => ing.trim() ? `<li>${ing.trim()}</li>` : '<li>Key ingredients support cellular function.</li>').join('') : '<li>Key ingredients support cellular function.</li>'
-            }</ul></div>
+                cleanedIngredients ? cleanedIngredients.split('\n').map(ing => ing.trim() ? `<li>${ing.trim()}</li>` : '<li>Key ingredients support cellular function.</li>').join('') : '<li>Key ingredients support cellular function.</li>'}
+            </ul></div>
         </div>
     `;
 }
@@ -2647,16 +2650,41 @@ window.handleSearchInput = function(inputElement) {
 }
 
 // --- Selector Logic ---
+const colorMap = {
+    'Red': { name: 'Red', hex: '#ff4d4d', class: 'dot-red' },
+    'Blue': { name: 'Blue', hex: '#4da6ff', class: 'dot-blue' },
+    'Green': { name: 'Green', hex: '#52d452', class: 'dot-green' },
+    'Yellow': { name: 'Yellow', hex: '#ffdb4d', class: 'dot-yellow' },
+    'Purple': { name: 'Purple', hex: '#a64dff', class: 'dot-purple' },
+    'Cyan': { name: 'Cyan', hex: '#4dffff', class: 'dot-cyan' },
+    'White': { name: 'White', hex: '#f2f2f2', class: 'dot-white' }
+};
+
 window.suggestLights = function() {
   const checkboxes = document.querySelectorAll('#light-selector-content input:checked');
   const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
   const concernToLights = { 'anti-aging': ['Red', 'Yellow', 'White'], 'acne': ['Blue', 'Purple'], 'pigmentation': ['Yellow', 'Green'], 'elasticity': ['Red', 'White'], 'inflammation': ['Blue', 'Yellow', 'Purple', 'Cyan'], 'oil': ['Green'], 'scarring': ['Red', 'Blue', 'Purple'], 'tightening': ['White', 'Red'], 'energy': ['Cyan', 'White', 'Red'] };
   let recommended = new Set();
   selectedConcerns.forEach(concern => { if (concernToLights[concern]) { concernToLights[concern].forEach(light => recommended.add(light)); } });
-  const colors = {'Red': '#ff4d4d', 'Blue': '#4da6ff', 'Green': '#52d452', 'Yellow': '#ffdb4d', 'Purple': '#a64dff', 'Cyan': '#4dffff', 'White': '#f2f2f2'};
+  
   const suggestion = document.getElementById('suggestion');
-  suggestion.innerHTML = recommended.size > 0 ? '<p>Recommended lights: ' + Array.from(recommended).map(light => `<span style="color: ${colors[light]}; font-weight: bold;">${light}</span>`).join(', ') + '</p>' : '<p>Select at least one concern to get recommendations.</p>';
+  
+  if (recommended.size > 0) { 
+      let resultsHtml = '<p>Recommended lights:</p>'; 
+      resultsHtml += Array.from(recommended).map(lightName => {
+          const colorInfo = colorMap[lightName];
+          return `<a class="suggestion-pill" style="display: flex; align-items: center; justify-content: center; gap: 6px; font-style: normal;">
+                    <span class="led-color-dot ${colorInfo.class}" style="width: 12px; height: 12px; margin-right: 0;"></span>
+                    ${lightName}
+                  </a>`;
+      }).join(''); 
+      suggestion.innerHTML = resultsHtml;
+  }
+  else { 
+      suggestion.innerHTML = '<p>Select at least one concern to get recommendations.</p>'; 
+  }
 }
+
 window.suggestMassages = function() {
     const checkboxes = document.querySelectorAll('#massage-selector-content input:checked');
     const selectedConcerns = Array.from(checkboxes).map(cb => cb.value);
