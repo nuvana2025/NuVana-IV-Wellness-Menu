@@ -355,7 +355,20 @@
     .selector-header::after { content: "▼"; font-size: 12px; }
     .selector-header.active::after { content: "▲"; }
     .selector-content { padding: 0 16px 4px; max-height: 0; overflow: hidden; transition: max-height .28s ease, padding .28s ease; }
+    /* DEFAULT OPENING THE SELECTORS ON VIEW LOAD */
+    .massage-selector-wrapper .selector-content.open,
+    .light-selector-wrapper .selector-content.open {
+        max-height: 1000px; 
+        padding: 4px 16px 12px;
+    }
+    /* FIX: Added .active and .open to default selector state for immediate visibility */
+    .selector-container .selector-header.active + .selector-content {
+        max-height: 1000px; 
+        padding: 4px 16px 12px;
+    }
+    
     .selector-content.open { max-height: 1000px; padding: 4px 16px 12px; }
+    
     .selector-content label { display: block; margin-bottom: 8px; font-size: 0.95em; }
     .selector-content button { background: #006400; color: #fff; border: none; border-radius: 8px; padding: 10px 16px; cursor: pointer; margin-top: 12px; }
     #suggestion, #massage-suggestion, #ai-search-results { margin-top: 16px; font-style: italic; color: #333; }
@@ -604,7 +617,7 @@
     }
     .highlight-card {
         border: 4px solid #006400; /* Strong border to confirm selection */
-        animation: cardHighlight 1.2s ease-out;
+        animation: cardHighlight 2.0s ease-out; /* INCREASED DURATION */
     }
     /* Tooltip Trigger fix - remove old icon */
     .card .info { display: none !important; }
@@ -713,7 +726,7 @@
 <div class="nav-controls">
     <button class="back-button" onclick="window.goBack()">← Back</button>
 </div>
-<h2 id="categories-main-heading">Select My IV Drip</h2>
+<h2 id="categories-main-heading">Recommendations</h2>
 <div class="select-row">
 <label for="selection-type">Find by: </label>
 <select id="selection-type" onchange="window.filterCategories(this.value)">
@@ -821,11 +834,13 @@
 </div>
 <div class="page-with-sidebar">
   <aside class="sidebar">
-      <div id="massage-selector-wrapper" class="selector-container">
-        <div class="selector-header" onclick="window.toggleSelector('massage-selector-content', this)">
+      <!-- Added .massage-selector-wrapper for CSS targeting -->
+      <div id="massage-selector-wrapper" class="selector-container massage-selector-wrapper">
+        <!-- Added .active class to make it open by default on load -->
+        <div class="selector-header active" onclick="window.toggleSelector('massage-selector-content', this)">
           <h3>Find Your Perfect Massage</h3>
         </div>
-        <div id="massage-selector-content" class="selector-content">
+        <div id="massage-selector-content" class="selector-content open">
           <p style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 0; margin-bottom: 8px;">Select what you need below:</p>
           <!-- UPDATED CHECKBOX LABELS -->
           <label><input type="checkbox" value="stress"> Deep Relaxation & De-Stress</label>
@@ -865,11 +880,13 @@
 </div>
 <div class="page-with-sidebar">
   <aside class="sidebar">
-      <div id="light-selector-wrapper" class="selector-container">
-        <div class="selector-header" onclick="window.toggleSelector('light-selector-content', this)">
+      <!-- Added .light-selector-wrapper for CSS targeting -->
+      <div id="light-selector-wrapper" class="selector-container light-selector-wrapper">
+        <!-- Added .active class to make it open by default on load -->
+        <div class="selector-header active" onclick="window.toggleSelector('light-selector-content', this)">
             <h3>Find Your Perfect Light</h3>
         </div>
-        <div id="light-selector-content" class="selector-content">
+        <div id="light-selector-content" class="selector-content open">
             <p style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 0; margin-bottom: 8px;">Select your skin concerns below:</p>
             <label><input type="checkbox" value="anti-aging"> Anti-Aging / Wrinkles</label>
             <label><input type="checkbox" value="acne"> Acne / Breakouts</label>
@@ -2130,18 +2147,9 @@ window.navigateTo = function(viewId) {
       window.renderCategories(); 
   }
 
-  if (window.innerWidth < 992) { // Mobile/Tablet specific behavior
-    if (viewId === 'massages-view' || viewId === 'light-therapy-view') {
-        const wrapperId = viewId === 'massages-view' ? '#massage-selector-wrapper' : '#light-selector-wrapper';
-        const contentId = viewId === 'massages-view' ? 'massage-selector-content' : 'light-selector-content';
-        const header = document.querySelector(`${wrapperId} .selector-header`);
-        const content = document.getElementById(contentId);
-        if (header && content && !content.classList.contains('open')) {
-            header.classList.add('active');
-            content.classList.add('open');
-        }
-    }
-  }
+  // NOTE: Removed mobile-specific opening logic here as setting the default 'open' classes
+  // on the selector container in the HTML/CSS achieves the same goal for all screens.
+
    window.scrollTo(0, 0);
 }
 window.goBack = function() {
@@ -2758,9 +2766,32 @@ window.highlightAndScrollToMassage = function(massageId) {
         setTimeout(() => {
             // Check if the user hasn't triggered another highlight before removing
             card.classList.remove('highlight-card');
-        }, 1200);
+        }, 2000); // Increased duration to 2.0s
     }
 }
+
+// --- NEW: Reset function for session data ---
+window.resetSessionData = function() {
+    // 1. Reset Checkboxes and Suggestions in Massage View
+    const massageCheckboxes = document.querySelectorAll('#massage-selector-content input[type="checkbox"]');
+    massageCheckboxes.forEach(cb => {
+        if (cb.checked) {
+            cb.checked = false;
+        }
+    });
+    const massageSuggestion = document.getElementById('massage-suggestion');
+    if (massageSuggestion) massageSuggestion.innerHTML = '';
+
+    // 2. Reset Checkboxes and Suggestions in Light Therapy View
+    const lightCheckboxes = document.querySelectorAll('#light-selector-content input[type="checkbox"]');
+    lightCheckboxes.forEach(cb => {
+        if (cb.checked) {
+            cb.checked = false;
+        }
+    });
+    const lightSuggestion = document.getElementById('suggestion');
+    if (lightSuggestion) lightSuggestion.innerHTML = '';
+};
 
 // --- Scroll Navigation Logic ---
 let scrollStopTimer; const backToTopBtn = document.getElementById('back-to-top-btn'); const dynamicBackBtn = document.getElementById('dynamic-back-btn');
@@ -2771,12 +2802,14 @@ window.onscroll = () => {
     } else { 
         backToTopBtn.classList.remove('visible'); 
     } 
-    // Do not show dynamic back button based on scroll, only based on navigation state (handled in navigateTo/goBack)
     // Dynamic back button visibility should not be managed here to prevent flicker
 };
 
 // --- Initial Setup ---
 document.addEventListener('DOMContentLoaded', () => {
+    // *** CRITICAL FIX: Reset session data on initial load/refresh ***
+    window.resetSessionData();
+    
     // FIX: Initialize ingredientCategories on load
     ingredientCategories = window.generateIngredientCategories();
     
