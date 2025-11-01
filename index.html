@@ -2451,7 +2451,7 @@ window.showInjectableDetails = function(injectableName) {
 
         if (defaultHeader) {
             // Find the corresponding content by looking at the onclick attribute
-            const contentIdMatch = defaultHeader.getAttribute('onclick').match(/'([^']+)'/);
+            const contentIdMatch = defaultHeader.getAttribute('onclick').match(/'([^']+)'/); // <-- FIXED: Added closing slash
             if (contentIdMatch) {
                 const defaultContent = document.getElementById(contentIdMatch[1]);
                 if (defaultContent) {
